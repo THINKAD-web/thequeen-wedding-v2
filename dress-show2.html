@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+<title>THE QUEEN × WEDDING MUE · 2027 S/S 드레스쇼</title>
+<meta name="description" content="더퀸 × 웨딩 뮤 · 2027 S/S 드레스쇼 · 참여만 해도 500만원 상당 혜택 증정 · 100팀 선착순 모집">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;500;600;700;900&family=Noto+Serif+KR:wght@300;400;500;700&family=Italianno&family=Bodoni+Moda:ital,wght@0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ivory: #fdfaf3; --cream: #f5ecd9; --paper: #fffdf8;
+  --rose-gold: #c89585; --rose-gold-bright: #e8b4a0; --rose-gold-light: #f5d4c5;
+  --rose-gold-soft: #f9e3d8; --rose-gold-deep: #a87565;
+  --gold: #c9a24a; --gold-bright: #d4b060; --gold-deep: #9c7a30;
+  --pink-bright: #ff6b9d; --pink-soft: #fce0e8;
+  --hot-pink: #e94f7c; --hot-pink-deep: #c93862;
+  --ink: #3a2a1f; --ink-soft: #5a4a3e; --muted: #8a7a6e;
+  --line: #e0d4bf; --white: #fff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Serif KR', serif; font-weight: 300;
+  background: var(--ivory); color: var(--ink);
+  overflow-x: hidden; line-height: 1.7; letter-spacing: 0.02em;
+  padding-bottom: 76px; -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+button { font-family: inherit; }
+
+/* TOP BAR */
+.top-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+  background: linear-gradient(90deg, var(--hot-pink-deep), var(--hot-pink) 30%, var(--rose-gold) 70%, var(--hot-pink));
+  background-size: 200% 100%; animation: barShine 6s linear infinite;
+  padding: 10px 20px; text-align: center; color: white;
+  font-size: 12px; letter-spacing: 0.05em;
+}
+@keyframes barShine { from { background-position: 0 0; } to { background-position: 200% 0; } }
+.top-bar strong { font-weight: 900; background: rgba(255,255,255,0.22); padding: 2px 8px; border-radius: 3px; margin: 0 4px; }
+
+/* NAV */
+.nav {
+  position: fixed; top: 38px; left: 0; right: 0; z-index: 50;
+  padding: 14px 40px; display: flex; justify-content: space-between; align-items: center;
+  background: linear-gradient(180deg, rgba(253,250,243,0.95), rgba(253,250,243,0.6) 70%, transparent);
+  transition: all .4s; backdrop-filter: blur(10px);
+}
+.nav.scrolled {
+  padding: 10px 40px; background: rgba(253,250,243,0.98);
+  box-shadow: 0 2px 20px rgba(168,117,101,0.1); border-bottom: 1px solid var(--line);
+}
+.nav-logo {
+  font-family: 'Cinzel', serif; color: var(--rose-gold-deep);
+  font-size: 14px; letter-spacing: 0.35em; font-weight: 700;
+  display: flex; align-items: center; gap: 10px; white-space: nowrap;
+}
+.nav-logo .host {
+  font-size: 10px; letter-spacing: 0.15em; color: var(--rose-gold);
+  font-weight: 400; padding-left: 10px; border-left: 1px solid var(--rose-gold-light);
+  font-family: 'Noto Serif KR', serif;
+}
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  color: var(--ink-soft); text-decoration: none; font-size: 11px;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  transition: color .3s; font-weight: 500;
+}
+.nav-links a:hover { color: var(--hot-pink); }
+.nav-cta {
+  padding: 10px 22px;
+  background: linear-gradient(135deg, var(--hot-pink), var(--rose-gold));
+  color: white; text-decoration: none; font-size: 10px;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  box-shadow: 0 4px 14px rgba(233,79,124,0.3); border-radius: 2px;
+  font-weight: 700; transition: all .3s;
+}
+.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(233,79,124,0.45); }
+
+/* HERO — Clean, video-focused */
+.hero {
+  position: relative; height: 100vh; min-height: 640px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center; padding-top: 38px;
+}
+.hero-video-wrap { position: absolute; inset: 0; z-index: 0; overflow: hidden; background: #0a0607; }
+.hero-video-wrap iframe {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: max(100%, 177.78vh); height: max(100%, 56.25vw);
+  border: none; pointer-events: none;
+}
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    radial-gradient(ellipse at center, rgba(10,6,7,0.25), rgba(10,6,7,0.55) 75%, rgba(10,6,7,0.8)),
+    linear-gradient(180deg, rgba(10,6,7,0.3), transparent 40%, rgba(10,6,7,0.6));
+}
+.hero-content {
+  position: relative; z-index: 3; text-align: center;
+  padding: 40px 20px; width: 100%; max-width: 900px;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 8px 22px; background: rgba(233,79,124,0.9);
+  border: 1px solid rgba(255,255,255,0.3); color: white;
+  font-family: 'Cinzel', serif; font-size: 10px;
+  letter-spacing: 0.4em; font-weight: 700;
+  border-radius: 100px; margin-bottom: 28px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 25px rgba(233,79,124,0.4);
+  opacity: 0; animation: fadeUp 1s ease .3s forwards;
+}
+.hero-badge .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: white; animation: pulse 1.4s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.3); } }
+.hero h1 {
+  font-family: 'Bodoni Moda', serif; font-weight: 900;
+  font-size: clamp(42px, 8vw, 110px); line-height: 0.95;
+  letter-spacing: 0.02em; margin-bottom: 20px;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+  opacity: 0; animation: fadeUp 1.2s ease .5s forwards;
+}
+.hero h1 .top-line {
+  display: block; font-size: 0.26em; letter-spacing: 0.5em;
+  font-weight: 500; font-family: 'Cinzel', serif;
+  color: var(--rose-gold-light); margin-bottom: 14px;
+}
+.hero h1 .main { display: block; color: white; }
+.hero h1 .italic {
+  display: block; font-size: 0.5em; font-style: italic;
+  font-weight: 400; margin-top: 8px;
+  background: linear-gradient(180deg, var(--rose-gold-light), var(--rose-gold-bright), var(--pink-bright));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-sub {
+  font-size: clamp(13px, 1.5vw, 17px); color: rgba(255,255,255,0.9);
+  letter-spacing: 0.3em; margin-bottom: 32px;
+  opacity: 0; animation: fadeUp 1.2s ease .7s forwards;
+}
+.hero-meta {
+  display: inline-flex; gap: 24px; padding: 14px 28px;
+  background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 4px; margin-bottom: 32px;
+  backdrop-filter: blur(10px); flex-wrap: wrap; justify-content: center;
+  opacity: 0; animation: fadeUp 1.2s ease .9s forwards;
+}
+.hero-meta .item { display: flex; align-items: center; gap: 8px; }
+.hero-meta .label {
+  font-family: 'Cinzel', serif; font-size: 9px;
+  letter-spacing: 0.3em; color: var(--rose-gold-bright); font-weight: 600;
+}
+.hero-meta .value {
+  font-family: 'Bodoni Moda', serif; font-weight: 700;
+  color: white; font-size: 13px; letter-spacing: 0.05em;
+}
+.hero-meta .sep { color: rgba(255,255,255,0.25); }
+.hero-ctas {
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 1.2s ease 1.1s forwards;
+}
+.btn-primary, .btn-secondary {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 17px 42px; text-decoration: none;
+  font-family: 'Cinzel', serif; font-size: 12px;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  font-weight: 700; transition: all .4s;
+  border: none; cursor: pointer; position: relative; overflow: hidden;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--hot-pink), var(--rose-gold) 50%, var(--gold));
+  background-size: 200% 200%; color: white;
+  box-shadow: 0 12px 32px rgba(233,79,124,0.4);
+}
+.btn-primary::before {
+  content: ''; position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: left .7s;
+}
+.btn-primary:hover::before { left: 100%; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(233,79,124,0.55); background-position: 100% 100%; }
+.btn-secondary {
+  background: rgba(255,255,255,0.1); color: white;
+  border: 1px solid rgba(255,255,255,0.5);
+  font-weight: 600; backdrop-filter: blur(10px);
+}
+.btn-secondary:hover { background: white; color: var(--ink); }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+/* URGENCY STRIP */
+.urgency-strip {
+  background: linear-gradient(135deg, var(--hot-pink), var(--rose-gold));
+  padding: 22px 20px; color: white;
+}
+.us-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap; gap: 28px; text-align: center;
+}
+.us-item { display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.08em; }
+.us-item .num { font-family: 'Bodoni Moda', serif; font-weight: 900; font-size: 24px; color: #fff7c4; }
+.us-item .label { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.25em; opacity: 0.9; }
+.us-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.25); }
+.us-cd {
+  display: flex; align-items: center; gap: 4px;
+  font-family: 'Bodoni Moda', serif; font-weight: 700;
+  font-size: 18px; color: #fff7c4;
+}
+.us-cd span { display: inline-block; min-width: 24px; text-align: center; }
+
+/* APPEAL */
+.appeal-section {
+  padding: 90px 20px;
+  background: linear-gradient(135deg, rgba(252,224,232,0.5), rgba(245,212,197,0.3) 50%, rgba(252,224,232,0.5)), var(--paper);
+  position: relative; overflow: hidden;
+}
+.appeal-inner {
+  max-width: 1100px; margin: 0 auto;
+  position: relative; z-index: 2; text-align: center;
+}
+.appeal-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 9px 22px; margin-bottom: 22px;
+  background: var(--hot-pink); color: white;
+  font-family: 'Cinzel', serif; font-size: 11px;
+  font-weight: 700; letter-spacing: 0.4em; border-radius: 100px;
+  box-shadow: 0 8px 25px rgba(233,79,124,0.4);
+  animation: badgeFloat 3s ease-in-out infinite;
+}
+@keyframes badgeFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+.appeal-badge::before, .appeal-badge::after { content: '✦'; font-size: 9px; }
+.appeal-title {
+  font-family: 'Bodoni Moda', serif; font-weight: 900;
+  font-size: clamp(28px, 4.5vw, 52px);
+  line-height: 1.2; margin-bottom: 18px; color: var(--ink);
+}
+.appeal-title .highlight {
+  background: linear-gradient(90deg, var(--hot-pink), var(--rose-gold));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-style: italic; position: relative;
+}
+.appeal-title .highlight::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 5px;
+  background: linear-gradient(90deg, var(--hot-pink), var(--rose-gold));
+  opacity: 0.3;
+}
+.appeal-sub {
+  font-size: clamp(14px, 1.5vw, 16px); color: var(--ink-soft);
+  line-height: 1.9; letter-spacing: 0.05em;
+  max-width: 650px; margin: 0 auto 42px;
+}
+.appeal-sub .tag {
+  display: inline-block; background: var(--pink-soft);
+  color: var(--hot-pink-deep); padding: 2px 10px;
+  border-radius: 3px; font-weight: 700; margin: 2px 0;
+}
+.gift-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 14px; max-width: 1000px; margin: 0 auto 40px;
+}
+.gift-card {
+  padding: 28px 16px; background: var(--white);
+  border: 1px solid var(--line); text-align: center;
+  transition: all .4s; position: relative; overflow: hidden;
+  box-shadow: 0 6px 20px rgba(200,149,133,0.08);
+}
+.gift-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 10%; right: 10%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--hot-pink), transparent);
+}
+.gift-card:hover {
+  transform: translateY(-6px); border-color: var(--rose-gold);
+  box-shadow: 0 18px 35px rgba(233,79,124,0.15);
+}
+.gift-card .g-num {
+  font-family: 'Bodoni Moda', serif;
+  font-weight: 900; font-size: 30px;
+  line-height: 1; margin-bottom: 12px;
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold) 50%, var(--gold-deep));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.02em;
+}
+.gift-card .g-num.total-mark {
+  font-size: 18px; letter-spacing: 0.3em;
+  background: linear-gradient(90deg, var(--hot-pink), var(--rose-gold));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.gift-card .g-name {
+  font-family: 'Cinzel', serif; font-size: 10px;
+  color: var(--rose-gold-deep); letter-spacing: 0.2em;
+  margin-bottom: 6px; font-weight: 600;
+}
+.gift-card .g-kor { font-size: 13px; color: var(--ink); margin-bottom: 8px; letter-spacing: 0.05em; font-weight: 500; }
+.gift-card .g-amount { font-family: 'Bodoni Moda', serif; font-weight: 700; color: var(--hot-pink); font-size: 16px; }
+.gift-card .g-note {
+  display: inline-block; margin-top: 8px; font-size: 9px;
+  padding: 2px 8px; background: var(--pink-soft);
+  color: var(--hot-pink-deep); border-radius: 3px;
+  letter-spacing: 0.1em; font-weight: 600;
+}
+.gift-card.total {
+  border: 2px solid var(--hot-pink);
+  background: linear-gradient(180deg, var(--white), var(--pink-soft));
+}
+.gift-card.total .g-amount {
+  font-size: 20px;
+  background: linear-gradient(90deg, var(--hot-pink), var(--rose-gold));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.gift-card.total .g-note { background: var(--hot-pink); color: white; }
+.appeal-cta {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 20px 44px;
+  background: linear-gradient(135deg, var(--hot-pink), var(--rose-gold) 50%, var(--gold));
+  background-size: 200% 200%; color: white;
+  border: none; cursor: pointer;
+  font-family: 'Cinzel', serif; font-weight: 700;
+  font-size: 13px; letter-spacing: 0.3em;
+  text-decoration: none; text-transform: uppercase;
+  box-shadow: 0 15px 40px rgba(233,79,124,0.4);
+  transition: all .4s; position: relative; overflow: hidden;
+}
+.appeal-cta::before {
+  content: ''; position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+  transition: left .8s;
+}
+.appeal-cta:hover::before { left: 100%; }
+.appeal-cta:hover { background-position: 100% 100%; transform: translateY(-3px); box-shadow: 0 20px 55px rgba(233,79,124,0.55); }
+
+/* SECTION COMMON */
+section { padding: 110px 20px; position: relative; }
+.container { max-width: 1300px; margin: 0 auto; position: relative; z-index: 2; }
+.eyebrow {
+  text-align: center; font-family: 'Cinzel', serif;
+  font-size: 10px; letter-spacing: 0.55em;
+  color: var(--rose-gold-deep); margin-bottom: 18px;
+  text-transform: uppercase; font-weight: 600;
+}
+.eyebrow::before, .eyebrow::after { content: '✦'; margin: 0 12px; color: var(--hot-pink); font-size: 8px; vertical-align: middle; }
+.section-title {
+  text-align: center; font-family: 'Bodoni Moda', serif;
+  font-weight: 900; font-size: clamp(34px, 5.5vw, 72px);
+  letter-spacing: 0.02em; line-height: 1.1; margin-bottom: 14px;
+  background: linear-gradient(180deg, var(--ink), var(--rose-gold-deep) 70%, var(--rose-gold));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.section-title .italic {
+  font-style: italic; font-weight: 400;
+  background: linear-gradient(180deg, var(--hot-pink), var(--rose-gold));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.section-kor {
+  text-align: center; font-size: clamp(15px, 1.8vw, 20px);
+  color: var(--ink-soft); letter-spacing: 0.15em;
+  margin-bottom: 20px; font-weight: 400;
+}
+.divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px; margin: 24px auto 44px;
+}
+.divider::before, .divider::after {
+  content: ''; width: 70px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
+}
+.divider .ornament { color: var(--hot-pink); font-size: 11px; }
+
+/* RUNWAY (Compact masonry) */
+.runway-section {
+  background: radial-gradient(ellipse at 20% 0%, rgba(252,224,232,0.25), transparent 50%), var(--ivory);
+}
+.runway-ticker {
+  overflow: hidden; margin-bottom: 50px; padding: 10px 0;
+  border-top: 1px solid var(--rose-gold-light);
+  border-bottom: 1px solid var(--rose-gold-light);
+  background: var(--paper);
+}
+.ticker-track {
+  display: flex; gap: 60px; white-space: nowrap;
+  animation: tickerRun 40s linear infinite;
+}
+.ticker-track span {
+  font-family: 'Bodoni Moda', serif; font-style: italic;
+  font-size: 20px; color: var(--rose-gold-deep); letter-spacing: 0.1em;
+}
+.ticker-track .dot { color: var(--hot-pink); margin: 0 14px; }
+@keyframes tickerRun { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.masonry { columns: 3; column-gap: 14px; }
+.m-item {
+  break-inside: avoid; margin-bottom: 14px; display: block;
+  position: relative; overflow: hidden; cursor: pointer;
+  background: var(--cream); transition: all .5s;
+  box-shadow: 0 4px 16px rgba(200,149,133,0.08);
+}
+.m-item img { width: 100%; height: auto; display: block; transition: transform 1s ease; }
+.m-item::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(58,42,31,0.8));
+  opacity: 0; transition: opacity .4s; z-index: 2; pointer-events: none;
+}
+.m-item::after {
+  content: ''; position: absolute; inset: 0;
+  border: 2px solid transparent; transition: border-color .4s;
+  z-index: 3; pointer-events: none;
+}
+.m-item:hover::before { opacity: 1; }
+.m-item:hover::after { border-color: var(--hot-pink); }
+.m-item:hover img { transform: scale(1.05); }
+.m-item:hover .m-label { opacity: 1; transform: translateY(0); }
+.m-item:hover { box-shadow: 0 18px 40px rgba(233,79,124,0.2); }
+.m-label {
+  position: absolute; bottom: 16px; left: 16px; right: 16px; z-index: 3;
+  opacity: 0; transform: translateY(6px); transition: all .35s;
+}
+.m-label .eng {
+  font-family: 'Cinzel', serif; font-size: 10px;
+  letter-spacing: 0.3em; color: var(--rose-gold-light);
+  margin-bottom: 3px; font-weight: 600;
+}
+.m-label .kor { font-size: 13px; color: white; letter-spacing: 0.08em; }
+.m-badge {
+  position: absolute; top: 10px; right: 10px; z-index: 3;
+  width: 28px; height: 28px; background: var(--hot-pink);
+  color: white; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; box-shadow: 0 4px 12px rgba(233,79,124,0.5); opacity: 0.9;
+}
+
+/* BENEFITS — Big Gold Badges */
+.benefits-section {
+  background: radial-gradient(ellipse at 50% 0%, rgba(245,212,197,0.3), transparent 60%), var(--paper);
+}
+.benefits-banner {
+  max-width: 900px; margin: 0 auto 60px;
+  padding: 28px 32px;
+  background: linear-gradient(135deg, var(--hot-pink), var(--rose-gold));
+  color: white; text-align: center; border-radius: 6px;
+  box-shadow: 0 20px 50px rgba(233,79,124,0.3);
+  position: relative;
+}
+.benefits-banner .bb-eyebrow {
+  font-family: 'Cinzel', serif; font-size: 11px;
+  letter-spacing: 0.4em; opacity: 0.9;
+  margin-bottom: 8px; font-weight: 600;
+}
+.benefits-banner .bb-title {
+  font-family: 'Bodoni Moda', serif; font-weight: 900;
+  font-size: clamp(22px, 3.5vw, 32px);
+  letter-spacing: 0.02em; line-height: 1.3;
+}
+.benefits-banner .bb-title .accent { color: #fff7c4; font-style: italic; }
+.benefits-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 16px; margin-bottom: 48px;
+}
+.benefit-card {
+  position: relative; padding: 52px 20px 32px; text-align: center;
+  background: var(--white); border: 1px solid var(--line);
+  transition: all .5s; overflow: visible;
+  box-shadow: 0 6px 20px rgba(200,149,133,0.08);
+}
+.benefit-card:hover {
+  border-color: var(--hot-pink); transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(233,79,124,0.2);
+}
+.b-badge {
+  position: absolute; top: -26px; left: 50%;
+  transform: translateX(-50%);
+  width: 62px; height: 62px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold) 50%, var(--gold-deep));
+  border: 3px solid white;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bodoni Moda', serif; font-weight: 900;
+  font-size: 26px; color: white;
+  box-shadow: 0 10px 25px rgba(201,162,74,0.4), inset 0 2px 4px rgba(255,255,255,0.4);
+  z-index: 2;
+}
+.b-badge.pink {
+  background: linear-gradient(135deg, var(--pink-bright), var(--hot-pink) 50%, var(--hot-pink-deep));
+  box-shadow: 0 10px 25px rgba(233,79,124,0.45), inset 0 2px 4px rgba(255,255,255,0.4);
+}
+.hot-tag {
+  position: absolute; top: 14px; right: 14px;
+  padding: 4px 10px;
+  background: linear-gradient(135deg, var(--hot-pink), var(--hot-pink-deep));
+  color: white; font-family: 'Cinzel', serif;
+  font-size: 9px; letter-spacing: 0.3em; font-weight: 700;
+  box-shadow: 0 4px 12px rgba(233,79,124,0.5);
+  animation: hotPulse 2s ease-in-out infinite; border-radius: 3px;
+}
+@keyframes hotPulse {
+  0%,100% { box-shadow: 0 4px 12px rgba(233,79,124,0.5); }
+  50% { box-shadow: 0 4px 20px rgba(233,79,124,0.8); }
+}
+.benefit-card h4 {
+  font-family: 'Cinzel', serif; font-weight: 600;
+  font-size: 12px; letter-spacing: 0.22em;
+  color: var(--rose-gold-deep); margin-bottom: 8px;
+}
+.benefit-card .kor-title {
+  color: var(--ink); font-size: 16px; letter-spacing: 0.05em;
+  margin-bottom: 14px; line-height: 1.4; font-weight: 500;
+}
+.benefit-card .amount {
+  font-family: 'Bodoni Moda', serif; font-weight: 700;
+  font-size: 20px; color: var(--hot-pink); letter-spacing: 0.02em;
+}
+.benefit-card p { font-size: 11px; color: var(--muted); line-height: 1.7; margin-top: 12px; }
+.benefits-total {
+  max-width: 700px; margin: 0 auto;
+  padding: 40px 32px; text-align: center;
+  background: linear-gradient(135deg, var(--white), var(--pink-soft));
+  border: 2px solid var(--hot-pink); position: relative;
+  box-shadow: 0 20px 50px rgba(233,79,124,0.15);
+}
+.benefits-total::before, .benefits-total::after {
+  content: ''; position: absolute;
+  width: 50px; height: 50px; border: 2px solid var(--hot-pink);
+}
+.benefits-total::before { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+.benefits-total::after { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+.benefits-total .tot-label {
+  font-family: 'Cinzel', serif; font-size: 11px;
+  letter-spacing: 0.5em; color: var(--hot-pink-deep);
+  margin-bottom: 10px; font-weight: 700;
+}
+.benefits-total .tot-num {
+  font-family: 'Bodoni Moda', serif; font-weight: 900;
+  font-size: clamp(38px, 6vw, 60px); line-height: 1;
+  background: linear-gradient(135deg, var(--hot-pink), var(--rose-gold) 50%, var(--gold));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.benefits-total .tot-num .unit { font-style: italic; font-size: 0.4em; margin-left: 6px; }
+
+/* HIGHLIGHT VIDEO SECTION (horizontal) */
+.video-section {
+  background: radial-gradient(ellipse at 50% 0%, rgba(252,224,232,0.2), transparent 60%), var(--paper);
+}
+.video-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 18px; max-width: 1300px; margin: 0 auto;
+}
+.video-card {
+  position: relative; aspect-ratio: 16/9;
+  overflow: hidden; background: #0a0607;
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 20px rgba(200,149,133,0.1);
+  transition: all .4s;
+}
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(233,79,124,0.15);
+  border-color: var(--rose-gold);
+}
+.video-card iframe {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%; height: 100%;
+  border: none; pointer-events: none;
+}
+.video-card::after {
+  content: ''; position: absolute;
+  inset: 0; border: 2px solid transparent;
+  transition: border-color .3s; pointer-events: none;
+}
+.video-card:hover::after { border-color: var(--hot-pink); }
+.video-label {
+  position: absolute; bottom: 12px; left: 12px; z-index: 2;
+  padding: 5px 12px;
+  background: rgba(58,42,31,0.75);
+  color: white;
+  font-family: 'Cinzel', serif;
+  font-size: 10px; letter-spacing: 0.25em;
+  font-weight: 600; backdrop-filter: blur(4px);
+  border-radius: 2px;
+}
+
+/* VERTICAL VIDEO SECTION */
+.vvideo-section { background: var(--ivory); }
+.vvideo-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 18px; max-width: 800px; margin: 0 auto;
+}
+.vvideo-card {
+  position: relative; aspect-ratio: 9/16;
+  overflow: hidden; background: #0a0607;
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 20px rgba(200,149,133,0.1);
+  transition: all .4s;
+}
+.vvideo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(233,79,124,0.15);
+  border-color: var(--rose-gold);
+}
+.vvideo-card iframe {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%; height: 100%;
+  border: none; pointer-events: none;
+}
+.vvideo-card::after {
+  content: ''; position: absolute;
+  inset: 0; border: 2px solid transparent;
+  transition: border-color .3s; pointer-events: none;
+}
+.vvideo-card:hover::after { border-color: var(--hot-pink); }
+
+/* PARTNERS */
+.partners-section { background: var(--ivory); }
+.partners-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; max-width: 1200px; margin: 0 auto;
+}
+.partner-card {
+  background: var(--white); border: 1px solid var(--line);
+  transition: all .4s; overflow: hidden;
+  box-shadow: 0 6px 20px rgba(200,149,133,0.08);
+  position: relative;
+}
+.partner-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; width: 3px; height: 100%;
+  background: linear-gradient(180deg, var(--hot-pink), var(--rose-gold));
+  opacity: 0; transition: opacity .3s;
+}
+.partner-card:hover {
+  transform: translateY(-6px); border-color: var(--rose-gold);
+  box-shadow: 0 20px 40px rgba(233,79,124,0.15);
+}
+.partner-card:hover::before { opacity: 1; }
+.partner-content { padding: 32px 28px; }
+.partner-tag {
+  display: inline-block; padding: 3px 10px;
+  background: var(--pink-soft); color: var(--hot-pink-deep);
+  font-family: 'Cinzel', serif; font-size: 9px;
+  letter-spacing: 0.25em; font-weight: 700;
+  margin-bottom: 10px; border-radius: 3px;
+}
+.partner-name {
+  font-family: 'Bodoni Moda', serif; font-weight: 700;
+  font-size: 20px; color: var(--ink);
+  letter-spacing: 0.02em; margin-bottom: 4px;
+}
+.partner-en {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 14px; color: var(--rose-gold-deep);
+  margin-bottom: 12px; letter-spacing: 0.05em;
+}
+.partner-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+
+/* JOIN */
+.join-section {
+  background: radial-gradient(ellipse at 50% 50%, rgba(252,224,232,0.5), transparent 60%), var(--paper);
+  padding: 110px 20px; text-align: center;
+}
+.join-wrapper { max-width: 850px; margin: 0 auto; }
+.limit-badge {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 10px 22px; background: var(--white);
+  border: 2px solid var(--hot-pink); border-radius: 100px;
+  font-family: 'Cinzel', serif; font-size: 11px;
+  letter-spacing: 0.3em; color: var(--hot-pink-deep);
+  margin-bottom: 24px; text-transform: uppercase;
+  font-weight: 700; box-shadow: 0 6px 20px rgba(233,79,124,0.15);
+}
+.limit-badge .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--hot-pink); animation: pulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 8px var(--hot-pink);
+}
+.schedule-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 14px; max-width: 850px; margin: 36px auto 28px;
+}
+.sch-card {
+  padding: 24px 18px; background: var(--white);
+  border: 1px solid var(--line); transition: all .3s;
+  box-shadow: 0 4px 14px rgba(200,149,133,0.06);
+}
+.sch-card:hover { border-color: var(--hot-pink); transform: translateY(-3px); }
+.sch-card .sch-icon { font-size: 24px; margin-bottom: 10px; }
+.sch-card .sch-t {
+  font-family: 'Cinzel', serif; font-size: 10px;
+  letter-spacing: 0.28em; color: var(--rose-gold-deep);
+  margin-bottom: 6px; font-weight: 600;
+}
+.sch-card .sch-d {
+  font-family: 'Bodoni Moda', serif; font-weight: 700;
+  font-size: 18px; color: var(--ink);
+}
+.sch-card .sch-d .accent {
+  background: linear-gradient(90deg, var(--hot-pink), var(--rose-gold));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.sch-card .sch-note {
+  font-size: 10px; color: var(--muted);
+  margin-top: 6px; font-style: italic;
+}
+.notice-box {
+  max-width: 680px; margin: 20px auto 32px;
+  padding: 20px 26px; background: var(--white);
+  border-left: 3px solid var(--hot-pink);
+  font-size: 12px; color: var(--ink-soft);
+  line-height: 1.9; letter-spacing: 0.05em;
+  text-align: left;
+  box-shadow: 0 4px 14px rgba(200,149,133,0.06);
+}
+.notice-box strong { color: var(--hot-pink); font-weight: 700; }
+.big-cta {
+  display: inline-flex; align-items: center; gap: 14px;
+  padding: 22px 56px;
+  background: linear-gradient(135deg, var(--hot-pink), var(--rose-gold) 50%, var(--gold));
+  background-size: 200% 200%; color: white;
+  border: none; cursor: pointer;
+  font-family: 'Cinzel', serif; font-weight: 700;
+  font-size: 14px; letter-spacing: 0.3em;
+  text-decoration: none; text-transform: uppercase;
+  box-shadow: 0 15px 40px rgba(233,79,124,0.4);
+  transition: all .5s; position: relative; overflow: hidden;
+}
+.big-cta::before {
+  content: ''; position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+  transition: left .8s;
+}
+.big-cta:hover::before { left: 100%; }
+.big-cta:hover { background-position: 100% 100%; transform: translateY(-4px); box-shadow: 0 22px 55px rgba(233,79,124,0.55); }
+
+/* FOOTER */
+footer {
+  background: var(--paper); padding: 50px 20px 26px;
+  text-align: center; border-top: 1px solid var(--line);
+}
+.f-logo {
+  font-family: 'Cinzel', serif; color: var(--rose-gold-deep);
+  font-size: 18px; letter-spacing: 0.5em;
+  margin-bottom: 6px; font-weight: 700;
+}
+.f-host {
+  font-size: 11px; letter-spacing: 0.3em;
+  color: var(--muted); margin-bottom: 14px;
+}
+.f-script {
+  font-family: 'Italianno', cursive;
+  color: var(--hot-pink); font-size: 26px; margin-bottom: 22px;
+}
+.f-info {
+  color: var(--ink-soft); font-size: 12px;
+  line-height: 2; letter-spacing: 0.08em; margin-bottom: 22px;
+}
+.f-socials { display: flex; justify-content: center; gap: 16px; margin-bottom: 26px; }
+.f-socials a {
+  width: 36px; height: 36px; border: 1px solid var(--rose-gold);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--rose-gold-deep); text-decoration: none;
+  transition: all .3s; font-size: 14px;
+}
+.f-socials a:hover { background: var(--hot-pink); color: white; border-color: var(--hot-pink); }
+.f-bottom {
+  padding-top: 20px; border-top: 1px solid var(--line);
+  color: var(--muted); font-family: 'Cinzel', serif;
+  font-size: 9px; letter-spacing: 0.35em;
+}
+
+/* STICKY BOTTOM CTA */
+.sticky-form {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 45;
+  background: rgba(255,255,255,0.98); backdrop-filter: blur(14px);
+  border-top: 1px solid var(--rose-gold-light);
+  box-shadow: 0 -8px 30px rgba(200,149,133,0.15);
+}
+.sticky-form::before {
+  content: ''; position: absolute;
+  top: -2px; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--hot-pink) 30%, var(--rose-gold) 50%, var(--hot-pink) 70%, transparent);
+}
+.sf-collapsed {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 20px; max-width: 1300px; margin: 0 auto;
+  gap: 14px; cursor: pointer;
+}
+.sf-col-text { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+.sf-col-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, var(--hot-pink), var(--hot-pink-deep));
+  color: white; font-family: 'Cinzel', serif;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+  border-radius: 100px;
+  box-shadow: 0 4px 12px rgba(233,79,124,0.4);
+  white-space: nowrap; flex-shrink: 0;
+}
+.sf-col-badge .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: white; animation: pulse 1.2s ease-in-out infinite;
+}
+.sf-col-msg {
+  color: var(--ink); font-size: 13px;
+  letter-spacing: 0.04em;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.sf-col-msg strong { color: var(--hot-pink); font-weight: 700; }
+.sf-col-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 22px;
+  background: linear-gradient(135deg, var(--hot-pink), var(--rose-gold), var(--gold));
+  background-size: 200% 200%; color: white;
+  font-family: 'Cinzel', serif; font-weight: 700;
+  font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
+  border: none; cursor: pointer; transition: all .3s;
+  flex-shrink: 0; white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(233,79,124,0.3);
+}
+.sf-col-cta:hover { background-position: 100% 100%; transform: translateY(-1px); }
+
+/* MODAL — BIGGER & MORE LUXURIOUS */
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(58,42,31,0.65); backdrop-filter: blur(16px);
+  display: none; align-items: center; justify-content: center;
+  padding: 20px; opacity: 0; transition: opacity .4s; overflow-y: auto;
+}
+.modal-backdrop.open { display: flex; opacity: 1; }
+.modal-card {
+  position: relative; width: 100%;
+  max-width: 680px; max-height: calc(100vh - 40px);
+  padding: 3px;
+  background: linear-gradient(135deg, var(--hot-pink), var(--rose-gold) 40%, var(--gold) 70%, var(--rose-gold));
+  background-size: 200% 200%;
+  animation: borderShift 6s linear infinite;
+  transform: scale(0.95); transition: transform .4s;
+  border-radius: 6px; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.modal-backdrop.open .modal-card { transform: scale(1); }
+@keyframes borderShift {
+  0% { background-position: 0 0; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0 0; }
+}
+.modal-inner {
+  background: var(--white); padding: 44px 44px 40px;
+  position: relative; overflow-y: auto; border-radius: 4px;
+}
+.modal-inner::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 120px;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(244,139,168,0.15), transparent 50%),
+    radial-gradient(circle at 80% 40%, rgba(232,180,160,0.15), transparent 50%);
+  pointer-events: none;
+}
+.modal-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 38px; height: 38px; background: transparent;
+  border: 1px solid var(--rose-gold);
+  color: var(--rose-gold-deep);
+  font-size: 14px; cursor: pointer; transition: all .3s;
+  z-index: 5; border-radius: 50%;
+}
+.modal-close:hover { background: var(--hot-pink); color: white; border-color: var(--hot-pink); transform: rotate(90deg); }
+.modal-header { text-align: center; margin-bottom: 32px; position: relative; z-index: 2; }
+.modal-crown { font-size: 28px; color: var(--hot-pink); margin-bottom: 12px; }
+.modal-eyebrow {
+  font-family: 'Cinzel', serif; font-size: 10px;
+  letter-spacing: 0.5em; color: var(--rose-gold-deep);
+  margin-bottom: 12px; font-weight: 600;
+}
+.modal-title {
+  font-family: 'Bodoni Moda', serif; font-weight: 900;
+  font-size: 36px; line-height: 1.1; margin-bottom: 12px;
+  background: linear-gradient(180deg, var(--ink), var(--rose-gold-deep) 70%, var(--rose-gold));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.modal-title .italic {
+  font-style: italic; font-weight: 400;
+  background: linear-gradient(180deg, var(--hot-pink), var(--rose-gold));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.modal-sub { font-size: 13px; color: var(--ink-soft); letter-spacing: 0.05em; line-height: 1.7; }
+.modal-benefit-strip {
+  display: inline-block; margin-top: 12px; padding: 6px 16px;
+  background: var(--pink-soft); color: var(--hot-pink-deep);
+  font-family: 'Cinzel', serif; font-size: 10px;
+  letter-spacing: 0.25em; font-weight: 700; border-radius: 100px;
+}
+.modal-form { position: relative; z-index: 2; }
+.mf-group { margin-bottom: 18px; }
+.mf-group label {
+  display: block; font-family: 'Cinzel', serif;
+  font-size: 10px; letter-spacing: 0.3em;
+  color: var(--rose-gold-deep); margin-bottom: 8px;
+  text-transform: uppercase; font-weight: 600;
+}
+.mf-group label .req { color: var(--hot-pink); }
+.mf-group input, .mf-group select {
+  width: 100%; padding: 14px 16px;
+  background: var(--ivory); border: 1px solid var(--line);
+  color: var(--ink); font-family: 'Noto Serif KR', serif;
+  font-size: 14px; transition: all .3s; border-radius: 3px;
+}
+.mf-group input:focus, .mf-group select:focus {
+  outline: none; border-color: var(--hot-pink);
+  background: white; box-shadow: 0 0 0 3px rgba(233,79,124,0.1);
+}
+.mf-group input::placeholder { color: var(--muted); }
+.mf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.consent-box {
+  margin: 20px 0 22px; padding: 16px 18px;
+  background: linear-gradient(135deg, var(--pink-soft), rgba(252,224,232,0.3));
+  border: 1px solid var(--rose-gold-light);
+  border-left: 3px solid var(--hot-pink);
+  border-radius: 3px;
+}
+.consent-label {
+  display: flex; align-items: flex-start; gap: 10px;
+  cursor: pointer; font-size: 13px; color: var(--ink);
+  line-height: 1.6; letter-spacing: 0.02em;
+}
+.consent-label input[type="checkbox"] {
+  margin-top: 3px; width: 18px; height: 18px;
+  accent-color: var(--hot-pink); cursor: pointer; flex-shrink: 0;
+}
+.consent-label .req-tag {
+  display: inline-block; padding: 2px 8px;
+  background: var(--hot-pink); color: white;
+  font-family: 'Cinzel', serif; font-size: 9px;
+  letter-spacing: 0.2em; font-weight: 700;
+  margin-right: 6px; border-radius: 3px;
+}
+.mf-submit {
+  width: 100%; padding: 20px;
+  background: linear-gradient(135deg, var(--hot-pink), var(--rose-gold) 50%, var(--gold));
+  background-size: 200% 200%;
+  color: white; border: none;
+  font-family: 'Cinzel', serif; font-weight: 700;
+  font-size: 14px; letter-spacing: 0.3em;
+  cursor: pointer; transition: all .4s;
+  text-transform: uppercase; border-radius: 3px;
+  box-shadow: 0 10px 30px rgba(233,79,124,0.35);
+  position: relative; overflow: hidden;
+}
+.mf-submit::before {
+  content: ''; position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+  transition: left .7s;
+}
+.mf-submit:hover::before { left: 100%; }
+.mf-submit:hover { background-position: 100% 100%; transform: translateY(-2px); box-shadow: 0 15px 40px rgba(233,79,124,0.5); }
+.mf-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* MOBILE OPTIMIZATION */
+@media (max-width: 900px) {
+  .nav { padding: 12px 16px; top: 40px; }
+  .nav-links { display: none; }
+  .nav-logo { font-size: 12px; letter-spacing: 0.25em; }
+  .nav-logo .host { font-size: 9px; padding-left: 8px; }
+  .nav-cta { padding: 8px 16px; font-size: 9px; }
+  .top-bar { font-size: 11px; padding: 9px 14px; letter-spacing: 0.02em; }
+  .top-bar strong { font-size: 11px; padding: 1px 6px; }
+  section { padding: 70px 16px; }
+  .hero { height: auto; min-height: calc(100vh - 38px); padding: 100px 16px 60px; }
+  .hero h1 { font-size: clamp(36px, 11vw, 60px); }
+  .hero h1 .top-line { font-size: 11px; letter-spacing: 0.35em; }
+  .hero h1 .italic { font-size: 0.45em; }
+  .hero-sub { font-size: 12px; letter-spacing: 0.22em; margin-bottom: 24px; }
+  .hero-meta { padding: 12px 18px; gap: 16px; margin-bottom: 26px; }
+  .hero-meta .value { font-size: 12px; }
+  .hero-meta .label { font-size: 8px; letter-spacing: 0.22em; }
+  .hero-meta .sep { display: none; }
+  .btn-primary, .btn-secondary { padding: 14px 28px; font-size: 11px; letter-spacing: 0.22em; }
+  .hero-badge { padding: 7px 16px; font-size: 9px; letter-spacing: 0.3em; margin-bottom: 22px; }
+  .urgency-strip { padding: 18px 16px; }
+  .us-inner { gap: 14px; flex-direction: column; }
+  .us-sep { display: none; }
+  .us-item { font-size: 12px; }
+  .us-item .num { font-size: 20px; }
+  .appeal-section { padding: 60px 16px; }
+  .appeal-title { font-size: clamp(22px, 6vw, 32px); line-height: 1.3; }
+  .appeal-sub { font-size: 13px; }
+  .gift-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .gift-card { padding: 22px 12px; }
+  .gift-card .g-name { font-size: 9px; letter-spacing: 0.18em; }
+  .gift-card .g-kor { font-size: 12px; }
+  .gift-card .g-amount { font-size: 14px; }
+  .gift-card.total .g-amount { font-size: 17px; }
+  .appeal-cta { padding: 16px 30px; font-size: 11px; letter-spacing: 0.22em; }
+  .appeal-badge { padding: 8px 16px; font-size: 10px; letter-spacing: 0.3em; }
+  .section-title { font-size: clamp(26px, 7vw, 40px); }
+  .section-kor { font-size: 14px; letter-spacing: 0.1em; }
+  .divider { margin: 20px auto 32px; }
+  .divider::before, .divider::after { width: 40px; }
+  .masonry { columns: 2; column-gap: 10px; }
+  .m-item { margin-bottom: 10px; }
+  .m-label { bottom: 10px; left: 10px; right: 10px; }
+  .m-label .eng { font-size: 8px; letter-spacing: 0.22em; }
+  .m-label .kor { font-size: 11px; }
+  .m-badge { width: 22px; height: 22px; font-size: 10px; top: 8px; right: 8px; }
+  .runway-ticker { margin-bottom: 32px; }
+  .ticker-track span { font-size: 16px; }
+  .benefits-banner { padding: 22px 20px; margin-bottom: 40px; }
+  .benefits-banner .bb-title { font-size: clamp(18px, 5vw, 24px); }
+  .benefits-banner .bb-eyebrow { font-size: 10px; letter-spacing: 0.3em; }
+  .benefits-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 36px; }
+  .benefit-card { padding: 44px 14px 24px; }
+  .b-badge { width: 54px; height: 54px; font-size: 22px; top: -22px; border-width: 3px; }
+  .benefit-card h4 { font-size: 10px; letter-spacing: 0.18em; }
+  .benefit-card .kor-title { font-size: 13px; }
+  .benefit-card .amount { font-size: 16px; }
+  .benefit-card p { font-size: 10px; }
+  .hot-tag { font-size: 8px; padding: 3px 7px; letter-spacing: 0.22em; }
+  .benefits-total { padding: 30px 20px; }
+  .benefits-total .tot-num { font-size: clamp(30px, 8vw, 44px); }
+  .partners-grid { grid-template-columns: 1fr; gap: 14px; }
+  .video-grid { grid-template-columns: 1fr; gap: 12px; }
+  .vvideo-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 100%; }
+  .video-label { font-size: 9px; padding: 4px 10px; letter-spacing: 0.2em; }
+  .partner-content { padding: 20px; }
+  .partner-name { font-size: 17px; }
+  .partner-en { font-size: 13px; }
+  .partner-desc { font-size: 12px; }
+  .schedule-cards { grid-template-columns: 1fr; gap: 10px; }
+  .sch-card { padding: 20px 16px; }
+  .limit-badge { padding: 8px 18px; font-size: 10px; letter-spacing: 0.22em; }
+  .notice-box { padding: 16px 18px; font-size: 11px; letter-spacing: 0.02em; line-height: 1.85; }
+  .big-cta { padding: 18px 38px; font-size: 12px; letter-spacing: 0.22em; }
+  footer { padding: 40px 16px 22px; }
+  .f-logo { font-size: 15px; letter-spacing: 0.35em; }
+  .f-script { font-size: 22px; }
+  .f-info { font-size: 11px; }
+  .sticky-form { padding-bottom: env(safe-area-inset-bottom); }
+  .sf-collapsed { padding: 10px 14px; gap: 10px; }
+  .sf-col-badge { padding: 5px 10px; font-size: 9px; letter-spacing: 0.15em; gap: 5px; }
+  .sf-col-msg { font-size: 11px; }
+  .sf-col-cta { padding: 10px 16px; font-size: 10px; letter-spacing: 0.18em; }
+  body { padding-bottom: 62px; }
+  .modal-backdrop { padding: 10px; align-items: flex-start; padding-top: 20px; }
+  .modal-card { max-height: calc(100vh - 40px); }
+  .modal-inner { padding: 34px 22px 26px; }
+  .modal-close { top: 10px; right: 10px; width: 32px; height: 32px; font-size: 12px; }
+  .modal-crown { font-size: 22px; margin-bottom: 8px; }
+  .modal-title { font-size: clamp(24px, 7vw, 30px); }
+  .modal-eyebrow { font-size: 9px; letter-spacing: 0.4em; margin-bottom: 10px; }
+  .modal-sub { font-size: 12px; }
+  .modal-benefit-strip { font-size: 9px; padding: 5px 12px; letter-spacing: 0.2em; }
+  .mf-group label { font-size: 9px; letter-spacing: 0.22em; }
+  .mf-group input, .mf-group select { padding: 12px 14px; font-size: 13px; }
+  .mf-row { grid-template-columns: 1fr; gap: 0; }
+  .mf-row .mf-group { margin-bottom: 16px; }
+  .consent-box { padding: 14px 14px; }
+  .consent-label { font-size: 12px; gap: 8px; }
+  .consent-label .req-tag { font-size: 8px; padding: 2px 6px; }
+  .mf-submit { padding: 17px; font-size: 12px; letter-spacing: 0.22em; }
+}
+@media (max-width: 420px) {
+  .hero h1 { font-size: clamp(32px, 13vw, 52px); }
+  .hero-meta { padding: 10px 14px; gap: 12px; flex-direction: column; }
+  .section-title { font-size: clamp(22px, 8vw, 32px); }
+  .hero-ctas { flex-direction: column; width: 100%; }
+  .hero-ctas .btn-primary, .hero-ctas .btn-secondary { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <span>결혼 안 해도 <strong>OK!</strong> 참여만 해도 <strong>500만원</strong> 상당 증정 · 100팀 선착순</span>
+</div>
+
+<nav class="nav" id="nav">
+  <div class="nav-logo">THE QUEEN<span class="host">더퀸 주최</span></div>
+  <ul class="nav-links">
+    <li><a href="#appeal">Benefits</a></li>
+    <li><a href="#runway">Runway</a></li>
+    <li><a href="#benefits">특전</a></li>
+    <li><a href="#partners">Partners</a></li>
+    <li><a href="#join">Join</a></li>
+  </ul>
+  <a href="#" class="nav-cta" onclick="openModal(); return false;">RSVP</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-video-wrap">
+    <iframe src="https://streamable.com/e/udhqik?autoplay=1&muted=1&loop=1&nocontrols=1" allow="autoplay; fullscreen" allowfullscreen frameborder="0" scrolling="no"></iframe>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span><span>100팀 선착순 모집중</span></div>
+    <h1>
+      <span class="top-line">2027 S/S</span>
+      <span class="main">THE QUEEN</span>
+      <span class="italic">× Wedding Mue</span>
+    </h1>
+    <div class="hero-sub">포항에서 가장 화려한 신부의 순간</div>
+    <div class="hero-meta">
+      <div class="item"><span class="label">DATE</span><span class="value">2027. 5. 24</span></div>
+      <span class="sep">|</span>
+      <div class="item"><span class="label">VENUE</span><span class="value">포항 대이로 18</span></div>
+      <span class="sep">|</span>
+      <div class="item"><span class="label">HOST</span><span class="value">더퀸</span></div>
+    </div>
+    <div class="hero-ctas">
+      <a href="#" class="btn-primary" onclick="openModal(); return false;">무료 참가 신청</a>
+      <a href="#appeal" class="btn-secondary">혜택 보기 →</a>
+    </div>
+  </div>
+</section>
+
+<div class="urgency-strip">
+  <div class="us-inner">
+    <div class="us-item">
+      <span class="label">RECRUITMENT</span>
+      <span class="num">100팀</span>
+      <span>선착순 모집</span>
+    </div>
+    <div class="us-sep"></div>
+    <div class="us-item">
+      <span class="label">CURRENT</span>
+      <span class="num" id="resCount">73</span>
+      <span>팀 신청 완료</span>
+    </div>
+    <div class="us-sep"></div>
+    <div class="us-item">
+      <span class="label">DEADLINE</span>
+      <div class="us-cd">
+        <span id="cd-d">00</span>D
+        <span id="cd-h">00</span>H
+        <span id="cd-m">00</span>M
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="appeal-section" id="appeal">
+  <div class="appeal-inner">
+    <div class="appeal-badge">PARTICIPATION ONLY · NO STRINGS</div>
+    <h2 class="appeal-title">
+      <span class="highlight">신청만 해도, 참여만 해도</span><br>
+      500만원 상당 혜택 전원 증정
+    </h2>
+    <p class="appeal-sub">
+      <span class="tag">계약·구매 강요 없음</span> · <span class="tag">참여 그 자체로 지급</span><br>
+      더퀸이 준비한 신부들을 위한 <strong style="color: var(--hot-pink)">순수 초대 이벤트</strong>입니다.<br>
+      결혼 예정이 없으셔도 괜찮아요. 오셔서 런웨이만 감상하셔도 혜택이 드려집니다.
+    </p>
+    <div class="gift-grid">
+      <div class="gift-card">
+        <div class="g-num">01</div>
+        <div class="g-name">PRADA GIFT</div>
+        <div class="g-kor">프라다 핸드로션</div>
+        <div class="g-amount">₩ 120,000</div>
+        <div class="g-note">방문 전원 증정</div>
+      </div>
+      <div class="gift-card">
+        <div class="g-num">02</div>
+        <div class="g-name">DINNER VOUCHER</div>
+        <div class="g-kor">프리미엄 디너쿠폰 2장</div>
+        <div class="g-amount">₩ 200,000</div>
+        <div class="g-note">방문 전원 증정</div>
+      </div>
+      <div class="gift-card">
+        <div class="g-num">03</div>
+        <div class="g-name">FAMILY DINNER</div>
+        <div class="g-kor">가족 디너권 6장</div>
+        <div class="g-amount">₩ 600,000</div>
+        <div class="g-note">계약 고객 전원</div>
+      </div>
+      <div class="gift-card total">
+        <div class="g-num total-mark">TOTAL</div>
+        <div class="g-name">BENEFIT SUM</div>
+        <div class="g-kor">총 혜택 합산</div>
+        <div class="g-amount">₩ 5,000,000</div>
+        <div class="g-note">상당</div>
+      </div>
+    </div>
+    <a href="#" class="appeal-cta" onclick="openModal(); return false;">✦ 지금 무료로 신청하기 →</a>
+  </div>
+</section>
+
+<section class="runway-section" id="runway">
+  <div class="container">
+    <div class="eyebrow">Runway Gallery</div>
+    <h2 class="section-title">The Queen's <span class="italic">Runway</span></h2>
+    <div class="section-kor">런웨이 위에서 완성되는 단 하루의 무대</div>
+    <div class="divider"><span class="ornament">✦</span><span class="ornament">◆</span><span class="ornament">✦</span></div>
+  </div>
+  <div class="runway-ticker">
+    <div class="ticker-track">
+      <span>ROYAL COLLECTION<span class="dot">◆</span>ETHEREAL LACE<span class="dot">◆</span>CRYSTAL DREAM<span class="dot">◆</span>CHAMPAGNE NIGHT<span class="dot">◆</span>SILK MOONLIGHT<span class="dot">◆</span></span>
+      <span>ROYAL COLLECTION<span class="dot">◆</span>ETHEREAL LACE<span class="dot">◆</span>CRYSTAL DREAM<span class="dot">◆</span>CHAMPAGNE NIGHT<span class="dot">◆</span>SILK MOONLIGHT<span class="dot">◆</span></span>
+    </div>
+  </div>
+  <div class="container">
+    <div class="masonry">
+      <div class="m-item"><img src="https://i.ibb.co/Ngw5GBKq/1.jpg" alt="01" loading="lazy"><div class="m-badge">✦</div><div class="m-label"><div class="eng">N° 01</div><div class="kor">Opening Silhouette</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/pBhNMr47/3.jpg" alt="02" loading="lazy"><div class="m-badge">◆</div><div class="m-label"><div class="eng">N° 02</div><div class="kor">Ethereal Veil</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/GQfLPSL3/7.jpg" alt="03" loading="lazy"><div class="m-badge">✦</div><div class="m-label"><div class="eng">N° 03</div><div class="kor">Crystal Dream</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/Vcmff20p/10.jpg" alt="04" loading="lazy"><div class="m-badge">✧</div><div class="m-label"><div class="eng">N° 04</div><div class="kor">Pearl Whisper</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/35HnFTQQ/11.jpg" alt="05" loading="lazy"><div class="m-badge">✦</div><div class="m-label"><div class="eng">N° 05</div><div class="kor">Moonlight Line</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/v4M7ChwQ/12.jpg" alt="06" loading="lazy"><div class="m-badge">◆</div><div class="m-label"><div class="eng">N° 06</div><div class="kor">Silk Cathedral</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/Y4mDLwrG/13.jpg" alt="07" loading="lazy"><div class="m-badge">✦</div><div class="m-label"><div class="eng">N° 07</div><div class="kor">Champagne Glow</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/3m6bP67q/14.jpg" alt="08" loading="lazy"><div class="m-badge">✧</div><div class="m-label"><div class="eng">N° 08</div><div class="kor">Lace Closeup</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/20kBJYcD/15.jpg" alt="09" loading="lazy"><div class="m-badge">✦</div><div class="m-label"><div class="eng">N° 09</div><div class="kor">Velvet Evening</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/JYTbpQn/16.jpg" alt="10" loading="lazy"><div class="m-badge">◆</div><div class="m-label"><div class="eng">N° 10</div><div class="kor">Gold Reverie</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/yckXBpDy/17.jpg" alt="11" loading="lazy"><div class="m-badge">✦</div><div class="m-label"><div class="eng">N° 11</div><div class="kor">Ballroom Waltz</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/ZRqyfMz9/18.jpg" alt="12" loading="lazy"><div class="m-badge">✧</div><div class="m-label"><div class="eng">N° 12</div><div class="kor">Crystal Bloom</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/hFxJrbLt/19.jpg" alt="13" loading="lazy"><div class="m-badge">◆</div><div class="m-label"><div class="eng">N° 13</div><div class="kor">Train of Dreams</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/bgnd8fTV/20.jpg" alt="14" loading="lazy"><div class="m-badge">✦</div><div class="m-label"><div class="eng">N° 14</div><div class="kor">Rose Embrace</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/9HhfxkWs/21.jpg" alt="15" loading="lazy"><div class="m-badge">✧</div><div class="m-label"><div class="eng">N° 15</div><div class="kor">Pearl Mist</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/q3XD5swT/22.jpg" alt="16" loading="lazy"><div class="m-badge">✦</div><div class="m-label"><div class="eng">N° 16</div><div class="kor">Midnight Silk</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/vx6ZSZtY/23.jpg" alt="17" loading="lazy"><div class="m-badge">◆</div><div class="m-label"><div class="eng">N° 17</div><div class="kor">Golden Hour</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/mCWyJ2QJ/1.jpg" alt="18" loading="lazy"><div class="m-badge">✦</div><div class="m-label"><div class="eng">N° 18</div><div class="kor">Royal Blush</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/h17PKrY5/3dbd1c32e8770d4a6aea39ace9f26030.jpg" alt="19" loading="lazy"><div class="m-badge">◆</div><div class="m-label"><div class="eng">N° 19</div><div class="kor">Bridal Portrait</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/v66fR1SX/5bce3276f360124bac29e5c37be6eaae.jpg" alt="20" loading="lazy"><div class="m-badge">✦</div><div class="m-label"><div class="eng">N° 20</div><div class="kor">Soft Light</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/KjxvDyXx/260126-9800.jpg" alt="21" loading="lazy"><div class="m-badge">✧</div><div class="m-label"><div class="eng">N° 21</div><div class="kor">White Dream</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/hRyKvf3d/260126-9803.jpg" alt="22" loading="lazy"><div class="m-badge">◆</div><div class="m-label"><div class="eng">N° 22</div><div class="kor">Quiet Grace</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/R4D9M5np/260126-9848.jpg" alt="23" loading="lazy"><div class="m-badge">✦</div><div class="m-label"><div class="eng">N° 23</div><div class="kor">Classic Pose</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/7d9t7q35/260126-9865.jpg" alt="24" loading="lazy"><div class="m-badge">✧</div><div class="m-label"><div class="eng">N° 24</div><div class="kor">Sunlight</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/GQQ5xhHG/260126-10121.jpg" alt="25" loading="lazy"><div class="m-badge">◆</div><div class="m-label"><div class="eng">N° 25</div><div class="kor">Silk Flow</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/n88T9M3D/260126-10170.jpg" alt="26" loading="lazy"><div class="m-badge">✦</div><div class="m-label"><div class="eng">N° 26</div><div class="kor">Delicate Lace</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/MkfgPVsV/260126-10237.jpg" alt="27" loading="lazy"><div class="m-badge">✧</div><div class="m-label"><div class="eng">N° 27</div><div class="kor">Evening Glow</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/5xwGsQm1/260126-10357.jpg" alt="28" loading="lazy"><div class="m-badge">◆</div><div class="m-label"><div class="eng">N° 28</div><div class="kor">Tender Smile</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/35YwhdRr/260126-10396.jpg" alt="29" loading="lazy"><div class="m-badge">✦</div><div class="m-label"><div class="eng">N° 29</div><div class="kor">Pure White</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/Mkj38Fs3/260126-11640.jpg" alt="30" loading="lazy"><div class="m-badge">✧</div><div class="m-label"><div class="eng">N° 30</div><div class="kor">Timeless</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/4w0dddVg/260126-11679.jpg" alt="31" loading="lazy"><div class="m-badge">◆</div><div class="m-label"><div class="eng">N° 31</div><div class="kor">Final Look</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/WvyGZ3Vz/LZY-4241.jpg" alt="32" loading="lazy"><div class="m-badge">✦</div><div class="m-label"><div class="eng">N° 32</div><div class="kor">Grand Entrance</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/bZZ4vH7/LZY-4300.jpg" alt="33" loading="lazy"><div class="m-badge">✧</div><div class="m-label"><div class="eng">N° 33</div><div class="kor">Spotlight</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/dwsx24Fx/LZY-4654.jpg" alt="34" loading="lazy"><div class="m-badge">◆</div><div class="m-label"><div class="eng">N° 34</div><div class="kor">Runway Walk</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/xqB06T06/LZY-4751.jpg" alt="35" loading="lazy"><div class="m-badge">✦</div><div class="m-label"><div class="eng">N° 35</div><div class="kor">Elegant Turn</div></div></div>
+      <div class="m-item"><img src="https://i.ibb.co/TMCVhzsd/LZY-4872.jpg" alt="36" loading="lazy"><div class="m-badge">✧</div><div class="m-label"><div class="eng">N° 36</div><div class="kor">Grand Finale</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="video-section">
+  <div class="container">
+    <div class="eyebrow">Highlight Video</div>
+    <h2 class="section-title">Show <span class="italic">Highlights</span></h2>
+    <div class="section-kor">영상으로 미리 만나는 드레스쇼의 순간</div>
+    <div class="divider"><span class="ornament">✦</span><span class="ornament">◆</span><span class="ornament">✦</span></div>
+
+    <div class="video-grid">
+      <div class="video-card">
+        <iframe src="https://streamable.com/e/ws32fv?autoplay=1&muted=1&loop=1&nocontrols=1" allow="autoplay; fullscreen" allowfullscreen frameborder="0" scrolling="no"></iframe>
+        <div class="video-label">HIGHLIGHT · 01</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://streamable.com/e/pjuejv?autoplay=1&muted=1&loop=1&nocontrols=1" allow="autoplay; fullscreen" allowfullscreen frameborder="0" scrolling="no"></iframe>
+        <div class="video-label">HIGHLIGHT · 02</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://streamable.com/e/vjw1w1?autoplay=1&muted=1&loop=1&nocontrols=1" allow="autoplay; fullscreen" allowfullscreen frameborder="0" scrolling="no"></iframe>
+        <div class="video-label">HIGHLIGHT · 03</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="benefits-section" id="benefits">
+  <div class="container">
+    <div class="eyebrow">Royal Benefits</div>
+    <h2 class="section-title">신청만 해도 받는 <span class="italic">5가지 특전</span></h2>
+    <div class="section-kor">참여 고객 전용 혜택</div>
+    <div class="divider"><span class="ornament">✦</span><span class="ornament">◆</span><span class="ornament">✦</span></div>
+
+    <div class="benefits-banner">
+      <div class="bb-eyebrow">PARTICIPATION REWARD</div>
+      <div class="bb-title">신청만 해도 <span class="accent">500만원 상당</span> 전원 증정!</div>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="b-badge pink">01</div>
+        <div class="hot-tag">HOT</div>
+        <h4>PRADA GIFT</h4>
+        <div class="kor-title">프라다 핸드로션</div>
+        <div class="amount">₩ 120,000</div>
+        <p>방문 전원 증정</p>
+      </div>
+      <div class="benefit-card">
+        <div class="b-badge pink">02</div>
+        <div class="hot-tag">HOT</div>
+        <h4>DINNER VOUCHER</h4>
+        <div class="kor-title">프리미엄 디너쿠폰 2장</div>
+        <div class="amount">₩ 200,000</div>
+        <p>방문 전원 증정</p>
+      </div>
+      <div class="benefit-card">
+        <div class="b-badge">03</div>
+        <h4>FAMILY DINNER</h4>
+        <div class="kor-title">가족 디너권 6장</div>
+        <div class="amount">₩ 600,000</div>
+        <p>계약 고객 전원</p>
+      </div>
+      <div class="benefit-card">
+        <div class="b-badge">04</div>
+        <h4>DRESS UPGRADE</h4>
+        <div class="kor-title">본식 드레스 업그레이드</div>
+        <div class="amount">₩ 1,500,000</div>
+        <p>계약 고객 한정</p>
+      </div>
+      <div class="benefit-card">
+        <div class="b-badge pink">05</div>
+        <div class="hot-tag">HOT</div>
+        <h4>TOTAL PACKAGE</h4>
+        <div class="kor-title">허니문 &amp; 스냅 할인</div>
+        <div class="amount">₩ 2,580,000</div>
+        <p>계약 고객 한정</p>
+      </div>
+    </div>
+
+    <div class="benefits-total">
+      <div class="tot-label">TOTAL · SUM OF BENEFITS</div>
+      <div class="tot-num">₩ 5,000,000<span class="unit">상당</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="partners-section" id="partners">
+  <div class="container">
+    <div class="eyebrow">Premium Partners</div>
+    <h2 class="section-title">더퀸과 함께하는 <span class="italic">프리미엄 파트너</span></h2>
+    <div class="section-kor">포항 최고의 웨딩 전문가들이 함께합니다</div>
+    <div class="divider"><span class="ornament">✦</span><span class="ornament">◆</span><span class="ornament">✦</span></div>
+
+    <div class="partners-grid">
+      <div class="partner-card">
+        <div class="partner-content">
+          <div class="partner-tag">DRESS & TUX</div>
+          <div class="partner-name">웨딩 뮤</div>
+          <div class="partner-en">Wedding Mue</div>
+          <p class="partner-desc">포항 프리미엄 웨딩드레스 &amp; 턱시도 셀렉트 숍. 드레스·투스드·스튜디오 원스톱 서비스.</p>
+        </div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-content">
+          <div class="partner-tag">BESPOKE SUIT</div>
+          <div class="partner-name">사토리알 비스포크</div>
+          <div class="partner-en">Sartorial Bespoke</div>
+          <p class="partner-desc">고급 맞춤 예복 전문. 신랑님만을 위한 하이엔드 테일러링.</p>
+        </div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-content">
+          <div class="partner-tag">HAIR & MAKEUP</div>
+          <div class="partner-name">뷰티 진동희</div>
+          <div class="partner-en">Beauty Jindonghee</div>
+          <p class="partner-desc">청담급 웨딩 헤어 &amp; 메이크업 전문. 신부 취향에 맞춘 맞춤형 뷰티 큐레이션.</p>
+        </div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-content">
+          <div class="partner-tag">PHOTO STUDIO</div>
+          <div class="partner-name">포에트리 스튜디오</div>
+          <div class="partner-en">Poetry Studio</div>
+          <p class="partner-desc">감성 웨딩 촬영 스튜디오. 한 편의 시 같은 기억을 남기는 프리미엄 포토.</p>
+        </div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-content">
+          <div class="partner-tag">HANBOK</div>
+          <div class="partner-name">황정아 한복</div>
+          <div class="partner-en">Hwang Jung-a Hanbok</div>
+          <p class="partner-desc">프리미엄 혼주 한복 및 웨딩 한복 대여. 현대적 감각의 전통 예복.</p>
+        </div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-content">
+          <div class="partner-tag">FLOWER</div>
+          <div class="partner-name">플라워 바이보윤</div>
+          <div class="partner-en">Flower by Boyoun</div>
+          <p class="partner-desc">본식 부케·플라워 전문. 식장을 완성하는 섬세한 플로럴 디자인.</p>
+        </div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-content">
+          <div class="partner-tag">ON-SITE BOOTH</div>
+          <div class="partner-name">UA 투어</div>
+          <div class="partner-en">UA Tour</div>
+          <p class="partner-desc">포항 프리미엄 허니문 여행사. <strong style="color:var(--hot-pink);">현장 부스 상담 예약</strong> 가능 · 평생 기억될 단 하루를 위한 맞춤 여정.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="vvideo-section">
+  <div class="container">
+    <div class="eyebrow">Behind The Scene</div>
+    <h2 class="section-title">Moments <span class="italic">Captured</span></h2>
+    <div class="section-kor">런웨이 뒤의 순간들</div>
+    <div class="divider"><span class="ornament">✦</span><span class="ornament">◆</span><span class="ornament">✦</span></div>
+
+    <div class="vvideo-grid">
+      <div class="vvideo-card">
+        <iframe src="https://streamable.com/e/2gfdx9?autoplay=1&muted=1&loop=1&nocontrols=1" allow="autoplay; fullscreen" allowfullscreen frameborder="0" scrolling="no"></iframe>
+      </div>
+      <div class="vvideo-card">
+        <iframe src="https://streamable.com/e/pwsqc8?autoplay=1&muted=1&loop=1&nocontrols=1" allow="autoplay; fullscreen" allowfullscreen frameborder="0" scrolling="no"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="join-section" id="join">
+  <div class="join-wrapper">
+    <div class="limit-badge"><span class="dot"></span><span>총 100팀 선착순 모집</span></div>
+    <h2 class="section-title">How to <span class="italic">Join</span></h2>
+    <div class="section-kor">신청은 지금, 발표는 5월 8일</div>
+    <div class="divider"><span class="ornament">✦</span><span class="ornament">◆</span><span class="ornament">✦</span></div>
+
+    <div class="schedule-cards">
+      <div class="sch-card">
+        <div class="sch-t">RECRUITMENT · 모집</div>
+        <div class="sch-d"><span class="accent">4.15 — 5.5</span></div>
+        <div class="sch-note">100팀 선착순 모집</div>
+      </div>
+      <div class="sch-card">
+        <div class="sch-t">ANNOUNCEMENT · 발표</div>
+        <div class="sch-d"><span class="accent">5. 8</span></div>
+        <div class="sch-note">개별 문자 안내</div>
+      </div>
+      <div class="sch-card">
+        <div class="sch-t">SHOW DATE · 행사일</div>
+        <div class="sch-d"><span class="accent">5. 24</span></div>
+        <div class="sch-note">포항 대이로 18</div>
+      </div>
+    </div>
+
+    <div class="notice-box">
+      <strong>※ 공지사항</strong><br>
+      · 일정 및 세부 내용은 주최측 사정에 따라 <strong>변동될 수 있습니다</strong><br>
+      · 총 <strong>100팀 선착순</strong>으로 조기 마감될 수 있습니다<br>
+      · 결혼 예정이 없으셔도 참여 가능하며, 방문 혜택은 전원 증정됩니다<br>
+      · 자세한 문의는 <strong>054-283-1111</strong> 또는 하단 신청 폼으로 연락주세요
+    </div>
+
+    <a href="#" class="big-cta" onclick="openModal(); return false;">무료 참가 신청하기 →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">THE QUEEN</div>
+  <div class="f-host">더퀸 주최</div>
+  <div class="f-script">Truly Yours</div>
+  <div class="f-info">
+    경북 포항시 남구 대이로 18<br>
+    문의 054-283-1111
+  </div>
+  <div class="f-socials">
+    <a href="#" title="Instagram">𝕀𝔾</a>
+    <a href="#" title="YouTube">▶</a>
+    <a href="#" title="KakaoTalk">K</a>
+  </div>
+  <div class="f-bottom">© 2027 THE QUEEN WEDDING · ALL RIGHTS RESERVED</div>
+</footer>
+
+<div class="sticky-form">
+  <div class="sf-collapsed" onclick="openModal()">
+    <div class="sf-col-text">
+      <div class="sf-col-badge"><span class="dot"></span><span>접수중</span></div>
+      <div class="sf-col-msg"><strong>500만원 상당 증정!</strong> · 100팀 선착순 · 무료 신청</div>
+    </div>
+    <button class="sf-col-cta">무료 신청</button>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-card">
+    <div class="modal-inner">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-header">
+        <div class="modal-eyebrow">ROYAL INVITATION</div>
+        <h3 class="modal-title">무료 <span class="italic">참가 신청</span></h3>
+        <p class="modal-sub">
+          더퀸 주최 · 2027 S/S THE QUEEN × WEDDING MUE<br>
+          총 100팀 선착순 · 모집 4.15 — 5.5 · 발표 5.8
+        </p>
+        <div class="modal-benefit-strip">✦ 신청만 해도 500만원 상당 증정 ✦</div>
+      </div>
+      <form class="modal-form" onsubmit="handleSubmit(event)">
+        <div class="mf-group">
+          <label>Name · 성함 <span class="req">*</span></label>
+          <input type="text" id="mf-name" required placeholder="예: 김민경">
+        </div>
+        <div class="mf-group">
+          <label>Contact · 연락처 <span class="req">*</span></label>
+          <input type="tel" id="mf-tel" required placeholder="010-0000-0000">
+        </div>
+        <div class="mf-row">
+          <div class="mf-group">
+            <label>Wedding Date · 예식 예정일</label>
+            <select id="mf-date">
+              <option>선택해주세요</option>
+              <option>2026 하반기</option>
+              <option>2027 상반기</option>
+              <option>2027 하반기</option>
+              <option>2028년</option>
+              <option>미정 / 참여만</option>
+            </select>
+          </div>
+          <div class="mf-group">
+            <label>Guests · 인원</label>
+            <select id="mf-people">
+              <option>선택해주세요</option>
+              <option>1명</option>
+              <option>2명</option>
+              <option>3명 이상</option>
+            </select>
+          </div>
+        </div>
+        <div class="consent-box">
+          <label class="consent-label">
+            <input type="checkbox" id="mf-consent" required>
+            <span>
+              <span class="req-tag">필수</span>
+              <strong>개인정보 수집 및 이용에 동의합니다.</strong><br>
+              <span style="font-size:11px; color:var(--ink-soft);">
+                수집 항목: 성함, 연락처, 예식 예정일, 인원 · 보관 기간: 이벤트 종료 후 1년 · 목적: 참가 신청 확인 및 결과 안내
+              </span>
+            </span>
+          </label>
+        </div>
+        <button type="submit" class="mf-submit" id="mf-submit">✦ 신청하기 · Request →</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('nav');
+  if (window.scrollY > 80) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+const target = new Date('2026-05-05T23:59:59');
+function tick() {
+  const diff = target - new Date();
+  if (diff <= 0) { ['cd-d','cd-h','cd-m'].forEach(id => document.getElementById(id).textContent = '00'); return; }
+  document.getElementById('cd-d').textContent = String(Math.floor(diff/86400000)).padStart(2,'0');
+  document.getElementById('cd-h').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+}
+tick(); setInterval(tick, 60000);
+
+let resCount = 73;
+setInterval(() => {
+  if (Math.random() < 0.18 && resCount < 99) {
+    resCount++;
+    const el = document.getElementById('resCount');
+    el.textContent = resCount;
+    el.style.transition = 'transform 0.3s, color 0.3s';
+    el.style.color = '#fff7c4'; el.style.transform = 'scale(1.12)';
+    setTimeout(() => { el.style.color = ''; el.style.transform = ''; }, 400);
+  }
+}, 6000);
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.m-item, .benefit-card, .partner-card, .sch-card, .gift-card').forEach((el, i) => {
+  el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+  el.style.transition = `opacity 0.7s ease ${(i%8)*0.04}s, transform 0.7s ease ${(i%8)*0.04}s`;
+  io.observe(el);
+});
+
+function openModal() {
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const consent = document.getElementById('mf-consent');
+  if (!consent.checked) { alert('개인정보 수집 및 이용에 동의해주세요.'); consent.focus(); return; }
+  const btn = document.getElementById('mf-submit');
+  btn.disabled = true; btn.textContent = '접수중...';
+  setTimeout(() => {
+    alert('참가 신청이 접수되었습니다.\n\n모집 마감 후 5월 8일에\n개별 문자로 안내드리겠습니다.\n\n※ 일정 및 세부 내용은 변동될 수 있습니다.\n\n더퀸 드림');
+    closeModal(); e.target.reset();
+    btn.disabled = false; btn.textContent = '✦ 신청하기 · Request →';
+  }, 600);
+}
+</script>
+</body>
+</html>
