@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 Disallow: /*.mp3$
 
-Sitemap: https://thequeen-wedding-v2.vercel.app/sitemap.xml
+Sitemap: https://thequeenwedding.kr/sitemap.xml
