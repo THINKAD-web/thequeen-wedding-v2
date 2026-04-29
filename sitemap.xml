@@ -11,8 +11,8 @@
     </image:image>
   </url>
   <url>
-    <loc>https://thequeenwedding.kr/dress-show2</loc>
+    <loc>https://thequeenwedding.kr/dress-show</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
   </url>
 </urlset>
