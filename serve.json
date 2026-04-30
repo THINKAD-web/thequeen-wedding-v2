@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/dress-show", "destination": "/dress-show.html" },
+    { "source": "/queens-table", "destination": "/queens-table.html" }
+  ]
+}

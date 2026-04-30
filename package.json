@@ -1,0 +1,12 @@
+{
+  "name": "thequeen-wedding-v2",
+  "private": true,
+  "scripts": {
+    "dev": "serve -l 3000 .",
+    "start": "serve -l 3000 .",
+    "deploy": "npx vercel deploy --prod --yes"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}
