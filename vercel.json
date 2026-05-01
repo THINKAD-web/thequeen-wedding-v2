@@ -1,22 +1,14 @@
 {
   "redirects": [
-    { "source": "/index", "destination": "/", "permanent": true },
-    { "source": "/index.html", "destination": "/", "permanent": true },
     { "source": "/home", "destination": "/", "permanent": true },
     { "source": "/main", "destination": "/", "permanent": true },
-    { "source": "/dress-show.html", "destination": "/dress-show", "permanent": true },
-    { "source": "/queens-table.html", "destination": "/queens-table", "permanent": true },
-    { "source": "/queens-table/index", "destination": "/queens-table", "permanent": true },
-    { "source": "/queens-table/index.html", "destination": "/queens-table", "permanent": true },
-    { "source": "/queens-table/home", "destination": "/queens-table", "permanent": true },
-    { "source": "/queens-table/main", "destination": "/queens-table", "permanent": true },
-    { "source": "/dress-show/index", "destination": "/dress-show", "permanent": true },
-    { "source": "/dress-show/index.html", "destination": "/dress-show", "permanent": true },
-    { "source": "/dress-show/home", "destination": "/dress-show", "permanent": true },
-    { "source": "/dress-show/main", "destination": "/dress-show", "permanent": true }
+    { "source": "/index", "destination": "/", "permanent": true },
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/index.htm", "destination": "/", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/dress-show", "destination": "/dress-show.html" },
-    { "source": "/queens-table", "destination": "/queens-table.html" }
+    { "source": "/dress-show2", "destination": "/dress-show2.html" },
+    { "source": "/dress-show", "destination": "/" },
+    { "source": "/queens-table", "destination": "/" }
   ]
 }
