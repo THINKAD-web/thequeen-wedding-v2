@@ -1573,7 +1573,7 @@ body.theme-midnight footer { display:none !important; }
 
     <form id="tqReservationForm" class="reveal rd-3 mt-10 rounded-sm p-7 sm:p-10 lg:p-12"
           style="background:linear-gradient(160deg,rgba(28,16,20,.95),rgba(10,5,6,.95)); border:1px solid rgba(232,184,160,.3);"
-          action="https://submit-form.com/EieKRiFZS" method="POST"
+          action="/api/form" method="POST"
           onsubmit="return tqSubmitForm(event, '예약');">
 
       <input type="hidden" name="_subject" value="[더퀸 드레스쇼] 예약 신청 (메인 폼)">
@@ -1733,7 +1733,7 @@ body.theme-midnight footer { display:none !important; }
       </div>
 
       <form id="tqModalForm" class="mt-7"
-            action="https://submit-form.com/EieKRiFZS" method="POST"
+            action="/api/form" method="POST"
             onsubmit="return tqSubmitForm(event, '초대권');">
         <input type="hidden" name="_subject" value="[더퀸 드레스쇼] 무료 초대권 신청 (모달)">
         <input type="hidden" name="신청 경로" value="Royal Invitation 모달">
@@ -1824,8 +1824,9 @@ body.theme-midnight footer { display:none !important; }
       }
     });
 
-    var FORMSPARK_ACTION = 'https://submit-form.com/EieKRiFZS';
+    var FORMSPARK_ACTION = '/api/form';
     form.setAttribute('action', FORMSPARK_ACTION);
+    payload.__path = location.pathname + location.search + location.hash;
     fetch(FORMSPARK_ACTION, {
       method: 'POST',
       headers: {
@@ -3098,5 +3099,27 @@ body.theme-midnight footer { display:none !important; }
   else document.addEventListener('DOMContentLoaded', track, { once: true });
 })();
 </script>
+<script>
+(function () {
+  function track() {
+    try {
+      var payload = {
+        path: location.pathname + location.search + location.hash,
+        ref: document.referrer || '',
+        title: document.title || ''
+      };
+      fetch('/api/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        keepalive: true
+      }).catch(function(){});
+    } catch (e) {}
+  }
+  if (document.readyState === 'complete' || document.readyState === 'interactive') track();
+  else document.addEventListener('DOMContentLoaded', track, { once: true });
+})();
+</script>
+
 </body>
 </html>

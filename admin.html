@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>더퀸웨딩 · 방문/문의 대시보드</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <style>
+      :root {
+        --bg: #0b1220;
+        --card: rgba(255, 255, 255, 0.06);
+        --card2: rgba(255, 255, 255, 0.09);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.65);
+        --line: rgba(255, 255, 255, 0.12);
+        --accent: #c9a96a;
+        --good: #22c55e;
+        --bad: #fb7185;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic";
+        color: var(--text);
+        background:
+          radial-gradient(1200px 700px at 15% 20%, rgba(201, 169, 106, 0.18), transparent 60%),
+          radial-gradient(900px 600px at 85% 10%, rgba(59, 130, 246, 0.16), transparent 60%),
+          radial-gradient(900px 600px at 70% 90%, rgba(34, 197, 94, 0.12), transparent 55%),
+          var(--bg);
+        min-height: 100vh;
+      }
+      a { color: inherit; }
+      .wrap { max-width: 1100px; margin: 0 auto; padding: 28px 18px 70px; }
+      header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 20px 18px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05));
+        box-shadow: 0 18px 60px -30px rgba(0,0,0,0.7);
+        backdrop-filter: blur(10px);
+      }
+      .title { display: grid; gap: 6px; }
+      .title h1 { margin: 0; font-size: 20px; letter-spacing: -0.02em; }
+      .title p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4; }
+      .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: flex-end; }
+      .control {
+        display: grid;
+        gap: 6px;
+        padding: 10px 12px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: rgba(255,255,255,0.05);
+      }
+      .control label { font-size: 11px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
+      input[type="text"], input[type="password"], input[type="date"] {
+        width: 220px;
+        max-width: 70vw;
+        padding: 10px 11px;
+        border-radius: 10px;
+        border: 1px solid rgba(255,255,255,0.14);
+        background: rgba(10, 14, 22, 0.55);
+        color: var(--text);
+        outline: none;
+      }
+      input[type="checkbox"] { transform: translateY(1px); }
+      .btn {
+        border: 0;
+        border-radius: 12px;
+        padding: 12px 14px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: #0b1220;
+        background: linear-gradient(135deg, #f6e7c8, var(--accent));
+        cursor: pointer;
+        box-shadow: 0 12px 34px -18px rgba(201, 169, 106, 0.75);
+      }
+      .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+      .grid {
+        margin-top: 18px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      @media (min-width: 900px) {
+        .grid { grid-template-columns: 1fr 1fr; }
+        .span-2 { grid-column: span 2; }
+      }
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--card);
+        padding: 16px;
+        box-shadow: 0 18px 60px -38px rgba(0,0,0,0.8);
+        backdrop-filter: blur(10px);
+      }
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 14px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.9);
+      }
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 10px;
+        border: 1px solid rgba(255,255,255,0.14);
+        border-radius: 999px;
+        background: rgba(255,255,255,0.06);
+      }
+      .pill strong { color: rgba(255,255,255,0.92); }
+      table { width: 100%; border-collapse: collapse; overflow: hidden; }
+      th, td { text-align: left; padding: 10px 10px; border-bottom: 1px solid rgba(255,255,255,0.10); font-size: 13px; }
+      th { color: rgba(255,255,255,0.76); font-weight: 700; background: rgba(255,255,255,0.04); }
+      tr:hover td { background: rgba(255,255,255,0.03); }
+      .bar {
+        height: 8px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.10);
+        overflow: hidden;
+      }
+      .bar > i { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, rgba(201,169,106,0.85), rgba(201,169,106,0.25)); }
+      .err {
+        border: 1px solid rgba(251, 113, 133, 0.35);
+        background: rgba(251, 113, 133, 0.12);
+        color: rgba(255,255,255,0.9);
+        padding: 12px 14px;
+        border-radius: 14px;
+        line-height: 1.5;
+        white-space: pre-wrap;
+      }
+      .ok {
+        border: 1px solid rgba(34, 197, 94, 0.35);
+        background: rgba(34, 197, 94, 0.10);
+        padding: 10px 12px;
+        border-radius: 12px;
+        color: rgba(255,255,255,0.9);
+      }
+      details { margin-top: 8px; }
+      summary { cursor: pointer; color: rgba(255,255,255,0.82); }
+      pre { margin: 10px 0 0; font-size: 12px; color: rgba(255,255,255,0.78); overflow: auto; padding: 12px; background: rgba(0,0,0,0.35); border-radius: 12px; border: 1px solid rgba(255,255,255,0.10); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="title">
+          <h1>더퀸웨딩 · 방문/문의 대시보드</h1>
+          <p>방문(페이지뷰)과 문의(폼 제출)를 OS/브라우저/디바이스 기준으로 집계합니다. (관리자 토큰 필요)</p>
+        </div>
+        <div class="controls">
+          <div class="control">
+            <label for="token">Admin Token</label>
+            <input id="token" type="password" placeholder="ADMIN_TOKEN" autocomplete="off" />
+          </div>
+          <div class="control">
+            <label for="day">Day</label>
+            <input id="day" type="date" />
+          </div>
+          <div class="control">
+            <label style="display:flex; gap:8px; align-items:center;">
+              <input id="events" type="checkbox" />
+              <span>최근 이벤트(샘플) 포함</span>
+            </label>
+          </div>
+          <button id="refresh" class="btn">불러오기</button>
+        </div>
+      </header>
+
+      <div id="status" style="margin-top:14px;"></div>
+
+      <div class="grid">
+        <div class="card">
+          <h2>Visits · Device</h2>
+          <div id="visits-device"></div>
+        </div>
+        <div class="card">
+          <h2>Visits · OS</h2>
+          <div id="visits-os"></div>
+        </div>
+        <div class="card">
+          <h2>Visits · Browser</h2>
+          <div id="visits-browser"></div>
+        </div>
+        <div class="card">
+          <h2>Visits · Path</h2>
+          <div id="visits-path"></div>
+        </div>
+
+        <div class="card">
+          <h2>Forms · Device</h2>
+          <div id="forms-device"></div>
+        </div>
+        <div class="card">
+          <h2>Forms · OS</h2>
+          <div id="forms-os"></div>
+        </div>
+        <div class="card">
+          <h2>Forms · Browser</h2>
+          <div id="forms-browser"></div>
+        </div>
+
+        <div class="card span-2">
+          <h2>Raw JSON</h2>
+          <details>
+            <summary>원본 응답 보기</summary>
+            <pre id="raw">(아직 없음)</pre>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var tokenEl = document.getElementById('token');
+        var dayEl = document.getElementById('day');
+        var eventsEl = document.getElementById('events');
+        var statusEl = document.getElementById('status');
+        var refreshBtn = document.getElementById('refresh');
+        var rawEl = document.getElementById('raw');
+
+        var today = new Date();
+        dayEl.value = today.toISOString().slice(0, 10);
+
+        try {
+          var saved = localStorage.getItem('tq_admin_token');
+          if (saved) tokenEl.value = saved;
+        } catch (e) {}
+
+        function fmtInt(n) {
+          try { return new Intl.NumberFormat('ko-KR').format(n); } catch (e) { return String(n); }
+        }
+
+        function normalizeMap(obj) {
+          var out = [];
+          if (!obj) return out;
+          for (var k in obj) {
+            if (!Object.prototype.hasOwnProperty.call(obj, k)) continue;
+            var v = Number(obj[k] || 0);
+            out.push([k, isFinite(v) ? v : 0]);
+          }
+          out.sort(function (a, b) { return b[1] - a[1]; });
+          return out;
+        }
+
+        function renderTable(el, obj) {
+          var rows = normalizeMap(obj);
+          if (!rows.length) {
+            el.innerHTML = '<div class="ok">데이터가 없습니다. (트래픽이 아직 없거나, Redis 설정이 없을 수 있어요)</div>';
+            return;
+          }
+          var max = rows[0][1] || 1;
+          var html = '<table><thead><tr><th style="width:42%">Key</th><th style="width:16%">Count</th><th>Share</th></tr></thead><tbody>';
+          for (var i = 0; i < rows.length; i++) {
+            var k = rows[i][0];
+            var v = rows[i][1];
+            var pct = Math.round((v / max) * 1000) / 10;
+            html += '<tr>' +
+              '<td>' + escapeHtml(k) + '</td>' +
+              '<td><strong>' + fmtInt(v) + '</strong></td>' +
+              '<td><div class="bar"><i style="width:' + Math.min(100, Math.max(0, pct)) + '%"></i></div></td>' +
+            '</tr>';
+          }
+          html += '</tbody></table>';
+          el.innerHTML = html;
+        }
+
+        function escapeHtml(s) {
+          return String(s)
+            .replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('"', '&quot;')
+            .replaceAll("'", '&#39;');
+        }
+
+        function setStatus(kind, msg) {
+          if (!msg) { statusEl.innerHTML = ''; return; }
+          statusEl.innerHTML = '<div class="' + (kind === 'error' ? 'err' : 'ok') + '">' + escapeHtml(msg) + '</div>';
+        }
+
+        async function load() {
+          var token = (tokenEl.value || '').trim();
+          var day = (dayEl.value || '').trim();
+          var withEvents = !!eventsEl.checked;
+
+          if (!token) {
+            setStatus('error', 'ADMIN_TOKEN을 입력해주세요.');
+            return;
+          }
+
+          try { localStorage.setItem('tq_admin_token', token); } catch (e) {}
+
+          var url = new URL('/api/admin/visits', location.origin);
+          url.searchParams.set('token', token);
+          if (day) url.searchParams.set('day', day);
+          if (withEvents) url.searchParams.set('events', '1');
+
+          refreshBtn.disabled = true;
+          setStatus('ok', '불러오는 중…');
+          try {
+            var res = await fetch(url.toString(), { headers: { 'Accept': 'application/json' } });
+            var data = await res.json().catch(function () { return null; });
+            if (!res.ok || !data || data.ok === false) {
+              var errObj = (data && (data.error || data.detail)) ? (data.error || data.detail) : ('HTTP ' + res.status);
+              var errText = (typeof errObj === 'string') ? errObj : JSON.stringify(errObj, null, 2);
+              setStatus('error', errText);
+              rawEl.textContent = JSON.stringify(data, null, 2);
+              return;
+            }
+
+            setStatus('ok', '업데이트 완료 · ' + data.day);
+            rawEl.textContent = JSON.stringify(data, null, 2);
+
+            renderTable(document.getElementById('visits-device'), data.visits && data.visits.device);
+            renderTable(document.getElementById('visits-os'), data.visits && data.visits.os);
+            renderTable(document.getElementById('visits-browser'), data.visits && data.visits.browser);
+            renderTable(document.getElementById('visits-path'), data.visits && data.visits.path);
+
+            renderTable(document.getElementById('forms-device'), data.forms && data.forms.device);
+            renderTable(document.getElementById('forms-os'), data.forms && data.forms.os);
+            renderTable(document.getElementById('forms-browser'), data.forms && data.forms.browser);
+          } catch (e) {
+            setStatus('error', String(e && e.message ? e.message : e));
+          } finally {
+            refreshBtn.disabled = false;
+          }
+        }
+
+        refreshBtn.addEventListener('click', load);
+        tokenEl.addEventListener('keydown', function (e) { if (e.key === 'Enter') load(); });
+        dayEl.addEventListener('change', load);
+      })();
+    </script>
+  </body>
+</html>
+

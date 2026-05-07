@@ -8,5 +8,8 @@
   },
   "devDependencies": {
     "serve": "^14.2.4"
+  },
+  "dependencies": {
+    "ua-parser-js": "^2.0.5"
   }
 }

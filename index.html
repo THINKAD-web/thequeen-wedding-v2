@@ -887,7 +887,7 @@ const IMAGES = {
         <h2 class="reveal rd-1 font-serif text-4xl leading-tight text-royal-900 sm:text-5xl">상담 예약</h2>
         <p class="reveal rd-2 mt-4 text-slate-600">더퀸 웨딩홀에서 특별한 하루를 준비해드립니다</p>
       </div>
-      <form action="https://submit-form.com/EieKRiFZS" method="POST" class="reveal rd-3 relative">
+      <form action="/api/form" method="POST" class="reveal rd-3 relative">
         <input type="hidden" name="_subject" value="[더퀸 웨딩] 상담 문의 (홈)">
         <input type="hidden" name="문의 경로" value="홈 / 상담 예약 섹션">
         <div class="absolute -top-3 -left-3 h-14 w-14 border-t-2 border-l-2 border-gold"></div>
@@ -2089,5 +2089,56 @@ const IMAGES = {
   else document.addEventListener('DOMContentLoaded', track, { once: true });
 })();
 </script>
+<script>
+(function () {
+  function hook() {
+    var form = document.querySelector('form[action="/api/form"], form[action*="submit-form.com/EieKRiFZS"]');
+    if (!form) return;
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      var originalText = btn ? btn.innerHTML : '';
+      if (btn) { btn.disabled = true; btn.style.opacity = '0.7'; btn.innerHTML = '전송 중…'; }
+
+      try {
+        var fd = new FormData(form);
+        fd.set('__path', location.pathname + location.search + location.hash);
+        var payload = {};
+        fd.forEach(function (value, key) {
+          if (key === '_gotcha' && !String(value).trim()) return;
+          if (payload[key] !== undefined) {
+            if (!Array.isArray(payload[key])) payload[key] = [payload[key]];
+            payload[key].push(value);
+          } else payload[key] = value;
+        });
+
+        fetch('/api/form', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(function (res) {
+          if (res.ok) {
+            alert('문의가 접수되었습니다. 빠르게 연락드리겠습니다.\n감사합니다.');
+            form.reset();
+          } else {
+            alert('전송에 실패했습니다. 잠시 후 다시 시도해주세요.\n문의: 054-283-1111');
+          }
+        }).catch(function () {
+          alert('네트워크 오류가 발생했습니다.\n잠시 후 다시 시도해주세요. 문의: 054-283-1111');
+        }).finally(function () {
+          if (btn) { btn.disabled = false; btn.style.opacity = ''; btn.innerHTML = originalText; }
+        });
+      } catch (e) {
+        if (btn) { btn.disabled = false; btn.style.opacity = ''; btn.innerHTML = originalText; }
+      }
+      return false;
+    });
+  }
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') hook();
+  else document.addEventListener('DOMContentLoaded', hook, { once: true });
+})();
+</script>
+
 </body>
 </html>
