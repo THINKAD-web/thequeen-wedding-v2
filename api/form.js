@@ -78,14 +78,18 @@ module.exports = async (req, res) => {
   const keyBase = `tq:v1:${day}`;
 
   if (redisEnabled()) {
-    const event = { t: Date.now(), kind: "form", fields, meta };
-    await Promise.all([
-      hincrby(`${keyBase}:form:device`, deviceType, 1),
-      hincrby(`${keyBase}:form:os`, os, 1),
-      hincrby(`${keyBase}:form:browser`, browser, 1),
-      lpush(`${keyBase}:form:events`, JSON.stringify(event)),
-    ]);
-    await ltrim(`${keyBase}:form:events`, 0, 199);
+    try {
+      const event = { t: Date.now(), kind: "form", fields, meta };
+      await Promise.all([
+        hincrby(`${keyBase}:form:device`, deviceType, 1),
+        hincrby(`${keyBase}:form:os`, os, 1),
+        hincrby(`${keyBase}:form:browser`, browser, 1),
+        lpush(`${keyBase}:form:events`, JSON.stringify(event)),
+      ]);
+      await ltrim(`${keyBase}:form:events`, 0, 199);
+    } catch {
+      // analytics should never block form submission
+    }
   }
 
   // Forward to SubmitForm

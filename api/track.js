@@ -55,15 +55,19 @@ module.exports = async (req, res) => {
   };
 
   if (redisEnabled()) {
-    await Promise.all([
-      hincrby(`${keyBase}:device`, deviceType, 1),
-      hincrby(`${keyBase}:os`, os, 1),
-      hincrby(`${keyBase}:browser`, browser, 1),
-      hincrby(`${keyBase}:path`, path, 1),
-      lpush(`${keyBase}:events`, JSON.stringify(event)),
-    ]);
-    // keep latest ~500 events/day
-    await ltrim(`${keyBase}:events`, 0, 499);
+    try {
+      await Promise.all([
+        hincrby(`${keyBase}:device`, deviceType, 1),
+        hincrby(`${keyBase}:os`, os, 1),
+        hincrby(`${keyBase}:browser`, browser, 1),
+        hincrby(`${keyBase}:path`, path, 1),
+        lpush(`${keyBase}:events`, JSON.stringify(event)),
+      ]);
+      // keep latest ~500 events/day
+      await ltrim(`${keyBase}:events`, 0, 499);
+    } catch {
+      // analytics should never break the page
+    }
   }
 
   return json(res, 200, { ok: true });
