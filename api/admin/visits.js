@@ -22,14 +22,20 @@ module.exports = async (req, res) => {
   const keyBase = `tq:v1:${day}`;
 
   try {
-    const [device, os, browser, path, formDevice, formOs, formBrowser, events, formEvents] = await Promise.all([
+    const [device, os, browser, path, src, med, camp, formDevice, formOs, formBrowser, formSrc, formMed, formCamp, events, formEvents] = await Promise.all([
       hgetall(`${keyBase}:device`),
       hgetall(`${keyBase}:os`),
       hgetall(`${keyBase}:browser`),
       hgetall(`${keyBase}:path`),
+      hgetall(`${keyBase}:src`),
+      hgetall(`${keyBase}:med`),
+      hgetall(`${keyBase}:camp`),
       hgetall(`${keyBase}:form:device`),
       hgetall(`${keyBase}:form:os`),
       hgetall(`${keyBase}:form:browser`),
+      hgetall(`${keyBase}:form:src`),
+      hgetall(`${keyBase}:form:med`),
+      hgetall(`${keyBase}:form:camp`),
       includeEvents ? lrange(`${keyBase}:events`, 0, 50) : null,
       includeEvents ? lrange(`${keyBase}:form:events`, 0, 50) : null,
     ]);
@@ -37,8 +43,8 @@ module.exports = async (req, res) => {
     return json(res, 200, {
       ok: true,
       day,
-      visits: { device, os, browser, path },
-      forms: { device: formDevice, os: formOs, browser: formBrowser },
+      visits: { device, os, browser, path, src, med, camp },
+      forms: { device: formDevice, os: formOs, browser: formBrowser, src: formSrc, med: formMed, camp: formCamp },
       events: includeEvents ? { visits: events, forms: formEvents } : undefined,
     });
   } catch (e) {

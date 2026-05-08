@@ -202,6 +202,14 @@
           <h2>Visits · Path</h2>
           <div id="visits-path"></div>
         </div>
+        <div class="card">
+          <h2>Visits · Source</h2>
+          <div id="visits-src"></div>
+        </div>
+        <div class="card">
+          <h2>Visits · Campaign</h2>
+          <div id="visits-camp"></div>
+        </div>
 
         <div class="card">
           <h2>Forms · Device</h2>
@@ -214,6 +222,14 @@
         <div class="card">
           <h2>Forms · Browser</h2>
           <div id="forms-browser"></div>
+        </div>
+        <div class="card">
+          <h2>Forms · Source</h2>
+          <div id="forms-src"></div>
+        </div>
+        <div class="card">
+          <h2>Forms · Campaign</h2>
+          <div id="forms-camp"></div>
         </div>
 
         <div class="card span-2">
@@ -332,10 +348,14 @@
             renderTable(document.getElementById('visits-os'), data.visits && data.visits.os);
             renderTable(document.getElementById('visits-browser'), data.visits && data.visits.browser);
             renderTable(document.getElementById('visits-path'), data.visits && data.visits.path);
+            renderTable(document.getElementById('visits-src'), data.visits && data.visits.src);
+            renderTable(document.getElementById('visits-camp'), data.visits && data.visits.camp);
 
             renderTable(document.getElementById('forms-device'), data.forms && data.forms.device);
             renderTable(document.getElementById('forms-os'), data.forms && data.forms.os);
             renderTable(document.getElementById('forms-browser'), data.forms && data.forms.browser);
+            renderTable(document.getElementById('forms-src'), data.forms && data.forms.src);
+            renderTable(document.getElementById('forms-camp'), data.forms && data.forms.camp);
           } catch (e) {
             setStatus('error', String(e && e.message ? e.message : e));
           } finally {
