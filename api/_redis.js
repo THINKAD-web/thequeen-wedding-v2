@@ -7,55 +7,44 @@ function redisEnabled() {
   return Boolean(getEnv("UPSTASH_REDIS_REST_URL") && getEnv("UPSTASH_REDIS_REST_TOKEN"));
 }
 
-async function redisFetch(path, body) {
-  const base = getEnv("UPSTASH_REDIS_REST_URL");
-  const token = getEnv("UPSTASH_REDIS_REST_TOKEN");
-  if (!base || !token) throw new Error("Upstash env not configured");
+let _redis = null;
 
-  const url = base.replace(/\/$/, "") + path;
-  const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body ?? []),
-  });
-  if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    throw new Error(`Upstash error ${res.status}: ${text}`);
-  }
-  const json = await res.json();
-  if (json?.error) throw new Error(String(json.error));
-  return json?.result;
+function getRedis() {
+  if (_redis) return _redis;
+  // Lazy-load so local/static use doesn’t require the dependency.
+  // eslint-disable-next-line global-require
+  const { Redis } = require("@upstash/redis");
+  _redis = Redis.fromEnv();
+  return _redis;
 }
 
 async function incr(key) {
-  return redisFetch(`/incr/${encodeURIComponent(key)}`);
+  return getRedis().incr(key);
 }
 
 async function hincrby(hash, field, by) {
-  return redisFetch(`/hincrby/${encodeURIComponent(hash)}/${encodeURIComponent(field)}/${by}`);
+  return getRedis().hincrby(hash, field, by);
 }
 
 async function hgetall(hash) {
-  return redisFetch(`/hgetall/${encodeURIComponent(hash)}`);
+  return getRedis().hgetall(hash);
 }
 
 async function lpush(key, value) {
-  return redisFetch(`/lpush/${encodeURIComponent(key)}`, [value]);
+  return getRedis().lpush(key, value);
 }
 
 async function ltrim(key, start, stop) {
-  return redisFetch(`/ltrim/${encodeURIComponent(key)}/${start}/${stop}`);
+  return getRedis().ltrim(key, start, stop);
 }
 
 async function lrange(key, start, stop) {
-  return redisFetch(`/lrange/${encodeURIComponent(key)}/${start}/${stop}`);
+  return getRedis().lrange(key, start, stop);
 }
 
 module.exports = {
   redisEnabled,
+  getRedis,
   incr,
   hincrby,
   hgetall,
