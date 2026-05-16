@@ -515,13 +515,13 @@ body.theme-midnight footer { display:none !important; }
 @media (min-width:1024px){ #page-dress-show .tq-ticker { font-size:13px; letter-spacing:.16em; padding:10px 20px; } }
 
 #page-dress-show .tq-header {
-  position:fixed; top:82px; left:0; right:0; z-index:60;
+  position:fixed; top:0; left:0; right:0; z-index:60;
   padding:14px 20px; display:flex; align-items:center; justify-content:space-between;
   background:linear-gradient(to bottom, rgba(10,5,6,.9), rgba(10,5,6,.35));
   backdrop-filter:blur(10px);
   border-bottom:1px solid rgba(232,184,160,.12);
 }
-@media (min-width:1024px){ #page-dress-show .tq-header { top:88px; padding:18px 40px; } }
+@media (min-width:1024px){ #page-dress-show .tq-header { top:0; padding:18px 40px; } }
 
 /* ======= TILES · NO GLOW FRAME · Scale only ======= */
 #page-dress-show .tq-tile {
@@ -695,8 +695,8 @@ body.theme-midnight footer { display:none !important; }
 @media (min-width:641px){ #page-dress-show .sec-py { padding-top:100px; padding-bottom:100px; } }
 @media (min-width:1024px){ #page-dress-show .sec-py { padding-top:140px; padding-bottom:140px; } }
 
-#page-dress-show .hero-pt { padding-top:118px; }
-@media (min-width:1024px){ #page-dress-show .hero-pt { padding-top:138px; } }
+#page-dress-show .hero-pt { padding-top:80px; }
+@media (min-width:1024px){ #page-dress-show .hero-pt { padding-top:96px; } }
 
 /* 마감 카운트다운 — 모바일 선명, 골드 라인(과도한 핑크/이모지 지양) */
 #page-dress-show .tq-countdown { margin-top:1.25rem; max-width:36rem; border:1px solid rgba(212,165,116,.45); border-radius:.375rem; background:linear-gradient(160deg,rgba(20,10,14,.78),rgba(10,5,6,.92)); box-shadow:0 12px 40px rgba(0,0,0,.35); padding:1rem 1rem 1.1rem; }
@@ -771,10 +771,10 @@ body.theme-midnight footer { display:none !important; }
 
   // ---- 긴급 업데이트 (숫자/마감만 여기서 조정) ----
   // 마감: 한국시간 2026-05-18(월) 23:59:59 — 카운트다운은 이 시각까지 1초 단위로 갱신
-  // 잔여 7팀 = 접수 93팀 (100팀 한정)
+  // 잔여 3팀 = 접수 97팀 (100팀 한정)
   var TQ_DEADLINE_KST = '2026-05-18T23:59:59+09:00';
-  var TQ_REMAINING = 7;
-  var TQ_APPLIED = 93;
+  var TQ_REMAINING = 3;
+  var TQ_APPLIED = 97;
 
   function setText(id, text) {
     var el = document.getElementById(id);
@@ -858,40 +858,13 @@ body.theme-midnight footer { display:none !important; }
 })();
 </script>
 
-<div class="tq-ticker">
-  신청 마감 5.18(월) 23:59 · 잔여 7팀 · 접수 93팀 · 본 행사 2026.5.24(일)
-</div>
-
 <header class="tq-header">
   <a href="#" class="flex items-center gap-3" aria-label="The Queen Dress Show">
     <span class="tq-serif text-lg font-light text-white sm:text-xl lg:text-2xl">
       THE QUEEN <span class="tq-rose-pink-text italic">Dress Show</span>
     </span>
   </a>
-  <nav class="hidden items-center gap-6 lg:flex">
-    <a href="#tq-benefits"   class="text-[11px] font-semibold tracking-[0.3em] uppercase text-white/75 hover:text-[#FF3D7F] transition">Benefits</a>
-    <a href="#tq-runway"     class="text-[11px] font-semibold tracking-[0.3em] uppercase text-white/75 hover:text-[#FF3D7F] transition">Runway</a>
-    <a href="#tq-collection" class="text-[11px] font-semibold tracking-[0.3em] uppercase text-white/75 hover:text-[#FF3D7F] transition">Collection</a>
-    <a href="#tq-vendors"    class="text-[11px] font-semibold tracking-[0.3em] uppercase text-white/75 hover:text-[#FF3D7F] transition">참여업체</a>
-    <a href="#reservation"   class="text-[11px] font-semibold tracking-[0.3em] uppercase text-white/75 hover:text-[#FF3D7F] transition">신청</a>
-  </nav>
-  <button onclick="tqOpenModal()" class="tq-btn-pink inline-flex items-center gap-2 rounded-full px-4 py-2 text-[10px] font-bold tracking-[0.2em] uppercase sm:px-5 sm:py-2.5 sm:text-[11px]">
-    지금 신청하기 (7팀 남음 · 5.18 마감)
-  </button>
 </header>
-
-<!-- 상단 고정 안내: 한 줄 요약 + CTA (모바일 과밀 방지) -->
-<div id="tqFomoBar" class="fixed top-0 left-0 right-0 z-[90] border-b border-[#E8B8A0]/20 tq-bar-elegant">
-  <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-2.5 text-[12px] leading-snug text-white/90 sm:flex-row sm:items-center sm:justify-between sm:gap-4 lg:px-10">
-    <p class="font-medium tracking-wide text-white/88">
-      현재 잔여 <span id="tqBarRemain" class="font-semibold text-[#E8D4B0]">7</span>팀 · 5.18(월) 마감까지 <span id="tqBarDday" class="font-semibold text-[#E8D4B0]">D-7</span>
-    </p>
-    <div class="flex flex-wrap items-center justify-between gap-3 sm:justify-end">
-      <span id="tqFomoLine2" class="text-[11px] text-white/50">93팀 접수</span>
-      <button onclick="tqOpenModal()" class="tq-btn-gold shrink-0 rounded-full px-4 py-2 text-[10px] font-bold tracking-[0.16em] uppercase">지금 신청하기 (7팀 남음)</button>
-    </div>
-  </div>
-</div>
 
 <!-- HERO · new video udhqik -->
 <section class="relative min-h-screen w-full overflow-hidden tq-bg-deep">
@@ -948,7 +921,7 @@ body.theme-midnight footer { display:none !important; }
     </p>
 
     <p class="reveal rd-2 mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-white/68">
-      <span>잔여 <strong id="tqHeroRemain" class="text-[#E8D4B0] font-semibold">7</strong>팀</span>
+      <span>잔여 <strong id="tqHeroRemain" class="text-[#E8D4B0] font-semibold">3</strong>팀</span>
       <span class="text-white/25 hidden sm:inline">·</span>
       <span>5월 18일 마감까지 <strong id="tqHeroDday" class="text-[#E8D4B0] font-semibold">D-7</strong></span>
       <span class="text-white/25 hidden sm:inline">·</span>
@@ -980,7 +953,7 @@ body.theme-midnight footer { display:none !important; }
 
     <div class="reveal rd-4 mt-8 flex flex-wrap items-center gap-5">
       <button onclick="tqOpenModal()" class="group tq-btn-gold tq-glow relative inline-flex items-center gap-3 rounded-full px-10 py-4 text-sm font-bold tracking-[0.22em] uppercase sm:px-12 sm:py-5">
-        지금 신청하기 (7팀 남음 · 5.18 마감)
+        지금 신청하기 (3팀 남음 · 5.18 마감)
         <svg class="h-5 w-5 transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
       </button>
       <a href="#tq-benefits" class="inline-flex items-center gap-3 text-sm font-semibold tracking-[0.2em] text-white/80 hover:text-[#FF3D7F] transition">
@@ -1016,7 +989,7 @@ body.theme-midnight footer { display:none !important; }
           <span class="tq-serif text-2xl align-middle text-white/55">팀</span>
         </p>
         <div class="mt-4 tq-progress"><div class="tq-progress-bar" style="width:73%;"></div></div>
-        <p class="mt-3 text-[11px] tracking-[0.24em] uppercase tq-pink font-bold">93팀 접수 · 잔여 7팀</p>
+        <p class="mt-3 text-[11px] tracking-[0.24em] uppercase tq-pink font-bold">97팀 접수 · 잔여 3팀</p>
       </div>
 
       <div class="tq-stat">
@@ -1046,7 +1019,7 @@ body.theme-midnight footer { display:none !important; }
           <span class="tq-pink">●</span> 2026. 5. 24 (일) · <span class="tq-serif italic tq-rose-pink-text text-lg">포항 더퀸</span> · 선착순 100팀
         </p>
         <button onclick="tqOpenModal()" class="tq-btn-pink inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-[11px] font-bold tracking-[0.22em] uppercase">
-          지금 신청하기 (7팀 남음 · 5.18 마감)
+          지금 신청하기 (3팀 남음 · 5.18 마감)
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
         </button>
       </div>
@@ -1346,7 +1319,7 @@ body.theme-midnight footer { display:none !important; }
           <p class="tq-serif mt-1 text-2xl text-white sm:text-3xl">총 <span class="tq-rose-pink-text font-medium">500만원 상당 당일 혜택</span></p>
         </div>
         <button onclick="tqOpenModal()" class="tq-btn-pink tq-glow inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-[11px] font-bold tracking-[0.25em] uppercase">
-          지금 신청하기 (7팀 남음 · 5.18 마감)
+          지금 신청하기 (3팀 남음 · 5.18 마감)
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
         </button>
       </div>
@@ -1925,7 +1898,7 @@ body.theme-midnight footer { display:none !important; }
           </div>
         </div>
         <button type="submit" class="group tq-btn-pink tq-glow relative mt-6 inline-flex w-full items-center justify-center gap-3 rounded-full py-5 text-sm font-bold tracking-[0.28em] uppercase">
-          지금 신청하기 (7팀 남음 · 5.18 마감)
+          지금 신청하기 (3팀 남음 · 5.18 마감)
           <svg class="h-5 w-5 transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
         </button>
       </form>
@@ -2090,7 +2063,7 @@ body.theme-midnight footer { display:none !important; }
 <!-- STICKY CTA (모바일 하단 플로팅 버튼) -->
 <a href="javascript:void(0)" onclick="tqOpenModal()" class="tq-sticky tq-pulse">
   <span class="h-2 w-2 rounded-full bg-white animate-pulse"></span>
-  <span>지금 신청하기 <strong class="text-white">(잔여 <span id="tqStickyRemain">7</span>팀)</strong></span>
+  <span>지금 신청하기 <strong class="text-white">(잔여 <span id="tqStickyRemain">3</span>팀)</strong></span>
 </a>
 
 </main>
