@@ -491,6 +491,11 @@
       overlay.classList.add("show");
       document.body.style.overflow = "hidden";
     }
+    history.pushState({ tqChat: true }, "");
+    window.addEventListener("popstate", function onPop(e) {
+      if (isOpen) { closeChat(); }
+      window.removeEventListener("popstate", onPop);
+    });
     render();
     setTimeout(() => inputEl.focus(), 300);
   }
