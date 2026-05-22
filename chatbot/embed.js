@@ -49,6 +49,8 @@
     "더퀸만의 특징",
   ];
 
+  const SESSION_ID = "tq_" + Date.now() + "_" + Math.random().toString(36).slice(2, 8);
+
   let isOpen = false;
   let isLoading = false;
   let messages = [{
@@ -463,6 +465,8 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           messages: messages.map((m) => ({ role: m.role, content: m.content })),
+          session_id: SESSION_ID,
+          page_url: window.location.href,
         }),
       });
       const data = await res.json();

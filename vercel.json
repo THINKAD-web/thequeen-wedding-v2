@@ -11,6 +11,7 @@
     { "source": "/dress-show2", "destination": "/dress-show2.html" },
     { "source": "/dress-show", "destination": "/dress-show.html" },
     { "source": "/queens-table", "destination": "/queens-table.html" },
-    { "source": "/admin", "destination": "/admin.html" }
+    { "source": "/admin/visits", "destination": "/admin.html" },
+    { "source": "/admin", "destination": "/admin-chat.html" }
   ]
 }

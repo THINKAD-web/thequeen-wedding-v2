@@ -3,14 +3,17 @@
   "private": true,
   "scripts": {
     "dev": "serve -l 3000 .",
+    "dev:api": "vercel dev --listen 3000",
     "start": "serve -l 3000 .",
-    "deploy": "npx vercel deploy --prod --yes"
+    "deploy": "npx vercel deploy --prod --yes",
+    "db:init": "node scripts/init-db.js"
   },
   "devDependencies": {
     "serve": "^14.2.4"
   },
   "dependencies": {
     "@upstash/redis": "^1.38.0",
+    "pg": "^8.21.0",
     "ua-parser-js": "^2.0.5"
   }
 }

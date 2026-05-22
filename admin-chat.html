@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE QUEEN · 챗봇 어드민</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; }
+    .hidden { display: none !important; }
+    #login-screen {
+      min-height: 100vh; background: #0d1526;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .login-box {
+      background: #1a2744; padding: 40px; border-radius: 8px; width: 320px;
+      border: 1px solid rgba(184,154,94,0.3);
+    }
+    .login-title { color: #c9a85c; font-size: 20px; letter-spacing: 3px; font-family: Georgia, serif; }
+    .login-sub { color: rgba(255,255,255,0.5); font-size: 12px; margin: 8px 0 28px; }
+    .login-box input {
+      width: 100%; padding: 12px; border-radius: 4px;
+      border: 1px solid rgba(184,154,94,0.3); background: rgba(255,255,255,0.05);
+      color: #fff; font-size: 15px; margin-bottom: 12px;
+    }
+    .login-box button {
+      width: 100%; padding: 12px; background: #c9a85c; color: #1a2744;
+      border: none; border-radius: 4px; font-size: 15px; font-weight: bold; cursor: pointer;
+    }
+    .login-err { color: #ff6b6b; font-size: 12px; margin-bottom: 8px; }
+    #dashboard { min-height: 100vh; background: #f5f3ef; }
+    .header {
+      background: #1a2744; padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    .header-title { color: #c9a85c; font-size: 16px; letter-spacing: 3px; font-family: Georgia, serif; }
+    .header-links a { color: rgba(255,255,255,0.6); font-size: 12px; text-decoration: none; margin-left: 12px; }
+    .header-links a:hover { color: #c9a85c; }
+    .tabs { display: flex; gap: 8px; }
+    .tab-btn {
+      padding: 6px 16px; border-radius: 4px; border: none; cursor: pointer;
+      background: rgba(255,255,255,0.1); color: #fff; font-size: 13px;
+    }
+    .tab-btn.active { background: #c9a85c; color: #1a2744; font-weight: bold; }
+    .main { padding: 24px; max-width: 1100px; margin: 0 auto; }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px; margin-bottom: 24px;
+    }
+    .stat-card {
+      background: #fff; border-radius: 8px; padding: 20px 24px;
+      border: 1px solid rgba(26,39,68,0.1); box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .stat-num { font-size: 32px; font-weight: bold; color: #1a2744; }
+    .stat-label { font-size: 12px; color: rgba(26,39,68,0.5); margin-top: 4px; }
+    .logs-layout { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    .logs-layout.split { grid-template-columns: 1fr 1fr; }
+    .session-row {
+      background: #fff; padding: 14px 18px; border-radius: 6px; margin-bottom: 8px;
+      cursor: pointer; border: 1px solid rgba(26,39,68,0.08);
+      border-left: 3px solid transparent;
+    }
+    .session-row.selected { border-left-color: #c9a85c; }
+    .session-row:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .session-time { font-size: 13px; color: #1a2744; font-weight: 600; margin-bottom: 4px; }
+    .session-meta { font-size: 12px; color: rgba(26,39,68,0.5); }
+    .session-preview { font-size: 12px; color: rgba(26,39,68,0.6); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-top: 4px; }
+    .detail-panel {
+      background: #fff; border-radius: 8px; padding: 16px;
+      border: 1px solid rgba(26,39,68,0.1); height: 600px; overflow-y: auto;
+    }
+    .detail-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .detail-close { background: none; border: none; cursor: pointer; color: rgba(26,39,68,0.4); font-size: 18px; }
+    .bubble { max-width: 80%; padding: 10px 13px; font-size: 13px; line-height: 1.6; margin-bottom: 12px; }
+    .bubble.user { margin-left: auto; background: #1a2744; color: #e8f0ff; border-radius: 12px 12px 2px 12px; }
+    .bubble.assistant { background: #f5f3ef; color: #2a2018; border-radius: 2px 12px 12px 12px; }
+    .bubble-meta { font-size: 10px; opacity: 0.5; margin-bottom: 4px; }
+    .pager { display: flex; gap: 8px; margin-top: 16px; }
+    .pager button {
+      padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 13px;
+    }
+    .pager .prev { border: 1px solid #1a2744; background: #fff; color: #1a2744; }
+    .pager .next { border: none; background: #1a2744; color: #fff; }
+    .stats-panel {
+      background: #fff; border-radius: 8px; padding: 20px;
+      border: 1px solid rgba(26,39,68,0.1);
+    }
+    .stats-panel h3 { font-size: 14px; font-weight: 600; color: #1a2744; margin-bottom: 16px; }
+    .q-row {
+      display: flex; align-items: center; gap: 12px; padding: 10px 0;
+      border-bottom: 1px solid rgba(26,39,68,0.06);
+    }
+    .q-rank {
+      width: 24px; height: 24px; border-radius: 50%; background: #1a2744; color: #c9a85c;
+      font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;
+    }
+    .q-text { flex: 1; font-size: 13px; color: #2a2018; }
+    .q-cnt { font-size: 12px; color: rgba(26,39,68,0.4); background: #f5f3ef; padding: 2px 8px; border-radius: 12px; }
+    #checking { min-height: 100vh; background: #0d1526; }
+    @media (max-width: 768px) {
+      .logs-layout.split { grid-template-columns: 1fr; }
+      .detail-panel { height: 400px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="checking"></div>
+
+  <div id="login-screen" class="hidden">
+    <div class="login-box">
+      <div class="login-title">THE QUEEN</div>
+      <div class="login-sub">챗봇 어드민 대시보드</div>
+      <input type="password" id="pw" placeholder="비밀번호" autocomplete="current-password" />
+      <div id="login-err" class="login-err hidden">비밀번호가 틀렸습니다</div>
+      <button type="button" id="login-btn">로그인</button>
+    </div>
+  </div>
+
+  <div id="dashboard" class="hidden">
+    <div class="header">
+      <div>
+        <div class="header-title">THE QUEEN · 챗봇 어드민</div>
+        <div class="header-links">
+          <a href="/admin/visits">방문 통계 →</a>
+        </div>
+      </div>
+      <div class="tabs">
+        <button type="button" class="tab-btn active" data-tab="logs">대화 목록</button>
+        <button type="button" class="tab-btn" data-tab="stats">통계</button>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="stats-grid" id="stat-cards"></div>
+
+      <div id="tab-logs">
+        <div class="logs-layout" id="logs-layout">
+          <div>
+            <div class="session-meta" style="margin-bottom:12px" id="session-count">총 0개 세션</div>
+            <div id="session-list"></div>
+            <div class="pager" id="pager"></div>
+          </div>
+          <div id="detail-wrap" class="hidden">
+            <div class="detail-panel">
+              <div class="detail-head">
+                <strong style="font-size:13px;color:#1a2744">대화 내역</strong>
+                <button type="button" class="detail-close" id="detail-close">✕</button>
+              </div>
+              <div id="message-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-stats" class="hidden">
+        <div class="stats-panel">
+          <h3>자주 묻는 질문 TOP 10</h3>
+          <div id="top-questions"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+(function () {
+  let stats = null;
+  let sessions = [];
+  let selected = null;
+  let page = 1;
+  let total = 0;
+  let tab = "logs";
+
+  const $ = (id) => document.getElementById(id);
+
+  function show(el) { el.classList.remove("hidden"); }
+  function hide(el) { el.classList.add("hidden"); }
+
+  async function checkAuth() {
+    const r = await fetch("/api/admin/stats", { credentials: "same-origin" });
+    return r.ok;
+  }
+
+  async function login() {
+    hide($("login-err"));
+    const r = await fetch("/api/admin/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin",
+      body: JSON.stringify({ password: $("pw").value }),
+    });
+    if (r.ok) {
+      hide($("login-screen"));
+      show($("dashboard"));
+      initDashboard();
+    } else {
+      show($("login-err"));
+    }
+  }
+
+  function renderStatCards() {
+    if (!stats) return;
+    $("stat-cards").innerHTML = `
+      <div class="stat-card"><div class="stat-num">${stats.totalSessions}</div><div class="stat-label">전체 상담 세션</div></div>
+      <div class="stat-card"><div class="stat-num">${stats.todaySessions}</div><div class="stat-label">오늘 상담</div></div>
+      <div class="stat-card"><div class="stat-num">${(stats.topQuestions && stats.topQuestions[0]) ? stats.topQuestions[0].content.slice(0, 12) : "-"}</div><div class="stat-label">가장 많은 질문</div></div>
+    `;
+  }
+
+  function renderTopQuestions() {
+    const el = $("top-questions");
+    if (!stats || !stats.topQuestions || !stats.topQuestions.length) {
+      el.innerHTML = "<div class='session-meta'>데이터 없음</div>";
+      return;
+    }
+    el.innerHTML = stats.topQuestions.map((q, i) => `
+      <div class="q-row">
+        <span class="q-rank">${i + 1}</span>
+        <span class="q-text">${escapeHtml((q.content || "").slice(0, 60))}</span>
+        <span class="q-cnt">${q.cnt}회</span>
+      </div>
+    `).join("");
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  async function fetchStats() {
+    const r = await fetch("/api/admin/stats", { credentials: "same-origin" });
+    if (r.ok) {
+      const d = await r.json();
+      stats = d;
+      renderStatCards();
+      renderTopQuestions();
+    }
+  }
+
+  async function fetchSessions(p) {
+    const r = await fetch("/api/admin/logs?page=" + p, { credentials: "same-origin" });
+    if (!r.ok) return;
+    const d = await r.json();
+    sessions = d.sessions || [];
+    total = d.total || 0;
+    page = d.page || p;
+    $("session-count").textContent = "총 " + total + "개 세션";
+    $("session-list").innerHTML = sessions.map((s) => `
+      <div class="session-row ${selected === s.session_id ? "selected" : ""}" data-sid="${escapeHtml(s.session_id)}">
+        <div class="session-time">${new Date(s.started_at).toLocaleString("ko-KR")}</div>
+        <div class="session-meta">메시지 ${s.user_msgs}개</div>
+        <div class="session-preview">${escapeHtml((s.preview || "").split(" | ")[0].slice(0, 50))}</div>
+      </div>
+    `).join("");
+    $("session-list").querySelectorAll(".session-row").forEach((row) => {
+      row.addEventListener("click", () => openSession(row.dataset.sid));
+    });
+    $("pager").innerHTML = `
+      ${page > 1 ? '<button type="button" class="prev">이전</button>' : ""}
+      ${sessions.length === 20 ? '<button type="button" class="next">다음</button>' : ""}
+    `;
+    const prev = $("pager").querySelector(".prev");
+    const next = $("pager").querySelector(".next");
+    if (prev) prev.addEventListener("click", () => fetchSessions(page - 1));
+    if (next) next.addEventListener("click", () => fetchSessions(page + 1));
+  }
+
+  async function openSession(sid) {
+    selected = sid;
+    show($("detail-wrap"));
+    $("logs-layout").classList.add("split");
+    await fetchSessions(page);
+    const r = await fetch("/api/admin/logs/" + encodeURIComponent(sid), { credentials: "same-origin" });
+    if (!r.ok) return;
+    const d = await r.json();
+    $("message-list").innerHTML = (d.messages || []).map((m) => `
+      <div style="display:flex;justify-content:${m.role === "user" ? "flex-end" : "flex-start"}">
+        <div class="bubble ${m.role}">
+          <div class="bubble-meta">${m.role === "user" ? "고객" : "AI"} · ${new Date(m.created_at).toLocaleTimeString("ko-KR")}</div>
+          ${escapeHtml(m.content).replace(/\n/g, "<br>")}
+        </div>
+      </div>
+    `).join("");
+  }
+
+  function closeDetail() {
+    selected = null;
+    hide($("detail-wrap"));
+    $("logs-layout").classList.remove("split");
+    fetchSessions(page);
+  }
+
+  function setTab(t) {
+    tab = t;
+    document.querySelectorAll(".tab-btn").forEach((b) => {
+      b.classList.toggle("active", b.dataset.tab === t);
+    });
+    hide($("tab-logs"));
+    hide($("tab-stats"));
+    show($(t === "logs" ? "tab-logs" : "tab-stats"));
+  }
+
+  async function initDashboard() {
+    await fetchStats();
+    await fetchSessions(1);
+  }
+
+  document.querySelectorAll(".tab-btn").forEach((b) => {
+    b.addEventListener("click", () => setTab(b.dataset.tab));
+  });
+  $("login-btn").addEventListener("click", login);
+  $("pw").addEventListener("keydown", (e) => { if (e.key === "Enter") login(); });
+  $("detail-close").addEventListener("click", closeDetail);
+
+  checkAuth().then((ok) => {
+    hide($("checking"));
+    if (ok) {
+      show($("dashboard"));
+      initDashboard();
+    } else {
+      show($("login-screen"));
+    }
+  });
+})();
+  </script>
+</body>
+</html>

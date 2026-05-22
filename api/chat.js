@@ -1,4 +1,5 @@
 const SYSTEM_PROMPT = require("../lib/chatbot-system-prompt");
+const { getPool, pgEnabled } = require("./_pg");
 
 function json(res, status, data) {
   res.statusCode = status;
@@ -85,6 +86,28 @@ module.exports = async (req, res) => {
       data.content?.find((b) => b.type === "text")?.text ||
       data.content?.[0]?.text ||
       "잠시 후 다시 시도해 주세요.";
+
+    if (pgEnabled()) {
+      try {
+        const pool = getPool();
+        const sid = String(body.session_id || "unknown").slice(0, 120);
+        const pageUrl = String(body.page_url || "").slice(0, 500);
+        const userAgent = String(req.headers["user-agent"] || "").slice(0, 500);
+        const lastUser = sanitized.filter((m) => m.role === "user").pop();
+        if (lastUser) {
+          await pool.query(
+            `INSERT INTO chat_logs (session_id, role, content, user_agent, page_url) VALUES ($1,$2,$3,$4,$5)`,
+            [sid, "user", lastUser.content, userAgent, pageUrl]
+          );
+        }
+        await pool.query(
+          `INSERT INTO chat_logs (session_id, role, content, user_agent, page_url) VALUES ($1,$2,$3,$4,$5)`,
+          [sid, "assistant", text, userAgent, pageUrl]
+        );
+      } catch (e) {
+        console.error("[DB 저장 실패]", e);
+      }
+    }
 
     return json(res, 200, { ok: true, content: text });
   } catch (err) {
