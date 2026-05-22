@@ -115,7 +115,7 @@
     }
     #tq-fab:hover { transform: scale(1.07); }
     #tq-fab .fab-crown { font-size: 20px; color: #b89a5e; line-height: 1; pointer-events: none; }
-    #tq-fab .fab-label { font-size: 9px; color: rgba(184,154,94,0.7); letter-spacing: 1px; font-family: 'Cormorant Garamond', serif; pointer-events: none; }
+    #tq-fab .fab-label { font-size: 14px; color: rgba(184,154,94,0.7); letter-spacing: 1px; font-family: 'Cormorant Garamond', serif; pointer-events: none; text-align: center; }
 
     #tq-overlay {
       display: none;
@@ -395,7 +395,7 @@
   const fab = document.createElement("button");
   fab.id = "tq-fab";
   fab.setAttribute("aria-label", "더 퀸 웨딩 AI 상담");
-  fab.innerHTML = `<span class="fab-crown">♛</span><span class="fab-label">상담</span>`;
+  fab.innerHTML = `<span class="fab-label">챗봇</span>`;
   document.body.appendChild(fab);
 
   const win = document.createElement("div");
@@ -405,7 +405,7 @@
       <div class="tq-handle"></div>
       <div class="tq-header-inner">
         <div class="tq-header-left">
-          <div class="tq-avatar">♛</div>
+          <div class="tq-avatar">💬</div>
           <div>
             <div class="tq-title">THE QUEEN</div>
             <div class="tq-status">
