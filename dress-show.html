@@ -3083,102 +3083,6 @@ body.theme-midnight footer { display:none !important; }
 })();
 </script>
 
-<!-- 우측 하단: 맨 위/맨 아래 + 카카오톡 채널 -->
-<style>
-  .tq-float-rail {
-    position: fixed;
-    right: 16px;
-    bottom: 16px;
-    right: max(16px, env(safe-area-inset-right));
-    bottom: max(16px, env(safe-area-inset-bottom));
-    z-index: 10000;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 8px;
-    pointer-events: none;
-  }
-  .tq-float-rail > * { pointer-events: auto; }
-  .tq-float-btn {
-    width: 48px; height: 48px; border-radius: 9999px;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(255,255,255,.48);
-    -webkit-backdrop-filter: blur(14px) saturate(1.12);
-    backdrop-filter: blur(14px) saturate(1.12);
-    border: 1px solid rgba(255,255,255,.55);
-    color: #0A2A5E;
-    box-shadow: 0 4px 16px -4px rgba(10,42,94,.1);
-    cursor: pointer;
-    transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
-  }
-  .tq-float-btn:hover {
-    transform: translateY(-2px);
-    background: rgba(255,255,255,.78);
-    border-color: rgba(255,255,255,.75);
-    box-shadow: 0 8px 22px -4px rgba(10,42,94,.14);
-  }
-  .tq-float-btn:focus-visible { outline: 2px solid #C9A96A; outline-offset: 2px; }
-  body.theme-qt .tq-float-btn { border-color: rgba(255,255,255,.42); color: #1A3F2E; }
-  body.theme-qt .tq-float-btn:hover { border-color: rgba(255,255,255,.72); }
-  .tq-float-kakao {
-    width: 48px; height: 48px; border-radius: 9999px;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(254,229,0,.94);
-    color: #3C1E1E;
-    box-shadow: 0 4px 14px -3px rgba(0,0,0,.12);
-    text-decoration: none;
-    transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
-  }
-  .tq-float-kakao:hover { transform: translateY(-2px); filter: brightness(1.03); box-shadow: 0 6px 18px -3px rgba(0,0,0,.16); }
-  .tq-float-kakao:focus-visible { outline: 2px solid #3C1E1E; outline-offset: 2px; }
-  body.theme-midnight .tq-float-btn {
-    background: rgba(10,10,14,.42);
-    -webkit-backdrop-filter: blur(14px) saturate(1.05);
-    backdrop-filter: blur(14px) saturate(1.05);
-    border-color: rgba(232,184,160,.22);
-    color: #F5EFE0;
-    box-shadow: 0 4px 18px -6px rgba(0,0,0,.35);
-  }
-  body.theme-midnight .tq-float-btn:hover {
-    background: rgba(10,10,14,.62);
-    border-color: rgba(232,184,160,.35);
-    box-shadow: 0 8px 24px -6px rgba(0,0,0,.42);
-  }
-  body.theme-midnight .tq-float-rail { bottom: 88px; bottom: max(88px, env(safe-area-inset-bottom)); z-index: 10000; }
-  @media (min-width: 1024px) {
-    body.theme-midnight .tq-float-rail {
-      bottom: 112px;
-      right: 28px;
-      bottom: max(112px, env(safe-area-inset-bottom));
-      right: max(28px, env(safe-area-inset-right));
-    }
-  }
-</style>
-
-<div class="tq-float-rail" aria-label="빠른 이동·문의">
-  <button type="button" class="tq-float-btn" id="tqScrollTop" aria-label="맨 위로">
-    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
-  </button>
-  <button type="button" class="tq-float-btn" id="tqScrollBottom" aria-label="맨 아래로">
-    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-  </button>
-  <a href="https://pf.kakao.com/_rbxopG/chat" target="_blank" rel="noopener noreferrer" class="tq-float-kakao" id="tqKakaoChat" aria-label="카카오톡 채널 문의하기 · thequeen78" title="카카오톡 @thequeen78">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M12 3C6.48 3 2 6.58 2 11c0 2.63 1.97 4.92 4.94 6.15-.15.55-.94 3.48-.94 3.48s-.05.39.26.48c.31.09.54-.14.65-.26 0 0 2.8-2.48 3.85-3.02.64.18 1.32.27 2.04.27 5.52 0 10-3.58 10-8s-4.48-8-10-8z" fill="#3C1E1E"/>
-    </svg>
-  </a>
-</div>
-<script>
-(function () {
-  var t = document.getElementById('tqScrollTop');
-  var b = document.getElementById('tqScrollBottom');
-  if (t) t.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-  if (b) b.addEventListener('click', function () {
-    var h = document.documentElement;
-    window.scrollTo({ top: h && h.scrollHeight ? h.scrollHeight : 0, behavior: 'smooth' });
-  });
-})();
-</script>
 
 
 <script>
@@ -3227,7 +3131,6 @@ body.theme-midnight footer { display:none !important; }
   else document.addEventListener('DOMContentLoaded', track, { once: true });
 })();
 </script>
-
 <script src="/chatbot/embed.js" defer></script>
 </body>
 </html>
