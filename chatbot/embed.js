@@ -1,6 +1,7 @@
 /**
- * THE QUEEN 웨딩홀 AI 챗봇 v4 — Shadow DOM 완전 독립
- * chatbot/embed.js 를 이 파일로 전체 교체
+ * THE QUEEN 웨딩홀 AI 챗봇 v5
+ * 사이트 크림/네이비/골드 톤에 맞춘 라이트 테마
+ * Shadow DOM — 사이트 CSS 완전 차단
  */
 (function () {
   "use strict";
@@ -55,7 +56,7 @@
     content: "안녕하세요 👑 더 퀸 웨딩입니다.\n소중한 날을 위한 준비, 도와드리겠습니다.\n궁금하신 점을 편하게 물어보세요.",
   }];
 
-  /* Shadow DOM 호스트 — 사이트 CSS 완전 차단 */
+  /* Shadow DOM */
   const host = document.createElement("div");
   host.id = "tq-chatbot-root";
   host.style.cssText = "position:fixed;bottom:0;right:0;z-index:2147483647;pointer-events:none;width:0;height:0;";
@@ -65,183 +66,196 @@
   const CSS = `
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Italiana&display=swap');
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border: 0; outline: 0; }
+    *, *::before, *::after {
+      box-sizing: border-box; margin: 0; padding: 0;
+      border: none; outline: none; -webkit-tap-highlight-color: transparent;
+    }
 
-    /* 스크롤 버튼 */
+    /* ── 스크롤 버튼 ── */
     #scroll-btn {
       position: fixed; bottom: 152px; right: 24px; z-index: 9997;
-      width: 44px; height: 44px;
-      background: rgba(10,5,6,0.9);
-      border: 1px solid rgba(184,154,94,0.3) !important;
-      border-radius: 3px;
-      color: rgba(184,154,94,0.7);
-      font-size: 18px; font-family: sans-serif;
+      width: 42px; height: 42px; border-radius: 3px;
+      background: #1a2744;
+      border: 1px solid rgba(184,154,94,0.4);
+      color: rgba(184,154,94,0.9);
+      font-size: 16px; font-family: sans-serif;
       cursor: pointer; pointer-events: all;
       display: none; align-items: center; justify-content: center;
-      backdrop-filter: blur(6px);
-      transition: color 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      transition: background 0.2s;
     }
     #scroll-btn.show { display: flex; }
-    #scroll-btn:hover { color: #b89a5e; }
+    #scroll-btn:hover { background: #243660; }
 
-    /* FAB */
+    /* ── FAB ── */
     #fab {
       position: fixed; bottom: 88px; right: 24px; z-index: 9998;
-      width: 54px; height: 54px; border-radius: 50%;
-      background: linear-gradient(135deg, #1a2744, #0f1829);
-      border: 1px solid rgba(184,154,94,0.4) !important;
-      box-shadow: 0 6px 28px rgba(0,0,0,0.6);
+      width: 52px; height: 52px; border-radius: 50%;
+      background: #1a2744;
+      border: 1px solid rgba(184,154,94,0.5);
+      box-shadow: 0 6px 24px rgba(26,39,68,0.4);
       cursor: pointer; pointer-events: all;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      transition: transform 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    #fab:hover { transform: scale(1.07); }
+    #fab:hover { transform: scale(1.06); box-shadow: 0 8px 28px rgba(26,39,68,0.5); }
     #fab span {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 14px; font-weight: 500;
-      color: #b89a5e; letter-spacing: 0.5px;
-      line-height: 1;
+      font-size: 13px; font-weight: 500;
+      color: #c9a85c; letter-spacing: 0.5px;
     }
 
-    /* 오버레이 */
+    /* ── 오버레이 ── */
     #overlay {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.65); backdrop-filter: blur(3px);
+      background: rgba(15,20,35,0.5); backdrop-filter: blur(4px);
       z-index: 9999; pointer-events: all;
     }
-    #overlay.show { display: block; }
+    #overlay.show { display: block; animation: fadeIn 0.2s ease; }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
 
-    /* 챗봇 윈도우 — PC */
+    /* ── 챗봇 윈도우 ── */
     #win {
       display: none; position: fixed;
       bottom: 24px; right: 24px;
-      width: 380px; height: 600px;
-      border-radius: 4px;
-      background: #0A0506;
-      border: 1px solid rgba(184,154,94,0.2) !important;
-      box-shadow: 0 20px 80px rgba(0,0,0,0.75);
+      width: 360px; height: 580px;
+      border-radius: 12px;
+      background: #faf8f4;
+      border: 1px solid rgba(184,154,94,0.25);
+      box-shadow: 0 24px 64px rgba(26,39,68,0.18), 0 4px 16px rgba(0,0,0,0.08);
       flex-direction: column; overflow: hidden;
       z-index: 10000; pointer-events: all;
       font-family: 'Cormorant Garamond', Georgia, serif;
     }
-    /* 챗봇 윈도우 — 모바일 */
     @media (max-width: 768px) {
       #win {
         bottom: 0; right: 0; left: 0;
         width: 100%; height: 88dvh;
         border-radius: 20px 20px 0 0;
-        border-left: none !important; border-right: none !important; border-bottom: none !important;
+        border-left: none; border-right: none; border-bottom: none;
       }
     }
-    #win.show { display: flex; animation: slideUp 0.3s cubic-bezier(0.16,1,0.3,1); }
+    #win.show { display: flex; animation: slideUp 0.32s cubic-bezier(0.16,1,0.3,1); }
     @keyframes slideUp {
-      from { opacity:0; transform:translateY(20px); }
+      from { opacity:0; transform:translateY(16px); }
       to   { opacity:1; transform:translateY(0); }
     }
 
-    /* 헤더 */
+    /* ── 헤더 ── */
     #header {
       padding: 14px 16px;
-      background: linear-gradient(180deg, #0d0a08 0%, #0A0506 100%);
-      border-bottom: 1px solid rgba(184,154,94,0.15) !important;
+      background: #1a2744;
       flex-shrink: 0;
     }
-    @media (max-width: 768px) { #header { padding: 18px 18px 14px; } }
+    @media (max-width: 768px) { #header { padding: 20px 18px 14px; } }
     .handle {
       width: 36px; height: 4px; border-radius: 2px;
-      background: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.2);
       margin: 0 auto 14px; display: none;
     }
     @media (max-width: 768px) { .handle { display: block; } }
     .header-row { display: flex; align-items: center; justify-content: space-between; }
     .header-left { display: flex; align-items: center; gap: 10px; }
     .avatar {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: rgba(184,154,94,0.1);
-      border: 1px solid rgba(184,154,94,0.35) !important;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(184,154,94,0.5);
       display: flex; align-items: center; justify-content: center;
-      font-size: 16px; flex-shrink: 0;
+      font-size: 15px; flex-shrink: 0;
     }
     .h-title {
       font-family: 'Italiana', serif;
-      color: #b89a5e; font-size: 14px; letter-spacing: 3px;
-      display: block;
+      color: #c9a85c; font-size: 15px; letter-spacing: 3px;
+      display: block; line-height: 1;
     }
-    .h-status { display: flex; align-items: center; gap: 5px; margin-top: 2px; }
+    .h-status { display: flex; align-items: center; gap: 5px; margin-top: 4px; }
     .green-dot {
       width: 5px; height: 5px; border-radius: 50%;
-      background: #5dbf7a; box-shadow: 0 0 4px #5dbf7a; flex-shrink: 0;
+      background: #5dbf7a; box-shadow: 0 0 5px #5dbf7a; flex-shrink: 0;
     }
     .status-text {
-      font-size: 10.5px; color: rgba(232,221,208,0.5); letter-spacing: 0.8px;
-      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px; color: rgba(255,255,255,0.5);
+      letter-spacing: 1px; font-family: 'Cormorant Garamond', serif;
     }
     #close-btn {
-      width: 30px; height: 30px; border-radius: 2px;
-      background: transparent;
-      color: rgba(232,221,208,0.4); font-size: 17px;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.6); font-size: 15px;
       cursor: pointer; display: flex; align-items: center; justify-content: center;
-      pointer-events: all; transition: color 0.15s;
-      font-family: sans-serif;
+      pointer-events: all; transition: background 0.15s, color 0.15s;
+      font-family: sans-serif; line-height: 1;
     }
-    #close-btn:hover { color: #b89a5e; }
+    #close-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
 
-    /* 메시지 영역 */
+    /* ── 메시지 영역 ── */
     #messages {
       flex: 1; overflow-y: auto; overflow-x: hidden;
-      padding: 14px; display: flex; flex-direction: column; gap: 12px;
+      padding: 16px 14px;
+      display: flex; flex-direction: column; gap: 14px;
+      background: #faf8f4;
       scrollbar-width: thin; scrollbar-color: rgba(184,154,94,0.2) transparent;
     }
     #messages::-webkit-scrollbar { width: 3px; }
-    #messages::-webkit-scrollbar-thumb { background: rgba(184,154,94,0.2); border-radius: 2px; }
+    #messages::-webkit-scrollbar-thumb { background: rgba(184,154,94,0.25); border-radius: 2px; }
 
     @keyframes fadeUp {
-      from { opacity:0; transform:translateY(8px); }
+      from { opacity:0; transform:translateY(6px); }
       to   { opacity:1; transform:translateY(0); }
     }
     .msg-row {
       display: flex; align-items: flex-end; gap: 8px;
-      animation: fadeUp 0.25s ease;
+      animation: fadeUp 0.22s ease;
     }
     .msg-row.user { justify-content: flex-end; }
+
     .msg-avatar {
-      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
-      background: rgba(184,154,94,0.1);
-      border: 1px solid rgba(184,154,94,0.2) !important;
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      background: #1a2744;
+      border: 1px solid rgba(184,154,94,0.3);
       display: flex; align-items: center; justify-content: center;
       font-size: 13px;
     }
-    .bubble {
-      max-width: 78%;
-      padding: 11px 14px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 14px; line-height: 1.75; letter-spacing: 0.3px;
-    }
-    @media (max-width: 768px) { .bubble { font-size: 15px; max-width: 82%; } }
+
+    /* AI 말풍선 — 흰색 카드 */
     .bubble.ai {
-      border-radius: 2px 12px 12px 12px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(184,154,94,0.15) !important;
-      color: #e8ddd0;
+      max-width: 78%;
+      padding: 12px 15px;
+      border-radius: 4px 16px 16px 16px;
+      background: #ffffff;
+      border: 1px solid rgba(26,39,68,0.08);
+      box-shadow: 0 2px 8px rgba(26,39,68,0.07);
+      color: #2a2018;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14.5px; line-height: 1.75; letter-spacing: 0.2px;
     }
+    /* 유저 말풍선 — 네이비 */
     .bubble.user {
-      border-radius: 12px 12px 2px 12px;
-      background: rgba(26,39,68,0.75);
-      border: 1px solid rgba(40,60,100,0.8) !important;
-      color: #c8d4e8;
+      max-width: 78%;
+      padding: 12px 15px;
+      border-radius: 16px 16px 4px 16px;
+      background: #1a2744;
+      border: 1px solid rgba(26,39,68,0.9);
+      color: #e8f0ff;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14.5px; line-height: 1.75; letter-spacing: 0.2px;
+    }
+    @media (max-width: 768px) {
+      .bubble.ai, .bubble.user { font-size: 15.5px; max-width: 82%; }
     }
 
     /* 로딩 점 */
     .dots-wrap {
-      padding: 12px 16px; border-radius: 2px 12px 12px 12px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(184,154,94,0.15) !important;
+      padding: 13px 16px;
+      border-radius: 4px 16px 16px 16px;
+      background: #ffffff;
+      border: 1px solid rgba(26,39,68,0.08);
+      box-shadow: 0 2px 8px rgba(26,39,68,0.07);
       display: flex; gap: 5px; align-items: center;
     }
     @keyframes dotBounce {
-      0%,80%,100% { transform:translateY(0); opacity:.25; }
-      40%          { transform:translateY(-4px); opacity:1; }
+      0%,80%,100% { transform:translateY(0); opacity:.3; }
+      40%          { transform:translateY(-5px); opacity:1; }
     }
     .dot {
       width: 6px; height: 6px; border-radius: 50%;
@@ -252,68 +266,83 @@
     .dot:nth-child(3) { animation: dotBounce 1.2s infinite ease-in-out 0.4s; }
 
     /* 빠른 질문 */
-    .quick-wrap { padding-left: 34px; margin-top: 4px; }
+    .quick-wrap { padding-left: 36px; }
     .quick-label {
-      font-size: 10px; color: rgba(232,221,208,0.28);
+      font-size: 10px; color: rgba(42,32,24,0.4);
       letter-spacing: 1.5px; margin-bottom: 8px;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', serif; text-transform: uppercase;
     }
     .quick-grid { display: flex; flex-wrap: wrap; gap: 6px; }
     .quick-btn {
-      background: rgba(184,154,94,0.08);
-      border: 1px solid rgba(184,154,94,0.2) !important;
-      border-radius: 2px;
-      padding: 7px 13px;
-      color: #b89a5e; font-size: 12.5px;
+      background: #fff;
+      border: 1px solid rgba(184,154,94,0.4);
+      border-radius: 20px;
+      padding: 6px 13px;
+      color: #1a2744;
+      font-size: 12.5px;
       font-family: 'Cormorant Garamond', serif;
-      letter-spacing: 0.4px; cursor: pointer; pointer-events: all;
-      white-space: nowrap; transition: background 0.15s;
+      letter-spacing: 0.3px;
+      cursor: pointer; pointer-events: all;
+      white-space: nowrap;
+      transition: background 0.15s, border-color 0.15s;
+      box-shadow: 0 1px 4px rgba(26,39,68,0.08);
     }
-    .quick-btn:hover { background: rgba(184,154,94,0.18); }
+    .quick-btn:hover {
+      background: #f0ebe0;
+      border-color: rgba(184,154,94,0.7);
+    }
 
     /* 구분선 */
-    #divider { height: 1px; background: rgba(184,154,94,0.12); flex-shrink: 0; }
+    #divider { height: 1px; background: rgba(26,39,68,0.08); flex-shrink: 0; }
 
     /* 입력 영역 */
     #input-area {
-      padding: 10px 14px 12px;
-      background: rgba(0,0,0,0.25); flex-shrink: 0;
+      padding: 12px 14px 14px;
+      background: #faf8f4;
+      flex-shrink: 0;
     }
     @media (max-width: 768px) {
-      #input-area { padding: 12px 14px calc(12px + env(safe-area-inset-bottom)); }
+      #input-area { padding: 12px 14px calc(14px + env(safe-area-inset-bottom)); }
     }
     .input-wrap {
       display: flex; align-items: center; gap: 8px;
-      background: rgba(184,154,94,0.07);
-      border: 1px solid rgba(184,154,94,0.2) !important;
-      border-radius: 2px; padding: 9px 10px 9px 14px;
+      background: #ffffff;
+      border: 1px solid rgba(26,39,68,0.15);
+      border-radius: 24px;
+      padding: 8px 8px 8px 16px;
+      box-shadow: 0 2px 8px rgba(26,39,68,0.06);
+      transition: border-color 0.2s;
+    }
+    .input-wrap:focus-within {
+      border-color: rgba(184,154,94,0.6);
     }
     #chat-input {
       flex: 1; background: transparent;
-      color: #e8ddd0 !important;
-      font-family: 'Cormorant Garamond', serif !important;
-      font-size: 15px; letter-spacing: 0.3px;
+      color: #2a2018;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px; letter-spacing: 0.2px;
       caret-color: #b89a5e;
     }
-    #chat-input::placeholder { color: rgba(232,221,208,0.28) !important; }
+    #chat-input::placeholder { color: rgba(42,32,24,0.35); }
     #send-btn {
-      width: 36px; height: 36px; border-radius: 2px;
-      background: linear-gradient(135deg, #c9a25b, #9a7535);
-      color: #fff; font-size: 16px; font-family: sans-serif;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: #1a2744;
+      color: #c9a85c; font-size: 15px;
       cursor: pointer; pointer-events: all;
       display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; transition: opacity 0.15s, transform 0.15s;
+      flex-shrink: 0; transition: background 0.15s, transform 0.15s;
+      font-family: sans-serif;
     }
     #send-btn:disabled {
-      background: rgba(184,154,94,0.12);
-      color: rgba(232,221,208,0.2);
+      background: rgba(26,39,68,0.15);
+      color: rgba(42,32,24,0.25);
       cursor: not-allowed;
     }
-    #send-btn:not(:disabled):hover { transform: scale(1.06); }
+    #send-btn:not(:disabled):hover { background: #243660; transform: scale(1.05); }
     .input-hint {
-      text-align: center; margin-top: 7px;
-      font-size: 10px; color: rgba(232,221,208,0.2);
-      letter-spacing: 0.4px; font-family: 'Cormorant Garamond', serif;
+      text-align: center; margin-top: 8px;
+      font-size: 10px; color: rgba(42,32,24,0.28);
+      letter-spacing: 0.3px; font-family: 'Cormorant Garamond', serif;
     }
   `;
 
@@ -351,33 +380,33 @@
 
       <div id="input-area">
         <div class="input-wrap">
-          <input id="chat-input" type="text" placeholder="질문을 입력하세요…" autocomplete="off" />
-          <button id="send-btn" disabled>↑</button>
+          <input id="chat-input" type="text" placeholder="궁금한 점을 물어보세요…" autocomplete="off" />
+          <button id="send-btn" disabled aria-label="전송">↑</button>
         </div>
-        <div class="input-hint">AI 답변은 참고용입니다 · 중요 사항은 054-283-1111 확인</div>
+        <div class="input-hint">AI 답변은 참고용 · 중요 사항은 054-283-1111 확인</div>
       </div>
     </div>
   `;
 
   shadow.innerHTML = HTML;
 
-  /* ── DOM 참조 ── */
-  const scrollBtn  = shadow.getElementById("scroll-btn");
-  const fab        = shadow.getElementById("fab");
-  const overlay    = shadow.getElementById("overlay");
-  const win        = shadow.getElementById("win");
-  const msgBox     = shadow.getElementById("messages");
-  const inputEl    = shadow.getElementById("chat-input");
-  const sendBtn    = shadow.getElementById("send-btn");
-  const closeBtn   = shadow.getElementById("close-btn");
+  /* DOM 참조 */
+  const scrollBtn = shadow.getElementById("scroll-btn");
+  const fab       = shadow.getElementById("fab");
+  const overlay   = shadow.getElementById("overlay");
+  const win       = shadow.getElementById("win");
+  const msgBox    = shadow.getElementById("messages");
+  const inputEl   = shadow.getElementById("chat-input");
+  const sendBtn   = shadow.getElementById("send-btn");
+  const closeBtn  = shadow.getElementById("close-btn");
 
-  /* ── 스크롤 버튼 ── */
+  /* 스크롤 버튼 */
   window.addEventListener("scroll", () => {
     scrollBtn.classList.toggle("show", window.scrollY > 300);
   });
   scrollBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-  /* ── 렌더 ── */
+  /* 렌더 */
   function render() {
     msgBox.innerHTML = "";
     messages.forEach((m) => {
@@ -388,7 +417,9 @@
       }
       const bubble = document.createElement("div");
       bubble.className = "bubble " + (m.role === "user" ? "user" : "ai");
-      bubble.innerHTML = m.content.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\n/g,"<br>");
+      bubble.innerHTML = m.content
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+        .replace(/\n/g, "<br>");
       row.appendChild(bubble);
       msgBox.appendChild(row);
     });
@@ -403,7 +434,11 @@
     if (messages.length <= 1 && !isLoading) {
       const wrap = document.createElement("div");
       wrap.className = "quick-wrap";
-      wrap.innerHTML = `<div class="quick-label">자주 묻는 질문</div><div class="quick-grid">${QUICK.map(q=>`<button class="quick-btn">${q}</button>`).join("")}</div>`;
+      wrap.innerHTML = `
+        <div class="quick-label">자주 묻는 질문</div>
+        <div class="quick-grid">
+          ${QUICK.map(q => `<button class="quick-btn">${q}</button>`).join("")}
+        </div>`;
       wrap.querySelectorAll(".quick-btn").forEach(btn => {
         btn.addEventListener("click", () => send(btn.textContent));
       });
@@ -413,7 +448,7 @@
     msgBox.scrollTop = msgBox.scrollHeight;
   }
 
-  /* ── 전송 ── */
+  /* 전송 */
   async function send(text) {
     const msg = (text || inputEl.value).trim();
     if (!msg || isLoading) return;
@@ -447,8 +482,8 @@
     }
   }
 
-  /* ── 열기/닫기 ── */
-  function open() {
+  /* 열기/닫기 */
+  function openChat() {
     isOpen = true;
     win.classList.add("show");
     fab.style.display = "none";
@@ -459,7 +494,7 @@
     render();
     setTimeout(() => inputEl.focus(), 300);
   }
-  function close() {
+  function closeChat() {
     isOpen = false;
     win.classList.remove("show");
     fab.style.display = "flex";
@@ -467,10 +502,9 @@
     document.body.style.overflow = "";
   }
 
-  fab.addEventListener("click", open);
-  closeBtn.addEventListener("click", close);
-  overlay.addEventListener("click", close);
-
+  fab.addEventListener("click", openChat);
+  closeBtn.addEventListener("click", closeChat);
+  overlay.addEventListener("click", closeChat);
   inputEl.addEventListener("input", () => {
     sendBtn.disabled = !inputEl.value.trim() || isLoading;
   });
