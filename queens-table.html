@@ -2001,5 +2001,32 @@ const IMAGES = {
 })();
 </script>
 <script src="/chatbot/embed.js" defer></script>
+
+<!-- 카카오톡 채널 버튼 -->
+<style>
+  #kakao-talk-channel-chat-button {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 2147483646;
+  }
+</style>
+<div id="kakao-talk-channel-chat-button"></div>
+<script>
+  window.kakaoAsyncInit = function() {
+    Kakao.Channel.createChatButton({
+      container: '#kakao-talk-channel-chat-button',
+      channelPublicId: '_rbxopG'
+    });
+  };
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'kakao-jssdk'));
+</script>
+
 </body>
 </html>
