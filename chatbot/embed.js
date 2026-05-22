@@ -96,7 +96,7 @@
       position: fixed;
       bottom: 88px;
       right: 24px;
-      z-index: 9998;
+      z-index: 10056;
       width: 54px;
       height: 54px;
       border-radius: 50%;
@@ -122,14 +122,14 @@
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,0.6);
-      z-index: 9999;
+      z-index: 10057;
       backdrop-filter: blur(2px);
     }
 
     #tq-win {
       display: none;
       position: fixed;
-      z-index: 10000;
+      z-index: 10058;
       background: #0A0506;
       border: 1px solid rgba(184,154,94,0.18);
       flex-direction: column;
@@ -364,7 +364,7 @@
       position: fixed;
       bottom: 152px;
       right: 24px;
-      z-index: 9997;
+      z-index: 10055;
       width: 44px; height: 44px;
       border-radius: 2px;
       background: rgba(10,5,6,0.85);
