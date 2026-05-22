@@ -130,7 +130,7 @@
       display: none;
       position: fixed;
       z-index: 10058;
-      background: #0A0506;
+      background: #0A0506 !important;
       border: 1px solid rgba(184,154,94,0.18);
       flex-direction: column;
       overflow: hidden;
@@ -178,7 +178,7 @@
 
     #tq-header {
       padding: 14px 16px;
-      background: linear-gradient(180deg, #0d0a08, #0A0506);
+      background: linear-gradient(180deg, #0d0a08, #0A0506) !important;
       border-bottom: 1px solid rgba(184,154,94,0.15);
       flex-shrink: 0;
     }
@@ -257,15 +257,15 @@
     }
     .tq-bubble.ai {
       border-radius: 2px 12px 12px 12px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(184,154,94,0.15);
-      color: #e8ddd0;
+      background: rgba(255,255,255,0.04) !important;
+      border: 1px solid rgba(184,154,94,0.15) !important;
+      color: #e8ddd0 !important;
     }
     .tq-bubble.user {
       border-radius: 12px 12px 2px 12px;
-      background: rgba(26,39,68,0.7);
+      background: rgba(26,39,68,0.7) !important;
       border: 1px solid rgba(26,39,68,0.9);
-      color: #c8d4e8;
+      color: #c8d4e8 !important;
     }
     @media (max-width: 768px) {
       .tq-bubble { font-size: 15px; max-width: 82%; }
@@ -298,11 +298,11 @@
       display: flex; flex-wrap: wrap; gap: 6px;
     }
     .tq-quick-btn {
-      background: rgba(184,154,94,0.08);
-      border: 1px solid rgba(184,154,94,0.18);
+      background: rgba(184,154,94,0.08) !important;
+      border: 1px solid rgba(184,154,94,0.18) !important;
       border-radius: 2px;
       padding: 7px 13px;
-      color: #b89a5e;
+      color: #b89a5e !important;
       font-size: 12.5px;
       font-family: 'Cormorant Garamond', serif;
       letter-spacing: 0.4px;
@@ -329,14 +329,14 @@
     }
     .tq-input-wrap {
       display: flex; align-items: center; gap: 8px;
-      background: rgba(184,154,94,0.07);
-      border: 1px solid rgba(184,154,94,0.18);
+      background: rgba(184,154,94,0.07) !important;
+      border: 1px solid rgba(184,154,94,0.18) !important;
       border-radius: 2px;
       padding: 9px 10px 9px 14px;
     }
     #tq-input {
-      flex: 1; background: transparent; border: none; outline: none;
-      color: #e8ddd0;
+      flex: 1; background: transparent !important; border: none; outline: none;
+      color: #e8ddd0 !important;
       font-family: 'Cormorant Garamond', serif;
       font-size: 15px; letter-spacing: 0.3px;
     }
