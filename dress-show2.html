@@ -1609,5 +1609,19 @@ function handleSubmit(e) {
   }, 600);
 }
 </script>
+
+<script src="/chatbot/float-buttons.js"></script>
+<div class="tq-float-rail" aria-label="빠른 이동·문의">
+ <button type="button" class="tq-float-btn" id="tqScrollTop" aria-label="맨 위로" onclick="window.tqScrollTop&&window.tqScrollTop(event)">
+ <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+ </button>
+ <button type="button" class="tq-float-ai" id="tqChatFab" aria-label="더 퀸 웨딩 AI 상담" onclick="window.tqOpenChat&&window.tqOpenChat(event)">
+ <span class="tq-float-ai-crown">♛</span><span class="tq-float-ai-label">상담</span>
+ </button>
+ <a href="https://pf.kakao.com/_rbxopG/chat" target="_blank" rel="noopener noreferrer" class="tq-float-kakao" id="tqKakaoChat" aria-label="카카오톡"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.63 1.97 4.92 4.94 6.15-.15.55-.94 3.48-.94 3.48s-.05.39.26.48c.31.09.54-.14.65-.26 0 0 2.8-2.48 3.85-3.02.64.18 1.32.27 2.04.27 5.52 0 10-3.58 10-8s-4.48-8-10-8z" fill="#3C1E1E"/></svg></a>
+</div>
+<script src="/chatbot/float-buttons.js"></script>
+<link rel="stylesheet" href="/chatbot/float-layout.css">
+<script src="/chatbot/embed.js" defer></script>
 </body>
 </html>
