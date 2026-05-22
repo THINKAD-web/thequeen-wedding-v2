@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="robots" content="noindex" />
+  <title>THE QUEEN · AI 웨딩 상담</title>
+  <meta name="description" content="더 퀸 웨딩 AI 상담" />
+  <meta name="theme-color" content="#1a2744" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Italiana&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100dvh;
+      background: #faf8f4;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      color: #2a2018;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* 사이트 헤더 */
+    .site-header {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 20px;
+      background: #1a2744;
+      border-bottom: 1px solid rgba(184, 154, 94, 0.25);
+    }
+    .site-logo {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
+    .site-logo-sub {
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: rgba(201, 168, 92, 0.75);
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+    .site-logo-main {
+      font-family: "Italiana", Georgia, serif;
+      font-size: 20px;
+      letter-spacing: 4px;
+      color: #c9a85c;
+      line-height: 1;
+    }
+    .home-link {
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      padding: 8px 14px;
+      border: 1px solid rgba(184, 154, 94, 0.35);
+      border-radius: 4px;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      white-space: nowrap;
+    }
+    .home-link:hover {
+      color: #c9a85c;
+      border-color: rgba(184, 154, 94, 0.6);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* 챗봇 전체 영역 */
+    .chat-app {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      min-height: 0;
+      overflow: hidden;
+      background: #faf8f4;
+    }
+
+    .chat-header {
+      flex-shrink: 0;
+      padding: 12px 18px;
+      background: #1a2744;
+      border-bottom: 1px solid rgba(184, 154, 94, 0.2);
+    }
+    .chat-header-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .chat-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(184, 154, 94, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .chat-title {
+      font-family: "Italiana", serif;
+      color: #c9a85c;
+      font-size: 15px;
+      letter-spacing: 3px;
+      display: block;
+      line-height: 1;
+    }
+    .chat-status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 4px;
+    }
+    .green-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #5dbf7a;
+      box-shadow: 0 0 5px #5dbf7a;
+      flex-shrink: 0;
+    }
+    .status-text {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 1px;
+    }
+
+    #messages {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: #faf8f4;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(184, 154, 94, 0.2) transparent;
+    }
+    #messages::-webkit-scrollbar { width: 3px; }
+    #messages::-webkit-scrollbar-thumb {
+      background: rgba(184, 154, 94, 0.25);
+      border-radius: 2px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .msg-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      animation: fadeUp 0.22s ease;
+    }
+    .msg-row.user { justify-content: flex-end; }
+    .msg-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: #1a2744;
+      border: 1px solid rgba(184, 154, 94, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+    .bubble.ai {
+      max-width: 78%;
+      padding: 12px 15px;
+      border-radius: 4px 16px 16px 16px;
+      background: #ffffff;
+      border: 1px solid rgba(26, 39, 68, 0.08);
+      box-shadow: 0 2px 8px rgba(26, 39, 68, 0.07);
+      color: #2a2018;
+      font-size: 14.5px;
+      line-height: 1.75;
+      letter-spacing: 0.2px;
+    }
+    .bubble.user {
+      max-width: 78%;
+      padding: 12px 15px;
+      border-radius: 16px 16px 4px 16px;
+      background: #1a2744;
+      border: 1px solid rgba(26, 39, 68, 0.9);
+      color: #e8f0ff;
+      font-size: 14.5px;
+      line-height: 1.75;
+      letter-spacing: 0.2px;
+    }
+    @media (max-width: 768px) {
+      .bubble.ai, .bubble.user { font-size: 15.5px; max-width: 82%; }
+    }
+
+    .dots-wrap {
+      padding: 13px 16px;
+      border-radius: 4px 16px 16px 16px;
+      background: #ffffff;
+      border: 1px solid rgba(26, 39, 68, 0.08);
+      box-shadow: 0 2px 8px rgba(26, 39, 68, 0.07);
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+    @keyframes dotBounce {
+      0%, 80%, 100% { transform: translateY(0); opacity: 0.3; }
+      40% { transform: translateY(-5px); opacity: 1; }
+    }
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #b89a5e;
+      display: inline-block;
+    }
+    .dot:nth-child(1) { animation: dotBounce 1.2s infinite ease-in-out 0s; }
+    .dot:nth-child(2) { animation: dotBounce 1.2s infinite ease-in-out 0.2s; }
+    .dot:nth-child(3) { animation: dotBounce 1.2s infinite ease-in-out 0.4s; }
+
+    .quick-wrap { padding-left: 36px; }
+    .quick-label {
+      font-size: 10px;
+      color: rgba(42, 32, 24, 0.4);
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .quick-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+    .quick-btn {
+      background: #fff;
+      border: 1px solid rgba(184, 154, 94, 0.4);
+      border-radius: 20px;
+      padding: 6px 13px;
+      color: #1a2744;
+      font-size: 12.5px;
+      font-family: inherit;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s, border-color 0.15s;
+      box-shadow: 0 1px 4px rgba(26, 39, 68, 0.08);
+    }
+    .quick-btn:hover {
+      background: #f0ebe0;
+      border-color: rgba(184, 154, 94, 0.7);
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(26, 39, 68, 0.08);
+      flex-shrink: 0;
+    }
+
+    #input-area {
+      flex-shrink: 0;
+      padding: 12px 14px calc(14px + env(safe-area-inset-bottom));
+      background: #faf8f4;
+    }
+    .input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid rgba(26, 39, 68, 0.15);
+      border-radius: 24px;
+      padding: 8px 8px 8px 16px;
+      box-shadow: 0 2px 8px rgba(26, 39, 68, 0.06);
+      transition: border-color 0.2s;
+    }
+    .input-wrap:focus-within {
+      border-color: rgba(184, 154, 94, 0.6);
+    }
+    #chat-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #2a2018;
+      font-family: inherit;
+      font-size: 15px;
+      letter-spacing: 0.2px;
+      caret-color: #b89a5e;
+    }
+    #chat-input::placeholder { color: rgba(42, 32, 24, 0.35); }
+    #send-btn {
+      width: 34px;
+      height: 34px;
+      border: none;
+      border-radius: 50%;
+      background: #1a2744;
+      color: #c9a85c;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s, transform 0.15s;
+      font-family: sans-serif;
+    }
+    #send-btn:disabled {
+      background: rgba(26, 39, 68, 0.15);
+      color: rgba(42, 32, 24, 0.25);
+      cursor: not-allowed;
+    }
+    #send-btn:not(:disabled):hover {
+      background: #243660;
+      transform: scale(1.05);
+    }
+    .input-hint {
+      text-align: center;
+      margin-top: 8px;
+      font-size: 10px;
+      color: rgba(42, 32, 24, 0.28);
+      letter-spacing: 0.3px;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="site-logo" aria-label="THE QUEEN 홈">
+      <span class="site-logo-sub">The Queen's Legacy</span>
+      <span class="site-logo-main">THE QUEEN</span>
+    </a>
+    <a href="/" class="home-link">← 홈으로</a>
+  </header>
+
+  <main class="chat-app" role="main">
+    <div class="chat-header">
+      <div class="chat-header-row">
+        <div class="chat-avatar" aria-hidden="true">💬</div>
+        <div>
+          <span class="chat-title">THE QUEEN</span>
+          <div class="chat-status">
+            <span class="green-dot"></span>
+            <span class="status-text">AI 웨딩 플래너 · 온라인</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="messages" aria-live="polite" aria-label="대화 내용"></div>
+    <div class="divider"></div>
+
+    <div id="input-area">
+      <div class="input-wrap">
+        <input id="chat-input" type="text" placeholder="궁금한 점을 물어보세요…" autocomplete="off" />
+        <button type="button" id="send-btn" disabled aria-label="전송">↑</button>
+      </div>
+      <p class="input-hint">AI 답변은 참고용 · 중요 사항은 054-283-1111 확인</p>
+    </div>
+  </main>
+
+  <script>
+(function () {
+  "use strict";
+
+  const QUICK = [
+    "크라운룸 vs 갤럭시룸 차이",
+    "퀸즈테이블 뷔페 가격",
+    "웨딩 예약 방법",
+    "주차 & 오시는 길",
+    "스드메 제휴 업체",
+    "더퀸만의 특징",
+  ];
+
+  const SESSION_ID = "tq_" + Date.now() + "_" + Math.random().toString(36).slice(2, 8);
+
+  let isLoading = false;
+  let messages = [{
+    role: "assistant",
+    content: "안녕하세요 👑 더 퀸 웨딩입니다.\n소중한 날을 위한 준비, 도와드리겠습니다.\n궁금하신 점을 편하게 물어보세요.",
+  }];
+
+  const msgBox = document.getElementById("messages");
+  const inputEl = document.getElementById("chat-input");
+  const sendBtn = document.getElementById("send-btn");
+
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  function render() {
+    msgBox.innerHTML = "";
+    messages.forEach(function (m) {
+      const row = document.createElement("div");
+      row.className = "msg-row" + (m.role === "user" ? " user" : "");
+      if (m.role === "assistant") {
+        row.innerHTML = '<div class="msg-avatar" aria-hidden="true">💬</div>';
+      }
+      const bubble = document.createElement("div");
+      bubble.className = "bubble " + (m.role === "user" ? "user" : "ai");
+      bubble.innerHTML = escapeHtml(m.content).replace(/\n/g, "<br>");
+      row.appendChild(bubble);
+      msgBox.appendChild(row);
+    });
+
+    if (isLoading) {
+      const row = document.createElement("div");
+      row.className = "msg-row";
+      row.innerHTML =
+        '<div class="msg-avatar" aria-hidden="true">💬</div>' +
+        '<div class="dots-wrap"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>';
+      msgBox.appendChild(row);
+    }
+
+    if (messages.length <= 1 && !isLoading) {
+      const wrap = document.createElement("div");
+      wrap.className = "quick-wrap";
+      wrap.innerHTML =
+        '<div class="quick-label">자주 묻는 질문</div>' +
+        '<div class="quick-grid">' +
+        QUICK.map(function (q) {
+          return '<button type="button" class="quick-btn">' + escapeHtml(q) + "</button>";
+        }).join("") +
+        "</div>";
+      wrap.querySelectorAll(".quick-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          send(btn.textContent);
+        });
+      });
+      msgBox.appendChild(wrap);
+    }
+
+    msgBox.scrollTop = msgBox.scrollHeight;
+  }
+
+  async function send(text) {
+    const msg = (text || inputEl.value).trim();
+    if (!msg || isLoading) return;
+    messages.push({ role: "user", content: msg });
+    inputEl.value = "";
+    sendBtn.disabled = true;
+    isLoading = true;
+    render();
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: messages.map(function (m) {
+            return { role: m.role, content: m.content };
+          }),
+          session_id: SESSION_ID,
+          page_url: window.location.href,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) {
+        throw new Error(data.detail || String(res.status));
+      }
+      messages.push({
+        role: "assistant",
+        content: data.content || "잠시 후 다시 시도해 주세요.",
+      });
+    } catch (err) {
+      messages.push({
+        role: "assistant",
+        content: "연결에 문제가 발생했습니다.\n054-283-1111로 직접 문의해 주세요 🙏",
+      });
+    } finally {
+      isLoading = false;
+      render();
+      inputEl.focus();
+    }
+  }
+
+  inputEl.addEventListener("input", function () {
+    sendBtn.disabled = !inputEl.value.trim() || isLoading;
+  });
+  inputEl.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      if (!sendBtn.disabled) send();
+    }
+  });
+  sendBtn.addEventListener("click", function () {
+    send();
+  });
+
+  render();
+  inputEl.focus();
+})();
+  </script>
+</body>
+</html>

@@ -12,6 +12,7 @@
     { "source": "/dress-show", "destination": "/dress-show.html" },
     { "source": "/queens-table", "destination": "/queens-table.html" },
     { "source": "/admin/visits", "destination": "/admin.html" },
-    { "source": "/admin", "destination": "/admin-chat.html" }
+    { "source": "/admin", "destination": "/admin-chat.html" },
+    { "source": "/chat", "destination": "/chat.html" }
   ]
 }
