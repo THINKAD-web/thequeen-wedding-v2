@@ -1,6 +1,24 @@
-# THE QUEEN × WEDDING MUE
+# THE QUEEN × WEDDING MUE - Robot Directives
+# All search engines are welcome to crawl
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /api/admin
 Disallow: /*.mp3$
 
+# Optimize for search engines
+Crawl-delay: 1
+Request-rate: 30/60
+
+# Sitemap
 Sitemap: https://thequeenwedding.kr/sitemap.xml
+
+# Naver (Yeti) - optimize for Korean search
+User-agent: Yeti
+Allow: /
+Crawl-delay: 0
+
+# Google - unlimited
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
