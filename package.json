@@ -2,6 +2,8 @@
   "name": "thequeen-wedding-v2",
   "private": true,
   "scripts": {
+    "build": "node scripts/build-content.js",
+    "build:content": "node scripts/build-content.js",
     "dev": "serve -l 3000 .",
     "dev:api": "vercel dev --listen 3000",
     "start": "serve -l 3000 .",
@@ -9,6 +11,8 @@
     "db:init": "node scripts/init-db.js"
   },
   "devDependencies": {
+    "gray-matter": "^4.0.3",
+    "marked": "^15.0.7",
     "serve": "^14.2.4"
   },
   "dependencies": {
