@@ -6,6 +6,11 @@
     { "source": "/main", "destination": "/" },
     { "source": "/dress-show.html", "destination": "/dress-show" },
     { "source": "/queens-table.html", "destination": "/queens-table" },
+    { "source": "/hall-galaxy.html", "destination": "/hall-galaxy" },
+    { "source": "/buffet.html", "destination": "/buffet" },
+    { "source": "/gallery.html", "destination": "/gallery" },
+    { "source": "/directions.html", "destination": "/directions" },
+    { "source": "/reviews.html", "destination": "/reviews" },
     { "source": "/queens-table/index", "destination": "/queens-table" },
     { "source": "/queens-table/index.html", "destination": "/queens-table" },
     { "source": "/queens-table/home", "destination": "/queens-table" },
@@ -17,6 +22,11 @@
   ],
   "rewrites": [
     { "source": "/dress-show", "destination": "/dress-show.html" },
-    { "source": "/queens-table", "destination": "/queens-table.html" }
+    { "source": "/queens-table", "destination": "/queens-table.html" },
+    { "source": "/hall-galaxy", "destination": "/hall-galaxy.html" },
+    { "source": "/buffet", "destination": "/buffet.html" },
+    { "source": "/gallery", "destination": "/gallery.html" },
+    { "source": "/directions", "destination": "/directions.html" },
+    { "source": "/reviews", "destination": "/reviews.html" }
   ]
 }

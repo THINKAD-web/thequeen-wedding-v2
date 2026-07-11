@@ -1,16 +1,38 @@
 {
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "iua.co.kr" }],
+      "destination": "https://thequeenwedding.kr/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.iua.co.kr" }],
+      "destination": "https://thequeenwedding.kr/:path*",
+      "permanent": true
+    },
     { "source": "/home", "destination": "/", "permanent": true },
     { "source": "/main", "destination": "/", "permanent": true },
     { "source": "/index", "destination": "/", "permanent": true },
     { "source": "/index.html", "destination": "/", "permanent": true },
-    { "source": "/index.htm", "destination": "/", "permanent": true }
+    { "source": "/index.htm", "destination": "/", "permanent": true },
+    { "source": "/hall-galaxy.html", "destination": "/hall-galaxy", "permanent": true },
+    { "source": "/buffet.html", "destination": "/buffet", "permanent": true },
+    { "source": "/gallery.html", "destination": "/gallery", "permanent": true },
+    { "source": "/directions.html", "destination": "/directions", "permanent": true },
+    { "source": "/reviews.html", "destination": "/reviews", "permanent": true }
   ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/dress-show2", "destination": "/dress-show2.html" },
     { "source": "/dress-show", "destination": "/dress-show.html" },
     { "source": "/queens-table", "destination": "/queens-table.html" },
+    { "source": "/hall-galaxy", "destination": "/hall-galaxy.html" },
+    { "source": "/buffet", "destination": "/buffet.html" },
+    { "source": "/gallery", "destination": "/gallery.html" },
+    { "source": "/directions", "destination": "/directions.html" },
+    { "source": "/reviews", "destination": "/reviews.html" },
     { "source": "/admin/visits", "destination": "/admin.html" },
     { "source": "/admin", "destination": "/admin-chat.html" },
     { "source": "/chat", "destination": "/chat.html" }
