@@ -4,12 +4,12 @@ description: "더퀸 웨딩홀 6층 갤럭시홀에서 열린 실제 예식 이�
 date: 2026-07-09
 category: stories
 slug: galaxy-hall-september-wedding
-thumbnail: /images/content/galaxy-hall-ceremony.jpg
+thumbnail: https://i.ibb.co/qL7GTZ5G/1.jpg
 keywords: [포항 더퀸 후기, 갤럭시홀, 포항 웨딩홀 후기, 더퀸 웨딩홀, 포항 결혼식]
 draft: false
 ---
 
-토요일 오후 3시. 더퀸 웨딩홀 6층 갤럭시홀의 문이 열립니다.
+토요일 오후 3시. **더퀸 웨딩홀(구 UA컨벤션 리모델링 완성)** 6층 갤럭시홀의 문이 열립니다.
 
 하객들이 가장 먼저 마주하는 것은 **홀의 높이**입니다. 일반 예식장에서 보기 어려운 높은 층고 위로, 은하수처럼 흩뿌려진 조명과 샹들리에가 홀 전체를 감쌉니다. 실제로 갤럭시홀에서 예식을 올린 신부님은 "분위기부터 완벽 그 자체였다"고, "이날만큼은 모든 시선이 신랑·신부에게 집중되는 무대"였다고 회상합니다.
 

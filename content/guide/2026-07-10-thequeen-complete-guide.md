@@ -4,7 +4,7 @@ description: "포항 더퀸 웨딩홀(구 UA컨벤션)을 알아보는 예비부
 date: 2026-07-10
 category: guide
 slug: thequeen-complete-guide
-thumbnail: /images/content/thequeen-guide-hero.jpg
+thumbnail: https://i.ibb.co/Ngw5GBKq/1.jpg
 keywords: [포항 웨딩홀, 포항 예식장, 더퀸 웨딩홀, UA컨벤션, 포항 웨딩홀 추천, 포항 결혼식장]
 draft: false
 ---

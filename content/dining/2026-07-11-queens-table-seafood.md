@@ -4,7 +4,7 @@ description: "입장과 동시에 인원수에 맞춰 쪄내는 가리비·랍�
 date: 2026-07-11
 category: dining
 slug: queens-table-seafood
-thumbnail: /images/content/queens-table-seafood.jpg
+thumbnail: https://i.ibb.co/5Xy1jQn5/IMG-2356.jpg
 keywords: [포항 대게, 포항 랍스터 뷔페, 퀸즈테이블, 포항 해산물 뷔페, 포항 뷔페]
 draft: false
 ---
