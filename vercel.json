@@ -53,5 +53,6 @@
     { "source": "/stories/:slug", "destination": "/stories/:slug.html" },
     { "source": "/dining/:slug", "destination": "/dining/:slug.html" }
   ],
-  "buildCommand": "npm run build:content"
+  "buildCommand": "npm run build:content",
+  "outputDirectory": "."
 }
