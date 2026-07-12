@@ -21,7 +21,15 @@
     { "source": "/buffet.html", "destination": "/buffet", "permanent": true },
     { "source": "/gallery.html", "destination": "/gallery", "permanent": true },
     { "source": "/directions.html", "destination": "/directions", "permanent": true },
-    { "source": "/reviews.html", "destination": "/reviews", "permanent": true }
+    { "source": "/reviews.html", "destination": "/reviews", "permanent": true },
+    { "source": "/news/index.html", "destination": "/news", "permanent": true },
+    { "source": "/guide/index.html", "destination": "/guide", "permanent": true },
+    { "source": "/stories/index.html", "destination": "/stories", "permanent": true },
+    { "source": "/dining/index.html", "destination": "/dining", "permanent": true },
+    { "source": "/news/:slug.html", "destination": "/news/:slug", "permanent": true },
+    { "source": "/guide/:slug.html", "destination": "/guide/:slug", "permanent": true },
+    { "source": "/stories/:slug.html", "destination": "/stories/:slug", "permanent": true },
+    { "source": "/dining/:slug.html", "destination": "/dining/:slug", "permanent": true }
   ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
@@ -35,6 +43,16 @@
     { "source": "/reviews", "destination": "/reviews.html" },
     { "source": "/admin/visits", "destination": "/admin.html" },
     { "source": "/admin", "destination": "/admin-chat.html" },
-    { "source": "/chat", "destination": "/chat.html" }
-  ]
+    { "source": "/chat", "destination": "/chat.html" },
+    { "source": "/news", "destination": "/news/index.html" },
+    { "source": "/guide", "destination": "/guide/index.html" },
+    { "source": "/stories", "destination": "/stories/index.html" },
+    { "source": "/dining", "destination": "/dining/index.html" },
+    { "source": "/news/:slug", "destination": "/news/:slug.html" },
+    { "source": "/guide/:slug", "destination": "/guide/:slug.html" },
+    { "source": "/stories/:slug", "destination": "/stories/:slug.html" },
+    { "source": "/dining/:slug", "destination": "/dining/:slug.html" }
+  ],
+  "buildCommand": "npm run build:content",
+  "outputDirectory": "."
 }
