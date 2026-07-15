@@ -29,7 +29,7 @@
     { "source": "/news/:slug.html", "destination": "/news/:slug", "permanent": true },
     { "source": "/guide/:slug.html", "destination": "/guide/:slug", "permanent": true },
     { "source": "/stories/:slug.html", "destination": "/stories/:slug", "permanent": true },
-    { "source": "/queens-table/queens-box.html", "destination": "/queens-table/queens-box", "permanent": true },
+    { "source": "/queens-table/queens-box.html", "destination": "/queens-table/queens-box", "permanent": true }
   ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
