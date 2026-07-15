@@ -4,7 +4,7 @@ description: "포항 더퀸 웨딩홀(구 UA컨벤션) 갤럭시홀에서 열린
 date: 2026-07-08
 category: news
 slug: dress-show-recap
-thumbnail: https://i.ibb.co/WvnL51Hm/IMG-3864.jpg
+thumbnail: https://i.ibb.co/4gYHsfMs/KYI-4226.jpg
 keywords: [포항 드레스쇼, 더퀸 웨딩홀, 웨딩뮤, 포항 웨딩드레스, 포항 웨딩 이벤트]
 draft: false
 ---

@@ -42,6 +42,7 @@ const BASE_SITEMAP_URLS = [
   { loc: `${SITE_URL}/directions`, changefreq: 'monthly', priority: '0.8' },
   { loc: `${SITE_URL}/reviews`, changefreq: 'monthly', priority: '0.75' },
   { loc: `${SITE_URL}/queens-table`, changefreq: 'weekly', priority: '0.9' },
+  { loc: `${SITE_URL}/queens-table/queens-box`, changefreq: 'weekly', priority: '0.85' },
   { loc: `${SITE_URL}/dress-show`, changefreq: 'monthly', priority: '0.7' },
 ];
 
@@ -238,7 +239,6 @@ function generatePostPages(posts) {
       OG_IMAGE_JS: JSON.stringify(toAbsoluteUrl(post.thumbnail)),
       CANONICAL_JS: JSON.stringify(post.canonical),
       KAKAO_JS_KEY: JSON.stringify(KAKAO_JS_KEY),
-      NAV_NEWS: 'active',
     });
 
     const outPath = path.join(ROOT, post.category, `${post.slug}.html`);

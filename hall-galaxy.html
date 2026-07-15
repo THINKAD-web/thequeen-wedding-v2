@@ -46,40 +46,193 @@
 }
 </script>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet">
-<style>body{font-family:'Noto Serif KR',serif;background:#FFFDF9;color:#475569}</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        serif: ['"Cormorant Garamond"', '"Noto Serif KR"', 'serif'],
+        sans: ['Pretendard', 'Inter', 'system-ui', 'sans-serif'],
+      },
+      colors: {
+        royal: { 900: '#0A2A5E', 700: '#1E4A8C' },
+        forest: { 900: '#1A3F2E', 700: '#2E6B4E' },
+        gold: { DEFAULT: '#C9A96A', light: '#E0C896', deep: '#A8884A' },
+        cream: { 50: '#FFFDF9', 100: '#FAF6EC', 200: '#F5EFE0' },
+      },
+    },
+  },
+};
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: Pretendard, Inter, system-ui, sans-serif; background: #FFFDF9; color: #475569; }
+  .font-serif { font-family: 'Cormorant Garamond', 'Noto Serif KR', serif; }
+  .header-glass { backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); background: rgba(255,253,249,.92); border-bottom: 1px solid rgba(201,169,106,.18); }
+  .nav-link { position: relative; }
+  .nav-link::after { content: ''; position: absolute; left: 0; bottom: -6px; height: 1px; width: 0; background: #C9A96A; transition: width .35s ease; }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+  .card-lift { transition: transform .5s ease, box-shadow .5s ease; }
+  .card-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -20px rgba(10,42,94,.15); }
+  .img-zoom { overflow: hidden; }
+  .btn-shimmer { position: relative; overflow: hidden; }
+  .btn-shimmer::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent); transform: translateX(-100%); transition: transform .8s ease; }
+  .btn-shimmer:hover::before { transform: translateX(100%); }
+</style>
 </head>
-<body class="min-h-screen">
-<header class="border-b border-[#C9A96A]/20 bg-white/90 backdrop-blur">
-  <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-    <a href="/" class="font-serif text-xl tracking-wide text-[#0A2A5E]">THE QUEEN</a>
-    <div class="flex items-center gap-4">
-      <a href="/news" class="text-sm font-semibold text-slate-700 hover:text-[#0A2A5E]">스토리</a>
-      <a href="/#contact" class="rounded-full bg-[#1A3F2E] px-5 py-2 text-sm text-white">상담 예약</a>
-    </div>
+<body class="min-h-screen flex flex-col">
+<header class="fixed top-0 left-0 right-0 z-50 header-glass">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:py-5">
+    <a href="/" class="flex flex-col items-start leading-none">
+      <span class="text-[9px] font-semibold uppercase tracking-[0.32em] text-gold">The Queen's Legacy</span>
+      <span class="font-serif text-2xl text-royal-900 tracking-wide">THE QUEEN</span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-10">
+      <a href="/" class="nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">더퀸 웨딩</a>
+      <a href="/queens-table" class="nav-link text-sm font-semibold text-slate-700 hover:text-forest-900">퀸즈 테이블</a>
+      <a href="/news" class="nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">스토리</a>
+      <a href="/dress-show" class="nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">2026 S/S 드레스 쇼</a>
+      <a href="tel:054-283-1111" class="header-cta btn-shimmer inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-royal-900 to-royal-700 px-6 py-2.5 text-xs font-semibold tracking-wide text-white shadow-lg shadow-royal-900/20 transition hover:-translate-y-0.5">
+        <span class="relative">상담 예약</span>
+      </a>
+    </nav>
+    <a href="tel:054-283-1111" class="lg:hidden rounded-full bg-royal-900 px-4 py-2 text-xs font-semibold text-white">상담</a>
   </div>
 </header>
-<main class="mx-auto max-w-3xl px-6 py-16">
-  <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[#C9A96A]">Wedding Halls</p>
-  <h1 class="mt-4 font-serif text-4xl leading-tight text-[#0A2A5E] sm:text-5xl">갤럭시홀 · 크라운홀</h1>
-  <p class="mt-6 text-lg leading-relaxed text-slate-600">포항 더퀸 웨딩홀(구 UA컨벤션)은 5층 크라운홀과 6층 갤럭시홀을 각각 단독 운영합니다. 2025년 리모델링으로 완공된 두 공간은 서로 다른 무드의 프리미엄 예식을 제공합니다.</p>
-  <div class="mt-10 space-y-6 text-sm leading-relaxed text-slate-600">
-    <section>
-      <h2 class="font-serif text-2xl text-[#0A2A5E]">크라운홀 · 5F</h2>
-      <p class="mt-2">밝은 자연광과 미러 천장, 그린 아치 포인트가 어우러진 우아한 공간입니다.</p>
-    </section>
-    <section>
-      <h2 class="font-serif text-2xl text-[#1A3F2E]">갤럭시홀 · 6F</h2>
-      <p class="mt-2">LED 조명, 크리스탈 샹들리에, 미러 바닥이 연출하는 드라마틱한 럭셔리 웨딩 공간입니다.</p>
-    </section>
-  </div>
-  <div class="mt-12 flex flex-wrap gap-3">
-    <a href="/" class="rounded-full border border-[#0A2A5E]/20 px-6 py-3 text-sm text-[#0A2A5E]">홈에서 자세히 보기</a>
-    <a href="tel:054-283-1111" class="rounded-full bg-[#C9A96A] px-6 py-3 text-sm font-semibold text-white">054-283-1111</a>
-  </div>
+
+<main class="flex-1 pt-24 lg:pt-28">
+  <section class="bg-gradient-to-b from-cream-50 to-cream-100 py-12 lg:py-16">
+    <div class="mx-auto max-w-7xl px-6 text-center">
+      <p class="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#C9A96A]">Our Rooms</p>
+      <h1 class="mt-4 font-serif text-4xl leading-tight text-[#0A2A5E] sm:text-5xl lg:text-6xl">갤럭시홀 · 크라운홀</h1>
+      <p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+        포항 더퀸 웨딩홀(구 UA컨벤션)은 5층 크라운홀과 6층 갤럭시홀을 각각 단독 운영합니다.
+        2025년 리모델링으로 완공된 두 공간은 서로 다른 무드의 프리미엄 예식을 제공합니다.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream-50 py-16 lg:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 mb-24">
+        <div class="relative order-2 lg:order-1">
+          <div class="absolute -top-3 -left-3 h-14 w-14 border-t-2 border-l-2 border-[#C9A96A] z-10"></div>
+          <div class="absolute -top-3 -right-3 h-14 w-14 border-t-2 border-r-2 border-[#C9A96A] z-10"></div>
+          <div class="absolute -bottom-3 -left-3 h-14 w-14 border-b-2 border-l-2 border-[#C9A96A] z-10"></div>
+          <div class="absolute -bottom-3 -right-3 h-14 w-14 border-b-2 border-r-2 border-[#C9A96A] z-10"></div>
+          <div class="img-zoom relative aspect-[4/5] w-full overflow-hidden rounded-sm shadow-2xl shadow-[#0A2A5E]/20">
+            <img src="https://i.ibb.co/27RQ7ffK/IMG-1969.jpg" alt="크라운홀 · 5F" class="h-full w-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0A2A5E]/40 via-transparent to-transparent"></div>
+            <div class="absolute top-6 left-6 inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/90 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#0A2A5E] backdrop-blur">5F · Crown Room</div>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2">
+          <div class="mb-5 flex items-center gap-3">
+            <span class="h-px w-10 bg-[#C9A96A]"></span>
+            <span class="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#C9A96A]">Crown Room · 5F</span>
+          </div>
+          <h2 class="font-serif text-4xl text-[#0A2A5E] sm:text-5xl">크라운홀</h2>
+          <p class="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">밝은 자연광과 우아한 그린 아치가 어우러진 공간. 미러 천장에 반사되는 빛이 드레스를 더욱 빛나게 합니다. 친밀하면서도 품격 있는 웨딩을 원하시는 분께 추천드립니다.</p>
+          <ul class="mt-8 space-y-3">
+            <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="h-4 w-4 text-[#C9A96A]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.5 5 5.5.5-4 4 1 5.5L12 14l-5 3 1-5.5-4-4 5.5-.5z"/></svg> 자연광 + 미러 천장 연출</li>
+            <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="h-4 w-4 text-[#C9A96A]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.5 5 5.5.5-4 4 1 5.5L12 14l-5 3 1-5.5-4-4 5.5-.5z"/></svg> 그린 플라워 아치 포인트</li>
+            <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="h-4 w-4 text-[#C9A96A]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.5 5 5.5.5-4 4 1 5.5L12 14l-5 3 1-5.5-4-4 5.5-.5z"/></svg> 클래식 &amp; 모던 분위기</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <div class="mb-5 flex items-center gap-3">
+            <span class="h-px w-10 bg-[#C9A96A]"></span>
+            <span class="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#C9A96A]">Galaxy Room · 6F</span>
+          </div>
+          <h2 class="font-serif text-4xl text-[#1A3F2E] sm:text-5xl">갤럭시홀</h2>
+          <p class="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">다크톤과 크리스탈 샹들리에가 만들어내는 화려한 분위기. LED 조명과 미러 바닥이 연출하는 환상적인 입장씬이 하이라이트입니다. 드라마틱한 웨딩을 꿈꾸신다면 갤럭시홀을 추천드립니다.</p>
+          <ul class="mt-8 space-y-3">
+            <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="h-4 w-4 text-[#C9A96A]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.5 5 5.5.5-4 4 1 5.5L12 14l-5 3 1-5.5-4-4 5.5-.5z"/></svg> LED 조명 + 미러 바닥</li>
+            <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="h-4 w-4 text-[#C9A96A]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.5 5 5.5.5-4 4 1 5.5L12 14l-5 3 1-5.5-4-4 5.5-.5z"/></svg> 크리스탈 샹들리에</li>
+            <li class="flex items-center gap-3 text-sm text-slate-700"><svg class="h-4 w-4 text-[#C9A96A]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.5 5 5.5.5-4 4 1 5.5L12 14l-5 3 1-5.5-4-4 5.5-.5z"/></svg> 럭셔리 &amp; 드라마틱</li>
+          </ul>
+        </div>
+        <div class="relative">
+          <div class="absolute -top-3 -left-3 h-14 w-14 border-t-2 border-l-2 border-[#C9A96A] z-10"></div>
+          <div class="absolute -top-3 -right-3 h-14 w-14 border-t-2 border-r-2 border-[#C9A96A] z-10"></div>
+          <div class="absolute -bottom-3 -left-3 h-14 w-14 border-b-2 border-l-2 border-[#C9A96A] z-10"></div>
+          <div class="absolute -bottom-3 -right-3 h-14 w-14 border-b-2 border-r-2 border-[#C9A96A] z-10"></div>
+          <div class="img-zoom relative aspect-[4/5] w-full overflow-hidden rounded-sm shadow-2xl shadow-[#1A3F2E]/20">
+            <img src="https://i.ibb.co/qL7GTZ5G/1.jpg" alt="갤럭시홀 · 6F" class="h-full w-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1A3F2E]/40 via-transparent to-transparent"></div>
+            <div class="absolute top-6 left-6 inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/90 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1A3F2E] backdrop-blur">6F · Galaxy Room</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-6 pb-16 lg:pb-24">
+    <div class="rounded-sm border border-[#C9A96A]/30 bg-gradient-to-br from-[#FAF6EC] to-white p-8 text-center">
+      <h2 class="font-serif text-2xl text-[#0A2A5E]">더퀸 웨딩홀 방문 상담 예약</h2>
+      <p class="mt-3 text-sm text-slate-600">갤럭시홀·크라운홀 투어와 웨딩 상담을 도와드립니다.</p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <a href="/#contact" class="inline-flex items-center rounded-full bg-gradient-to-r from-[#0A2A5E] to-[#1E4A8C] px-8 py-3 text-sm font-semibold text-white shadow-lg hover:-translate-y-0.5 transition">상담 예약하기</a>
+        <a href="tel:054-283-1111" class="inline-flex items-center rounded-full border border-[#0A2A5E]/20 px-8 py-3 text-sm font-semibold text-[#0A2A5E]">054-283-1111</a>
+      </div>
+    </div>
+    <p class="mt-10 text-center">
+      <a href="/" class="inline-flex items-center gap-2 text-sm font-semibold text-[#1E4A8C] hover:text-[#C9A96A] transition">← 홈으로 돌아가기</a>
+    </p>
+  </section>
 </main>
-<footer class="border-t border-[#C9A96A]/20 py-8 text-center text-xs text-slate-500">경북 포항시 남구 대이로 18 · 더퀸 웨딩홀</footer>
+
+<footer class="bg-[#0A2A5E] text-white mt-auto">
+  <div class="mx-auto max-w-7xl px-6 py-12">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div>
+        <div class="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#C9A96A]">THE QUEEN WEDDING</div>
+        <div class="mt-2 font-serif text-xl">더 퀸 웨딩</div>
+        <p class="mt-4 text-sm text-white/70">경북 포항시 남구 대이로 18</p>
+      </div>
+      <div>
+        <div class="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C9A96A] mb-3">Contact</div>
+        <a href="tel:054-283-1111" class="font-serif text-xl text-white hover:text-[#C9A96A]">054-283-1111</a>
+      </div>
+      <div>
+        <div class="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C9A96A] mb-3">Stories</div>
+        <ul class="space-y-2 text-sm text-white/80">
+          <li><a href="/news" class="hover:text-[#C9A96A]">더퀸 소식</a></li>
+          <li><a href="/guide" class="hover:text-[#C9A96A]">웨딩 가이드</a></li>
+          <li><a href="/stories" class="hover:text-[#C9A96A]">리얼 웨딩</a></li>
+          <li><a href="/dining" class="hover:text-[#C9A96A]">퀸즈테이블</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-8 border-t border-white/10 pt-6 text-center text-xs text-white/50">© 2026 더 퀸 웨딩 THE QUEEN WEDDING. All rights reserved.</div>
+  </div>
+</footer>
 <script>(function(){try{fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:location.pathname,ref:document.referrer||'',title:document.title||'',ua:navigator.userAgent||''}),keepalive:true}).catch(function(){});}catch(e){}})();</script>
 <script src="/chatbot/embed.js" defer></script>
+
+<!-- 카카오톡 채널 버튼 -->
+<a href="https://pf.kakao.com/_rbxopG/chat"
+   target="_blank"
+   rel="noopener"
+   aria-label="카카오톡 상담"
+   style="
+     position:fixed; bottom:24px; right:24px; z-index:9990;
+     width:52px; height:52px; border-radius:50%;
+     background:#FEE500;
+     display:flex; align-items:center; justify-content:center;
+     box-shadow:0 4px 16px rgba(0,0,0,0.2);
+     text-decoration:none;
+   ">
+  <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M13 0C5.82 0 0 4.7 0 10.5c0 3.73 2.33 7.01 5.84 8.93L4.42 24l6.1-3.24c.81.12 1.64.19 2.48.19 7.18 0 13-4.7 13-10.5S20.18 0 13 0z"
+      fill="#3A1D1D"/>
+  </svg>
+</a>
 </body>
 </html>

@@ -29,13 +29,14 @@
     { "source": "/news/:slug.html", "destination": "/news/:slug", "permanent": true },
     { "source": "/guide/:slug.html", "destination": "/guide/:slug", "permanent": true },
     { "source": "/stories/:slug.html", "destination": "/stories/:slug", "permanent": true },
-    { "source": "/dining/:slug.html", "destination": "/dining/:slug", "permanent": true }
+    { "source": "/queens-table/queens-box.html", "destination": "/queens-table/queens-box", "permanent": true },
   ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/dress-show2", "destination": "/dress-show2.html" },
     { "source": "/dress-show", "destination": "/dress-show.html" },
     { "source": "/queens-table", "destination": "/queens-table.html" },
+    { "source": "/queens-table/queens-box", "destination": "/queens-table/queens-box.html" },
     { "source": "/hall-galaxy", "destination": "/hall-galaxy.html" },
     { "source": "/buffet", "destination": "/buffet.html" },
     { "source": "/gallery", "destination": "/gallery.html" },

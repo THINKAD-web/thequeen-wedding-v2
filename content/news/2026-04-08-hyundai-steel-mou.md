@@ -1,17 +1,19 @@
 ---
-title: "현대제철 포항지회, 더퀸·퀸즈테이블과 조합원 복지 MOU 체결"
+title: "현대제철 포항지회–더퀸·퀸즈테이블, 조합원 복지 확대 '맞손'"
 description: "2026년 4월 8일, 현대제철·현대IMC 지회 조합원과 직계가족을 대상으로 더퀸 웨딩홀·퀸즈테이블 이용 할인 협약이 체결되었습니다."
 date: 2026-04-08
 category: news
 slug: hyundai-steel-mou
-thumbnail: https://i.ibb.co/BKr94Pj4/KYI-4226.jpg
+thumbnail: https://i.ibb.co/hJ632wv4/202604084633859.jpg
 keywords: [현대제철, 더퀸 웨딩홀, 퀸즈테이블, 포항 웨딩홀, 조합원 복지, MOU]
 draft: false
 ---
 
 2026년 4월 8일, 전국금속노동조합 **현대제철 포항지회**·**현대IMC지회**와 포항 웨딩·컨벤션 기업 **더퀸·퀸즈테이블**(대표 장기현)이 조합원 복지 증진을 위한 업무협약(MOU)을 체결했습니다.
 
-![현대제철 포항지회·더퀸·퀸즈테이블 업무협약식](https://i.ibb.co/QFzgVdzg/KYI-4151.jpg)
+![현대제철 포항지회·더퀸·퀸즈테이블 업무협약식](https://i.ibb.co/hJ632wv4/202604084633859.jpg)
+
+![현대제철 포항지회·현대IMC지회·더퀸·퀸즈테이블 협약식](https://i.ibb.co/Y4vmT6Xv/700496-400477-5604.jpg)
 
 ## 협약 대상
 
@@ -33,4 +35,4 @@ draft: false
 
 ---
 
-※ 본 소식은 브레이크뉴스 보도(2026.4.8)를 바탕으로 작성되었습니다.
+※ 본 소식은 [브레이크뉴스 보도(2026.4.8)](https://www.breaknews.com/1198743), [경북도민일보 보도(2026.4.8)](https://www.hidomin.com/news/articleView.html?idxno=700496)를 바탕으로 작성되었습니다.

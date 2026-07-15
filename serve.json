@@ -1,4 +1,5 @@
 {
+  "directoryListing": false,
   "redirects": [
     { "source": "/index", "destination": "/" },
     { "source": "/index.html", "destination": "/" },
@@ -30,7 +31,9 @@
   ],
   "rewrites": [
     { "source": "/dress-show", "destination": "/dress-show.html" },
+    { "source": "/queens-table/queens-box.html", "destination": "/queens-table/queens-box" },
     { "source": "/queens-table", "destination": "/queens-table.html" },
+    { "source": "/queens-table/queens-box", "destination": "/queens-table/queens-box.html" },
     { "source": "/hall-galaxy", "destination": "/hall-galaxy.html" },
     { "source": "/buffet", "destination": "/buffet.html" },
     { "source": "/gallery", "destination": "/gallery.html" },
@@ -40,9 +43,9 @@
     { "source": "/guide", "destination": "/guide/index.html" },
     { "source": "/stories", "destination": "/stories/index.html" },
     { "source": "/dining", "destination": "/dining/index.html" },
-    { "source": "/news/:slug", "destination": "/news/:slug.html" },
-    { "source": "/guide/:slug", "destination": "/guide/:slug.html" },
-    { "source": "/stories/:slug", "destination": "/stories/:slug.html" },
-    { "source": "/dining/:slug", "destination": "/dining/:slug.html" }
+    { "source": "/news/:slug([^/.]+)", "destination": "/news/:slug.html" },
+    { "source": "/guide/:slug([^/.]+)", "destination": "/guide/:slug.html" },
+    { "source": "/stories/:slug([^/.]+)", "destination": "/stories/:slug.html" },
+    { "source": "/dining/:slug([^/.]+)", "destination": "/dining/:slug.html" }
   ]
 }

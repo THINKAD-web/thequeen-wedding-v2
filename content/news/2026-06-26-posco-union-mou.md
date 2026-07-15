@@ -1,17 +1,17 @@
 ---
-title: "포스코노동조합, 더퀸·퀸즈테이블과 조합원 복지 향상 MOU"
+title: "포스코노조·퀸즈테이블, 조합원 복지 향상 MOU"
 description: "2026년 6월 26일, 포스코노동조합 조합원·직계가족을 대상으로 더퀸 웨딩·연회·퀸즈테이블 프리미엄 뷔페 할인 업무협약이 체결되었습니다."
 date: 2026-06-26
 category: news
 slug: posco-union-mou
-thumbnail: https://i.ibb.co/9mJsV5P4/IK-S1507.jpg
+thumbnail: https://i.ibb.co/s9tsftKz/711144-412490-1045.jpg
 keywords: [포스코노동조합, 더퀸 웨딩홀, 퀸즈테이블, 포항 웨딩홀, 조합원 복지, MOU]
 draft: false
 ---
 
 2026년 6월 26일, **포스코노동조합**과 포항 웨딩·컨벤션 기업 **더퀸·퀸즈테이블**이 조합원 복지 향상을 위한 업무협약(MOU)을 체결했습니다.
 
-![포스코노동조합·더퀸·퀸즈테이블 업무협약식](https://i.ibb.co/9mJsV5P4/IK-S1507.jpg)
+![포스코노동조합·더퀸·퀸즈테이블 업무협약식](https://i.ibb.co/s9tsftKz/711144-412490-1045.jpg)
 
 ## 협약 대상
 
@@ -29,4 +29,4 @@ draft: false
 
 ---
 
-※ 본 소식은 경북도민일보 보도(2026.6.28)를 바탕으로 작성되었습니다.
+※ 본 소식은 [경북도민일보 보도(2026.6.28)](https://www.hidomin.com/news/articleView.html?idxno=711144)를 바탕으로 작성되었습니다.

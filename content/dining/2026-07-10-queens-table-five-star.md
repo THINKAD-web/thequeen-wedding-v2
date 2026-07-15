@@ -1,15 +1,17 @@
 ---
-title: "포항 최초 오마카세급 프리미엄 뷔페, 퀸즈테이블"
+title: "경북 첫 오마카세급 프리미엄 뷔페, 포항 퀸즈테이블 오픈"
 description: "각 요식 분야 전문 셰프들이 만드는 포항 퀸즈테이블. 매일 새벽 엄선한 식재료와 당일 공수 해산물로 완성하는 미식 경험."
 date: 2026-07-10
 category: dining
 slug: queens-table-five-star
-thumbnail: https://i.ibb.co/kgTWvG08/2.jpg
+thumbnail: https://i.ibb.co/F4M305Mf/1757469956-ADD-thumb580.jpg
 keywords: [포항 뷔페, 퀸즈테이블, 포항 프리미엄뷔페, 포항 맛집, 포항 뷔페 추천]
 draft: false
 ---
 
-더퀸 웨딩홀 3층에는 포항의 외식 지형을 바꾼 공간이 있습니다. **포항 최초의 오마카세급 프리미엄 뷔페, 퀸즈테이블**입니다.
+더퀸 웨딩홀 3층에는 포항의 외식 지형을 바꾼 공간이 있습니다. **경북 최초의 오마카세급 프리미엄 뷔페, 퀸즈테이블**입니다.
+
+![경북 첫 오마카세급 프리미엄 뷔페 퀸즈테이블](https://i.ibb.co/F4M305Mf/1757469956-ADD-thumb580.jpg)
 
 ## 각 요식 분야 전문 셰프들
 
@@ -37,3 +39,7 @@ draft: false
 - 가격: 런치/디너, 요일·시즌별 상이 (예약 페이지에서 확인)
 
 퀸즈테이블의 시그니처 해산물 서비스가 궁금하다면 [다음 글](/dining/queens-table-seafood)에서 이어집니다.
+
+---
+
+※ 본 소식은 [경상매신문 보도](https://www.ksmnews.co.kr/news/view.php?idx=562439)를 바탕으로 작성되었습니다.
