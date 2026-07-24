@@ -39,6 +39,8 @@
     { "source": "/gallery", "destination": "/gallery.html" },
     { "source": "/directions", "destination": "/directions.html" },
     { "source": "/reviews", "destination": "/reviews.html" },
+    { "source": "/marketing", "destination": "/marketing.html" },
+    { "source": "/admin/marketing", "destination": "/admin-marketing.html" },
     { "source": "/news", "destination": "/news/index.html" },
     { "source": "/guide", "destination": "/guide/index.html" },
     { "source": "/stories", "destination": "/stories/index.html" },
@@ -46,6 +48,7 @@
     { "source": "/news/:slug([^/.]+)", "destination": "/news/:slug.html" },
     { "source": "/guide/:slug([^/.]+)", "destination": "/guide/:slug.html" },
     { "source": "/stories/:slug([^/.]+)", "destination": "/stories/:slug.html" },
-    { "source": "/dining/:slug([^/.]+)", "destination": "/dining/:slug.html" }
+    { "source": "/dining/:slug([^/.]+)", "destination": "/dining/:slug.html" },
+    { "source": "/marketing.html", "destination": "/marketing" }
   ]
 }

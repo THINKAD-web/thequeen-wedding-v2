@@ -110,7 +110,7 @@
   <div id="login-screen" class="hidden">
     <div class="login-box">
       <div class="login-title">THE QUEEN</div>
-      <div class="login-sub">챗봇 어드민 대시보드</div>
+      <div class="login-sub">어드민 허브 · 챗봇 상담 로그</div>
       <input type="password" id="pw" placeholder="비밀번호" autocomplete="current-password" />
       <div id="login-err" class="login-err hidden">비밀번호가 틀렸습니다</div>
       <button type="button" id="login-btn">로그인</button>
@@ -120,8 +120,9 @@
   <div id="dashboard" class="hidden">
     <div class="header">
       <div>
-        <div class="header-title">THE QUEEN · 챗봇 어드민</div>
+        <div class="header-title">THE QUEEN · 어드민</div>
         <div class="header-links">
+          <a href="/admin/marketing">← 마케팅</a>
           <a href="/admin/visits">방문 통계 →</a>
         </div>
       </div>
@@ -194,7 +195,14 @@
       show($("dashboard"));
       initDashboard();
     } else {
-      show($("login-err"));
+      const data = await r.json().catch(() => ({}));
+      const err = $("login-err");
+      if (data.error === "admin_not_configured") {
+        err.textContent = "서버 설정 오류입니다. .env 확인 후 dev:api를 재시작하세요.";
+      } else {
+        err.textContent = "비밀번호가 틀렸습니다";
+      }
+      show(err);
     }
   }
 

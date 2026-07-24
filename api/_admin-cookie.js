@@ -31,9 +31,11 @@ function setAdminCookie(res) {
   const secret = sessionSecret();
   if (!secret) return;
   const maxAge = 60 * 60 * 8;
+  const secure =
+    process.env.VERCEL_ENV === "production" ? "; Secure" : "";
   res.setHeader(
     "Set-Cookie",
-    `tq_admin=${encodeURIComponent(secret)}; Path=/; HttpOnly; Secure; Max-Age=${maxAge}; SameSite=Lax`
+    `tq_admin=${encodeURIComponent(secret)}; Path=/; HttpOnly; Max-Age=${maxAge}; SameSite=Lax${secure}`
   );
 }
 

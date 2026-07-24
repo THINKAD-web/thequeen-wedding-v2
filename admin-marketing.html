@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>더퀸 · 마케팅 어드민</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    :root {
+      --bg: #f5f3ef;
+      --surface: #fff;
+      --text: #1a2744;
+      --muted: rgba(26,39,68,0.55);
+      --line: rgba(26,39,68,0.1);
+      --navy: #1a2744;
+      --gold: #c9a85c;
+      --gold-dim: rgba(201,168,92,0.15);
+      --good: #22c55e;
+    }
+    [data-theme="dark"] {
+      --bg: #0d1526;
+      --surface: #1a2744;
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.55);
+      --line: rgba(255,255,255,0.12);
+      --navy: #0d1526;
+      --gold-dim: rgba(201,168,92,0.2);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; background: var(--bg); color: var(--text); }
+    .hidden { display: none !important; }
+    #checking, #login-screen { min-height: 100vh; background: #0d1526; display: flex; align-items: center; justify-content: center; }
+    .login-box { background: #1a2744; padding: 40px; border-radius: 12px; width: 340px; border: 1px solid rgba(184,154,94,0.3); }
+    .login-title { color: #c9a85c; font-size: 20px; letter-spacing: 3px; font-family: Georgia, serif; }
+    .login-sub { color: rgba(255,255,255,0.5); font-size: 12px; margin: 8px 0 28px; }
+    .login-box input { width: 100%; padding: 12px; border-radius: 6px; border: 1px solid rgba(184,154,94,0.3); background: rgba(255,255,255,0.05); color: #fff; font-size: 15px; margin-bottom: 12px; }
+    .login-box button, .btn-primary { padding: 12px 18px; background: #c9a85c; color: #1a2744; border: none; border-radius: 6px; font-size: 14px; font-weight: 700; cursor: pointer; }
+    .login-box button { width: 100%; }
+    .login-err { color: #ff6b6b; font-size: 12px; margin-bottom: 8px; }
+    .header { background: var(--navy); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-bottom: 1px solid var(--line); }
+    .header-title { color: var(--gold); font-size: 15px; letter-spacing: 2px; font-family: Georgia, serif; }
+    .header-links a, .header-links button { color: rgba(255,255,255,0.65); font-size: 12px; text-decoration: none; margin-left: 10px; background: none; border: none; cursor: pointer; }
+    .header-links a:hover, .header-links button:hover { color: var(--gold); }
+    .tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tab-btn { padding: 6px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); color: #fff; font-size: 12px; cursor: pointer; }
+    .tab-btn.active { background: var(--gold); color: #1a2744; border-color: var(--gold); font-weight: 700; }
+    .main { padding: 20px; max-width: 1200px; margin: 0 auto; }
+    .main.iframe-main { max-width: none; padding: 0; height: calc(100vh - 58px); }
+    .embed-frame { width: 100%; height: 100%; border: 0; display: block; background: var(--bg); }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 20px; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); margin-bottom: 16px; }
+    .card h3 { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+    .brand-label { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+    .progress-bar { height: 10px; background: var(--gold-dim); border-radius: 999px; overflow: hidden; margin: 8px 0; }
+    .progress-bar > i { display: block; height: 100%; background: linear-gradient(90deg, #c9a85c, #e8d5a8); width: 0%; transition: width 0.4s; }
+    .progress-meta { font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px; }
+    .btn-outline { padding: 8px 14px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--text); cursor: pointer; font-size: 13px; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); font-size: 12px; cursor: pointer; color: var(--text); }
+    .chip.active { background: var(--gold); border-color: var(--gold); color: #1a2744; font-weight: 700; }
+    .chip .count { opacity: 0.75; margin-left: 4px; }
+    .month-label { font-size: 12px; font-weight: 700; color: var(--gold); margin: 12px 0 8px; }
+    .week-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+    .week-cell { padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); font-size: 12px; cursor: pointer; }
+    .week-cell:hover { border-color: var(--gold); background: var(--gold-dim); }
+    .week-cell-label { font-weight: 700; margin-bottom: 6px; }
+    .priority-list { display: flex; flex-direction: column; gap: 8px; }
+    .priority-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; cursor: pointer; background: var(--bg); }
+    .priority-item:hover { background: var(--gold-dim); }
+    .priority-icon { font-size: 16px; flex-shrink: 0; }
+    .priority-text { flex: 1; min-width: 0; font-size: 13px; line-height: 1.4; }
+    .priority-meta { font-size: 11px; color: var(--muted); }
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 16px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+    .filter-group { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .filter-label { font-size: 11px; color: var(--muted); font-weight: 700; letter-spacing: 0.05em; margin-right: 4px; }
+    .filter-bar select { padding: 8px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--text); }
+    .task-week { margin-bottom: 20px; }
+    .task-brand { font-size: 12px; font-weight: 700; color: var(--gold); margin: 12px 0 8px; letter-spacing: 0.05em; }
+    .task-row { display: flex; align-items: center; gap: 10px; padding: 10px 8px; border-bottom: 1px solid var(--line); cursor: pointer; border-radius: 6px; }
+    .task-row:hover { background: var(--gold-dim); }
+    .task-row.done .task-title { text-decoration: line-through; color: var(--muted); }
+    .task-main { flex: 1; min-width: 0; }
+    .task-title { font-size: 13px; font-weight: 600; line-height: 1.4; }
+    .task-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .task-channel { font-size: 10px; padding: 2px 8px; border-radius: 999px; background: var(--gold-dim); color: var(--gold); font-weight: 700; }
+    .task-arrow { color: var(--muted); font-size: 18px; flex-shrink: 0; }
+    .status-badge { font-size: 10px; padding: 3px 8px; border-radius: 999px; font-weight: 700; border: none; cursor: pointer; flex-shrink: 0; }
+    .status-badge.pending { background: rgba(255,255,255,0.08); color: var(--muted); }
+    .status-badge.in_progress { background: rgba(234,179,8,0.2); color: #ca8a04; }
+    .status-badge.done { background: rgba(34,197,94,0.15); color: var(--good); }
+    [data-theme="dark"] .status-badge.in_progress { color: #fbbf24; }
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 100; display: flex; align-items: flex-end; justify-content: center; padding: 0; }
+    @media (min-width: 768px) { .modal-backdrop { align-items: center; padding: 20px; } }
+    .modal-panel { background: var(--surface); width: 100%; max-width: 720px; max-height: 92vh; overflow-y: auto; border-radius: 16px 16px 0 0; border: 1px solid var(--line); }
+    @media (min-width: 768px) { .modal-panel { border-radius: 16px; } }
+    .modal-head { padding: 18px 20px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; position: sticky; top: 0; background: var(--surface); z-index: 1; }
+    .modal-head h2 { font-size: 16px; line-height: 1.4; padding-right: 8px; }
+    .modal-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .modal-badge { font-size: 11px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+    .modal-close { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--muted); line-height: 1; }
+    .modal-body { padding: 16px 20px 24px; }
+    .detail-section { margin-bottom: 20px; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+    .detail-section-head { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: var(--gold-dim); font-size: 13px; font-weight: 700; }
+    .copy-btn { font-size: 11px; padding: 4px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; color: var(--text); }
+    .scene-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; padding: 12px; }
+    .scene-box { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px; font-size: 11px; line-height: 1.5; white-space: pre-line; min-height: 72px; }
+    .scene-num { font-size: 10px; color: var(--gold); font-weight: 700; margin-bottom: 4px; }
+    .spec-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .spec-table th, .spec-table td { padding: 10px 14px; border-bottom: 1px solid var(--line); text-align: left; }
+    .spec-table th { width: 28%; color: var(--muted); font-weight: 600; background: var(--bg); }
+    .caption-box { width: 100%; min-height: 120px; padding: 12px; border: none; background: var(--bg); color: var(--text); font-size: 13px; line-height: 1.6; resize: vertical; font-family: inherit; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 14px; }
+    .tag-pill { font-size: 12px; padding: 6px 12px; border-radius: 999px; background: var(--gold-dim); color: var(--text); }
+    .tips-box { padding: 14px; font-size: 13px; line-height: 1.6; background: rgba(201,168,92,0.12); border-left: 3px solid var(--gold); margin: 0 12px 12px; border-radius: 0 8px 8px 0; }
+    .modal-actions { display: flex; gap: 10px; padding: 0 20px 20px; }
+    .status-msg { font-size: 13px; padding: 10px 14px; border-radius: 8px; margin-bottom: 14px; }
+    .status-msg.ok { background: rgba(34,197,94,0.12); color: var(--good); }
+    .status-msg.err { background: rgba(255,107,107,0.12); color: #ff6b6b; }
+    .empty { color: var(--muted); font-size: 13px; padding: 20px; text-align: center; }
+    @media (max-width: 640px) { .main { padding: 14px; } }
+  </style>
+</head>
+<body>
+  <div id="checking"></div>
+
+  <div id="login-screen" class="hidden">
+    <div class="login-box">
+      <div class="login-title">THE QUEEN</div>
+      <div class="login-sub">마케팅 어드민</div>
+      <input type="password" id="pw" placeholder="비밀번호" autocomplete="current-password" />
+      <div id="login-err" class="login-err hidden">비밀번호가 틀렸습니다</div>
+      <button type="button" id="login-btn">로그인</button>
+    </div>
+  </div>
+
+  <div id="app" class="hidden">
+    <div class="header">
+      <div>
+        <div class="header-title">THE QUEEN · 마케팅</div>
+        <div class="header-links">
+          <button type="button" id="theme-btn">다크모드</button>
+        </div>
+      </div>
+      <div class="tabs">
+        <button type="button" class="tab-btn active" data-tab="dashboard">대시보드</button>
+        <button type="button" class="tab-btn" data-tab="tasks">주간 태스크</button>
+        <button type="button" class="tab-btn" data-tab="chat">챗봇</button>
+        <button type="button" class="tab-btn" data-tab="visits">방문통계</button>
+      </div>
+    </div>
+
+    <div class="main" id="main-panel">
+      <div id="status"></div>
+
+      <div id="tab-dashboard">
+        <div class="toolbar">
+          <button type="button" class="btn-outline" id="init-btn">DB 초기화</button>
+        </div>
+        <div class="grid-3" id="progress-cards"></div>
+        <div class="card">
+          <h3>상태별 현황</h3>
+          <div class="chip-row" id="dash-status-chips"></div>
+          <p style="font-size:11px;color:var(--muted);margin-top:10px">클릭 시 주간 태스크 탭에서 해당 상태로 필터합니다</p>
+        </div>
+        <div class="card">
+          <h3>주차별 진행률 (8주)</h3>
+          <div id="week-months"></div>
+        </div>
+        <div class="card">
+          <h3 id="priority-title">이번 주 해야 할 것</h3>
+          <div class="priority-list" id="priority-list"></div>
+        </div>
+      </div>
+
+      <div id="tab-tasks" class="hidden">
+        <div class="filter-bar">
+          <div class="filter-group">
+            <span class="filter-label">필터</span>
+            <button type="button" class="chip active" data-task-filter="all">전체</button>
+            <button type="button" class="chip" data-task-filter="pending">미완료</button>
+            <button type="button" class="chip" data-task-filter="in_progress">진행 중</button>
+            <button type="button" class="chip" data-task-filter="done">완료</button>
+          </div>
+          <div class="filter-group">
+            <span class="filter-label">정렬</span>
+            <button type="button" class="chip active" data-task-sort="week">주차순</button>
+            <button type="button" class="chip" data-task-sort="status">상태순</button>
+            <button type="button" class="chip" data-task-sort="brand">브랜드순</button>
+          </div>
+          <label>주차
+            <select id="week-select"></select>
+          </label>
+        </div>
+        <div id="task-list"></div>
+      </div>
+    </div>
+
+    <div id="tab-chat" class="main iframe-main hidden">
+      <iframe class="embed-frame" src="/admin" title="챗봇 어드민"></iframe>
+    </div>
+    <div id="tab-visits" class="main iframe-main hidden">
+      <iframe class="embed-frame" src="/admin/visits" title="방문 통계"></iframe>
+    </div>
+  </div>
+
+  <div id="task-modal" class="modal-backdrop hidden" aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true">
+      <div class="modal-head">
+        <div>
+          <h2 id="modal-title">콘텐츠 상세</h2>
+          <div class="modal-badges" id="modal-badges"></div>
+        </div>
+        <button type="button" class="modal-close" id="modal-close" aria-label="닫기">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn-primary" id="copy-all-btn">캡션+태그 일괄복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+(function () {
+  const BRANDS = { queen: "더퀸 웨딩홀", table: "퀸즈테이블" };
+  const STATUS_LABELS = { pending: "미완료", in_progress: "진행 중", done: "완료" };
+  const STATUS_ICONS = { pending: "⭕", in_progress: "⏳", done: "✅" };
+  const STATUS_ORDER = { pending: 0, in_progress: 1, done: 2 };
+  const WEEK_LABELS = { 1: "7-1", 2: "7-2", 3: "7-3", 4: "7-4", 5: "8-1", 6: "8-2", 7: "8-3", 8: "8-4" };
+
+  let currentWeek = 1;
+  let allTasks = [];
+  let weeksSummary = [];
+  let statusCounts = { total: 0, pending: 0, in_progress: 0, done: 0 };
+  let progressAll = {};
+  let priorityTasks = [];
+  let activeTask = null;
+  let taskFilter = "all";
+  let taskSort = "week";
+  let taskWeekFilter = 0;
+
+  const $ = (id) => document.getElementById(id);
+  const show = (el) => el.classList.remove("hidden");
+  const hide = (el) => el.classList.add("hidden");
+
+  function esc(s) {
+    return String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  function setStatus(kind, msg) {
+    const el = $("status");
+    if (!msg) { el.innerHTML = ""; return; }
+    el.innerHTML = `<div class="status-msg ${kind}">${esc(msg)}</div>`;
+  }
+
+  async function api(path, opts) {
+    const r = await fetch(path, { credentials: "same-origin", ...opts });
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(d.error || d.detail || "request_failed");
+    return d;
+  }
+
+  async function checkAuth() {
+    const r = await fetch("/api/admin/marketing/tasks?all=1", { credentials: "same-origin" });
+    return r.status !== 401;
+  }
+
+  async function login() {
+    hide($("login-err"));
+    const r = await fetch("/api/admin/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin",
+      body: JSON.stringify({ password: $("pw").value }),
+    });
+    if (r.ok) {
+      hide($("login-screen"));
+      show($("app"));
+      await init();
+    } else {
+      const data = await r.json().catch(() => ({}));
+      const err = $("login-err");
+      err.textContent = data.error === "admin_not_configured"
+        ? "서버 설정 오류입니다. .env 확인 후 dev:api를 재시작하세요."
+        : "비밀번호가 틀렸습니다";
+      show(err);
+    }
+  }
+
+  function pctBar(done, total) {
+    return total ? Math.round((done / total) * 100) : 0;
+  }
+
+  function renderProgress() {
+    const queen = progressAll.queen || { done: 0, total: 0, percent: 0 };
+    const table = progressAll.table || { done: 0, total: 0, percent: 0 };
+    const totalDone = queen.done + table.done;
+    const totalAll = queen.total + table.total;
+    const totalPct = pctBar(totalDone, totalAll);
+
+    $("progress-cards").innerHTML = [
+      { label: "더퀸", p: queen },
+      { label: "퀸즈테이블", p: table },
+      { label: "전체 진행률", p: { done: totalDone, total: totalAll, percent: totalPct } },
+    ].map(({ label, p }) => `
+      <div class="card" style="margin:0">
+        <div class="brand-label">${label}</div>
+        <div class="progress-bar"><i style="width:${p.percent}%"></i></div>
+        <div class="progress-meta"><span>${p.done}/${p.total}</span><span>${p.percent}%</span></div>
+      </div>
+    `).join("");
+  }
+
+  function renderStatusChips() {
+    const chips = [
+      { key: "all", label: "전체", count: statusCounts.total },
+      { key: "pending", label: "미완료", count: statusCounts.pending },
+      { key: "in_progress", label: "진행 중", count: statusCounts.in_progress },
+      { key: "done", label: "완료", count: statusCounts.done },
+    ];
+    $("dash-status-chips").innerHTML = chips.map((c) =>
+      `<button type="button" class="chip" data-dash-filter="${c.key}">${c.label}<span class="count">${c.count}</span></button>`
+    ).join("");
+    $("dash-status-chips").querySelectorAll("[data-dash-filter]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        taskFilter = btn.dataset.dashFilter;
+        document.querySelectorAll("[data-task-filter]").forEach((b) => {
+          b.classList.toggle("active", b.dataset.taskFilter === taskFilter);
+        });
+        setTab("tasks");
+        renderTasks();
+      });
+    });
+  }
+
+  function renderWeekGrid() {
+    const el = $("week-months");
+    if (!weeksSummary.length) {
+      el.innerHTML = '<div class="empty">데이터 없음 — DB 초기화를 실행하세요</div>';
+      return;
+    }
+    const jul = weeksSummary.filter((w) => w.week_id <= 4);
+    const aug = weeksSummary.filter((w) => w.week_id >= 5);
+    const renderCells = (weeks) => weeks.map((w) => {
+      const pct = pctBar(w.done, w.total);
+      const label = w.week_label || WEEK_LABELS[w.week_id] || w.week_id;
+      const bar = "█".repeat(Math.round(pct / 10)) + "░".repeat(10 - Math.round(pct / 10));
+      return `<div class="week-cell" data-week="${w.week_id}">
+        <div class="week-cell-label">${esc(label)}주</div>
+        <div class="progress-meta"><span>${w.done}/${w.total}</span><span>${pct}%</span></div>
+        <div style="font-size:10px;letter-spacing:1px;color:var(--gold);margin-top:4px">${bar}</div>
+      </div>`;
+    }).join("");
+
+    el.innerHTML = `
+      <div class="month-label">7월</div>
+      <div class="week-grid">${renderCells(jul)}</div>
+      <div class="month-label">8월</div>
+      <div class="week-grid">${renderCells(aug)}</div>
+    `;
+    el.querySelectorAll(".week-cell").forEach((cell) => {
+      cell.addEventListener("click", () => {
+        taskWeekFilter = Number(cell.dataset.week);
+        $("week-select").value = String(taskWeekFilter);
+        setTab("tasks");
+        renderTasks();
+      });
+    });
+  }
+
+  function renderPriorityList() {
+    const el = $("priority-list");
+    const label = WEEK_LABELS[currentWeek] || currentWeek;
+    $("priority-title").textContent = `이번 주 해야 할 것 (${label}주 · ${priorityTasks.length}건)`;
+    if (!priorityTasks.length) {
+      el.innerHTML = '<div class="empty">이번 주 미완료 태스크가 없습니다</div>';
+      return;
+    }
+    el.innerHTML = priorityTasks.map((t) => `
+      <div class="priority-item" data-id="${t.id}">
+        <span class="priority-icon">${STATUS_ICONS[t.status] || "⭕"}</span>
+        <div class="priority-text">
+          <div>${esc(t.channel || "콘텐츠")}: ${esc(t.title || t.task_name)}</div>
+          <div class="priority-meta">${esc(BRANDS[t.brand])} · ${STATUS_LABELS[t.status] || t.status}</div>
+        </div>
+      </div>
+    `).join("");
+    el.querySelectorAll(".priority-item").forEach((row) => {
+      row.addEventListener("click", () => openTaskModal(row.dataset.id));
+    });
+  }
+
+  function renderDashboard() {
+    renderProgress();
+    renderStatusChips();
+    renderWeekGrid();
+    renderPriorityList();
+  }
+
+  function getFilteredTasks() {
+    let list = [...allTasks];
+    if (taskWeekFilter > 0) list = list.filter((t) => t.week_id === taskWeekFilter);
+    if (taskFilter !== "all") list = list.filter((t) => t.status === taskFilter);
+    list.sort((a, b) => {
+      if (taskSort === "brand") return a.brand.localeCompare(b.brand) || a.week_id - b.week_id || a.sort_order - b.sort_order;
+      if (taskSort === "status") return (STATUS_ORDER[a.status] ?? 9) - (STATUS_ORDER[b.status] ?? 9) || a.week_id - b.week_id;
+      return a.week_id - b.week_id || a.brand.localeCompare(b.brand) || a.sort_order - b.sort_order;
+    });
+    return list;
+  }
+
+  function renderTasks() {
+    const el = $("task-list");
+    const tasks = getFilteredTasks();
+    if (!allTasks.length) {
+      el.innerHTML = '<div class="empty">태스크 없음 — DB 초기화를 실행하세요</div>';
+      return;
+    }
+    if (!tasks.length) {
+      el.innerHTML = '<div class="empty">필터 조건에 맞는 태스크가 없습니다</div>';
+      return;
+    }
+    let html = "";
+    let lastGroup = "";
+    tasks.forEach((t) => {
+      const label = t.week_label || WEEK_LABELS[t.week_id] || t.week_id;
+      const groupKey = taskSort === "brand" ? t.brand : taskSort === "status" ? t.status : `w${t.week_id}-${t.brand}`;
+      const groupLabel = taskSort === "brand" ? BRANDS[t.brand]
+        : taskSort === "status" ? STATUS_LABELS[t.status]
+        : `${label}주 · ${BRANDS[t.brand]}`;
+      if (groupKey !== lastGroup) {
+        if (lastGroup) html += "</div>";
+        html += `<div class="task-week"><div class="task-brand">${esc(groupLabel)}</div>`;
+        lastGroup = groupKey;
+      }
+      const updated = t.updated_at ? new Date(t.updated_at).toLocaleDateString("ko-KR") : "";
+      html += `<div class="task-row ${t.status === "done" ? "done" : ""}" data-id="${t.id}">
+        <button type="button" class="status-badge ${t.status}" data-id="${t.id}" title="클릭하여 상태 변경">${STATUS_ICONS[t.status]} ${STATUS_LABELS[t.status]}</button>
+        <div class="task-main">
+          <div class="task-title">${esc(t.title || t.task_name)}</div>
+          <div class="task-meta">${esc(updated)} · <span class="task-channel">${esc(t.channel || "콘텐츠")}</span> · 스토리보드</div>
+        </div>
+        <span class="task-arrow">›</span>
+      </div>`;
+    });
+    if (lastGroup) html += "</div>";
+    el.innerHTML = html;
+    el.querySelectorAll(".status-badge").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        cycleTaskStatus(btn.dataset.id);
+      });
+    });
+    el.querySelectorAll(".task-row").forEach((row) => {
+      row.addEventListener("click", () => openTaskModal(row.dataset.id));
+    });
+  }
+
+  function populateWeekSelect() {
+    const sel = $("week-select");
+    const prev = taskWeekFilter;
+    sel.innerHTML = "";
+    const allOpt = document.createElement("option");
+    allOpt.value = "0";
+    allOpt.textContent = "전체 주차";
+    sel.appendChild(allOpt);
+    weeksSummary.forEach((w) => {
+      const o = document.createElement("option");
+      o.value = w.week_id;
+      const label = w.week_label || WEEK_LABELS[w.week_id] || w.week_id;
+      o.textContent = `${label}주 (${w.done}/${w.total})`;
+      sel.appendChild(o);
+    });
+    sel.value = String(prev || 0);
+  }
+
+  async function openTaskModal(id) {
+    try {
+      const d = await api("/api/admin/marketing/tasks?taskId=" + id);
+      activeTask = d.task;
+      renderTaskModal(activeTask);
+      show($("task-modal"));
+      $("task-modal").setAttribute("aria-hidden", "false");
+    } catch (e) {
+      setStatus("err", e.message);
+    }
+  }
+
+  function closeTaskModal() {
+    hide($("task-modal"));
+    $("task-modal").setAttribute("aria-hidden", "true");
+    activeTask = null;
+  }
+
+  function renderTaskModal(t) {
+    $("modal-title").textContent = t.title || t.task_name;
+    const label = t.week_label || WEEK_LABELS[t.week_id] || t.week_id;
+    $("modal-badges").innerHTML = [
+      `<span class="modal-badge">${esc(BRANDS[t.brand])}</span>`,
+      `<span class="modal-badge">${esc(label)}주</span>`,
+      `<span class="modal-badge">${esc(t.channel || "")}</span>`,
+      `<span class="modal-badge">${STATUS_LABELS[t.status] || t.status}</span>`,
+    ].join("");
+
+    const scenes = t.scenes || [];
+    const specs = t.specs || {};
+    const tags = t.tags || [];
+
+    $("modal-body").innerHTML = `
+      <div class="detail-section">
+        <div class="detail-section-head">📋 스토리보드 <button type="button" class="copy-btn" data-copy="scenes">복사</button></div>
+        <div class="scene-grid">${scenes.map((s, i) => `
+          <div class="scene-box"><div class="scene-num">장면 ${i + 1}</div>${esc(s)}</div>
+        `).join("") || '<div class="empty">스토리보드 없음</div>'}</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-head">⚙️ 포맷/스펙 <button type="button" class="copy-btn" data-copy="specs">복사</button></div>
+        <table class="spec-table"><tbody>
+          ${Object.entries(specs).map(([k, v]) => `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join("")}
+        </tbody></table>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-head">📝 캡션 <button type="button" class="copy-btn" data-copy="caption">복사</button></div>
+        <textarea class="caption-box" id="modal-caption" readonly></textarea>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-head">#️⃣ 해시태그 <button type="button" class="copy-btn" data-copy="tags">복사</button></div>
+        <div class="tag-list">${tags.map((tag) => `<span class="tag-pill">#${esc(tag.replace(/^#/, ""))}</span>`).join("") || '<span class="empty">태그 없음</span>'}</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-head">💡 팁 <button type="button" class="copy-btn" data-copy="tips">복사</button></div>
+        <div class="tips-box">${esc(t.tips || "")}</div>
+      </div>
+    `;
+    $("modal-body").querySelectorAll(".copy-btn").forEach((btn) => {
+      btn.addEventListener("click", () => copyTaskSection(t, btn.dataset.copy));
+    });
+    const cap = document.getElementById("modal-caption");
+    if (cap) cap.value = t.caption || "";
+  }
+
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      setStatus("ok", "클립보드에 복사했습니다");
+    } catch {
+      setStatus("err", "복사에 실패했습니다");
+    }
+  }
+
+  function copyTaskSection(t, section) {
+    if (section === "scenes") return copyText((t.scenes || []).map((s, i) => `장면 ${i + 1}\n${s}`).join("\n\n"));
+    if (section === "specs") return copyText(Object.entries(t.specs || {}).map(([k, v]) => `${k}: ${v}`).join("\n"));
+    if (section === "caption") return copyText(t.caption || "");
+    if (section === "tags") return copyText((t.tags || []).map((tag) => "#" + tag.replace(/^#/, "")).join(" "));
+    if (section === "tips") return copyText(t.tips || "");
+  }
+
+  function copyCaptionAndTags() {
+    if (!activeTask) return;
+    const tags = (activeTask.tags || []).map((tag) => "#" + tag.replace(/^#/, "")).join(" ");
+    copyText([activeTask.caption || "", "", tags].join("\n").trim());
+  }
+
+  async function setTaskStatus(id, status) {
+    try {
+      await api("/api/admin/marketing/tasks", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: Number(id), status }),
+      });
+      await loadAllTasks();
+    } catch (e) {
+      setStatus("err", e.message);
+    }
+  }
+
+  function cycleTaskStatus(id) {
+    const t = allTasks.find((x) => String(x.id) === String(id));
+    if (!t) return;
+    const next = t.status === "pending" ? "in_progress" : t.status === "in_progress" ? "done" : "pending";
+    setTaskStatus(id, next);
+  }
+
+  async function loadAllTasks() {
+    const d = await api("/api/admin/marketing/tasks?all=1");
+    allTasks = d.tasks || [];
+    currentWeek = d.week || 1;
+    weeksSummary = d.weeks || [];
+    statusCounts = d.statusCounts || { total: 0, pending: 0, in_progress: 0, done: 0 };
+    progressAll = d.progress || {};
+    priorityTasks = d.priority || [];
+    populateWeekSelect();
+    renderDashboard();
+    renderTasks();
+  }
+
+  async function initDb() {
+    try {
+      const d = await api("/api/admin/marketing/init", { method: "POST" });
+      setStatus("ok", `DB 준비 완료 · 태스크 ${d.tasks}개`);
+      await loadAllTasks();
+    } catch (e) {
+      setStatus("err", e.message);
+    }
+  }
+
+  function setTab(t) {
+    document.querySelectorAll(".tab-btn").forEach((b) => b.classList.toggle("active", b.dataset.tab === t));
+    ["dashboard", "tasks", "chat", "visits"].forEach((name) => {
+      const el = $("tab-" + name);
+      if (!el) return;
+      if (name === t) show(el); else hide(el);
+    });
+    const main = $("main-panel");
+    if (t === "chat" || t === "visits") hide(main);
+    else show(main);
+    if (t === "tasks") renderTasks();
+    if (t === "dashboard") renderDashboard();
+  }
+
+  function initTheme() {
+    const saved = localStorage.getItem("tq_admin_theme");
+    if (saved === "dark") document.documentElement.setAttribute("data-theme", "dark");
+    $("theme-btn").addEventListener("click", () => {
+      const dark = document.documentElement.getAttribute("data-theme") === "dark";
+      if (dark) {
+        document.documentElement.removeAttribute("data-theme");
+        localStorage.setItem("tq_admin_theme", "light");
+      } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+        localStorage.setItem("tq_admin_theme", "dark");
+      }
+    });
+  }
+
+  async function init() {
+    initTheme();
+    try {
+      await loadAllTasks();
+    } catch (e) {
+      setStatus("err", e.message);
+    }
+  }
+
+  $("login-btn").addEventListener("click", login);
+  $("pw").addEventListener("keydown", (e) => { if (e.key === "Enter") login(); });
+  document.querySelectorAll(".tab-btn").forEach((b) => b.addEventListener("click", () => setTab(b.dataset.tab)));
+  $("week-select").addEventListener("change", (e) => {
+    taskWeekFilter = Number(e.target.value);
+    renderTasks();
+  });
+  document.querySelectorAll("[data-task-filter]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      taskFilter = btn.dataset.taskFilter;
+      document.querySelectorAll("[data-task-filter]").forEach((b) => b.classList.toggle("active", b === btn));
+      renderTasks();
+    });
+  });
+  document.querySelectorAll("[data-task-sort]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      taskSort = btn.dataset.taskSort;
+      document.querySelectorAll("[data-task-sort]").forEach((b) => b.classList.toggle("active", b === btn));
+      renderTasks();
+    });
+  });
+  $("init-btn").addEventListener("click", initDb);
+  $("modal-close").addEventListener("click", closeTaskModal);
+  $("copy-all-btn").addEventListener("click", copyCaptionAndTags);
+  $("task-modal").addEventListener("click", (e) => { if (e.target === $("task-modal")) closeTaskModal(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeTaskModal(); });
+
+  checkAuth().then((ok) => {
+    hide($("checking"));
+    if (ok) { show($("app")); init(); }
+    else { show($("login-screen")); }
+  });
+})();
+  </script>
+</body>
+</html>

@@ -29,7 +29,8 @@
     { "source": "/news/:slug.html", "destination": "/news/:slug", "permanent": true },
     { "source": "/guide/:slug.html", "destination": "/guide/:slug", "permanent": true },
     { "source": "/stories/:slug.html", "destination": "/stories/:slug", "permanent": true },
-    { "source": "/queens-table/queens-box.html", "destination": "/queens-table/queens-box", "permanent": true }
+    { "source": "/queens-table/queens-box.html", "destination": "/queens-table/queens-box", "permanent": true },
+    { "source": "/marketing.html", "destination": "/marketing", "permanent": true }
   ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
@@ -43,7 +44,9 @@
     { "source": "/directions", "destination": "/directions.html" },
     { "source": "/reviews", "destination": "/reviews.html" },
     { "source": "/admin/visits", "destination": "/admin.html" },
+    { "source": "/admin/marketing", "destination": "/admin-marketing.html" },
     { "source": "/admin", "destination": "/admin-chat.html" },
+    { "source": "/marketing", "destination": "/marketing.html" },
     { "source": "/chat", "destination": "/chat.html" },
     { "source": "/news", "destination": "/news/index.html" },
     { "source": "/guide", "destination": "/guide/index.html" },
@@ -54,6 +57,8 @@
     { "source": "/stories/:slug", "destination": "/stories/:slug.html" },
     { "source": "/dining/:slug", "destination": "/dining/:slug.html" }
   ],
+  "installCommand": "npm install",
+  "devCommand": "npm run dev",
   "buildCommand": "npm run build:content",
   "outputDirectory": "."
 }

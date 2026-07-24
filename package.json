@@ -4,8 +4,8 @@
   "scripts": {
     "build": "node scripts/build-content.js",
     "build:content": "node scripts/build-content.js",
-    "dev": "serve -c serve.json -l 3000 .",
-    "dev:api": "vercel dev --listen 3000",
+    "dev": "serve -c serve.json .",
+    "dev:api": "vercel dev --listen 127.0.0.1:3010 --yes",
     "start": "serve -c serve.json -l 3000 .",
     "deploy": "npx vercel deploy --prod --yes",
     "db:init": "node scripts/init-db.js"
