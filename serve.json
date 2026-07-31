@@ -27,7 +27,8 @@
     { "source": "/news/:slug.html", "destination": "/news/:slug" },
     { "source": "/guide/:slug.html", "destination": "/guide/:slug" },
     { "source": "/stories/:slug.html", "destination": "/stories/:slug" },
-    { "source": "/dining/:slug.html", "destination": "/dining/:slug" }
+    { "source": "/dining/:slug.html", "destination": "/dining/:slug" },
+    { "source": "/pages/campaigns/week-8-1.html", "destination": "/campaigns/week-8-1" }
   ],
   "rewrites": [
     { "source": "/dress-show", "destination": "/dress-show.html" },
@@ -49,6 +50,7 @@
     { "source": "/guide/:slug([^/.]+)", "destination": "/guide/:slug.html" },
     { "source": "/stories/:slug([^/.]+)", "destination": "/stories/:slug.html" },
     { "source": "/dining/:slug([^/.]+)", "destination": "/dining/:slug.html" },
-    { "source": "/marketing.html", "destination": "/marketing" }
+    { "source": "/marketing.html", "destination": "/marketing" },
+    { "source": "/campaigns/week-8-1", "destination": "/pages/campaigns/week-8-1.html" }
   ]
 }

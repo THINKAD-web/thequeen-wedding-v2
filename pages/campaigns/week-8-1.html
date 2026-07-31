@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>8월 1주차 마케팅 캠페인 | 더퀸 · 퀸즈테이블</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="canonical" href="https://thequeenwedding.kr/campaigns/week-8-1" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet" />
+<style>
+  :root {
+    --queen-gold: #8A6A2E;
+    --queen-gold-light: #B08A47;
+    --queen-black: #1C1813;
+    --qt-navy: #1F3A5F;
+    --qt-gold: #B08A47;
+    --page-bg: #F4F4F5;
+    --card-w: 1080px;
+    --card-h: 1350px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--page-bg);
+    color: #18181B;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 24px 32px;
+    text-align: center;
+  }
+
+  .page-header h1 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .page-header p {
+    margin-top: 8px;
+    font-size: 0.875rem;
+    color: #71717A;
+    letter-spacing: 0.08em;
+  }
+
+  .page-header .hint {
+    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid #E4E4E7;
+    font-size: 0.8125rem;
+    color: #52525B;
+  }
+
+  .section {
+    max-width: 2400px;
+    margin: 0 auto;
+    padding: 0 24px 64px;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: calc(var(--card-w) * 2 + 48px);
+    margin: 0 auto 32px;
+    font-family: 'Cormorant Garamond', 'Noto Serif KR', serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #71717A;
+  }
+
+  .section-label::before,
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #D4D4D8;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 48px;
+    justify-items: center;
+    max-width: calc(var(--card-w) * 2 + 48px);
+    margin: 0 auto;
+  }
+
+  .card-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .card-meta {
+    font-size: 0.8125rem;
+    color: #71717A;
+    letter-spacing: 0.04em;
+  }
+
+  .card-meta strong {
+    color: #3F3F46;
+    font-weight: 600;
+  }
+
+  /* 1080×1350 고정 비율 — 스크린샷용 */
+  .card-scaler {
+    width: var(--card-w);
+    height: calc(var(--card-h) * var(--scale, 1));
+    overflow: hidden;
+  }
+
+  .ig-card {
+    width: var(--card-w);
+    height: var(--card-h);
+    transform: scale(var(--scale, 1));
+    transform-origin: top left;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.12);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .card-wrap:hover .ig-card {
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.18);
+  }
+
+  @media (min-width: 1100px) {
+    .card-scaler { --scale: 0.5; }
+    .cards-grid { gap: 40px; }
+  }
+
+  @media (min-width: 1400px) {
+    .card-scaler { --scale: 0.55; }
+  }
+
+  @media (max-width: 1099px) {
+    .card-scaler {
+      --scale: calc((100vw - 48px) / var(--card-w));
+      width: calc(var(--card-w) * var(--scale));
+    }
+  }
+
+  /* ── THE QUEEN 테마 ── */
+  .theme-queen {
+    background: linear-gradient(165deg, #1C1813 0%, #2A2318 45%, #1C1813 100%);
+    color: #fff;
+  }
+
+  .theme-queen .card-badge {
+    background: rgba(138, 106, 46, 0.25);
+    border: 1px solid rgba(176, 138, 71, 0.5);
+    color: #D4B87A;
+  }
+
+  .theme-queen .card-accent { color: var(--queen-gold-light); }
+  .theme-queen .card-divider { background: linear-gradient(90deg, transparent, var(--queen-gold), transparent); }
+  .theme-queen .card-visual {
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(138, 106, 46, 0.35) 0%, transparent 70%),
+      linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 100%);
+  }
+
+  .theme-queen .btn-cta {
+    background: linear-gradient(135deg, var(--queen-gold) 0%, #6B5224 100%);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .theme-queen .btn-cta:hover {
+    background: linear-gradient(135deg, #A08040 0%, var(--queen-gold) 100%);
+  }
+
+  /* ── QUEEN'S TABLE 테마 ── */
+  .theme-qt {
+    background: linear-gradient(165deg, #1F3A5F 0%, #152A45 50%, #0F1F35 100%);
+    color: #fff;
+  }
+
+  .theme-qt .card-badge {
+    background: rgba(176, 138, 71, 0.2);
+    border: 1px solid rgba(176, 138, 71, 0.45);
+    color: #E8D5A8;
+  }
+
+  .theme-qt .card-accent { color: var(--qt-gold); }
+  .theme-qt .card-divider { background: linear-gradient(90deg, transparent, var(--qt-gold), transparent); }
+  .theme-qt .card-visual {
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 35%, rgba(176, 138, 71, 0.22) 0%, transparent 65%),
+      linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+  }
+
+  .theme-qt .btn-cta {
+    background: linear-gradient(135deg, var(--qt-gold) 0%, #8A6A2E 100%);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .theme-qt .btn-cta:hover {
+    background: linear-gradient(135deg, #C9A050 0%, var(--qt-gold) 100%);
+  }
+
+  /* ── 카드 공통 ── */
+  .card-top {
+    padding: 56px 72px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .card-badge {
+    display: inline-flex;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .card-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    text-align: right;
+  }
+
+  .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 48px 72px 72px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-visual {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .card-visual-placeholder {
+    position: absolute;
+    inset: 120px 72px 280px;
+    border: 2px dashed rgba(255,255,255,0.12);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.25);
+    text-transform: uppercase;
+  }
+
+  .card-headline {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    margin-top: auto;
+  }
+
+  .card-headline.sm { font-size: 56px; }
+
+  .card-sub {
+    margin-top: 32px;
+    font-size: 36px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.85);
+    font-weight: 400;
+  }
+
+  .card-countdown {
+    margin-top: 40px;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .card-countdown .d-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--card-accent, var(--queen-gold-light));
+  }
+
+  .card-countdown .d-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 120px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+  }
+
+  .card-benefits {
+    margin-top: 48px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .card-benefits li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    font-size: 34px;
+    line-height: 1.45;
+    color: rgba(255,255,255,0.92);
+  }
+
+  .card-benefits .star {
+    flex-shrink: 0;
+    font-size: 28px;
+    margin-top: 6px;
+    color: var(--card-accent, var(--queen-gold-light));
+  }
+
+  .card-divider {
+    width: 120px;
+    height: 2px;
+    margin: 40px 0;
+  }
+
+  .card-footer {
+    margin-top: auto;
+    padding-top: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+  }
+
+  .card-tagline {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 32px;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.04em;
+  }
+
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 28px 56px;
+    border-radius: 999px;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+
+  .card-ig-link {
+    position: absolute;
+    top: 56px;
+    right: 72px;
+    width: 48px;
+    height: 48px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    z-index: 10;
+  }
+
+  .card-wrap:hover .card-ig-link { opacity: 0.6; }
+  .card-ig-link:hover { opacity: 1 !important; }
+
+  .card-ig-link svg { width: 100%; height: 100%; fill: #fff; }
+
+  /* 피드형 — 텍스트 중심 레이아웃 */
+  .layout-feed .card-visual-placeholder { inset: 80px 72px 420px; }
+  .layout-feed .card-body { justify-content: flex-end; }
+
+  /* 릴스형 — 중앙 집중 */
+  .layout-reels .card-body {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+
+  .layout-reels .card-headline { margin-top: 0; }
+  .layout-reels .card-sub { text-align: center; max-width: 880px; }
+  .layout-reels .card-countdown { justify-content: center; }
+  .layout-reels .card-footer { align-items: center; }
+  .layout-reels .card-divider { margin-left: auto; margin-right: auto; }
+
+  .page-footer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    text-align: center;
+    font-size: 0.8125rem;
+    color: #A1A1AA;
+    line-height: 1.8;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .page-header, .section-label, .card-meta, .page-footer, .card-ig-link { display: none; }
+    .cards-grid { display: block; }
+    .card-wrap { page-break-inside: avoid; margin-bottom: 48px; }
+    .card-scaler { --scale: 1 !important; width: var(--card-w); height: var(--card-h); }
+    .ig-card { transform: none; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <h1>8월 1주차 마케팅 캠페인</h1>
+  <p>2026.08.01 — 08.07 · 1080 × 1350 Instagram 카드</p>
+  <div class="hint">📸 각 카드를 1080×1350 비율로 캡처하여 Instagram에 업로드하세요</div>
+</header>
+
+<!-- THE QUEEN -->
+<section class="section" aria-labelledby="sec-queen">
+  <h2 id="sec-queen" class="section-label">THE QUEEN 웨딩홀</h2>
+  <div class="cards-grid">
+
+    <!-- 카드 1 · 릴스 -->
+    <div class="card-wrap">
+      <p class="card-meta"><strong>카드 1</strong> · 릴스 · D-90 가을 웨딩 런칭</p>
+      <div class="card-scaler">
+        <article class="ig-card theme-queen layout-reels" id="card-queen-reels">
+          <div class="card-visual"></div>
+          <div class="card-visual-placeholder">런웨이 영상 · 배경</div>
+          <div class="card-top">
+            <span class="card-badge">Reels</span>
+            <span class="card-brand">The Queen</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-headline">가을 예식,<br />지금부터가 골든타임</h3>
+            <div class="card-countdown">
+              <span class="d-label">D</span>
+              <span class="d-num">90</span>
+            </div>
+            <p class="card-sub">더퀸 얼리버드 상담 예약<br />🎯 Prada 핸드로션 증정</p>
+            <div class="card-footer">
+              <a class="btn-cta" href="https://thequeenwedding.kr/#contact" target="_blank" rel="noopener">상담 예약하기</a>
+            </div>
+          </div>
+          <a class="card-ig-link" href="https://www.instagram.com/thequeen_pohang/" target="_blank" rel="noopener" aria-label="더퀸 Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+
+    <!-- 카드 2 · 피드 -->
+    <div class="card-wrap">
+      <p class="card-meta"><strong>카드 2</strong> · 피드 · 얼리버드 혜택 공개</p>
+      <div class="card-scaler">
+        <article class="ig-card theme-queen layout-feed" id="card-queen-feed">
+          <div class="card-visual"></div>
+          <div class="card-visual-placeholder">가을 결혼식 무드 · 배경</div>
+          <div class="card-top">
+            <span class="card-badge">Feed</span>
+            <span class="card-brand">The Queen</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-headline sm">포항에서 가장<br />영화 같은 가을 웨딩</h3>
+            <p class="card-sub">지금 상담하는 신부에게</p>
+            <ul class="card-benefits">
+              <li><span class="star">✦</span><span>Prada 핸드로션 증정</span></li>
+              <li><span class="star">✦</span><span>촬영 우대 시간대 선택</span></li>
+              <li><span class="star">✦</span><span>10% 추가 할인</span></li>
+            </ul>
+            <div class="card-divider"></div>
+            <div class="card-footer">
+              <span class="card-tagline">더퀸 웨딩홀</span>
+              <a class="btn-cta" href="https://thequeenwedding.kr/#contact" target="_blank" rel="noopener">상담 예약하기</a>
+            </div>
+          </div>
+          <a class="card-ig-link" href="https://www.instagram.com/thequeen_pohang/" target="_blank" rel="noopener" aria-label="더퀸 Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- QUEEN'S TABLE -->
+<section class="section" aria-labelledby="sec-qt">
+  <h2 id="sec-qt" class="section-label">Queen's Table 프리미엄 뷔페</h2>
+  <div class="cards-grid">
+
+    <!-- 카드 3 · 릴스 -->
+    <div class="card-wrap">
+      <p class="card-meta"><strong>카드 3</strong> · 릴스 · 뷔페의 상식을 바꾸다</p>
+      <div class="card-scaler">
+        <article class="ig-card theme-qt layout-reels" id="card-qt-reels">
+          <div class="card-visual"></div>
+          <div class="card-visual-placeholder">조리 과정 · 셰프 영상</div>
+          <div class="card-top">
+            <span class="card-badge">Reels</span>
+            <span class="card-brand">Queen's Table</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-headline">뷔페의 상식을<br />바꾸다</h3>
+            <p class="card-sub">오마카세급 조리 과정<br />셰프의 손길이 닿는 매 순간</p>
+            <div class="card-divider"></div>
+            <p class="card-sub" style="font-family:'Noto Serif KR',serif;font-style:italic;font-size:38px;color:rgba(255,255,255,0.75);">가격이 아닌 맛으로 비교하세요</p>
+            <div class="card-footer">
+              <a class="btn-cta" href="tel:054-281-4000">예약하기</a>
+            </div>
+          </div>
+          <a class="card-ig-link" href="https://www.instagram.com/queens_table.official/" target="_blank" rel="noopener" aria-label="퀸즈테이블 Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+
+    <!-- 카드 4 · 피드 -->
+    <div class="card-wrap">
+      <p class="card-meta"><strong>카드 4</strong> · 피드 · 메뉴 퀄리티 강조</p>
+      <div class="card-scaler">
+        <article class="ig-card theme-qt layout-feed" id="card-qt-feed">
+          <div class="card-visual"></div>
+          <div class="card-visual-placeholder">시그니처 메뉴 · 배경</div>
+          <div class="card-top">
+            <span class="card-badge">Feed</span>
+            <span class="card-brand">Queen's Table</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-headline sm">뷔페지만,<br />비교가 안 됩니다</h3>
+            <ul class="card-benefits">
+              <li><span class="star">✦</span><span>신선한 제철 재료</span></li>
+              <li><span class="star">✦</span><span>매일 새로 준비되는 시그니처</span></li>
+              <li><span class="star">✦</span><span>셰프의 손길이 닿는 매 순간</span></li>
+            </ul>
+            <div class="card-divider"></div>
+            <p class="card-sub" style="font-size:40px;font-family:'Noto Serif KR',serif;">뷔페의 '상식'을<br />퀸즈테이블이 바꿨습니다</p>
+            <div class="card-footer">
+              <a class="btn-cta" href="tel:054-281-4000">예약하기</a>
+            </div>
+          </div>
+          <a class="card-ig-link" href="https://www.instagram.com/queens_table.official/" target="_blank" rel="noopener" aria-label="퀸즈테이블 Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="page-footer">
+  카드 원본 크기 1080 × 1350px · 고해상도 캡처 시 브라우저 확대 200% 또는 개발자 도구 디바이스 모드 활용<br />
+  배경 이미지 추가 시 <code>.card-visual-placeholder</code> 영역을 <code>&lt;img&gt;</code> 또는 <code>background-image</code>로 교체하세요
+</footer>
+
+</body>
+</html>

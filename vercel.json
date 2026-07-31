@@ -30,7 +30,8 @@
     { "source": "/guide/:slug.html", "destination": "/guide/:slug", "permanent": true },
     { "source": "/stories/:slug.html", "destination": "/stories/:slug", "permanent": true },
     { "source": "/queens-table/queens-box.html", "destination": "/queens-table/queens-box", "permanent": true },
-    { "source": "/marketing.html", "destination": "/marketing", "permanent": true }
+    { "source": "/marketing.html", "destination": "/marketing", "permanent": true },
+    { "source": "/pages/campaigns/week-8-1.html", "destination": "/campaigns/week-8-1", "permanent": true }
   ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
@@ -55,7 +56,8 @@
     { "source": "/news/:slug", "destination": "/news/:slug.html" },
     { "source": "/guide/:slug", "destination": "/guide/:slug.html" },
     { "source": "/stories/:slug", "destination": "/stories/:slug.html" },
-    { "source": "/dining/:slug", "destination": "/dining/:slug.html" }
+    { "source": "/dining/:slug", "destination": "/dining/:slug.html" },
+    { "source": "/campaigns/week-8-1", "destination": "/pages/campaigns/week-8-1.html" }
   ],
   "installCommand": "npm install",
   "devCommand": "npm run dev",
