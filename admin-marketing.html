@@ -113,6 +113,16 @@
     .tag-list { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 14px; }
     .tag-pill { font-size: 12px; padding: 6px 12px; border-radius: 999px; background: var(--gold-dim); color: var(--text); }
     .tips-box { padding: 14px; font-size: 13px; line-height: 1.6; background: rgba(201,168,92,0.12); border-left: 3px solid var(--gold); margin: 0 12px 12px; border-radius: 0 8px 8px 0; }
+    .modal-detail-tabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 20px 12px; border-bottom: 1px solid var(--line); position: sticky; top: 72px; background: var(--surface); z-index: 1; }
+    .modal-tab-btn { padding: 7px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--muted); font-size: 12px; cursor: pointer; white-space: nowrap; }
+    .modal-tab-btn.active { background: var(--gold); border-color: var(--gold); color: #1a2744; font-weight: 700; }
+    .modal-tab-panel { display: none; }
+    .modal-tab-panel.active { display: block; }
+    .design-prompt-box { width: 100%; min-height: 280px; padding: 14px; border: none; background: var(--bg); color: var(--text); font-size: 12px; line-height: 1.65; resize: vertical; font-family: ui-monospace, "SF Mono", Menlo, monospace; white-space: pre-wrap; }
+    .design-brand-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; padding: 12px 14px; border-bottom: 1px solid var(--line); font-size: 11px; }
+    .design-brand-meta dt { color: var(--muted); font-weight: 700; margin-bottom: 2px; }
+    .design-brand-meta dd { line-height: 1.4; }
+    .design-note { padding: 12px 14px; font-size: 12px; color: var(--muted); line-height: 1.5; border-top: 1px solid var(--line); }
     .modal-actions { display: flex; gap: 10px; padding: 0 20px 20px; }
     .status-msg { font-size: 13px; padding: 10px 14px; border-radius: 8px; margin-bottom: 14px; }
     .status-msg.ok { background: rgba(34,197,94,0.12); color: var(--good); }
@@ -227,6 +237,37 @@
   const STATUS_ICONS = { pending: "⭕", in_progress: "⏳", done: "✅" };
   const STATUS_ORDER = { pending: 0, in_progress: 1, done: 2 };
   const WEEK_LABELS = { 1: "7-1", 2: "7-2", 3: "7-3", 4: "7-4", 5: "8-1", 6: "8-2", 7: "8-3", 8: "8-4" };
+  const DESIGN_BRAND = {
+    queen: {
+      brandName: "THE QUEEN 웨딩홀",
+      colors: "골드(#8A6A2E) + 블랙(#1C1813) + 화이트",
+      font: "화이트 세리프체, 중앙 정렬",
+      mood: "시네마틱 감성 럭셔리. 골드&블랙 톤.",
+      size: "1080×1350 (세로형 피드)",
+      designRequests: [
+        "배경: 블랙 단색 또는 골드 그라데이션",
+        "텍스트 가독성 최우선",
+        "타이틀은 세리프체로 우아하게 강조",
+        "마지막 장에 반드시 CTA 포함",
+        "전체 톤: 시네마틱하고 럭셔리",
+      ],
+    },
+    table: {
+      brandName: "Queen's Table 프리미엄 뷔페",
+      colors: "네이비(#1F3A5F) + 골드(#B08A47) + 화이트",
+      font: "볼드 산세리프, 가격 대형 강조",
+      mood: "고급스러운 프리미엄 레스토랑. 네이비&골드 톤.",
+      size: "1080×1350 (세로형 피드)",
+      designRequests: [
+        "배경: 네이비 단색 또는 그라데이션",
+        "텍스트 가독성 최우선",
+        "가격은 가장 크게 강조",
+        "마지막 장에 반드시 CTA 포함",
+        "전체 톤: 프리미엄하고 식욕 자극",
+      ],
+    },
+  };
+  const DESIGN_DIV = "━━━━━━━━━━━━━━━━━━━━━━━━━";
 
   let currentWeek = 1;
   let allTasks = [];
@@ -492,6 +533,87 @@
     activeTask = null;
   }
 
+  function designTitle(t) {
+    const title = t.title || t.task_name || "";
+    return title.split(" — ")[0].split(" - ")[0].trim() || title;
+  }
+
+  function formatDesignScene(s, i) {
+    const trimmed = String(s).trim();
+    if (/^\d+장:/.test(trimmed)) return trimmed;
+    if (/^씬\d+:/.test(trimmed)) return trimmed.replace(/^씬(\d+):/, "$1장:");
+    return `${i + 1}장: ${trimmed}`;
+  }
+
+  function captionExcerpt(caption, maxLines = 4) {
+    if (!caption) return "";
+    return caption.split("\n").slice(0, maxLines).join("\n").trim();
+  }
+
+  function buildDesignPrompt(t) {
+    const b = DESIGN_BRAND[t.brand] || DESIGN_BRAND.queen;
+    const scenes = t.scenes || [];
+    const specs = t.specs || {};
+    const channel = t.channel || "피드";
+    const weekLabel = t.week_label || WEEK_LABELS[t.week_id] || t.week_id;
+    const size = specs["포맷"] || specs.포맷 || b.size;
+    const sceneLines = scenes.length
+      ? scenes.map((s, i) => formatDesignScene(s, i)).join("\n")
+      : "1장: 메인 비주얼\n2장: 핵심 정보\n3장: CTA";
+    const tags = (t.tags || []).map((tag) => "#" + tag.replace(/^#/, "")).join(" ");
+    const requests = [...(b.designRequests || [])];
+    if (t.tips) requests.push(t.tips);
+    const div = DESIGN_DIV;
+
+    return `${b.brandName} — ${channel} 디자인 요청
+
+${div}
+🎨 브랜드 가이드
+${div}
+브랜드: ${b.brandName}
+컬러: ${b.colors}
+폰트: ${b.font}
+무드: ${b.mood}
+사이즈: ${size}
+
+${div}
+📋 콘텐츠 정보
+${div}
+제목: ${designTitle(t)}
+채널: ${channel}
+주차: ${weekLabel}주
+
+${div}
+🖼️ 슬라이드 구성 (${scenes.length || 3}장)
+${div}
+${sceneLines}
+
+${div}
+✍️ 텍스트 참고 (캡션)
+${div}
+${captionExcerpt(t.caption)}
+
+${div}
+#️⃣ 해시태그
+${div}
+${tags || "(태그 없음)"}
+
+${div}
+💡 디자인 요청사항
+${div}
+${requests.map((line) => "- " + line).join("\n")}
+${div}`;
+  }
+
+  function showModalTab(tabId) {
+    document.querySelectorAll(".modal-tab-btn").forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.modalTab === tabId);
+    });
+    document.querySelectorAll(".modal-tab-panel").forEach((panel) => {
+      panel.classList.toggle("active", panel.dataset.modalPanel === tabId);
+    });
+  }
+
   function renderTaskModal(t) {
     $("modal-title").textContent = t.title || t.task_name;
     const label = t.week_label || WEEK_LABELS[t.week_id] || t.week_id;
@@ -505,38 +627,91 @@
     const scenes = t.scenes || [];
     const specs = t.specs || {};
     const tags = t.tags || [];
+    const showDesign = t.status === "pending" || t.status === "in_progress";
+    const designPrompt = showDesign ? buildDesignPrompt(t) : "";
+    const b = DESIGN_BRAND[t.brand] || DESIGN_BRAND.queen;
+
+    const tabButtons = [
+      { id: "scenes", label: "스토리보드" },
+      { id: "specs", label: "스펙" },
+      { id: "caption", label: "캡션" },
+      { id: "tags", label: "해시태그" },
+      { id: "tips", label: "팁" },
+    ];
+    if (showDesign) tabButtons.push({ id: "design", label: "🎨 Design" });
 
     $("modal-body").innerHTML = `
-      <div class="detail-section">
-        <div class="detail-section-head">📋 스토리보드 <button type="button" class="copy-btn" data-copy="scenes">복사</button></div>
-        <div class="scene-grid">${scenes.map((s, i) => `
-          <div class="scene-box"><div class="scene-num">장면 ${i + 1}</div>${esc(s)}</div>
-        `).join("") || '<div class="empty">스토리보드 없음</div>'}</div>
+      <div class="modal-detail-tabs">
+        ${tabButtons.map((tab, i) => `
+          <button type="button" class="modal-tab-btn${i === 0 ? " active" : ""}" data-modal-tab="${tab.id}">${tab.label}</button>
+        `).join("")}
       </div>
-      <div class="detail-section">
-        <div class="detail-section-head">⚙️ 포맷/스펙 <button type="button" class="copy-btn" data-copy="specs">복사</button></div>
-        <table class="spec-table"><tbody>
-          ${Object.entries(specs).map(([k, v]) => `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join("")}
-        </tbody></table>
+
+      <div class="modal-tab-panel active" data-modal-panel="scenes">
+        <div class="detail-section" style="border:none;margin:0">
+          <div class="detail-section-head">📋 스토리보드 <button type="button" class="copy-btn" data-copy="scenes">복사</button></div>
+          <div class="scene-grid">${scenes.map((s, i) => `
+            <div class="scene-box"><div class="scene-num">장면 ${i + 1}</div>${esc(s)}</div>
+          `).join("") || '<div class="empty">스토리보드 없음</div>'}</div>
+        </div>
       </div>
-      <div class="detail-section">
-        <div class="detail-section-head">📝 캡션 <button type="button" class="copy-btn" data-copy="caption">복사</button></div>
-        <textarea class="caption-box" id="modal-caption" readonly></textarea>
+
+      <div class="modal-tab-panel" data-modal-panel="specs">
+        <div class="detail-section" style="border:none;margin:0">
+          <div class="detail-section-head">⚙️ 포맷/스펙 <button type="button" class="copy-btn" data-copy="specs">복사</button></div>
+          <table class="spec-table"><tbody>
+            ${Object.entries(specs).map(([k, v]) => `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join("")}
+          </tbody></table>
+        </div>
       </div>
-      <div class="detail-section">
-        <div class="detail-section-head">#️⃣ 해시태그 <button type="button" class="copy-btn" data-copy="tags">복사</button></div>
-        <div class="tag-list">${tags.map((tag) => `<span class="tag-pill">#${esc(tag.replace(/^#/, ""))}</span>`).join("") || '<span class="empty">태그 없음</span>'}</div>
+
+      <div class="modal-tab-panel" data-modal-panel="caption">
+        <div class="detail-section" style="border:none;margin:0">
+          <div class="detail-section-head">📝 캡션 <button type="button" class="copy-btn" data-copy="caption">복사</button></div>
+          <textarea class="caption-box" id="modal-caption" readonly></textarea>
+        </div>
       </div>
-      <div class="detail-section">
-        <div class="detail-section-head">💡 팁 <button type="button" class="copy-btn" data-copy="tips">복사</button></div>
-        <div class="tips-box">${esc(t.tips || "")}</div>
+
+      <div class="modal-tab-panel" data-modal-panel="tags">
+        <div class="detail-section" style="border:none;margin:0">
+          <div class="detail-section-head">#️⃣ 해시태그 <button type="button" class="copy-btn" data-copy="tags">복사</button></div>
+          <div class="tag-list">${tags.map((tag) => `<span class="tag-pill">#${esc(tag.replace(/^#/, ""))}</span>`).join("") || '<span class="empty">태그 없음</span>'}</div>
+        </div>
       </div>
+
+      <div class="modal-tab-panel" data-modal-panel="tips">
+        <div class="detail-section" style="border:none;margin:0">
+          <div class="detail-section-head">💡 팁 <button type="button" class="copy-btn" data-copy="tips">복사</button></div>
+          <div class="tips-box">${esc(t.tips || "")}</div>
+        </div>
+      </div>
+
+      ${showDesign ? `
+      <div class="modal-tab-panel" data-modal-panel="design">
+        <div class="detail-section" style="border:none;margin:0">
+          <div class="detail-section-head">🎨 Claude Design 프롬프트 <button type="button" class="copy-btn" data-copy="design">복사</button></div>
+          <dl class="design-brand-meta">
+            <div><dt>브랜드</dt><dd>${esc(b.brandName)}</dd></div>
+            <div><dt>컬러</dt><dd>${esc(b.colors)}</dd></div>
+            <div><dt>폰트</dt><dd>${esc(b.font)}</dd></div>
+            <div><dt>무드</dt><dd>${esc(b.mood)}</dd></div>
+          </dl>
+          <textarea class="design-prompt-box" id="modal-design-prompt" readonly></textarea>
+          <div class="design-note">Claude Design에 위 프롬프트를 붙여넣으면 브랜드 가이드가 반영된 슬라이드를 생성할 수 있습니다.</div>
+        </div>
+      </div>` : ""}
     `;
+
+    $("modal-body").querySelectorAll(".modal-tab-btn").forEach((btn) => {
+      btn.addEventListener("click", () => showModalTab(btn.dataset.modalTab));
+    });
     $("modal-body").querySelectorAll(".copy-btn").forEach((btn) => {
       btn.addEventListener("click", () => copyTaskSection(t, btn.dataset.copy));
     });
     const cap = document.getElementById("modal-caption");
     if (cap) cap.value = t.caption || "";
+    const design = document.getElementById("modal-design-prompt");
+    if (design) design.value = designPrompt;
   }
 
   async function copyText(text) {
@@ -554,6 +729,7 @@
     if (section === "caption") return copyText(t.caption || "");
     if (section === "tags") return copyText((t.tags || []).map((tag) => "#" + tag.replace(/^#/, "")).join(" "));
     if (section === "tips") return copyText(t.tips || "");
+    if (section === "design") return copyText(buildDesignPrompt(t));
   }
 
   function copyCaptionAndTags() {
