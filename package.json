@@ -6,6 +6,7 @@
     "build:content": "node scripts/build-content.js",
     "dev": "serve -c serve.json .",
     "dev:api": "vercel dev --listen 127.0.0.1:3010 --yes",
+    "env:pull": "vercel env pull .env.local --environment=production --yes && echo '→ .env.local 의 DATABASE_URL 값을 Vercel 대시보드에서 확인·붙여넣은 뒤 dev:api 재시작'",
     "start": "serve -c serve.json -l 3000 .",
     "deploy": "npx vercel deploy --prod --yes",
     "db:init": "node scripts/init-db.js"

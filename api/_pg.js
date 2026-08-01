@@ -1,3 +1,4 @@
+require("./_load-env");
 const { Pool } = require("pg");
 
 let pool = null;
