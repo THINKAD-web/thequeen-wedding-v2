@@ -5,21 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>더퀸 · 마케팅 어드민</title>
   <meta name="robots" content="noindex, nofollow" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #f7f8fa;
+      --bg: #F6F2E9;
       --surface: #fff;
       --text: #1a2744;
       --muted: rgba(26,39,68,0.55);
       --line: rgba(26,39,68,0.08);
-      --navy: #1a2744;
-      --queen-gold: #8A6A2E;
-      --qt-navy: #1F3A5F;
+      --navy: #0E1B33;
+      --queen-bg: linear-gradient(160deg, #0E1B33 0%, #17294C 100%);
+      --queen-accent: #BE9E5B;
+      --queen-accent-light: #D8C08A;
+      --table-bg: linear-gradient(160deg, #583047 0%, #6D3E55 100%);
+      --table-accent: #D4A574;
+      --table-accent-light: #E8B088;
       --progress-gray: #94a3b8;
-      --gold: #c9a85c;
-      --gold-dim: rgba(138,106,46,0.12);
-      --status-pending: #FF6B6B;
-      --status-progress: #4ECDC4;
+      --gold: #BE9E5B;
+      --gold-dim: rgba(190,158,91,0.12);
+      --status-pending: #94a3b8;
+      --status-progress: #BE9E5B;
       --status-done: #2ECC71;
       --shadow: 0 2px 16px rgba(26,39,68,0.06);
     }
@@ -34,7 +39,7 @@
       --shadow: 0 2px 16px rgba(0,0,0,0.25);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; background: var(--bg); color: var(--text); font-size: 13px; line-height: 1.5; }
+    body { font-family: "Noto Sans KR", ui-sans-serif, system-ui, sans-serif; background: var(--bg); color: var(--text); font-size: 13px; line-height: 1.5; }
     .hidden { display: none !important; }
     #checking, #login-screen { min-height: 100vh; background: #0d1526; display: flex; align-items: center; justify-content: center; }
     .login-box { background: #1a2744; padding: 40px; border-radius: 12px; width: 340px; border: 1px solid rgba(184,154,94,0.3); }
@@ -69,8 +74,8 @@
     .progress-bar { height: 8px; background: rgba(26,39,68,0.06); border-radius: 999px; overflow: hidden; margin: 8px 0; }
     [data-theme="dark"] .progress-bar { background: rgba(255,255,255,0.08); }
     .progress-bar > i { display: block; height: 100%; width: 0%; border-radius: 999px; transition: width 0.45s ease; }
-    .progress-bar.bar-queen > i { background: linear-gradient(90deg, var(--queen-gold), #b8924a); }
-    .progress-bar.bar-table > i { background: linear-gradient(90deg, var(--qt-navy), #2d5080); }
+    .progress-bar.bar-queen > i { background: linear-gradient(90deg, var(--queen-accent), var(--queen-accent-light)); }
+    .progress-bar.bar-table > i { background: linear-gradient(90deg, var(--table-accent), var(--table-accent-light)); }
     .progress-bar.bar-total > i { background: linear-gradient(90deg, var(--progress-gray), #b0bcc9); }
     .progress-stat { font-size: 15px; font-weight: 700; margin-top: 4px; }
     .progress-stat span { font-size: 11px; font-weight: 400; color: var(--muted); margin-left: 4px; }
@@ -86,13 +91,13 @@
     .week-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
     @media (min-width: 768px) { .week-grid { grid-template-columns: repeat(4, 1fr); } }
     .week-cell { padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); cursor: pointer; transition: all 0.2s; }
-    .week-cell:hover { border-color: var(--queen-gold); background: var(--gold-dim); transform: translateY(-2px); box-shadow: var(--shadow); }
-    .week-cell.active { border-color: var(--queen-gold); background: var(--gold-dim); }
+    .week-cell:hover { border-color: var(--queen-accent); background: var(--gold-dim); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .week-cell.active { border-color: var(--queen-accent); background: var(--gold-dim); }
     .week-cell-label { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
     .week-cell-stat { font-size: 13px; font-weight: 600; }
     .week-cell-pct { font-size: 11px; color: var(--muted); margin-top: 2px; }
     .week-mini-bar { height: 4px; background: rgba(26,39,68,0.08); border-radius: 999px; margin-top: 10px; overflow: hidden; }
-    .week-mini-bar i { display: block; height: 100%; background: var(--queen-gold); border-radius: 999px; transition: width 0.4s; }
+    .week-mini-bar i { display: block; height: 100%; background: var(--queen-accent); border-radius: 999px; transition: width 0.4s; }
     .priority-list { display: flex; flex-direction: column; gap: 10px; }
     .priority-item { display: flex; align-items: center; gap: 14px; padding: 16px; border: 1px solid var(--line); border-radius: 10px; cursor: pointer; background: var(--bg); transition: all 0.2s; }
     .priority-item:hover { background: var(--gold-dim); border-color: var(--queen-gold); transform: translateX(4px); }
@@ -101,8 +106,8 @@
     .priority-title { font-size: 14px; font-weight: 600; line-height: 1.4; }
     .priority-meta { font-size: 11px; color: var(--muted); margin-top: 4px; }
     .priority-badge { font-size: 11px; padding: 5px 10px; border-radius: 999px; font-weight: 700; flex-shrink: 0; }
-    .priority-badge.pending { background: rgba(255,107,107,0.15); color: var(--status-pending); }
-    .priority-badge.in_progress { background: rgba(78,205,196,0.15); color: #0d9488; }
+    .priority-badge.pending { background: rgba(148,163,184,0.2); color: var(--status-pending); }
+    .priority-badge.in_progress { background: rgba(190,158,91,0.18); color: var(--status-progress); }
     .priority-badge.done { background: rgba(46,204,113,0.15); color: var(--status-done); }
     [data-theme="dark"] .priority-badge.in_progress { color: var(--status-progress); }
 
@@ -112,7 +117,11 @@
     @media (min-width: 768px) { .filter-bar { flex-direction: row; flex-wrap: wrap; align-items: center; } }
     .filter-group { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
     .filter-label { font-size: 11px; color: var(--muted); font-weight: 700; letter-spacing: 0.05em; margin-right: 4px; min-width: 32px; }
+    .filter-bar input[type="search"] { flex: 1; min-width: 180px; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); font-size: 13px; }
     .filter-bar select { padding: 8px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--text); font-size: 13px; }
+    .brand-badge { font-size: 10px; font-weight: 700; padding: 4px 8px; border-radius: 6px; flex-shrink: 0; letter-spacing: 0.04em; }
+    .brand-badge.queen { background: rgba(190,158,91,0.2); color: #8A6A2E; }
+    .brand-badge.table { background: rgba(212,165,116,0.25); color: #6D3E55; }
     .task-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 12px; }
     .task-week { margin-bottom: 0; }
     .task-week + .task-week { margin-top: 12px; }
@@ -123,8 +132,8 @@
     .task-row.done .task-title { text-decoration: line-through; color: var(--muted); }
     .status-icon-btn { width: 36px; height: 36px; border-radius: 8px; border: none; font-size: 16px; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: transform 0.15s; }
     .status-icon-btn:hover { transform: scale(1.08); }
-    .status-icon-btn.pending { background: rgba(255,107,107,0.12); }
-    .status-icon-btn.in_progress { background: rgba(78,205,196,0.15); }
+    .status-icon-btn.pending { background: rgba(148,163,184,0.15); }
+    .status-icon-btn.in_progress { background: rgba(190,158,91,0.18); }
     .status-icon-btn.done { background: rgba(46,204,113,0.12); }
     .task-main { flex: 1; min-width: 0; }
     .task-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; }
@@ -132,22 +141,25 @@
     .task-inline-meta { font-size: 11px; color: var(--muted); }
     .task-inline-meta .sep { opacity: 0.4; margin: 0 2px; }
     .task-status-label { font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 999px; flex-shrink: 0; }
-    .task-status-label.pending { background: rgba(255,107,107,0.12); color: var(--status-pending); }
-    .task-status-label.in_progress { background: rgba(78,205,196,0.12); color: #0d9488; }
+    .task-status-label.pending { background: rgba(148,163,184,0.15); color: var(--status-pending); }
+    .task-status-label.in_progress { background: rgba(190,158,91,0.15); color: var(--status-progress); }
     .task-status-label.done { background: rgba(46,204,113,0.12); color: var(--status-done); }
     [data-theme="dark"] .task-status-label.in_progress { color: var(--status-progress); }
 
     /* ── Modal ── */
     .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 100; display: flex; align-items: flex-end; justify-content: center; }
     @media (min-width: 768px) { .modal-backdrop { align-items: center; padding: 24px; } }
-    .modal-panel { background: var(--surface); width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto; border-radius: 16px 16px 0 0; box-shadow: 0 24px 64px rgba(0,0,0,0.18); }
+    .modal-panel { background: var(--surface); width: 100%; max-width: 580px; max-height: 90vh; overflow-y: auto; border-radius: 16px 16px 0 0; box-shadow: 0 24px 64px rgba(0,0,0,0.18); }
     @media (min-width: 768px) { .modal-panel { border-radius: 14px; } }
-    .modal-head { padding: 18px 20px 14px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
-    .modal-head h2 { font-size: 15px; font-weight: 600; line-height: 1.45; flex: 1; }
-    .modal-close { background: var(--bg); border: none; width: 32px; height: 32px; border-radius: 8px; font-size: 18px; cursor: pointer; color: var(--muted); flex-shrink: 0; }
+    .modal-head { padding: 18px 20px 14px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; color: #fff; }
+    .modal-head.queen { background: var(--queen-bg); }
+    .modal-head.table { background: var(--table-bg); }
+    .modal-head-meta { font-size: 11px; opacity: 0.85; margin-bottom: 6px; }
+    .modal-head h2 { font-size: 15px; font-weight: 600; line-height: 1.45; flex: 1; color: #fff; font-family: "Cormorant Garamond", Georgia, serif; }
+    .modal-close { background: rgba(255,255,255,0.15); border: none; width: 32px; height: 32px; border-radius: 8px; font-size: 18px; cursor: pointer; color: #fff; flex-shrink: 0; }
     .modal-body { padding: 16px 20px 8px; }
-    .modal-detail-tabs { display: flex; gap: 6px; margin-bottom: 20px; }
-    .modal-tab-btn { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--muted); font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; text-align: center; }
+    .modal-detail-tabs { display: flex; gap: 4px; margin-bottom: 16px; flex-wrap: wrap; }
+    .modal-tab-btn { flex: 1 1 auto; min-width: 56px; padding: 8px 6px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--muted); font-size: 11px; font-weight: 500; cursor: pointer; transition: all 0.2s; text-align: center; }
     .modal-tab-btn.active { background: var(--navy); border-color: var(--navy); color: #fff; font-weight: 600; }
     [data-theme="dark"] .modal-tab-btn.active { background: var(--gold); border-color: var(--gold); color: #1a2744; }
     .modal-tab-panel { display: none; }
@@ -165,32 +177,68 @@
     .info-status-block { padding: 16px; background: var(--bg); border-radius: 10px; border: 1px solid var(--line); text-align: center; }
     .info-status-btn { font-size: 14px; padding: 12px 24px; border-radius: 999px; font-weight: 700; border: none; cursor: pointer; margin-top: 10px; transition: transform 0.15s; }
     .info-status-btn:hover { transform: scale(1.03); }
-    .info-status-btn.pending { background: rgba(255,107,107,0.15); color: var(--status-pending); }
-    .info-status-btn.in_progress { background: rgba(78,205,196,0.18); color: #0d9488; }
+    .info-status-btn.pending { background: rgba(148,163,184,0.2); color: var(--status-pending); }
+    .info-status-btn.in_progress { background: rgba(190,158,91,0.2); color: var(--status-progress); }
     .info-status-btn.done { background: rgba(46,204,113,0.15); color: var(--status-done); }
     [data-theme="dark"] .info-status-btn.in_progress { color: var(--status-progress); }
     .info-hint { font-size: 11px; color: var(--muted); margin-top: 10px; }
     .info-quick-nav { display: flex; gap: 10px; }
     .info-quick-nav button { flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--text); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-    .info-quick-nav button:hover { border-color: var(--queen-gold); background: var(--gold-dim); }
-
-    /* Caption / Tags tabs */
+    .info-quick-nav button:hover { border-color: var(--queen-accent); background: var(--gold-dim); }
+    .tag-pill { font-size: 13px; padding: 8px 14px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); color: var(--text); font-weight: 500; }
+    .tag-pill.fixed { border-color: transparent; font-weight: 600; }
+    .tag-pill.queen { background: rgba(190,158,91,0.15); color: #8A6A2E; }
+    .tag-pill.table { background: rgba(212,165,116,0.2); color: #6D3E55; }
     .content-panel { padding: 20px; background: var(--bg); border-radius: 10px; border: 1px solid var(--line); }
     .caption-display { font-size: 14px; line-height: 1.75; white-space: pre-wrap; min-height: 120px; color: var(--text); }
     .caption-display.empty { color: var(--muted); font-style: italic; }
     .tag-list { display: flex; flex-wrap: wrap; gap: 8px; min-height: 48px; }
-    .tag-pill { font-size: 13px; padding: 8px 14px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); color: var(--text); font-weight: 500; }
     .copy-action { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
     .btn-copy { padding: 10px 18px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--text); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-    .btn-copy:hover { border-color: var(--queen-gold); background: var(--gold-dim); }
+    .btn-copy:hover { border-color: var(--queen-accent); background: var(--gold-dim); }
     .btn-copy.primary { background: var(--navy); border-color: var(--navy); color: #fff; }
     [data-theme="dark"] .btn-copy.primary { background: var(--gold); border-color: var(--gold); color: #1a2744; }
     .modal-actions { padding: 12px 20px 20px; }
     .modal-actions .btn-primary { width: 100%; }
 
+    /* Design preview */
+    .preview-frame { border-radius: 12px; overflow: hidden; margin: 0 auto; max-width: 280px; }
+    .preview-slide { padding: 24px 20px; min-height: 320px; color: #fff; display: flex; flex-direction: column; justify-content: center; text-align: center; }
+    .preview-slide.queen { background: var(--queen-bg); }
+    .preview-slide.table { background: var(--table-bg); }
+    .preview-headline { font-family: "Cormorant Garamond", Georgia, serif; font-size: 22px; font-weight: 600; line-height: 1.35; white-space: pre-line; margin-bottom: 10px; }
+    .preview-sub { font-size: 12px; opacity: 0.9; margin-bottom: 16px; }
+    .preview-points { text-align: left; font-size: 11px; line-height: 1.6; opacity: 0.95; }
+    .preview-points li { margin-bottom: 6px; list-style: none; }
+    .preview-points li::before { content: "✦ "; color: var(--gold); }
+    .preview-reels { aspect-ratio: 9/16; max-width: 220px; margin: 0 auto; border-radius: 12px; overflow: hidden; position: relative; }
+    .reels-top { display: flex; gap: 4px; padding: 8px; position: absolute; top: 0; left: 0; right: 0; z-index: 2; }
+    .reels-top span { flex: 1; height: 3px; border-radius: 2px; background: rgba(255,255,255,0.35); }
+    .reels-top span.on { background: #fff; }
+    .preview-story-wrap { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; }
+    .preview-story { flex: 0 0 140px; aspect-ratio: 9/16; border-radius: 10px; overflow: hidden; position: relative; font-size: 10px; }
+    .story-top { display: flex; gap: 3px; padding: 6px; position: absolute; top: 0; left: 0; right: 0; }
+    .story-top span { flex: 1; height: 2px; border-radius: 1px; background: rgba(255,255,255,0.35); }
+    .story-top span.on { background: #fff; }
+    .spec-grid { display: grid; gap: 8px; }
+    .spec-row { display: flex; justify-content: space-between; gap: 12px; padding: 10px 12px; background: var(--bg); border-radius: 8px; font-size: 12px; }
+    .spec-row strong { color: var(--muted); font-weight: 600; flex-shrink: 0; }
+    .channel-chart { display: flex; flex-direction: column; gap: 10px; }
+    .channel-bar-row { display: flex; align-items: center; gap: 10px; font-size: 12px; }
+    .channel-bar-label { width: 64px; flex-shrink: 0; font-weight: 600; }
+    .channel-bar-track { flex: 1; height: 8px; background: rgba(26,39,68,0.06); border-radius: 999px; overflow: hidden; }
+    .channel-bar-fill { height: 100%; background: var(--queen-accent); border-radius: 999px; }
+    .calendar-list { display: flex; flex-direction: column; gap: 8px; }
+    .calendar-item { display: flex; align-items: center; gap: 12px; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); cursor: pointer; }
+    .calendar-item:hover { border-color: var(--queen-accent); }
+    .calendar-dday { font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 6px; background: rgba(190,158,91,0.2); color: var(--status-progress); flex-shrink: 0; }
+    .scene-list { font-size: 13px; line-height: 1.6; }
+    .scene-list li { margin-bottom: 8px; padding-left: 4px; }
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--navy); color: #fff; padding: 10px 20px; border-radius: 999px; font-size: 13px; z-index: 200; box-shadow: var(--shadow); }
+
     .status-msg { font-size: 13px; padding: 12px 16px; border-radius: 10px; margin-bottom: 12px; }
     .status-msg.ok { background: rgba(46,204,113,0.12); color: var(--status-done); }
-    .status-msg.err { background: rgba(255,107,107,0.12); color: var(--status-pending); }
+    .status-msg.err { background: rgba(148,163,184,0.2); color: var(--status-pending); }
     .empty { color: var(--muted); font-size: 13px; padding: 32px 20px; text-align: center; }
     @media (max-width: 640px) {
       .main { padding: 16px 14px; }
@@ -236,7 +284,7 @@
         <div class="dash-header">
           <div>
             <h2>2026년 7-8월 캠페인 진행상황</h2>
-            <p>더퀸 · 퀸즈테이블 마케팅 콘텐츠</p>
+            <p>더퀸 · 퀸즈테이블 마케팅 콘텐츠 · 총 60개</p>
           </div>
           <button type="button" class="btn-outline" id="init-btn">DB 초기화</button>
         </div>
@@ -253,16 +301,37 @@
           <h3 id="priority-title">이번 주 우선순위</h3>
           <div class="priority-list" id="priority-list"></div>
         </div>
+        <div class="card">
+          <h3>채널별 분포</h3>
+          <div class="channel-chart" id="channel-chart"></div>
+        </div>
+        <div class="card">
+          <h3>다가오는 발행</h3>
+          <div class="calendar-list" id="publish-calendar"></div>
+        </div>
       </div>
 
       <div id="tab-tasks" class="hidden">
         <div class="filter-bar">
+          <input type="search" id="task-search" placeholder="제목·캡션 검색…" />
           <div class="filter-group">
-            <span class="filter-label">필터</span>
+            <span class="filter-label">상태</span>
             <button type="button" class="chip active" data-task-filter="all">전체</button>
             <button type="button" class="chip" data-task-filter="pending">미완료</button>
             <button type="button" class="chip" data-task-filter="in_progress">진행중</button>
             <button type="button" class="chip" data-task-filter="done">완료</button>
+          </div>
+          <div class="filter-group">
+            <span class="filter-label">브랜드</span>
+            <button type="button" class="chip active" data-brand-filter="all">전체</button>
+            <button type="button" class="chip" data-brand-filter="queen">더퀸</button>
+            <button type="button" class="chip" data-brand-filter="table">퀸즈테이블</button>
+          </div>
+          <div class="filter-group">
+            <span class="filter-label">채널</span>
+            <select id="channel-select">
+              <option value="all">전체 채널</option>
+            </select>
           </div>
           <div class="filter-group">
             <span class="filter-label">정렬</span>
@@ -273,6 +342,7 @@
           <label>주차
             <select id="week-select"></select>
           </label>
+          <button type="button" class="btn-outline" id="filter-reset">필터 초기화</button>
         </div>
         <div id="task-list"></div>
       </div>
@@ -288,8 +358,11 @@
 
   <div id="task-modal" class="modal-backdrop hidden" aria-hidden="true">
     <div class="modal-panel" role="dialog" aria-modal="true">
-      <div class="modal-head">
-        <h2 id="modal-title">콘텐츠 상세</h2>
+      <div class="modal-head queen" id="modal-head">
+        <div style="flex:1;min-width:0">
+          <div class="modal-head-meta" id="modal-meta"></div>
+          <h2 id="modal-title">콘텐츠 상세</h2>
+        </div>
         <button type="button" class="modal-close" id="modal-close" aria-label="닫기">✕</button>
       </div>
       <div class="modal-body" id="modal-body"></div>
@@ -302,6 +375,12 @@
   <script>
 (function () {
   const BRANDS = { queen: "더퀸 웨딩홀", table: "퀸즈테이블" };
+  const BRAND_COLORS = {
+    queen: { bg: "linear-gradient(160deg, #0E1B33 0%, #17294C 100%)", accent: "#BE9E5B", accentLight: "#D8C08A", label: "THE QUEEN" },
+    table: { bg: "linear-gradient(160deg, #583047 0%, #6D3E55 100%)", accent: "#D4A574", accentLight: "#E8B088", label: "Queen's Table" },
+  };
+  const BRAND_FIXED_TAGS = { queen: ["더퀸", "포항웨딩홀"], table: ["퀸즈테이블", "포항뷔페"] };
+  const CAMPAIGN_START = new Date(2026, 6, 1);
   const STATUS_LABELS = { pending: "미완료", in_progress: "진행중", done: "완료" };
   const STATUS_ICONS = { pending: "⭕", in_progress: "⏳", done: "✅" };
   const STATUS_ORDER = { pending: 0, in_progress: 1, done: 2 };
@@ -317,6 +396,9 @@
   let taskFilter = "all";
   let taskSort = "week";
   let taskWeekFilter = 0;
+  let taskBrandFilter = "all";
+  let taskChannelFilter = "all";
+  let taskSearch = "";
 
   const $ = (id) => document.getElementById(id);
   const show = (el) => el.classList.remove("hidden");
@@ -378,6 +460,101 @@
 
   function pctBar(done, total) {
     return total ? Math.round((done / total) * 100) : 0;
+  }
+
+  function brandColor(brand) {
+    return BRAND_COLORS[brand] || BRAND_COLORS.queen;
+  }
+
+  function parseCaptionParts(caption) {
+    const parts = (caption || "").split("\n\n").filter(Boolean);
+    return {
+      headline: (parts[0] || "").replace(/\n/g, "\n"),
+      subcopy: parts[1] || "",
+      points: parts.slice(2).join("\n").split("\n").filter((l) => l.trim()).map((l) => l.replace(/^✦\s*/, "")),
+    };
+  }
+
+  function taskPublishDate(t) {
+    const idx = allTasks
+      .filter((x) => x.week_id === t.week_id && x.brand === t.brand)
+      .sort((a, b) => a.sort_order - b.sort_order)
+      .findIndex((x) => x.id === t.id || x.task_key === t.task_key);
+    const weekStart = new Date(CAMPAIGN_START);
+    weekStart.setDate(weekStart.getDate() + (t.week_id - 1) * 7);
+    const offset = [1, 3, 5, 2, 4, 6][t.sort_order] ?? (t.sort_order + 1);
+    const d = new Date(weekStart);
+    d.setDate(d.getDate() + offset - 1);
+    return d;
+  }
+
+  function dDayLabel(date) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const target = new Date(date);
+    target.setHours(0, 0, 0, 0);
+    const diff = Math.round((target - today) / 86400000);
+    if (diff === 0) return "D-Day";
+    if (diff > 0) return `D-${diff}`;
+    return `D+${Math.abs(diff)}`;
+  }
+
+  function progressBars(count, active) {
+    return Array.from({ length: count }, (_, i) =>
+      `<span class="${i <= active ? "on" : ""}"${i <= active ? ' style="background:#fff"' : ""}></span>`
+    ).join("");
+  }
+
+  function renderDesignPreview(t) {
+    const bc = brandColor(t.brand);
+    const ch = (t.channel || "").toLowerCase();
+    const { headline, subcopy, points } = parseCaptionParts(t.caption);
+    const scenes = t.scenes || [];
+    const slidePoints = points.length ? points : scenes.map((s) => s.replace(/^\d+장:\s*/, ""));
+
+    if (ch.includes("릴스")) {
+      const n = Math.max(3, Math.min(scenes.length || 4, 5));
+      return `<div class="preview-reels ${t.brand}">
+        <div class="reels-top">${progressBars(n, 0)}</div>
+        <div class="preview-slide ${t.brand}" style="min-height:100%;aspect-ratio:9/16;display:flex;align-items:center;justify-content:center">
+          <div>
+            <div class="preview-headline">${esc(headline || t.title)}</div>
+            <div class="preview-sub">${esc(subcopy)}</div>
+          </div>
+        </div>
+      </div>`;
+    }
+    if (ch.includes("스토리")) {
+      const frames = Math.max(2, Math.min(scenes.length || 3, 4));
+      return `<div class="preview-story-wrap">${Array.from({ length: frames }, (_, i) => `
+        <div class="preview-story ${t.brand}">
+          <div class="story-top">${progressBars(frames, i)}</div>
+          <div class="preview-slide ${t.brand}" style="min-height:100%;padding:20px 10px;font-size:11px">
+            <div class="preview-headline" style="font-size:14px">${esc((scenes[i] || headline || t.title).slice(0, 40))}</div>
+          </div>
+        </div>`).join("")}</div>`;
+    }
+    return `<div class="preview-frame">
+      <div class="preview-slide ${t.brand}">
+        <div class="preview-headline">${esc(headline || t.title)}</div>
+        <div class="preview-sub">${esc(subcopy)}</div>
+        <ul class="preview-points">${slidePoints.slice(0, 4).map((p) => `<li>${esc(p)}</li>`).join("")}</ul>
+      </div>
+    </div>`;
+  }
+
+  function showToast(msg) {
+    let el = document.getElementById("copy-toast");
+    if (!el) {
+      el = document.createElement("div");
+      el.id = "copy-toast";
+      el.className = "toast hidden";
+      document.body.appendChild(el);
+    }
+    el.textContent = msg;
+    el.classList.remove("hidden");
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => el.classList.add("hidden"), 2200);
   }
 
   function renderProgress() {
@@ -481,17 +658,73 @@
     });
   }
 
+  function renderChannelChart() {
+    const el = $("channel-chart");
+    if (!allTasks.length) { el.innerHTML = '<div class="empty">데이터 없음</div>'; return; }
+    const counts = {};
+    allTasks.forEach((t) => {
+      const ch = t.channel || "기타";
+      counts[ch] = (counts[ch] || 0) + 1;
+    });
+    const max = Math.max(...Object.values(counts), 1);
+    el.innerHTML = Object.entries(counts).sort((a, b) => b[1] - a[1]).map(([ch, n]) => `
+      <div class="channel-bar-row">
+        <span class="channel-bar-label">${esc(ch)}</span>
+        <div class="channel-bar-track"><div class="channel-bar-fill" style="width:${Math.round(n / max * 100)}%"></div></div>
+        <span>${n}</span>
+      </div>`).join("");
+  }
+
+  function renderPublishCalendar() {
+    const el = $("publish-calendar");
+    const upcoming = [...allTasks]
+      .filter((t) => t.status !== "done")
+      .map((t) => ({ t, date: taskPublishDate(t) }))
+      .sort((a, b) => a.date - b.date)
+      .slice(0, 8);
+    if (!upcoming.length) {
+      el.innerHTML = '<div class="empty">예정된 발행 없음</div>';
+      return;
+    }
+    el.innerHTML = upcoming.map(({ t, date }) => {
+      const label = t.week_label || WEEK_LABELS[t.week_id];
+      return `<div class="calendar-item" data-id="${t.id}">
+        <span class="calendar-dday">${dDayLabel(date)}</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:600;font-size:13px">${esc(t.title || t.task_name)}</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">${esc(label)}주 · ${esc(t.channel)} · ${date.toLocaleDateString("ko-KR", { month: "short", day: "numeric", weekday: "short" })}</div>
+        </div>
+        <span class="brand-badge ${t.brand}">${esc(BRAND_COLORS[t.brand]?.label || t.brand)}</span>
+      </div>`;
+    }).join("");
+    el.querySelectorAll(".calendar-item").forEach((row) => {
+      row.addEventListener("click", () => openTaskModal(row.dataset.id));
+    });
+  }
+
   function renderDashboard() {
     renderProgress();
     renderStatusChips();
     renderWeekGrid();
     renderPriorityList();
+    renderChannelChart();
+    renderPublishCalendar();
   }
 
   function getFilteredTasks() {
     let list = [...allTasks];
     if (taskWeekFilter > 0) list = list.filter((t) => t.week_id === taskWeekFilter);
     if (taskFilter !== "all") list = list.filter((t) => t.status === taskFilter);
+    if (taskBrandFilter !== "all") list = list.filter((t) => t.brand === taskBrandFilter);
+    if (taskChannelFilter !== "all") list = list.filter((t) => (t.channel || "") === taskChannelFilter);
+    if (taskSearch.trim()) {
+      const q = taskSearch.trim().toLowerCase();
+      list = list.filter((t) =>
+        (t.title || "").toLowerCase().includes(q) ||
+        (t.caption || "").toLowerCase().includes(q) ||
+        (t.task_name || "").toLowerCase().includes(q)
+      );
+    }
     list.sort((a, b) => {
       if (taskSort === "brand") return a.brand.localeCompare(b.brand) || a.week_id - b.week_id || a.sort_order - b.sort_order;
       if (taskSort === "status") return (STATUS_ORDER[a.status] ?? 9) - (STATUS_ORDER[b.status] ?? 9) || a.week_id - b.week_id;
@@ -527,6 +760,7 @@
       const updated = t.updated_at ? new Date(t.updated_at).toLocaleDateString("ko-KR") : "";
       html += `<div class="task-row ${t.status === "done" ? "done" : ""}" data-id="${t.id}">
         <button type="button" class="status-icon-btn ${t.status}" data-id="${t.id}" title="클릭하여 상태 변경">${STATUS_ICONS[t.status]}</button>
+        <span class="brand-badge ${t.brand}">${t.brand === "queen" ? "TQ" : "QT"}</span>
         <div class="task-main">
           <div class="task-line">
             <span class="task-title">${esc(t.title || t.task_name)}</span>
@@ -548,6 +782,15 @@
     el.querySelectorAll(".task-row").forEach((row) => {
       row.addEventListener("click", () => openTaskModal(row.dataset.id));
     });
+  }
+
+  function populateChannelSelect() {
+    const sel = $("channel-select");
+    const prev = taskChannelFilter;
+    const channels = [...new Set(allTasks.map((t) => t.channel).filter(Boolean))].sort();
+    sel.innerHTML = '<option value="all">전체 채널</option>' +
+      channels.map((ch) => `<option value="${String(ch).replace(/"/g, "&quot;")}">${esc(ch)}</option>`).join("");
+    sel.value = prev || "all";
   }
 
   function populateWeekSelect() {
@@ -600,39 +843,50 @@
 
   function renderTaskModal(t) {
     const label = t.week_label || WEEK_LABELS[t.week_id] || t.week_id;
-    $("modal-title").textContent = "콘텐츠 상세";
+    const pubDate = taskPublishDate(t);
+    const bc = brandColor(t.brand);
+    const head = $("modal-head");
+    head.className = "modal-head " + (t.brand || "queen");
+    $("modal-meta").textContent = `${label}주 · ${t.channel || "콘텐츠"} · ${bc.label}`;
+    $("modal-title").textContent = t.title || t.task_name;
 
     const tags = t.tags || [];
+    const fixed = BRAND_FIXED_TAGS[t.brand] || [];
+    const contentTags = tags.filter((tag) => !fixed.includes(tag.replace(/^#/, "")));
     const caption = t.caption || "";
-    const tagHtml = tags.map((tag) => `<span class="tag-pill">#${esc(tag.replace(/^#/, ""))}</span>`).join("");
+    const specs = t.specs || {};
+    const specHtml = Object.entries(specs).map(([k, v]) =>
+      `<div class="spec-row"><strong>${esc(k)}</strong><span>${esc(v)}</span></div>`
+    ).join("");
+    const sceneHtml = (t.scenes || []).map((s) => `<li>${esc(s)}</li>`).join("");
+    const tagHtml = [
+      ...fixed.map((tag) => `<span class="tag-pill fixed ${t.brand}">#${esc(tag)}</span>`),
+      ...contentTags.map((tag) => `<span class="tag-pill ${t.brand}">#${esc(tag.replace(/^#/, ""))}</span>`),
+    ].join("");
 
     $("modal-body").innerHTML = `
       <div class="modal-detail-tabs">
-        <button type="button" class="modal-tab-btn active" data-modal-tab="info">정보</button>
+        <button type="button" class="modal-tab-btn active" data-modal-tab="design">디자인</button>
+        <button type="button" class="modal-tab-btn" data-modal-tab="storyboard">스토리보드</button>
         <button type="button" class="modal-tab-btn" data-modal-tab="caption">캡션</button>
         <button type="button" class="modal-tab-btn" data-modal-tab="tags">해시태그</button>
+        <button type="button" class="modal-tab-btn" data-modal-tab="spec">스펙</button>
+        <button type="button" class="modal-tab-btn" data-modal-tab="kpi">목표</button>
+        <button type="button" class="modal-tab-btn" data-modal-tab="tips">팁</button>
       </div>
 
-      <div class="modal-tab-panel active" data-modal-panel="info">
-        <div class="info-panel">
-          <div class="info-title-block">
-            <span class="info-field-label">제목</span>
-            <p class="info-title-text">${esc(t.title || t.task_name)}</p>
-          </div>
-          <div class="info-meta-grid">
-            <div class="info-meta-item"><span>채널</span><strong>${esc(t.channel || "—")}</strong></div>
-            <div class="info-meta-item"><span>주차</span><strong>${esc(label)}주</strong></div>
-            <div class="info-meta-item"><span>브랜드</span><strong>${esc(BRANDS[t.brand] || t.brand)}</strong></div>
-          </div>
-          <div class="info-status-block">
-            <span class="info-field-label">상태</span>
-            <button type="button" class="info-status-btn ${t.status}" id="modal-status-btn">${STATUS_ICONS[t.status]} ${STATUS_LABELS[t.status]}</button>
-            <p class="info-hint">클릭해서 변경 · ⭕ 미완료 → ⏳ 진행중 → ✅ 완료</p>
-          </div>
-          <div class="info-quick-nav">
-            <button type="button" data-goto-tab="caption">캡션 보기</button>
-            <button type="button" data-goto-tab="tags">해시태그 보기</button>
-          </div>
+      <div class="modal-tab-panel active" data-modal-panel="design">
+        <div class="content-panel">${renderDesignPreview(t)}</div>
+        <p class="info-hint" style="margin-top:12px;text-align:center">발행 예정: ${pubDate.toLocaleDateString("ko-KR", { year: "numeric", month: "long", day: "numeric", weekday: "long" })}</p>
+        <div class="info-status-block" style="margin-top:12px">
+          <button type="button" class="info-status-btn ${t.status}" id="modal-status-btn">${STATUS_ICONS[t.status]} ${STATUS_LABELS[t.status]}</button>
+          <p class="info-hint">클릭해서 상태 변경</p>
+        </div>
+      </div>
+
+      <div class="modal-tab-panel" data-modal-panel="storyboard">
+        <div class="content-panel">
+          <ul class="scene-list">${sceneHtml || '<li class="empty" style="padding:0">씬 정보 없음</li>'}</ul>
         </div>
       </div>
 
@@ -647,11 +901,34 @@
 
       <div class="modal-tab-panel" data-modal-panel="tags">
         <div class="content-panel">
-          <div class="tag-list">${tagHtml || '<span class="empty" style="padding:0">태그 없음</span>'}</div>
+          <p class="info-field-label">브랜드 고정 태그</p>
+          <div class="tag-list" style="margin-bottom:16px">${fixed.map((tag) => `<span class="tag-pill fixed ${t.brand}">#${esc(tag)}</span>`).join("")}</div>
+          <p class="info-field-label">콘텐츠 태그</p>
+          <div class="tag-list">${contentTags.length ? contentTags.map((tag) => `<span class="tag-pill ${t.brand}">#${esc(tag.replace(/^#/, ""))}</span>`).join("") : '<span class="empty" style="padding:0">태그 없음</span>'}</div>
           <div class="copy-action">
             <button type="button" class="btn-copy" data-copy="tags">📋 복사</button>
             <button type="button" class="btn-copy primary" data-copy="all">캡션+해시태그 일괄복사</button>
           </div>
+        </div>
+      </div>
+
+      <div class="modal-tab-panel" data-modal-panel="spec">
+        <div class="content-panel"><div class="spec-grid">${specHtml || '<div class="empty" style="padding:0">스펙 없음</div>'}</div></div>
+      </div>
+
+      <div class="modal-tab-panel" data-modal-panel="kpi">
+        <div class="content-panel">
+          <div class="spec-grid">
+            <div class="spec-row"><strong>목표</strong><span>주간 ${t.brand === "queen" ? "3" : "3"}건 완료 · 인게이지먼트 향상</span></div>
+            <div class="spec-row"><strong>채널</strong><span>${esc(t.channel || "—")}</span></div>
+            <div class="spec-row"><strong>상태</strong><span>${STATUS_LABELS[t.status]}</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-tab-panel" data-modal-panel="tips">
+        <div class="content-panel">
+          <div class="caption-display${t.tips ? "" : " empty"}">${t.tips ? esc(t.tips) : "팁 없음"}</div>
         </div>
       </div>
     `;
@@ -659,38 +936,47 @@
     $("modal-body").querySelectorAll(".modal-tab-btn").forEach((btn) => {
       btn.addEventListener("click", () => showModalTab(btn.dataset.modalTab));
     });
-    $("modal-body").querySelectorAll("[data-goto-tab]").forEach((btn) => {
-      btn.addEventListener("click", () => showModalTab(btn.dataset.gotoTab));
-    });
     $("modal-body").querySelectorAll("[data-copy]").forEach((btn) => {
       btn.addEventListener("click", () => {
-        if (btn.dataset.copy === "all") copyCaptionAndTags();
-        else copyTaskSection(t, btn.dataset.copy);
+        if (btn.dataset.copy === "all") copyCaptionAndTags(btn);
+        else copyTaskSection(t, btn.dataset.copy, btn);
       });
     });
     const statusBtn = document.getElementById("modal-status-btn");
     if (statusBtn) statusBtn.addEventListener("click", () => cycleTaskStatus(t.id));
     hide($("modal-actions"));
+    showModalTab("design");
   }
 
-  async function copyText(text) {
+  async function copyText(text, btn) {
     try {
       await navigator.clipboard.writeText(text);
-      setStatus("ok", "클립보드에 복사했습니다");
+      showToast("클립보드에 복사했습니다");
+      if (btn) {
+        const prev = btn.textContent;
+        btn.textContent = "복사 완료";
+        setTimeout(() => { btn.textContent = prev; }, 1800);
+      }
     } catch {
       setStatus("err", "복사에 실패했습니다");
     }
   }
 
-  function copyTaskSection(t, section) {
-    if (section === "caption") return copyText(t.caption || "");
-    if (section === "tags") return copyText((t.tags || []).map((tag) => "#" + tag.replace(/^#/, "")).join(" "));
+  function copyTaskSection(t, section, btn) {
+    if (section === "caption") return copyText(t.caption || "", btn);
+    if (section === "tags") {
+      const fixed = BRAND_FIXED_TAGS[t.brand] || [];
+      const all = [...fixed, ...(t.tags || []).map((tag) => tag.replace(/^#/, ""))];
+      return copyText(all.map((tag) => "#" + tag).join(" "), btn);
+    }
   }
 
-  function copyCaptionAndTags() {
+  function copyCaptionAndTags(btn) {
     if (!activeTask) return;
-    const tags = (activeTask.tags || []).map((tag) => "#" + tag.replace(/^#/, "")).join(" ");
-    copyText([activeTask.caption || "", "", tags].join("\n").trim());
+    const fixed = BRAND_FIXED_TAGS[activeTask.brand] || [];
+    const tags = [...fixed, ...(activeTask.tags || []).map((tag) => tag.replace(/^#/, ""))]
+      .map((tag) => "#" + tag).join(" ");
+    copyText([activeTask.caption || "", "", tags].join("\n").trim(), btn);
   }
 
   async function setTaskStatus(id, status) {
@@ -726,6 +1012,7 @@
     progressAll = d.progress || {};
     priorityTasks = d.priority || [];
     populateWeekSelect();
+    populateChannelSelect();
     renderDashboard();
     renderTasks();
   }
@@ -801,7 +1088,25 @@
   });
   $("init-btn").addEventListener("click", initDb);
   $("modal-close").addEventListener("click", closeTaskModal);
-  $("copy-all-btn").addEventListener("click", copyCaptionAndTags);
+  $("copy-all-btn").addEventListener("click", () => copyCaptionAndTags($("copy-all-btn")));
+  $("task-search").addEventListener("input", (e) => { taskSearch = e.target.value; renderTasks(); });
+  $("channel-select").addEventListener("change", (e) => { taskChannelFilter = e.target.value; renderTasks(); });
+  $("filter-reset").addEventListener("click", () => {
+    taskFilter = "all"; taskBrandFilter = "all"; taskChannelFilter = "all"; taskWeekFilter = 0; taskSearch = "";
+    $("task-search").value = "";
+    $("week-select").value = "0";
+    $("channel-select").value = "all";
+    document.querySelectorAll("[data-task-filter]").forEach((b) => b.classList.toggle("active", b.dataset.taskFilter === "all"));
+    document.querySelectorAll("[data-brand-filter]").forEach((b) => b.classList.toggle("active", b.dataset.brandFilter === "all"));
+    renderTasks();
+  });
+  document.querySelectorAll("[data-brand-filter]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      taskBrandFilter = btn.dataset.brandFilter;
+      document.querySelectorAll("[data-brand-filter]").forEach((b) => b.classList.toggle("active", b === btn));
+      renderTasks();
+    });
+  });
   $("task-modal").addEventListener("click", (e) => { if (e.target === $("task-modal")) closeTaskModal(); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeTaskModal(); });
 
