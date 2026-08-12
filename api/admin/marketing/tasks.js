@@ -4,7 +4,7 @@ const { formatTaskRow, getProgramWeek } = require("../../../lib/marketing-schema
 
 const TASK_LIST_FIELDS = `
   id, task_key, brand, week_id, week_label, channel, title, task_name,
-  status, sort_order, updated_at
+  status, sort_order, specs, updated_at
 `;
 
 function mapWeekLabel(weekId) {
