@@ -37,6 +37,7 @@
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/dress-show2", "destination": "/dress-show2.html" },
     { "source": "/dress-show", "destination": "/dress-show.html" },
+    { "source": "/dress-show-2027", "destination": "/dress-show-2027.html" },
     { "source": "/queens-table", "destination": "/queens-table.html" },
     { "source": "/queens-table/queens-box", "destination": "/queens-table/queens-box.html" },
     { "source": "/hall-galaxy", "destination": "/hall-galaxy.html" },

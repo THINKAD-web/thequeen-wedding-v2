@@ -44,6 +44,7 @@ const BASE_SITEMAP_URLS = [
   { loc: `${SITE_URL}/queens-table`, changefreq: 'weekly', priority: '0.9' },
   { loc: `${SITE_URL}/queens-table/queens-box`, changefreq: 'weekly', priority: '0.85' },
   { loc: `${SITE_URL}/dress-show`, changefreq: 'monthly', priority: '0.7' },
+  { loc: `${SITE_URL}/dress-show-2027`, changefreq: 'weekly', priority: '0.85' },
 ];
 
 marked.setOptions({ gfm: true, breaks: false });

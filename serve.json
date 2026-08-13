@@ -32,6 +32,7 @@
   ],
   "rewrites": [
     { "source": "/dress-show", "destination": "/dress-show.html" },
+    { "source": "/dress-show-2027", "destination": "/dress-show-2027.html" },
     { "source": "/queens-table/queens-box.html", "destination": "/queens-table/queens-box" },
     { "source": "/queens-table", "destination": "/queens-table.html" },
     { "source": "/queens-table/queens-box", "destination": "/queens-table/queens-box.html" },
