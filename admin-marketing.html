@@ -65,6 +65,7 @@
     .week-cell:hover, .week-cell.active { border-color: var(--queen-accent); }
     .week-cell-label { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
     .week-cell-stat { font-size: 12px; color: var(--muted); }
+    .week-cell-theme { font-size: 10px; color: var(--muted); margin-top: 6px; line-height: 1.45; }
     .month-label { font-size: 11px; font-weight: 700; color: var(--muted); margin: 12px 0 8px; }
     .filter-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; padding: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
     .filter-bar input[type="search"] { flex: 1; min-width: 160px; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--line); font-size: 13px; }
@@ -127,7 +128,7 @@
         <div class="dash-header">
           <div>
             <h2>2026년 7-8월 캠페인</h2>
-            <p>7월 24개 + 8월 24개 = 총 48개</p>
+            <p>7월 24개 + 8월 16개 = 총 40개</p>
           </div>
           <button type="button" class="btn-outline" id="init-btn">8월 데이터 갱신</button>
         </div>
@@ -171,6 +172,20 @@
   const STATUS_LABELS = { pending: "미완료", in_progress: "진행중", done: "완료" };
   const STATUS_ORDER = { pending: 0, in_progress: 1, done: 2 };
   const WEEK_LABELS = { 1: "7-1", 2: "7-2", 3: "7-3", 4: "7-4", 5: "8-1", 6: "8-2", 7: "8-3", 8: "8-4" };
+  const WEEK_THEMES = {
+    queen: {
+      5: "홀 투어·Sunday Only",
+      6: "예식 가이드·Small Night",
+      7: "가을 예약·패키지",
+      8: "체크리스트·상담",
+    },
+    table: {
+      5: "메뉴·리뷰",
+      6: "가족 모임",
+      7: "혜택·마감",
+      8: "9월 오픈",
+    },
+  };
 
   let allTasks = [];
   let weeksSummary = [];
@@ -273,6 +288,16 @@
     });
   }
 
+  function weekThemeHtml(weekId) {
+    const q = WEEK_THEMES.queen[weekId];
+    const t = WEEK_THEMES.table[weekId];
+    if (!q && !t) return "";
+    if (q && t) {
+      return `<div class="week-cell-theme">더퀸 ${esc(q)}<br>퀸즈 ${esc(t)}</div>`;
+    }
+    return `<div class="week-cell-theme">${esc(q || t)}</div>`;
+  }
+
   function renderWeekGrid() {
     const el = $("week-months");
     if (!weeksSummary.length) {
@@ -285,6 +310,7 @@
       return `<div class="week-cell${active}" data-week="${w.week_id}">
         <div class="week-cell-label">${esc(label)}주</div>
         <div class="week-cell-stat">${w.done}/${w.total} 완료</div>
+        ${weekThemeHtml(w.week_id)}
       </div>`;
     }).join("");
     el.innerHTML = `
