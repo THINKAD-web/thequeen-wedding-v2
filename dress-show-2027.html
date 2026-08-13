@@ -293,11 +293,52 @@ tailwind.config = {
     border: 0;
   }
 
-  .hero-video {
+  .hero-media {
+    position: absolute; inset: 0;
+    overflow: hidden; z-index: 0;
+  }
+  .hero-poster {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
-    object-fit: cover; opacity: .45;
+    object-fit: cover; z-index: 0;
+    transition: opacity .6s ease;
   }
+  .hero-media.is-playing .hero-poster { opacity: 0; }
+  .hero-video {
+    position: absolute;
+    top: 50%; left: 50%;
+    min-width: 100%; min-height: 100%;
+    width: auto; height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 1;
+  }
+  .hero-iframe-wrap {
+    position: absolute; inset: 0;
+    overflow: hidden; z-index: 1;
+    opacity: 0; pointer-events: none;
+    transition: opacity .6s ease;
+  }
+  .hero-iframe-wrap.active { opacity: 1; }
+  .hero-iframe-wrap iframe {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 100vw;
+    height: 56.25vw;
+    min-height: 100vh;
+    min-width: 177.78vh;
+    transform: translate(-50%, -50%);
+    border: 0;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0; z-index: 2;
+    background: linear-gradient(180deg,
+      rgba(14,27,51,0.22) 0%,
+      rgba(14,27,51,0.38) 50%,
+      rgba(14,27,51,0.72) 100%);
+    pointer-events: none;
+  }
+  .hero-content { text-shadow: 0 2px 20px rgba(0,0,0,0.45); }
 
   .photo-placeholder {
     background: linear-gradient(135deg, rgba(190,158,91,0.12), rgba(14,27,51,0.08));
@@ -314,6 +355,7 @@ tailwind.config = {
   @media (prefers-reduced-motion: reduce) {
     .sparkle-bg::before, .scroll-arrow, .pulse-dot { animation: none; }
     .reveal { opacity: 1; transform: none; transition: none; }
+    .hero-video, .hero-iframe-wrap { display: none; }
   }
 </style>
 </head>
@@ -329,13 +371,19 @@ tailwind.config = {
 
 <!-- 1. Hero -->
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden navy-section sparkle-bg">
-  <!-- Hero: 사진 배경 (영상은 하단 갤러리 Streamable 임베드) -->
-  <div class="absolute inset-0" data-slot="hero-bg">
-    <img data-slot="hero-bg" src="https://i.ibb.co/2XXVWvV/KYI-3329.jpg" alt="THE QUEEN 드레스쇼 런웨이 전경" class="absolute inset-0 h-full w-full object-cover opacity-45">
-    <div class="absolute inset-0 bg-gradient-to-b from-navy/55 via-navy/70 to-navy"></div>
+  <div class="hero-media" data-slot="hero-bg" id="hero-media">
+    <img id="hero-poster" data-slot="hero-poster" src="https://i.ibb.co/2XXVWvV/KYI-3329.jpg" alt="" class="hero-poster" aria-hidden="true">
+    <video id="hero-video" data-slot="hero-video" class="hero-video" autoplay muted loop playsinline
+      poster="https://i.ibb.co/2XXVWvV/KYI-3329.jpg">
+      <source src="https://cdn-cf-east.streamable.com/video/mp4/t6fh81.mp4?Expires=1786862700&amp;Signature=MoO5mpGmO6Tb4hhzz60OBF80I8B7~m4HkIZJ6kvD~rXDFk-MtAzL~O0NocUSY2kflCnupQCDZlofl8RZzwpUM9yBVm9GmgMEDnA-PKHcDKXHOMWg6ZdAi-6ISPfmguaOVIKiKk1UM5cl3ExqtgEf0bxs~dglq2OH9ZSA3P~apUFylrWL7p4aEEH8mh9uPQvgJ1MXxRROyob3UT~n7LZOIyFDuS8Y5hStvsQAy4bRCDxpqXfH4UvP-AweThbASy0LESWohyg~UktpCkTDIxkr17Bq5MnFMa8di1PSMgPJWkx375kad8GxXZfcFvghkYPLFviUaCgmxLEiLqGAtnVltg__&amp;Key-Pair-Id=APKAIEYUVEN4EVB2OKEQ" type="video/mp4">
+    </video>
+    <div class="hero-iframe-wrap" id="hero-iframe-fallback" aria-hidden="true">
+      <iframe src="https://streamable.com/e/t6fh81?autoplay=1&amp;muted=1&amp;loop=1" title="드레스쇼 히어로 영상" allow="autoplay; fullscreen" loading="eager"></iframe>
+    </div>
+    <div class="hero-overlay"></div>
   </div>
 
-  <div class="section-inner relative z-10 mx-auto max-w-4xl px-6 pt-28 pb-28 text-center">
+  <div class="section-inner hero-content relative z-10 mx-auto max-w-4xl px-6 pt-28 pb-28 text-center">
     <p class="reveal text-xs sm:text-sm font-semibold tracking-[0.35em] uppercase text-gold-light mb-6">THE QUEEN × WEDDING MUE</p>
     <p class="reveal hero-en text-3xl sm:text-5xl lg:text-6xl gold-text font-semibold leading-tight">2027 S/S New Collection</p>
     <h1 class="reveal mt-5 text-2xl sm:text-4xl lg:text-5xl font-extrabold gold-text leading-snug">가장 먼저 만나는<br class="sm:hidden"> 신상 드레스</h1>
@@ -606,6 +654,35 @@ tailwind.config = {
     entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+
+  /* Hero video — mp4 우선, 실패 시 Streamable iframe 폴백 */
+  (function () {
+    var media = document.getElementById('hero-media');
+    var video = document.getElementById('hero-video');
+    var iframeWrap = document.getElementById('hero-iframe-fallback');
+    if (!video || !media) return;
+
+    function markPlaying() { media.classList.add('is-playing'); }
+
+    video.addEventListener('playing', markPlaying);
+    video.addEventListener('canplay', function () {
+      video.play().catch(function () { useIframeFallback(); });
+    });
+
+    function useIframeFallback() {
+      if (!iframeWrap) return;
+      video.style.display = 'none';
+      iframeWrap.classList.add('active');
+      iframeWrap.setAttribute('aria-hidden', 'false');
+      markPlaying();
+    }
+
+    video.addEventListener('error', useIframeFallback);
+
+    if (video.readyState >= 2) {
+      video.play().then(markPlaying).catch(useIframeFallback);
+    }
+  })();
 
   /* Nav scroll */
   var nav = document.getElementById('site-nav');
