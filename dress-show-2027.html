@@ -342,6 +342,21 @@ tailwind.config = {
     padding-top: 0.15rem;
   }
 
+  .notice-box {
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+    padding: 16px 20px;
+    background: rgba(30, 90, 200, 0.08);
+    border: 1px solid rgba(30, 90, 200, 0.4);
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .notice-box .star { color: #3B82F6; font-size: 18px; line-height: 1.4; flex-shrink: 0; }
+  .notice-box p { color: #B8D4F0; font-size: 14px; line-height: 1.6; margin: 0; }
+  .notice-box strong { color: #E8F2FF; }
+
   .photo-placeholder {
     background: linear-gradient(135deg, rgba(190,158,91,0.12), rgba(14,27,51,0.08));
     border: 2px dashed rgba(190,158,91,0.35);
@@ -391,7 +406,7 @@ tailwind.config = {
     <p class="reveal mt-3 text-base sm:text-xl lg:text-2xl font-semibold gold-text leading-snug">웨딩뮤 2027 S/S 뉴 컬렉션<br class="sm:hidden"> 드레스쇼 신상 선공개</p>
     <p class="reveal mt-8 text-base sm:text-lg text-white/85 tracking-wide">선착순 20명 · 프라이빗 피팅</p>
     <div class="reveal mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="#apply" class="btn-gold inline-flex items-center justify-center rounded-full px-10 py-4 text-base font-bold tracking-wide">사전예약 신청하기</a>
+      <a href="#apply" class="btn-gold inline-flex items-center justify-center rounded-full px-10 py-4 text-base font-bold tracking-wide ring-2 ring-gold/40">사전예약 신청하기</a>
     </div>
     <p class="reveal mt-6 text-sm text-gold-light flex items-center justify-center gap-0">
       <span class="pulse-dot"></span>신청 마감: 9월 30일(화)
@@ -407,19 +422,15 @@ tailwind.config = {
 <div class="gold-divider-wrap cream-section" aria-hidden="true"><div class="gold-divider gold-divider--cream"></div></div>
 
 <!-- 2. Intro -->
-<section id="intro" class="py-20 lg:py-28 cream-section">
-  <div class="mx-auto max-w-6xl px-6 grid lg:grid-cols-2 gap-12 items-center">
+<section id="intro" class="py-14 lg:py-20 cream-section">
+  <div class="mx-auto max-w-6xl px-6 grid lg:grid-cols-2 gap-10 items-center">
     <div class="reveal img-zoom overflow-hidden rounded-sm shadow-xl ring-1 ring-gold/20">
       <img data-slot="intro-dress" src="/images/dress-show-2027/KYI-2948.jpg" alt="2027 S/S 드레스 전신" class="w-full aspect-[4/5] object-cover">
     </div>
     <div class="reveal">
-      <p class="text-xs font-bold tracking-[0.22em] uppercase text-gold mb-4">Introduction</p>
+      <p class="text-xs font-bold tracking-[0.22em] uppercase text-gold mb-3">Introduction</p>
       <h2 class="font-serif text-2xl sm:text-3xl text-navy font-semibold leading-tight">2027 S/S 뉴 컬렉션 드레스쇼</h2>
-      <div class="mt-8 space-y-4 text-base leading-relaxed text-ink/80">
-        <p>드레스쇼에서 선보인 드레스를<br>직접 입어볼 수 있는 기회!</p>
-        <p>당신만을 위한 1:1 맞춤 피팅,<br>퍼스널 컨설팅을 받아보실 수 있습니다.</p>
-      </div>
-      <a href="#apply" class="btn-gold mt-10 inline-flex rounded-full px-8 py-3 text-sm font-bold">사전예약 신청하기</a>
+      <p class="mt-5 text-base leading-relaxed text-ink/80">신상 드레스를 직접 입어보는 1:1 맞춤 피팅 · 선착순 20명<br>THE QUEEN 2층 × 웨딩뮤(MUE)</p>
     </div>
   </div>
 </section>
@@ -427,18 +438,22 @@ tailwind.config = {
 <div class="gold-divider-wrap" style="background:#121F38;" aria-hidden="true"><div class="gold-divider gold-divider--navy"></div></div>
 
 <!-- 3. Exclusive Benefits -->
-<section class="py-16 lg:py-24 navy-section sparkle-bg text-white">
+<section class="py-14 lg:py-20 navy-section sparkle-bg text-white">
   <div class="section-inner mx-auto max-w-3xl px-6">
-    <div class="reveal text-center mb-10">
-      <p class="text-xs font-bold tracking-[0.18em] uppercase text-gold-light mb-4">Exclusive Benefit</p>
-      <h2 class="font-serif text-xl sm:text-2xl lg:text-[1.65rem] text-white font-semibold leading-snug">
+    <div class="reveal text-center mb-8">
+      <p class="text-xs font-bold tracking-[0.18em] uppercase text-gold-light mb-3">Exclusive Benefit</p>
+      <h2 class="font-serif text-xl sm:text-2xl text-white font-semibold leading-snug">
         웨딩뮤 고객님만을 위한 피팅 후 특별한 선물
       </h2>
-      <p class="mt-4 text-sm sm:text-base leading-relaxed">
+      <p class="mt-3 text-sm sm:text-base leading-relaxed">
         드레스쇼 에디토브랜드 런칭 기념 <span class="gold-text exclusive-tag">EXCLUSIVE</span> 혜택
       </p>
     </div>
-    <div class="reveal text-center mb-10 py-5 border-y border-gold/25">
+    <div class="reveal notice-box">
+      <span class="star" aria-hidden="true">★</span>
+      <p>2027년 신상 드레스를 피팅해보는 시간 이후,<br><strong>당일 현장 계약 시에만</strong> 아래 혜택이 적용됩니다.</p>
+    </div>
+    <div class="reveal text-center mb-8 py-4 border-y border-gold/25">
       <p class="text-sm text-white/75">당일 계약 고객 한정</p>
       <p class="mt-2 text-base sm:text-lg font-semibold text-gold-light">5대 시그니처 패키지 최대 50% OFF</p>
     </div>
@@ -475,118 +490,18 @@ tailwind.config = {
         </div>
       </li>
     </ul>
-    <p class="reveal mt-10 text-center text-xs text-white/55 leading-relaxed">
-      신청 시 EXCLUSIVE 혜택도 함께 안내드립니다 · <a href="#apply" class="text-gold-light hover:text-gold underline underline-offset-2">사전예약 신청</a>
-    </p>
-  </div>
-</section>
-
-<div class="gold-divider-wrap" style="background:#F6F2E9;" aria-hidden="true"><div class="gold-divider gold-divider--cream"></div></div>
-
-<!-- 4. MUE -->
-<section class="py-20 lg:py-28 cream-section">
-  <div class="mx-auto max-w-3xl px-6 text-center reveal">
-    <p class="text-xs font-bold tracking-[0.3em] uppercase text-gold mb-3">Partner</p>
-    <h2 class="font-serif text-2xl sm:text-3xl gold-text font-semibold">WEDDING MUE</h2>
-    <p class="mt-3 text-sm font-medium text-ink/60">하이엔드 수입드레스 + 커스텀웨딩 전문 부티크 그룹</p>
-    <div class="mt-10 text-base leading-relaxed text-ink/80 space-y-4 text-left sm:text-center">
-      <p>웨딩뮤(MUE)는 해외 유명 디자이너의 수입드레스와 국내 맞춤 제작 커스텀드레스를 전문으로 하는 웨딩 부티크 그룹입니다.</p>
-      <p>THE QUEEN 웨딩홀 2층에 위치하여 드레스 선택부터 예식까지 한 곳에서 완성할 수 있습니다.</p>
-    </div>
-    <div class="mt-10 mx-auto max-w-sm img-zoom overflow-hidden rounded-sm shadow-lg ring-1 ring-gold/20">
-      <img data-slot="mue-dress" src="/images/dress-show-2027/KYI-3155.jpg" alt="WEDDING MUE 드레스 컬렉션" class="w-full aspect-[3/4] object-cover" loading="lazy">
-    </div>
-    <div class="mt-10 inline-block rounded border border-gold/30 px-6 py-3 font-serif text-lg gold-text tracking-widest">WEDDING MUE</div>
-  </div>
-</section>
-
-<div class="gold-divider-wrap" style="background:#0E1B33;" aria-hidden="true"><div class="gold-divider gold-divider--navy"></div></div>
-
-<!-- 5. 2026 Highlight -->
-<section class="py-20 lg:py-28 navy-section sparkle-bg">
-  <div class="section-inner mx-auto max-w-6xl px-6">
-    <div class="reveal text-center mb-12">
-      <h2 class="font-serif text-2xl sm:text-3xl gold-text font-semibold">2026 S/S 드레스쇼 · 성공적 마무리</h2>
-      <p class="mt-4 text-white/75">100팀 이상이 함께한 THE QUEEN의 첫 드레스쇼</p>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4">
-      <div class="reveal gallery-item aspect-[4/5]">
-        <img data-slot="gallery-1" src="/images/dress-show-2027/KYI-0942.jpg" alt="드레스쇼 런웨이 전경" class="h-full w-full object-cover" loading="lazy">
-      </div>
-      <div class="reveal gallery-item aspect-[4/5]">
-        <img data-slot="gallery-2" src="/images/dress-show-2027/KYI-0995.jpg" alt="드레스쇼 하이라이트" class="h-full w-full object-cover" loading="lazy">
-      </div>
-      <div class="reveal gallery-item aspect-[4/5]">
-        <img data-slot="gallery-3" src="/images/dress-show-2027/KYI-1397.jpg" alt="런웨이 워킹" class="h-full w-full object-cover" loading="lazy">
-      </div>
-      <div class="reveal gallery-item aspect-[4/5]">
-        <img data-slot="gallery-4" src="/images/dress-show-2027/KYI-1881.jpg" alt="드레스 디테일" class="h-full w-full object-cover" loading="lazy">
-      </div>
-      <div class="reveal gallery-item aspect-[4/5]">
-        <img data-slot="gallery-5" src="/images/dress-show-2027/KYI-2320.jpg" alt="관객 전경" class="h-full w-full object-cover" loading="lazy">
-      </div>
-      <div class="reveal gallery-item aspect-[4/5]">
-        <img data-slot="gallery-6" src="/images/dress-show-2027/KYI-2365.jpg" alt="드레스쇼 현장" class="h-full w-full object-cover" loading="lazy">
-      </div>
-      <div class="reveal gallery-item aspect-[4/5]">
-        <img data-slot="gallery-7" src="/images/dress-show-2027/KYI-2367.jpg" alt="피날레 장면" class="h-full w-full object-cover" loading="lazy">
-      </div>
-      <div class="reveal gallery-item aspect-[4/5]">
-        <img data-slot="gallery-8" src="/images/dress-show-2027/KYI-2472.jpg" alt="드레스쇼 마무리" class="h-full w-full object-cover" loading="lazy">
-      </div>
-    </div>
-
-    <div class="reveal mt-16">
-      <h3 class="font-serif text-xl sm:text-2xl gold-text font-semibold text-center mb-8">드레스쇼 하이라이트 영상</h3>
-      <div class="video-grid">
-        <div class="video-item" data-slot="video-1">
-          <iframe src="https://streamable.com/e/t6fh81" title="드레스쇼 영상 1" allowfullscreen loading="lazy"></iframe>
-        </div>
-        <div class="video-item" data-slot="video-2">
-          <iframe src="https://streamable.com/e/ahqder" title="드레스쇼 영상 2" allowfullscreen loading="lazy"></iframe>
-        </div>
-        <div class="video-item" data-slot="video-3">
-          <iframe src="https://streamable.com/e/smljby" title="드레스쇼 영상 3" allowfullscreen loading="lazy"></iframe>
-        </div>
-        <div class="video-item" data-slot="video-4">
-          <iframe src="https://streamable.com/e/agpk97" title="드레스쇼 영상 4" allowfullscreen loading="lazy"></iframe>
-        </div>
-        <div class="video-item md:col-span-2 lg:col-span-1" data-slot="video-5">
-          <iframe src="https://streamable.com/e/0pwnle" title="드레스쇼 영상 5" allowfullscreen loading="lazy"></iframe>
-        </div>
-      </div>
-    </div>
-    <div class="reveal text-center mt-12">
-      <p class="text-white/80 mb-6">2027 S/S는 더 특별하게 준비합니다</p>
-      <a href="#apply" class="btn-gold inline-flex rounded-full px-10 py-4 text-sm font-bold">사전예약 신청하기</a>
+    <div class="reveal mt-10 text-center">
+      <a href="#apply" class="btn-gold inline-flex rounded-full px-10 py-4 text-base font-bold tracking-wide ring-2 ring-gold/40">사전예약 신청하기</a>
+      <p class="mt-4 text-xs text-white/55">신청 시 EXCLUSIVE 혜택도 함께 안내드립니다</p>
     </div>
   </div>
 </section>
 
-<div class="gold-divider-wrap" style="background:#F6F2E9;" aria-hidden="true"><div class="gold-divider gold-divider--cream"></div></div>
-
-<!-- 6. Info -->
-<section class="py-20 lg:py-28 cream-section">
-  <div class="mx-auto max-w-2xl px-6 reveal">
-    <h2 class="font-serif text-2xl text-navy font-semibold text-center mb-10">신청 안내</h2>
-    <dl class="space-y-4 text-sm sm:text-base">
-      <div class="flex flex-col sm:flex-row sm:gap-4 border-b border-navy/10 pb-4"><dt class="sm:w-32 font-bold text-navy shrink-0">대상</dt><dd class="text-ink/80">경북 포항·경주 지역 예비 신부</dd></div>
-      <div class="flex flex-col sm:flex-row sm:gap-4 border-b border-navy/10 pb-4"><dt class="sm:w-32 font-bold text-navy shrink-0">일정</dt><dd class="text-ink/80">개별 일정 조율 (신청 후 안내)</dd></div>
-      <div class="flex flex-col sm:flex-row sm:gap-4 border-b border-navy/10 pb-4"><dt class="sm:w-32 font-bold text-navy shrink-0">장소</dt><dd class="text-ink/80">포항시 남구 대이로 18, 2층 (THE QUEEN 웨딩홀)</dd></div>
-      <div class="flex flex-col sm:flex-row sm:gap-4 border-b border-navy/10 pb-4"><dt class="sm:w-32 font-bold text-navy shrink-0">인원</dt><dd class="text-ink/80">선착순 20명 한정</dd></div>
-      <div class="flex flex-col sm:flex-row sm:gap-4 border-b border-navy/10 pb-4"><dt class="sm:w-32 font-bold text-navy shrink-0">신청 마감</dt><dd class="text-ink/80">2026년 9월 30일(화)</dd></div>
-      <div class="flex flex-col sm:flex-row sm:gap-4 pb-2"><dt class="sm:w-32 font-bold text-navy shrink-0">비용</dt><dd class="text-ink/80">무료 (사전예약 필수)</dd></div>
-    </dl>
-    <p class="mt-8 text-center text-sm text-ink/55">마감 후에는 신청이 불가합니다</p>
-  </div>
-</section>
-
-<div class="gold-divider-wrap" style="background:#0E1B33;" aria-hidden="true"><div class="gold-divider gold-divider--navy"></div></div>
-
-<!-- 7. Apply Form -->
-<section id="apply" class="py-20 lg:py-28 navy-section sparkle-bg scroll-mt-20">
+<!-- 4. Apply Form -->
+<section id="apply" class="pb-14 lg:pb-20 pt-4 navy-section sparkle-bg scroll-mt-20">
   <div class="section-inner mx-auto max-w-lg px-6 reveal">
-    <h2 class="font-serif text-2xl gold-text font-semibold text-center mb-10">사전예약 신청</h2>
+    <h2 class="font-serif text-2xl gold-text font-semibold text-center mb-4">사전예약 신청</h2>
+    <p class="text-center text-sm text-white/75 mb-8 leading-relaxed">선착순 20명 · 개별 일정 조율 · THE QUEEN 2층<br>마감 9/30(화) · 무료 (사전예약 필수)</p>
     <div class="form-card rounded-xl p-8 sm:p-10">
       <form id="apply-form" class="space-y-6">
         <div>
@@ -615,8 +530,8 @@ tailwind.config = {
 
 <div class="gold-divider-wrap cream-section" aria-hidden="true"><div class="gold-divider gold-divider--cream"></div></div>
 
-<!-- 8. Location + Footer -->
-<section class="py-20 cream-section">
+<!-- 5. Location + Footer -->
+<section class="py-14 cream-section">
   <div class="mx-auto max-w-4xl px-5 sm:px-6 reveal">
     <h2 class="font-serif text-2xl text-navy font-semibold text-center mb-10">오시는 길</h2>
 
