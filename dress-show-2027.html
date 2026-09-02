@@ -309,12 +309,93 @@ tailwind.config = {
   .hero-overlay {
     position: absolute; inset: 0; z-index: 2;
     background: linear-gradient(180deg,
-      rgba(14,27,51,0.22) 0%,
-      rgba(14,27,51,0.38) 50%,
-      rgba(14,27,51,0.72) 100%);
+      rgba(14,27,51,0.45) 0%,
+      rgba(14,27,51,0.55) 45%,
+      rgba(14,27,51,0.78) 100%);
     pointer-events: none;
   }
-  .hero-content { text-shadow: 0 1px 12px rgba(0,0,0,0.35); }
+  .hero-content { text-shadow: 0 2px 16px rgba(0,0,0,0.5); }
+  .hero-mue-wordmark {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(3rem, 12vw, 5.5rem);
+    line-height: 1;
+    letter-spacing: 0.28em;
+    padding-left: 0.28em;
+    background: linear-gradient(135deg, #BE9E5B, #D8C08A, #F5E6C8, #D8C08A, #BE9E5B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 24px rgba(190,158,91,0.5));
+  }
+  @keyframes kenburns {
+    0%   { transform: scale(1); }
+    100% { transform: scale(1.08); }
+  }
+  .hero-poster.kenburns-active {
+    animation: kenburns 20s ease-in-out infinite alternate;
+    transform-origin: center center;
+  }
+
+  /* ── MUE brand & steps ── */
+  .mue-logo-text {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    letter-spacing: 0.22em;
+    padding-left: 0.22em;
+  }
+  .step-card {
+    position: relative;
+    padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+    border: 1px solid rgba(190,158,91,0.22);
+    background: rgba(255,255,255,0.6);
+    border-radius: 4px;
+  }
+  .step-label {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: #BE9E5B;
+    margin-bottom: 0.5rem;
+  }
+  .step-num {
+    position: absolute;
+    left: -0.65rem;
+    top: 1.1rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #BE9E5B, #D8C08A);
+    color: #0E1B33;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 700;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 12px rgba(190,158,91,0.35);
+  }
+  .step-list { list-style: none; padding: 0; margin: 0; }
+  .step-list li {
+    position: relative;
+    padding-left: 1rem;
+    margin-top: 0.35rem;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: rgba(44,62,80,0.85);
+  }
+  .step-list li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: #BE9E5B;
+    font-weight: 700;
+  }
 
   /* ── Exclusive packages ── */
   .exclusive-tag {
@@ -370,7 +451,7 @@ tailwind.config = {
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .sparkle-bg::before, .scroll-arrow, .pulse-dot { animation: none; }
+    .sparkle-bg::before, .scroll-arrow, .pulse-dot, .hero-poster.kenburns-active { animation: none; }
     .reveal { opacity: 1; transform: none; transition: none; }
     .hero-video, .hero-iframe-wrap { display: none; }
   }
@@ -389,10 +470,10 @@ tailwind.config = {
 <!-- 1. Hero -->
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden navy-section sparkle-bg">
   <div class="hero-media" data-slot="hero-bg" id="hero-media">
-    <img id="hero-poster" data-slot="hero-poster" src="/images/dress-show-2027/KYI-3329.jpg" alt="" class="hero-poster" aria-hidden="true">
+    <img id="hero-poster" data-slot="hero-poster" src="/images/dress-show-2027/KYI-2696.jpg" alt="" class="hero-poster kenburns-active" aria-hidden="true">
     <video id="hero-video" data-slot="hero-video" class="hero-video" autoplay muted loop playsinline
-      poster="/images/dress-show-2027/KYI-3329.jpg">
-      <source src="https://cdn-cf-east.streamable.com/video/mp4/t6fh81.mp4?Expires=1786862700&amp;Signature=MoO5mpGmO6Tb4hhzz60OBF80I8B7~m4HkIZJ6kvD~rXDFk-MtAzL~O0NocUSY2kflCnupQCDZlofl8RZzwpUM9yBVm9GmgMEDnA-PKHcDKXHOMWg6ZdAi-6ISPfmguaOVIKiKk1UM5cl3ExqtgEf0bxs~dglq2OH9ZSA3P~apUFylrWL7p4aEEH8mh9uPQvgJ1MXxRROyob3UT~n7LZOIyFDuS8Y5hStvsQAy4bRCDxpqXfH4UvP-AweThbASy0LESWohyg~UktpCkTDIxkr17Bq5MnFMa8di1PSMgPJWkx375kad8GxXZfcFvghkYPLFviUaCgmxLEiLqGAtnVltg__&amp;Key-Pair-Id=APKAIEYUVEN4EVB2OKEQ" type="video/mp4">
+      poster="/images/dress-show-2027/KYI-2696.jpg">
+      <source src="/images/dress-show-2027/hero.mp4" type="video/mp4">
     </video>
     <div class="hero-iframe-wrap" id="hero-iframe-fallback" aria-hidden="true">
       <iframe src="https://streamable.com/e/t6fh81?autoplay=1&amp;muted=1&amp;loop=1" title="드레스쇼 히어로 영상" allow="autoplay; fullscreen" loading="eager"></iframe>
@@ -401,7 +482,7 @@ tailwind.config = {
   </div>
 
   <div class="section-inner hero-content relative z-10 mx-auto max-w-3xl px-6 pt-28 pb-28 text-center">
-    <p class="reveal font-serif text-xl sm:text-2xl tracking-[0.22em] uppercase text-gold-light mb-5">MUE</p>
+    <p class="reveal hero-mue-wordmark mb-6">MUE</p>
     <h1 class="reveal text-lg sm:text-xl lg:text-2xl font-bold text-white leading-relaxed">가장 먼저 만나는</h1>
     <p class="reveal mt-3 text-base sm:text-xl lg:text-2xl font-semibold gold-text leading-snug">웨딩뮤 2027 S/S 뉴 컬렉션<br class="sm:hidden"> 드레스쇼 신상 선공개</p>
     <p class="reveal mt-8 text-base sm:text-lg text-white/85 tracking-wide">선착순 20명 · 프라이빗 피팅</p>
@@ -430,14 +511,84 @@ tailwind.config = {
     <div class="reveal">
       <p class="text-xs font-bold tracking-[0.22em] uppercase text-gold mb-3">Introduction</p>
       <h2 class="font-serif text-2xl sm:text-3xl text-navy font-semibold leading-tight">2027 S/S 뉴 컬렉션 드레스쇼</h2>
-      <p class="mt-5 text-base leading-relaxed text-ink/80">신상 드레스를 직접 입어보는 1:1 맞춤 피팅 · 선착순 20명<br>THE QUEEN 2층 × 웨딩뮤(MUE)</p>
+      <p class="mt-5 text-base leading-relaxed text-ink/80">드레스쇼에서 선보인 드레스를<br>직접 입어볼 수 있는 기회</p>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider-wrap" style="background:#0E1B33;" aria-hidden="true"><div class="gold-divider gold-divider--navy"></div></div>
+
+<!-- 3. MUE Brand -->
+<section class="py-14 lg:py-20 navy-section">
+  <div class="section-inner mx-auto max-w-3xl px-6 text-center reveal">
+    <p class="mue-logo-text gold-text mb-4">MUE</p>
+    <p class="text-xs font-bold tracking-[0.28em] uppercase text-gold-light mb-2">WEDDING BOUTIQUE</p>
+    <p class="text-sm sm:text-base text-white/85 leading-relaxed">커스터마이징 &amp; 하이엔드 웨딩의 융합 웨딩 브랜드 그룹</p>
+    <p class="mt-8 text-sm sm:text-base leading-relaxed text-white/75 text-left sm:text-center">
+      웨딩 부티크 뮤는 하이엔드 수입드레스, 프리미엄 국내드레스,<br class="hidden sm:inline">
+      청담 뷰티 브랜드 진동희, 커스텀웨딩 전문 스튜디오까지<br class="hidden sm:inline">
+      다양한 웨딩 브랜드를 한 공간에서 웨딩투어 및 디렉팅이 가능한<br class="hidden sm:inline">
+      프라이빗한 공간입니다.
+    </p>
+    <div class="mt-10 mx-auto max-w-sm img-zoom overflow-hidden rounded-sm shadow-lg ring-1 ring-gold/25">
+      <img data-slot="mue-dress" src="/images/dress-show-2027/KYI-3155.jpg" alt="WEDDING MUE 드레스 컬렉션" class="w-full aspect-[3/4] object-cover" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider-wrap cream-section" aria-hidden="true"><div class="gold-divider gold-divider--cream"></div></div>
+
+<!-- 4. Fitting Process -->
+<section class="py-14 lg:py-20 cream-section">
+  <div class="mx-auto max-w-2xl px-6">
+    <div class="reveal text-center mb-10">
+      <p class="text-xs font-bold tracking-[0.22em] uppercase text-gold mb-3">Process</p>
+      <h2 class="font-serif text-2xl sm:text-3xl text-navy font-semibold">드레스 피팅 서비스 진행과정</h2>
+    </div>
+    <div class="space-y-8 pl-3">
+      <div class="reveal step-card">
+        <span class="step-num" aria-hidden="true">1</span>
+        <p class="step-label">STEP 1</p>
+        <h3 class="font-semibold text-navy text-base sm:text-lg">사전예약 신청</h3>
+        <p class="mt-3 text-xs font-bold tracking-[0.14em] uppercase text-gold">Event Info</p>
+        <div class="mt-3 space-y-2 text-sm leading-relaxed text-ink/80">
+          <p><strong class="text-navy">대상:</strong> 경북 포항·경주, 소규모 웨딩 &amp;<br>인생의 소중한 날, 특별한 드레스가 필요한 모든 분들<br>(선착순 한정 예약제)</p>
+          <p><strong class="text-navy">신청 방법:</strong> 상단에 위치한 '서비스 신청'을 눌러 신청하기</p>
+          <p><strong class="text-navy">참가 신청 기간:</strong> 9월 30일(화)까지</p>
+          <p><strong class="text-navy">완료:</strong> 예약 확인을 위한 해피콜 진행</p>
+          <p><strong class="text-navy">참가 확정 안내:</strong> 대상자분들께 개별 유선 연락 드릴 예정입니다</p>
+          <p class="text-xs text-ink/60 pt-1">※ 사전예약 필수</p>
+        </div>
+      </div>
+      <div class="reveal step-card">
+        <span class="step-num" aria-hidden="true">2</span>
+        <p class="step-label">STEP 2</p>
+        <h3 class="font-semibold text-navy text-base sm:text-lg">웨딩뮤 방문</h3>
+        <div class="mt-3 space-y-2 text-sm leading-relaxed text-ink/80">
+          <p>예약한 날짜와 시간에 웨딩뮤 드레스샵 방문</p>
+          <p><strong class="text-navy">주소:</strong> 포항시 남구 대이로 18, 2층</p>
+          <p><strong class="text-navy">전화:</strong> <a href="tel:054-274-8890" class="text-gold font-semibold hover:underline">054-274-8890</a></p>
+        </div>
+      </div>
+      <div class="reveal step-card">
+        <span class="step-num" aria-hidden="true">3</span>
+        <p class="step-label">STEP 3</p>
+        <h3 class="font-semibold text-navy text-base sm:text-lg">웨딩뮤 피팅 진행</h3>
+        <ul class="step-list mt-3">
+          <li>10년 이상 경력의 토탈 웨딩 전문 디렉터 안내</li>
+          <li>드레스 메인 디스플레이존 아이투어 진행</li>
+          <li>웨딩뮤 브랜드 및 드레스 상담</li>
+          <li>웨딩드레스 피팅 및 1:1 디렉팅 스타일링 가이드</li>
+          <li>웨딩 상품 안내 등</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
 <div class="gold-divider-wrap" style="background:#121F38;" aria-hidden="true"><div class="gold-divider gold-divider--navy"></div></div>
 
-<!-- 3. Exclusive Benefits -->
+<!-- 5. Exclusive Benefits -->
 <section class="py-14 lg:py-20 navy-section sparkle-bg text-white">
   <div class="section-inner mx-auto max-w-3xl px-6">
     <div class="reveal text-center mb-8">
@@ -497,8 +648,35 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- 4. Apply Form -->
-<section id="apply" class="pb-14 lg:pb-20 pt-4 navy-section sparkle-bg scroll-mt-20">
+<div class="gold-divider-wrap" style="background:#F6F2E9;" aria-hidden="true"><div class="gold-divider gold-divider--cream"></div></div>
+
+<!-- 6. 2026 Highlight Gallery -->
+<section class="py-14 lg:py-20 cream-section">
+  <div class="mx-auto max-w-4xl px-6">
+    <div class="reveal text-center mb-8">
+      <h2 class="font-serif text-xl sm:text-2xl text-navy font-semibold">2026 S/S 드레스쇼 · 하이라이트</h2>
+    </div>
+    <div class="grid grid-cols-2 gap-3">
+      <div class="reveal gallery-item aspect-[4/5]">
+        <img data-slot="gallery-1" src="/images/dress-show-2027/KYI-0942.jpg" alt="드레스쇼 런웨이 전경" class="h-full w-full object-cover" loading="lazy">
+      </div>
+      <div class="reveal gallery-item aspect-[4/5]">
+        <img data-slot="gallery-2" src="/images/dress-show-2027/KYI-0995.jpg" alt="드레스쇼 하이라이트" class="h-full w-full object-cover" loading="lazy">
+      </div>
+      <div class="reveal gallery-item aspect-[4/5]">
+        <img data-slot="gallery-3" src="/images/dress-show-2027/KYI-1397.jpg" alt="런웨이 워킹" class="h-full w-full object-cover" loading="lazy">
+      </div>
+      <div class="reveal gallery-item aspect-[4/5]">
+        <img data-slot="gallery-4" src="/images/dress-show-2027/KYI-1881.jpg" alt="드레스 디테일" class="h-full w-full object-cover" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider-wrap" style="background:#0E1B33;" aria-hidden="true"><div class="gold-divider gold-divider--navy"></div></div>
+
+<!-- 7. Apply Form -->
+<section id="apply" class="py-14 lg:py-20 navy-section sparkle-bg scroll-mt-20">
   <div class="section-inner mx-auto max-w-lg px-6 reveal">
     <h2 class="font-serif text-2xl gold-text font-semibold text-center mb-4">사전예약 신청</h2>
     <p class="text-center text-sm text-white/75 mb-8 leading-relaxed">선착순 20명 · 개별 일정 조율 · THE QUEEN 2층<br>마감 9/30(화) · 무료 (사전예약 필수)</p>
@@ -530,7 +708,7 @@ tailwind.config = {
 
 <div class="gold-divider-wrap cream-section" aria-hidden="true"><div class="gold-divider gold-divider--cream"></div></div>
 
-<!-- 5. Location + Footer -->
+<!-- 8. Location + Footer -->
 <section class="py-14 cream-section">
   <div class="mx-auto max-w-4xl px-5 sm:px-6 reveal">
     <h2 class="font-serif text-2xl text-navy font-semibold text-center mb-10">오시는 길</h2>
@@ -582,22 +760,30 @@ tailwind.config = {
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
 
-  /* Hero video — mp4 우선, 실패 시 Streamable iframe 폴백 */
+  /* Hero video — 로컬 mp4 우선, 실패 시 Streamable iframe, 최종 Ken Burns 포스터 */
   (function () {
     var media = document.getElementById('hero-media');
     var video = document.getElementById('hero-video');
+    var poster = document.getElementById('hero-poster');
     var iframeWrap = document.getElementById('hero-iframe-fallback');
     if (!video || !media) return;
 
-    function markPlaying() { media.classList.add('is-playing'); }
+    function markPlaying() {
+      media.classList.add('is-playing');
+      if (poster) poster.classList.remove('kenburns-active');
+    }
+
+    function keepKenBurns() {
+      if (poster) poster.classList.add('kenburns-active');
+    }
 
     video.addEventListener('playing', markPlaying);
     video.addEventListener('canplay', function () {
-      video.play().catch(function () { useIframeFallback(); });
+      video.play().then(markPlaying).catch(useIframeFallback);
     });
 
     function useIframeFallback() {
-      if (!iframeWrap) return;
+      if (!iframeWrap) { keepKenBurns(); return; }
       video.style.display = 'none';
       iframeWrap.classList.add('active');
       iframeWrap.setAttribute('aria-hidden', 'false');
@@ -606,8 +792,16 @@ tailwind.config = {
 
     video.addEventListener('error', useIframeFallback);
 
+    var fallbackTimer = setTimeout(function () {
+      if (!media.classList.contains('is-playing')) useIframeFallback();
+    }, 4000);
+
+    video.addEventListener('playing', function () { clearTimeout(fallbackTimer); });
+
     if (video.readyState >= 2) {
       video.play().then(markPlaying).catch(useIframeFallback);
+    } else {
+      keepKenBurns();
     }
   })();
 
