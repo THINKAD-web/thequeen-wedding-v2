@@ -10,7 +10,7 @@
 <link rel="canonical" href="https://thequeenwedding.kr/dress-show-2027">
 <meta property="og:type" content="website">
 <meta property="og:title" content="2027 S/S 드레스쇼 &amp; 피팅 이벤트 | THE QUEEN × WEDDING MUE">
-<meta property="og:description" content="선착순 20명, 신상 드레스 프라이빗 피팅. 9월 30일 마감.">
+<meta property="og:description" content="선착순 20명, 신상 드레스 프라이빗 피팅. 10월 11일(일) 마감.">
 <meta property="og:image" content="https://thequeenwedding.kr/images/dress-show-2027/KYI-2948.jpg">
 <meta property="og:url" content="https://thequeenwedding.kr/dress-show-2027">
 <meta property="og:locale" content="ko_KR">
@@ -332,12 +332,10 @@ tailwind.config = {
   .hero-subtitle {
     font-size: clamp(1.35rem, 4.5vw, 2.25rem);
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
+    line-height: 1.45;
     color: #D8C08A;
     text-shadow: 0 0 20px rgba(190,158,91,0.45), 0 2px 12px rgba(0,0,0,0.4);
-    border-bottom: 2px solid rgba(216,192,138,0.55);
-    display: inline-block;
-    padding-bottom: 0.35rem;
   }
   @keyframes kenburns {
     0%   { transform: scale(1); }
@@ -422,24 +420,122 @@ tailwind.config = {
     color: #BE9E5B;
     font-weight: 700;
   }
-  .step-card--featured {
-    border: 1px solid rgba(190,158,91,0.55);
-    background: linear-gradient(160deg, rgba(255,255,255,0.92), rgba(246,242,233,0.85));
-    box-shadow: 0 0 24px rgba(190,158,91,0.15);
-  }
   .step-list--featured li {
     padding-left: 1.35rem;
     margin-top: 0.5rem;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: rgba(14,27,51,0.88);
   }
   .step-list--featured li::before {
     content: '✓';
-    left: 0;
-    color: #BE9E5B;
-    font-weight: 700;
     font-size: 0.875rem;
+  }
+  .step-card--navy {
+    border: 1px solid rgba(190,158,91,0.55);
+    background: linear-gradient(160deg, #0E1B33 0%, #121F38 100%);
+    box-shadow: 0 0 32px rgba(190,158,91,0.22);
+  }
+  .step-card--navy .step-label { color: #D8C08A; }
+  .step-card--navy h3 { color: #F5E6C8; }
+  .step-card--navy .step-num { color: #0E1B33; }
+  .step-list--navy li {
+    color: rgba(255,255,255,0.88);
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+  .step-list--navy li::before { color: #D8C08A; }
+  .step-card--navy .step-photos img { border-color: rgba(190,158,91,0.45); }
+
+  .badge-50off {
+    display: inline-block;
+    padding: 0.35rem 1.15rem;
+    font-size: clamp(1.35rem, 4.5vw, 2.25rem);
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: #0E1B33;
+    background: linear-gradient(135deg, #BE9E5B, #D8C08A, #F5E6C8);
+    border-radius: 9999px;
+    box-shadow: 0 0 28px rgba(190,158,91,0.5);
+    vertical-align: middle;
+  }
+  .brand-logo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.65rem;
+  }
+  @media (min-width: 640px) {
+    .brand-logo-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .brand-logo-grid { grid-template-columns: repeat(6, 1fr); }
+  }
+  .brand-logo-cell {
+    background: #fff;
+    border: 1px solid rgba(190,158,91,0.18);
+    border-radius: 4px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+  }
+  .brand-logo-cell img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  .dress-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  @media (min-width: 640px) {
+    .dress-photo-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .dress-photo-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  .target-badge {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #0E1B33;
+    background: linear-gradient(135deg, #BE9E5B, #D8C08A);
+    border-radius: 4px;
+  }
+
+  .checkbox-group { display: flex; flex-direction: column; gap: 0.65rem; }
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    cursor: pointer;
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.88);
+  }
+  .checkbox-item input[type="checkbox"] {
+    appearance: none;
+    width: 1.125rem;
+    height: 1.125rem;
+    border: 1px solid rgba(190,158,91,0.55);
+    border-radius: 3px;
+    background: transparent;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .checkbox-item input[type="checkbox"]:checked {
+    background: rgba(190,158,91,0.25);
+    border-color: #BE9E5B;
+  }
+  .checkbox-item input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: #D8C08A;
   }
   .step-photos {
     display: grid;
@@ -520,7 +616,7 @@ tailwind.config = {
 <!-- Header -->
 <header id="site-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent border-b border-transparent">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-    <a href="/" class="font-serif text-lg text-white tracking-wide">THE QUEEN <span class="text-gold italic">×</span> <span class="text-gold-light">MUE</span></a>
+    <a href="#" class="font-serif text-xl sm:text-2xl gold-text tracking-[0.22em]">MUE</a>
     <a href="#apply" class="btn-gold hidden sm:inline-flex rounded-full px-5 py-2 text-sm font-bold tracking-wide">사전예약 신청</a>
   </div>
 </header>
@@ -541,89 +637,76 @@ tailwind.config = {
 
   <div class="section-inner hero-content relative z-10 mx-auto max-w-3xl px-6 pt-28 pb-28 text-center">
     <p class="reveal hero-mue-wordmark mb-4">MUE</p>
-    <h1 class="reveal hero-subtitle mb-5">가장 먼저 만나는</h1>
-    <p class="reveal text-base sm:text-xl lg:text-2xl font-semibold gold-text leading-snug">웨딩뮤 2027 S/S 뉴 컬렉션<br class="sm:hidden"> 신상 선공개</p>
+    <h1 class="reveal hero-subtitle mb-6">파리와 밀라노의 로열 감성을 담다.<br>오직 웨딩 뮤에서 만나는 하이엔드 드레스 쇼케이스</h1>
     <p class="reveal mt-8 text-base sm:text-lg text-white/85 tracking-wide">선착순 20명 · 프라이빗 피팅</p>
     <div class="reveal mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
       <a href="#apply" class="btn-gold inline-flex items-center justify-center rounded-full px-10 py-4 text-base font-bold tracking-wide ring-2 ring-gold/40">사전예약 신청하기</a>
     </div>
     <p class="reveal mt-6 text-sm text-gold-light flex items-center justify-center gap-0">
-      <span class="pulse-dot"></span>신청 마감: 9월 30일(화)
+      <span class="pulse-dot"></span>신청 마감: 10월 11일(일)
     </p>
     <div id="countdown" class="reveal mt-3 text-sm text-gold-light/90"></div>
   </div>
 
-  <a href="#intro" aria-label="아래로 스크롤" class="scroll-arrow absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-gold-light/80">
+  <a href="#exclusive" aria-label="아래로 스크롤" class="scroll-arrow absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-gold-light/80">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M6 13l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </a>
 </section>
 
-<div class="gold-divider-wrap cream-section" aria-hidden="true"><div class="gold-divider gold-divider--cream"></div></div>
+<div class="gold-divider-wrap" style="background:#121F38;" aria-hidden="true"><div class="gold-divider gold-divider--navy"></div></div>
 
-<!-- 2. Intro -->
-<section id="intro" class="py-14 lg:py-20 cream-section">
-  <div class="mx-auto max-w-6xl px-6 grid lg:grid-cols-2 gap-10 items-center">
-    <div class="reveal img-zoom overflow-hidden rounded-sm shadow-xl ring-1 ring-gold/20">
-      <img data-slot="intro-dress" src="/images/dress-show-2027/KYI-2948.jpg" alt="2027 S/S 드레스 전신" class="w-full aspect-[4/5] object-cover">
+<!-- 2. Exclusive Benefits -->
+<section id="exclusive" class="py-14 lg:py-20 navy-section sparkle-bg text-white scroll-mt-20">
+  <div class="section-inner mx-auto max-w-3xl px-6">
+    <div class="reveal text-center mb-8">
+      <p class="text-xs font-bold tracking-[0.18em] uppercase text-gold-light mb-3">Exclusive Benefit</p>
+      <h2 class="font-serif text-xl sm:text-2xl text-white font-semibold leading-snug">
+        에디토브랜드 런칭 기념 <span class="gold-text exclusive-tag">EXCLUSIVE</span> 혜택
+      </h2>
     </div>
-    <div class="reveal">
-      <p class="text-xs font-bold tracking-[0.22em] uppercase text-gold mb-3">Introduction</p>
-      <h2 class="font-serif text-2xl sm:text-3xl text-navy font-semibold leading-tight">2027 S/S 뉴 컬렉션</h2>
-      <p class="mt-5 text-base leading-relaxed text-ink/80">드레스쇼에서 선보인 드레스를<br>직접 입어볼 수 있는 기회</p>
-    </div>
-  </div>
-</section>
-
-<div class="gold-divider-wrap" style="background:#0E1B33;" aria-hidden="true"><div class="gold-divider gold-divider--navy"></div></div>
-
-<!-- 3. MUE Brand -->
-<section class="py-14 lg:py-20 navy-section">
-  <div class="section-inner mx-auto max-w-4xl px-6 reveal">
-    <div class="text-center">
-      <p class="mue-logo-text gold-text mb-4">MUE</p>
-      <p class="mue-boutique-label mb-3">WEDDING BOUTIQUE</p>
-      <p class="text-sm sm:text-base text-white/85 leading-relaxed">커스터마이징 &amp; 하이엔드 웨딩의 융합 웨딩 브랜드 그룹</p>
-      <p class="mt-8 text-sm sm:text-base leading-relaxed text-white/75 max-w-2xl mx-auto">
-        웨딩 부티크 뮤는 하이엔드 수입드레스, 프리미엄 국내드레스,
-        청담 뷰티 브랜드 진동희, 커스텀웨딩 전문 스튜디오까지
-        다양한 웨딩 브랜드를 한 공간에서 웨딩투어 및 디렉팅이 가능한
-        프라이빗한 공간입니다.
+    <div class="reveal text-center mb-8 py-5 border-y border-gold/25">
+      <p class="text-sm text-white/75">당일 계약 고객 한정</p>
+      <p class="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-lg sm:text-xl font-semibold text-gold-light">
+        <span>4대 시그니처 패키지</span>
+        <span class="badge-50off">50% OFF</span>
       </p>
     </div>
-    <div class="mt-10 mx-auto max-w-2xl img-zoom overflow-hidden rounded-sm shadow-lg ring-1 ring-gold/25">
-      <img data-slot="mue-interior-main" src="/images/dress-show-2027/mue-interior-main.jpg" alt="웨딩뮤 MUE 샵 인테리어" class="w-full aspect-[16/10] object-cover" loading="lazy">
-    </div>
-    <div class="mue-interior-grid mt-3 max-w-2xl mx-auto">
-      <div class="gallery-item aspect-square overflow-hidden rounded-sm ring-1 ring-gold/20">
-        <img src="/images/dress-show-2027/mue-interior-1.jpg" alt="MUE 인테리어" class="h-full w-full object-cover" loading="lazy">
-      </div>
-      <div class="gallery-item aspect-square overflow-hidden rounded-sm ring-1 ring-gold/20">
-        <img src="/images/dress-show-2027/mue-interior-2.jpg" alt="MUE 인테리어" class="h-full w-full object-cover" loading="lazy">
-      </div>
-      <div class="gallery-item aspect-square overflow-hidden rounded-sm ring-1 ring-gold/20">
-        <img src="/images/dress-show-2027/mue-interior-3.jpg" alt="MUE 인테리어" class="h-full w-full object-cover" loading="lazy">
-      </div>
-      <div class="gallery-item aspect-square overflow-hidden rounded-sm ring-1 ring-gold/20">
-        <img src="/images/dress-show-2027/mue-interior-4.jpg" alt="MUE 인테리어" class="h-full w-full object-cover" loading="lazy">
-      </div>
-    </div>
-    <div class="grid grid-cols-3 gap-2 mt-2 max-w-2xl mx-auto">
-      <div class="gallery-item aspect-square overflow-hidden rounded-sm ring-1 ring-gold/20">
-        <img src="/images/dress-show-2027/mue-interior-7.jpg" alt="MUE 인테리어" class="h-full w-full object-cover" loading="lazy">
-      </div>
-      <div class="gallery-item aspect-square overflow-hidden rounded-sm ring-1 ring-gold/20">
-        <img src="/images/dress-show-2027/mue-interior-8.jpg" alt="MUE 인테리어" class="h-full w-full object-cover" loading="lazy">
-      </div>
-      <div class="gallery-item aspect-square overflow-hidden rounded-sm ring-1 ring-gold/20">
-        <img src="/images/dress-show-2027/mue-interior-9.jpg" alt="MUE 인테리어" class="h-full w-full object-cover" loading="lazy">
-      </div>
+    <ul class="space-y-3">
+      <li class="reveal pack-item">
+        <span class="pack-num">01.</span>
+        <div>
+          <p class="font-semibold text-sm sm:text-base">청담 뷰티 브랜드 — 뷰티진동희 헤어 메이크업</p>
+        </div>
+      </li>
+      <li class="reveal pack-item">
+        <span class="pack-num">02.</span>
+        <div>
+          <p class="font-semibold text-sm sm:text-base">포에트리 스튜디오 웨딩 촬영</p>
+        </div>
+      </li>
+      <li class="reveal pack-item">
+        <span class="pack-num">03.</span>
+        <div>
+          <p class="font-semibold text-sm sm:text-base">본식 당일 감성 스냅 촬영</p>
+        </div>
+      </li>
+      <li class="reveal pack-item">
+        <span class="pack-num">04.</span>
+        <div>
+          <p class="font-semibold text-sm sm:text-base">본식 당일 원판 앨범</p>
+        </div>
+      </li>
+    </ul>
+    <div class="reveal notice-box">
+      <span class="star" aria-hidden="true">★</span>
+      <p>2027년 신상 드레스를 피팅해보는 시간 이후,<br><strong>당일 현장 계약 시에만</strong> 위 혜택이 적용됩니다.</p>
     </div>
   </div>
 </section>
 
 <div class="gold-divider-wrap cream-section" aria-hidden="true"><div class="gold-divider gold-divider--cream"></div></div>
 
-<!-- 4. Fitting Process -->
+<!-- 3. Fitting Process -->
 <section class="py-14 lg:py-20 cream-section">
   <div class="mx-auto max-w-2xl px-6">
     <div class="reveal text-center mb-10">
@@ -638,10 +721,11 @@ tailwind.config = {
         <p class="mt-3 text-xs font-bold tracking-[0.14em] uppercase text-gold">Event Info</p>
         <div class="mt-3 space-y-2 text-sm leading-relaxed text-ink/80">
           <p><strong class="text-navy">대상:</strong> 경북 포항·경주, 소규모 웨딩 &amp;<br>인생의 소중한 날, 특별한 드레스가 필요한 모든 분들<br>(선착순 한정 예약제)</p>
+          <span class="target-badge">*신규* 계약 고객 한정 혜택</span>
           <p><strong class="text-navy">신청 방법:</strong> 상단에 위치한 '서비스 신청'을 눌러 신청하기</p>
-          <p><strong class="text-navy">참가 신청 기간:</strong> 9월 30일(화)까지</p>
+          <p><strong class="text-navy">참가 신청 기간:</strong> 10월 11일(일)까지</p>
           <p><strong class="text-navy">완료:</strong> 예약 확인을 위한 해피콜 진행</p>
-          <p><strong class="text-navy">참가 확정 안내:</strong> 대상자분들께 개별 유선 연락 드릴 예정입니다</p>
+          <p><strong class="text-navy">참가 확정 안내:</strong> 채택되신 대상자분들께 개별 유선 연락 드릴 예정입니다</p>
           <p class="text-xs text-ink/60 pt-1">※ 사전예약 필수</p>
         </div>
       </div>
@@ -655,11 +739,11 @@ tailwind.config = {
           <p><strong class="text-navy">전화:</strong> <a href="tel:054-274-8890" class="text-gold font-semibold hover:underline">054-274-8890</a></p>
         </div>
       </div>
-      <div class="reveal step-card step-card--featured">
+      <div class="reveal step-card step-card--navy">
         <span class="step-num" aria-hidden="true">3</span>
         <p class="step-label">STEP 3</p>
-        <h3 class="font-bold text-navy text-lg sm:text-xl">웨딩뮤 피팅 진행</h3>
-        <ul class="step-list step-list--featured mt-4">
+        <h3 class="font-bold text-lg sm:text-xl">웨딩뮤 피팅 진행</h3>
+        <ul class="step-list step-list--featured step-list--navy mt-4">
           <li>10년 이상 경력의 토탈 웨딩 전문 디렉터 안내</li>
           <li>드레스 메인 디스플레이존 아이투어 진행</li>
           <li>웨딩뮤 브랜드 및 드레스 상담</li>
@@ -675,97 +759,52 @@ tailwind.config = {
   </div>
 </section>
 
-<div class="gold-divider-wrap" style="background:#121F38;" aria-hidden="true"><div class="gold-divider gold-divider--navy"></div></div>
+<div class="gold-divider-wrap" style="background:#0E1B33;" aria-hidden="true"><div class="gold-divider gold-divider--navy"></div></div>
 
-<!-- 5. Exclusive Benefits -->
-<section class="py-14 lg:py-20 navy-section sparkle-bg text-white">
-  <div class="section-inner mx-auto max-w-3xl px-6">
-    <div class="reveal text-center mb-8">
-      <p class="text-xs font-bold tracking-[0.18em] uppercase text-gold-light mb-3">Exclusive Benefit</p>
-      <h2 class="font-serif text-xl sm:text-2xl text-white font-semibold leading-snug">
-        에디토브랜드 런칭 기념 <span class="gold-text exclusive-tag">EXCLUSIVE</span> 혜택
-      </h2>
+<!-- 4. MUE Brand -->
+<section class="py-14 lg:py-20 navy-section">
+  <div class="section-inner mx-auto max-w-5xl px-6 reveal">
+    <div class="text-center mb-10">
+      <p class="mue-logo-text gold-text mb-4">MUE</p>
+      <p class="mue-boutique-label mb-3">WEDDING BOUTIQUE</p>
+      <p class="text-sm sm:text-base text-white/85 leading-relaxed">커스터마이징 &amp; 하이엔드 웨딩의 융합 웨딩 브랜드 그룹</p>
     </div>
-    <div class="reveal text-center mb-8 py-4 border-y border-gold/25">
-      <p class="text-sm text-white/75">당일 계약 고객 한정</p>
-      <p class="mt-2 text-base sm:text-lg font-semibold text-gold-light">5대 시그니처 패키지 최대 50% OFF</p>
+    <div class="brand-logo-grid mb-8">
+      <div class="brand-logo-cell reveal"><img src="/images/dress-show-2027/brand-logo-1.jpg" alt="드레스 브랜드 로고" loading="lazy"></div>
+      <div class="brand-logo-cell reveal"><img src="/images/dress-show-2027/brand-logo-2.jpg" alt="드레스 브랜드 로고" loading="lazy"></div>
+      <div class="brand-logo-cell reveal"><img src="/images/dress-show-2027/brand-logo-3.jpg" alt="드레스 브랜드 로고" loading="lazy"></div>
+      <div class="brand-logo-cell reveal"><img src="/images/dress-show-2027/brand-logo-4.jpg" alt="드레스 브랜드 로고" loading="lazy"></div>
+      <div class="brand-logo-cell reveal"><img src="/images/dress-show-2027/brand-logo-5.jpg" alt="드레스 브랜드 로고" loading="lazy"></div>
+      <div class="brand-logo-cell reveal"><img src="/images/dress-show-2027/brand-logo-6.jpg" alt="드레스 브랜드 로고" loading="lazy"></div>
+      <div class="brand-logo-cell reveal"><img src="/images/dress-show-2027/brand-logo-7.jpg" alt="드레스 브랜드 로고" loading="lazy"></div>
+      <div class="brand-logo-cell reveal"><img src="/images/dress-show-2027/brand-logo-8.jpg" alt="드레스 브랜드 로고" loading="lazy"></div>
+      <div class="brand-logo-cell reveal"><img src="/images/dress-show-2027/brand-logo-9.jpg" alt="드레스 브랜드 로고" loading="lazy"></div>
+      <div class="brand-logo-cell reveal"><img src="/images/dress-show-2027/brand-logo-10.jpg" alt="드레스 브랜드 로고" loading="lazy"></div>
+      <div class="brand-logo-cell reveal"><img src="/images/dress-show-2027/brand-logo-11.jpg" alt="드레스 브랜드 로고" loading="lazy"></div>
+      <div class="brand-logo-cell reveal"><img src="/images/dress-show-2027/brand-logo-12.jpg" alt="드레스 브랜드 로고" loading="lazy"></div>
     </div>
-    <ul class="space-y-3">
-      <li class="reveal pack-item">
-        <span class="pack-num">01.</span>
-        <div>
-          <p class="font-semibold text-sm sm:text-base">프리미엄 드레스 대여</p>
-          <p class="mt-1 text-xs sm:text-sm text-white/65">신부님의 드레스가 필요한 모든 분</p>
-        </div>
-      </li>
-      <li class="reveal pack-item">
-        <span class="pack-num">02.</span>
-        <div>
-          <p class="font-semibold text-sm sm:text-base">청담 뷰티 브랜드 — 뷰티진동희 헤어 메이크업</p>
-        </div>
-      </li>
-      <li class="reveal pack-item">
-        <span class="pack-num">03.</span>
-        <div>
-          <p class="font-semibold text-sm sm:text-base">포에트리 스튜디오 웨딩 촬영</p>
-        </div>
-      </li>
-      <li class="reveal pack-item">
-        <span class="pack-num">04.</span>
-        <div>
-          <p class="font-semibold text-sm sm:text-base">본식 당일 감성 스냅 촬영</p>
-        </div>
-      </li>
-      <li class="reveal pack-item">
-        <span class="pack-num">05.</span>
-        <div>
-          <p class="font-semibold text-sm sm:text-base">본식 당일 원판 앨범</p>
-        </div>
-      </li>
-    </ul>
-    <div class="reveal notice-box">
-      <span class="star" aria-hidden="true">★</span>
-      <p>2027년 신상 드레스를 피팅해보는 시간 이후,<br><strong>당일 현장 계약 시에만</strong> 위 혜택이 적용됩니다.</p>
-    </div>
-    <div class="reveal mt-10 text-center">
-      <a href="#apply" class="btn-gold inline-flex rounded-full px-10 py-4 text-base font-bold tracking-wide ring-2 ring-gold/40">사전예약 신청하기</a>
-      <p class="mt-4 text-xs text-white/55">신청 시 EXCLUSIVE 혜택도 함께 안내드립니다</p>
-    </div>
-  </div>
-</section>
-
-<div class="gold-divider-wrap" style="background:#F6F2E9;" aria-hidden="true"><div class="gold-divider gold-divider--cream"></div></div>
-
-<!-- 6. 2026 Highlight Gallery -->
-<section class="py-14 lg:py-20 cream-section">
-  <div class="mx-auto max-w-4xl px-6">
-    <div class="reveal text-center mb-8">
-      <h2 class="font-serif text-xl sm:text-2xl text-navy font-semibold">2026 S/S 드레스쇼 · 하이라이트</h2>
-    </div>
-    <div class="grid grid-cols-2 gap-3">
-      <div class="reveal gallery-item aspect-[4/5]">
-        <img data-slot="gallery-1" src="/images/dress-show-2027/KYI-0942.jpg" alt="드레스쇼 런웨이 전경" class="h-full w-full object-cover" loading="lazy">
-      </div>
-      <div class="reveal gallery-item aspect-[4/5]">
-        <img data-slot="gallery-2" src="/images/dress-show-2027/KYI-0995.jpg" alt="드레스쇼 하이라이트" class="h-full w-full object-cover" loading="lazy">
-      </div>
-      <div class="reveal gallery-item aspect-[4/5]">
-        <img data-slot="gallery-3" src="/images/dress-show-2027/KYI-1397.jpg" alt="런웨이 워킹" class="h-full w-full object-cover" loading="lazy">
-      </div>
-      <div class="reveal gallery-item aspect-[4/5]">
-        <img data-slot="gallery-4" src="/images/dress-show-2027/KYI-1881.jpg" alt="드레스 디테일" class="h-full w-full object-cover" loading="lazy">
-      </div>
+    <div class="dress-photo-grid">
+      <div class="reveal gallery-item aspect-[3/4]"><img src="/images/dress-show-2027/dress-photo-1.jpg" alt="웨딩 드레스" class="h-full w-full object-cover" loading="lazy"></div>
+      <div class="reveal gallery-item aspect-[3/4]"><img src="/images/dress-show-2027/dress-photo-2.jpg" alt="웨딩 드레스" class="h-full w-full object-cover" loading="lazy"></div>
+      <div class="reveal gallery-item aspect-[3/4]"><img src="/images/dress-show-2027/dress-photo-3.jpg" alt="웨딩 드레스" class="h-full w-full object-cover" loading="lazy"></div>
+      <div class="reveal gallery-item aspect-[3/4]"><img src="/images/dress-show-2027/dress-photo-4.jpg" alt="웨딩 드레스" class="h-full w-full object-cover" loading="lazy"></div>
+      <div class="reveal gallery-item aspect-[3/4]"><img src="/images/dress-show-2027/dress-photo-5.jpg" alt="웨딩 드레스" class="h-full w-full object-cover" loading="lazy"></div>
+      <div class="reveal gallery-item aspect-[3/4]"><img src="/images/dress-show-2027/dress-photo-6.jpg" alt="웨딩 드레스" class="h-full w-full object-cover" loading="lazy"></div>
+      <div class="reveal gallery-item aspect-[3/4]"><img src="/images/dress-show-2027/dress-photo-7.jpg" alt="웨딩 드레스" class="h-full w-full object-cover" loading="lazy"></div>
+      <div class="reveal gallery-item aspect-[3/4]"><img src="/images/dress-show-2027/dress-photo-8.jpg" alt="웨딩 드레스" class="h-full w-full object-cover" loading="lazy"></div>
+      <div class="reveal gallery-item aspect-[3/4]"><img src="/images/dress-show-2027/dress-photo-9.jpg" alt="웨딩 드레스" class="h-full w-full object-cover" loading="lazy"></div>
+      <div class="reveal gallery-item aspect-[3/4]"><img src="/images/dress-show-2027/dress-photo-10.jpg" alt="웨딩 드레스" class="h-full w-full object-cover" loading="lazy"></div>
     </div>
   </div>
 </section>
 
 <div class="gold-divider-wrap" style="background:#0E1B33;" aria-hidden="true"><div class="gold-divider gold-divider--navy"></div></div>
 
-<!-- 7. Apply Form -->
+<!-- 5. Apply Form -->
 <section id="apply" class="py-14 lg:py-20 navy-section sparkle-bg scroll-mt-20">
   <div class="section-inner mx-auto max-w-lg px-6 reveal">
     <h2 class="font-serif text-2xl gold-text font-semibold text-center mb-4">사전예약 신청</h2>
-    <p class="text-center text-sm text-white/75 mb-8 leading-relaxed">선착순 20명 · 개별 일정 조율 · THE QUEEN 2층<br>마감 9/30(화) · 무료 (사전예약 필수)</p>
+    <p class="text-center text-sm text-white/75 mb-8 leading-relaxed">선착순 20명 · 개별 일정 조율 · THE QUEEN 2층<br>마감 10/11(일) · 무료 (사전예약 필수)</p>
     <div class="form-card rounded-xl p-8 sm:p-10">
       <form id="apply-form" class="space-y-6">
         <div>
@@ -779,6 +818,20 @@ tailwind.config = {
         <div>
           <label class="block text-sm font-semibold text-white mb-2" for="wedding-date">예식 예정일 <span class="text-white/50 text-xs font-normal">(선택)</span></label>
           <input type="date" id="wedding-date" name="wedding_date" class="field-underline w-full px-1 py-3 text-white">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-white mb-2" for="venue">예식 장소 <span class="text-white/50 text-xs font-normal">(선택)</span></label>
+          <input type="text" id="venue" name="venue" class="field-underline w-full px-1 py-3 text-white placeholder:text-white/40" placeholder="예: THE QUEEN 웨딩홀, 미정 등">
+        </div>
+        <div>
+          <span class="block text-sm font-semibold text-white mb-3">관심 있는 품목 <span class="text-white/50 text-xs font-normal">(선택)</span></span>
+          <div class="checkbox-group">
+            <label class="checkbox-item"><input type="checkbox" name="interest" value="웨딩홀"> 웨딩홀</label>
+            <label class="checkbox-item"><input type="checkbox" name="interest" value="드레스"> 드레스</label>
+            <label class="checkbox-item"><input type="checkbox" name="interest" value="메이크업"> 메이크업</label>
+            <label class="checkbox-item"><input type="checkbox" name="interest" value="본식스냅촬영"> 본식스냅촬영</label>
+            <label class="checkbox-item"><input type="checkbox" name="interest" value="스튜디오"> 스튜디오</label>
+          </div>
         </div>
         <div>
           <label class="block text-sm font-semibold text-white mb-2" for="message">문의 사항 <span class="text-white/50 text-xs font-normal">(선택)</span></label>
@@ -902,7 +955,7 @@ tailwind.config = {
 
   /* Countdown */
   function updateCountdown() {
-    var deadline = new Date('2026-09-30T23:59:59+09:00');
+    var deadline = new Date('2026-10-11T23:59:59+09:00');
     var now = new Date();
     var diff = deadline - now;
     var html;
@@ -932,8 +985,15 @@ tailwind.config = {
     }
     var msg = '[2027 S/S 피팅 신청]\n이름: ' + name + '\n연락처: ' + phone;
     var wd = document.getElementById('wedding-date').value;
+    var venue = document.getElementById('venue').value.trim();
     var note = document.getElementById('message').value.trim();
+    var interests = [];
+    document.querySelectorAll('input[name="interest"]:checked').forEach(function (el) {
+      interests.push(el.value);
+    });
     if (wd) msg += '\n예식 예정일: ' + wd;
+    if (venue) msg += '\n예식 장소: ' + venue;
+    if (interests.length) msg += '\n관심 품목: ' + interests.join(', ');
     if (note) msg += '\n문의: ' + note;
     try { navigator.clipboard.writeText(msg); } catch (_) {}
     window.open('https://pf.kakao.com/_rbxopG/chat', '_blank', 'noopener');
