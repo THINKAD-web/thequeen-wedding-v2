@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<link rel="preload" href="/Sunlight.mp3" as="audio" type="audio/mpeg">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -738,6 +739,25 @@ body.theme-midnight footer { display:none !important; }
   #page-dress-show .tq-music svg { width:24px; height:24px; }
   #page-dress-show .tq-music-title { left:66px; font-size:11px; }
 }
+
+  #page-dress-show .tq-music-hint {
+    position: fixed; left: 18px; bottom: 78px; z-index: 9986;
+    padding: 10px 16px; border-radius: 999px;
+    background: rgba(10, 5, 6, .92); backdrop-filter: blur(10px);
+    color: #FDF8F3; font-size: 12px; font-weight: 600; letter-spacing: -.01em;
+    border: 1px solid rgba(232, 184, 160, .45);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+    animation: tq-hint-bounce 2s ease-in-out infinite;
+    pointer-events: none;
+  }
+  #page-dress-show .tq-music-hint.hidden { display: none; }
+  @keyframes tq-hint-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+  #page-dress-show .tq-music.waiting { animation: tq-music-pulse 1.8s ease-in-out infinite; }
+  @keyframes tq-music-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+  @media (min-width: 1024px) {
+    #page-dress-show .tq-music-hint { left: 28px; bottom: 96px; font-size: 13px; }
+  }
+
 </style>
 
 <script>
@@ -1955,129 +1975,16 @@ body.theme-midnight footer { display:none !important; }
 </script>
 
 <!-- BACKGROUND MUSIC · Sunlight / April in Your Eyes -->
-<audio id="tqBgm" preload="auto" playsinline webkit-playsinline loop>
-  <source src="/Sunlight.mp3" type="audio/mpeg">
-</audio>
+<audio id="tqBgm" preload="auto" autoplay muted playsinline webkit-playsinline></audio>
+<div id="tqMusicHint" class="tq-music-hint hidden" role="status" aria-live="polite">🎵 터치하면 음악이 시작돼요</div>
 <button id="tqMusicBtn" type="button" class="tq-music" aria-label="배경 음악 재생" onclick="tqToggleMusic()">
-  <svg id="tqMusicSvg" fill="currentColor" viewBox="0 0 24 24">
+  <svg id="tqMusicSvg" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
     <path d="M12 3 L9 3 L9 14.5 A3 3 0 1 0 12 17.5 Z M12 3 L18 3 L18 5 L12 5 Z"/>
   </svg>
   <span class="tq-music-title" id="tqMusicTitle">Sunlight</span>
 </button>
+<script src="/js/tq-bgm.js"></script>
 
-<script>
-(function(){
-  var TRACKS = [
-    { src: '/Sunlight.mp3', title: 'Sunlight' },
-    { src: '/April%20in%20Your%20Eyes.mp3', title: 'April in Your Eyes' }
-  ];
-  var idx = 0;
-  var audio = document.getElementById('tqBgm');
-  var btn   = document.getElementById('tqMusicBtn');
-  var title = document.getElementById('tqMusicTitle');
-  if (!audio || !btn) return;
-
-  audio.loop = false;
-  audio.volume = 0;
-
-  function loadTrack(i){
-    idx = (i % TRACKS.length + TRACKS.length) % TRACKS.length;
-    audio.src = TRACKS[idx].src;
-    if (title) title.textContent = TRACKS[idx].title;
-  }
-
-  function fadeTo(target, duration, done){
-    var start = audio.volume, t0 = performance.now();
-    function step(t){
-      var p = Math.min(1, (t - t0) / duration);
-      audio.volume = Math.max(0, Math.min(1, start + (target - start) * p));
-      if (p < 1) requestAnimationFrame(step);
-      else if (done) done();
-    }
-    requestAnimationFrame(step);
-  }
-
-  audio.addEventListener('ended', function(){
-    loadTrack(idx + 1);
-    audio.volume = 0;
-    audio.play().then(function(){ fadeTo(0.55, 1600); }).catch(function(){});
-  });
-
-  var UNLOCK_EVENTS = ['pointerdown', 'touchstart', 'click', 'scroll', 'wheel', 'keydown'];
-
-  function markPlaying(){
-    btn.classList.add('playing');
-    btn.setAttribute('aria-label','배경 음악 일시정지');
-  }
-
-  function markPaused(){
-    btn.classList.remove('playing');
-    btn.setAttribute('aria-label','배경 음악 재생');
-  }
-
-  function startPlayback(){
-    if (!audio.src) loadTrack(0);
-    audio.volume = 0;
-    return audio.play().then(function(){
-      markPlaying();
-      fadeTo(0.55, 1600);
-    });
-  }
-
-  window.tqToggleMusic = function(){
-    if (audio.paused) {
-      audio.muted = false;
-      startPlayback().catch(function(){});
-    } else {
-      fadeTo(0, 600, function(){
-        audio.pause();
-        markPaused();
-      });
-    }
-  };
-
-  function removeUnlock(listeners){
-    listeners.forEach(function(entry){
-      document.removeEventListener(entry.type, entry.fn, true);
-    });
-  }
-
-  function bindUnlock(onUnlock){
-    var listeners = UNLOCK_EVENTS.map(function(ev){
-      var fn = function(){
-        removeUnlock(listeners);
-        audio.muted = false;
-        onUnlock();
-      };
-      document.addEventListener(ev, fn, { capture: true, passive: true });
-      return { type: ev, fn: fn };
-    });
-    return listeners;
-  }
-
-  function tryAutoplay(){
-    loadTrack(0);
-    startPlayback().then(function(){
-      audio.muted = false;
-    }).catch(function(){
-      audio.muted = true;
-      audio.volume = 0;
-      audio.play().then(function(){
-        markPlaying();
-        bindUnlock(function(){ fadeTo(0.55, 800); });
-      }).catch(function(){
-        bindUnlock(function(){
-          if (audio.paused) startPlayback().catch(function(){});
-          else fadeTo(0.55, 800);
-        });
-      });
-    });
-  }
-
-  if (document.readyState === 'complete' || document.readyState === 'interactive') tryAutoplay();
-  else document.addEventListener('DOMContentLoaded', tryAutoplay);
-})();
-</script>
 
 </main>
 
