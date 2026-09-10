@@ -375,6 +375,38 @@ tailwind.config = {
   }
   .media-tile:hover::after { opacity: 0.3; }
 
+
+  /* ---------- Floating background music ---------- */
+  .tq-music {
+    position: fixed; left: 18px; bottom: 18px; z-index: 9985;
+    width: 52px; height: 52px; border-radius: 999px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #FBE3D4 0%, #E8B8A0 40%, #D4A574 70%, #B88968 100%);
+    color: #1A0A0C; border: 1.5px solid rgba(253, 248, 243, .35);
+    box-shadow: 0 10px 28px -6px rgba(212, 165, 116, .6), 0 0 0 1px rgba(253, 248, 243, .08);
+    cursor: pointer; transition: transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s;
+  }
+  .tq-music:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 14px 36px -6px rgba(212, 165, 116, .8); }
+  .tq-music svg { width: 22px; height: 22px; transition: transform .5s; }
+  .tq-music.playing { background: linear-gradient(135deg, #FF7FA6 0%, #FF3D7F 55%, #D4A574 100%); color: #FDF8F3; animation: tq-glow 3.6s ease-in-out infinite; }
+  .tq-music.playing svg { animation: tq-music-spin 8s linear infinite; }
+  @keyframes tq-music-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes tq-glow { 0%, 100% { box-shadow: 0 10px 28px -6px rgba(255, 61, 127, .45); } 50% { box-shadow: 0 14px 36px -4px rgba(255, 127, 166, .65); } }
+  .tq-music-title {
+    position: absolute; left: 58px; top: 50%; transform: translateY(-50%);
+    padding: 6px 14px 6px 12px; border-radius: 999px;
+    background: rgba(10, 5, 6, .85); backdrop-filter: blur(8px);
+    color: #FDF8F3; font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; white-space: nowrap;
+    opacity: 0; pointer-events: none; transition: opacity .4s, transform .4s;
+    border: 1px solid rgba(232, 184, 160, .35);
+  }
+  .tq-music.playing .tq-music-title { opacity: 1; transform: translateY(-50%) translateX(2px); }
+  @media (min-width: 1024px) {
+    .tq-music { left: 28px; bottom: 28px; width: 58px; height: 58px; }
+    .tq-music svg { width: 24px; height: 24px; }
+    .tq-music-title { left: 66px; font-size: 11px; }
+  }
+
 </style>
 </head>
 <body class="antialiased">
@@ -1806,6 +1838,131 @@ const IMAGES = {
   else document.addEventListener('DOMContentLoaded', hook, { once: true });
 })();
 </script>
+
+<!-- BACKGROUND MUSIC · Sunlight / April in Your Eyes -->
+<audio id="tqBgm" preload="auto" playsinline webkit-playsinline loop>
+  <source src="/Sunlight.mp3" type="audio/mpeg">
+</audio>
+<button id="tqMusicBtn" type="button" class="tq-music" aria-label="배경 음악 재생" onclick="tqToggleMusic()">
+  <svg id="tqMusicSvg" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 3 L9 3 L9 14.5 A3 3 0 1 0 12 17.5 Z M12 3 L18 3 L18 5 L12 5 Z"/>
+  </svg>
+  <span class="tq-music-title" id="tqMusicTitle">Sunlight</span>
+</button>
+<script>
+(function () {
+  var TRACKS = [
+    { src: '/Sunlight.mp3', title: 'Sunlight' },
+    { src: '/April%20in%20Your%20Eyes.mp3', title: 'April in Your Eyes' }
+  ];
+  var UNLOCK_EVENTS = ['pointerdown', 'touchstart', 'click', 'scroll', 'wheel', 'keydown'];
+  var idx = 0;
+  var audio = document.getElementById('tqBgm');
+  var btn = document.getElementById('tqMusicBtn');
+  var title = document.getElementById('tqMusicTitle');
+  if (!audio || !btn) return;
+
+  audio.loop = false;
+  audio.volume = 0;
+
+  function loadTrack(i) {
+    idx = (i % TRACKS.length + TRACKS.length) % TRACKS.length;
+    audio.src = TRACKS[idx].src;
+    if (title) title.textContent = TRACKS[idx].title;
+  }
+
+  function fadeTo(target, duration, done) {
+    var start = audio.volume;
+    var t0 = performance.now();
+    function step(t) {
+      var p = Math.min(1, (t - t0) / duration);
+      audio.volume = Math.max(0, Math.min(1, start + (target - start) * p));
+      if (p < 1) requestAnimationFrame(step);
+      else if (done) done();
+    }
+    requestAnimationFrame(step);
+  }
+
+  audio.addEventListener('ended', function () {
+    loadTrack(idx + 1);
+    audio.volume = 0;
+    audio.play().then(function () { fadeTo(0.55, 1600); }).catch(function () {});
+  });
+
+  function markPlaying() {
+    btn.classList.add('playing');
+    btn.setAttribute('aria-label', '배경 음악 일시정지');
+  }
+
+  function markPaused() {
+    btn.classList.remove('playing');
+    btn.setAttribute('aria-label', '배경 음악 재생');
+  }
+
+  function startPlayback() {
+    if (!audio.src) loadTrack(0);
+    audio.volume = 0;
+    return audio.play().then(function () {
+      markPlaying();
+      fadeTo(0.55, 1600);
+    });
+  }
+
+  window.tqToggleMusic = function () {
+    if (audio.paused) {
+      audio.muted = false;
+      startPlayback().catch(function () {});
+    } else {
+      fadeTo(0, 600, function () {
+        audio.pause();
+        markPaused();
+      });
+    }
+  };
+
+  function removeUnlock(listeners) {
+    listeners.forEach(function (entry) {
+      document.removeEventListener(entry.type, entry.fn, true);
+    });
+  }
+
+  function bindUnlock(onUnlock) {
+    var listeners = UNLOCK_EVENTS.map(function (ev) {
+      var fn = function () {
+        removeUnlock(listeners);
+        audio.muted = false;
+        onUnlock();
+      };
+      document.addEventListener(ev, fn, { capture: true, passive: true });
+      return { type: ev, fn: fn };
+    });
+    return listeners;
+  }
+
+  function tryAutoplay() {
+    loadTrack(0);
+    startPlayback().then(function () {
+      audio.muted = false;
+    }).catch(function () {
+      audio.muted = true;
+      audio.volume = 0;
+      audio.play().then(function () {
+        markPlaying();
+        bindUnlock(function () { fadeTo(0.55, 800); });
+      }).catch(function () {
+        bindUnlock(function () {
+          if (audio.paused) startPlayback().catch(function () {});
+          else fadeTo(0.55, 800);
+        });
+      });
+    });
+  }
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') tryAutoplay();
+  else document.addEventListener('DOMContentLoaded', tryAutoplay);
+})();
+</script>
+
 <script src="/chatbot/embed.js" defer></script>
 
 <!-- 카카오톡 채널 버튼 -->

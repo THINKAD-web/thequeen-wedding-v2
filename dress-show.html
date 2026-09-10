@@ -1955,10 +1955,10 @@ body.theme-midnight footer { display:none !important; }
 </script>
 
 <!-- BACKGROUND MUSIC · Sunlight / April in Your Eyes -->
-<audio id="tqBgm" preload="metadata" playsinline loop>
+<audio id="tqBgm" preload="auto" playsinline webkit-playsinline loop>
   <source src="/Sunlight.mp3" type="audio/mpeg">
 </audio>
-<button id="tqMusicBtn" class="tq-music" aria-label="배경 음악 재생" onclick="tqToggleMusic()">
+<button id="tqMusicBtn" type="button" class="tq-music" aria-label="배경 음악 재생" onclick="tqToggleMusic()">
   <svg id="tqMusicSvg" fill="currentColor" viewBox="0 0 24 24">
     <path d="M12 3 L9 3 L9 14.5 A3 3 0 1 0 12 17.5 Z M12 3 L18 3 L18 5 L12 5 Z"/>
   </svg>
@@ -2003,46 +2003,79 @@ body.theme-midnight footer { display:none !important; }
     audio.play().then(function(){ fadeTo(0.55, 1600); }).catch(function(){});
   });
 
+  var UNLOCK_EVENTS = ['pointerdown', 'touchstart', 'click', 'scroll', 'wheel', 'keydown'];
+
+  function markPlaying(){
+    btn.classList.add('playing');
+    btn.setAttribute('aria-label','배경 음악 일시정지');
+  }
+
+  function markPaused(){
+    btn.classList.remove('playing');
+    btn.setAttribute('aria-label','배경 음악 재생');
+  }
+
   function startPlayback(){
     if (!audio.src) loadTrack(0);
     audio.volume = 0;
     return audio.play().then(function(){
-      btn.classList.add('playing');
-      btn.setAttribute('aria-label','배경 음악 일시정지');
+      markPlaying();
       fadeTo(0.55, 1600);
     });
   }
 
   window.tqToggleMusic = function(){
     if (audio.paused) {
+      audio.muted = false;
       startPlayback().catch(function(){});
     } else {
       fadeTo(0, 600, function(){
         audio.pause();
-        btn.classList.remove('playing');
-        btn.setAttribute('aria-label','배경 음악 재생');
+        markPaused();
       });
     }
   };
 
-  loadTrack(0);
-  function tryAutoplay(){
-    startPlayback().catch(function(){
-      function unlock(){
-        document.removeEventListener('pointerdown', unlock);
-        document.removeEventListener('keydown', unlock);
-        if (!audio.paused) return;
-        startPlayback().catch(function(){});
-      }
-      document.addEventListener('pointerdown', unlock);
-      document.addEventListener('keydown', unlock);
+  function removeUnlock(listeners){
+    listeners.forEach(function(entry){
+      document.removeEventListener(entry.type, entry.fn, true);
     });
   }
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    tryAutoplay();
-  } else {
-    document.addEventListener('DOMContentLoaded', tryAutoplay);
+
+  function bindUnlock(onUnlock){
+    var listeners = UNLOCK_EVENTS.map(function(ev){
+      var fn = function(){
+        removeUnlock(listeners);
+        audio.muted = false;
+        onUnlock();
+      };
+      document.addEventListener(ev, fn, { capture: true, passive: true });
+      return { type: ev, fn: fn };
+    });
+    return listeners;
   }
+
+  function tryAutoplay(){
+    loadTrack(0);
+    startPlayback().then(function(){
+      audio.muted = false;
+    }).catch(function(){
+      audio.muted = true;
+      audio.volume = 0;
+      audio.play().then(function(){
+        markPlaying();
+        bindUnlock(function(){ fadeTo(0.55, 800); });
+      }).catch(function(){
+        bindUnlock(function(){
+          if (audio.paused) startPlayback().catch(function(){});
+          else fadeTo(0.55, 800);
+        });
+      });
+    });
+  }
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') tryAutoplay();
+  else document.addEventListener('DOMContentLoaded', tryAutoplay);
 })();
 </script>
 
