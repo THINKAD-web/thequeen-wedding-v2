@@ -45,6 +45,9 @@ const BASE_SITEMAP_URLS = [
   { loc: `${SITE_URL}/queens-table/queens-box`, changefreq: 'weekly', priority: '0.85' },
   { loc: `${SITE_URL}/dress-show`, changefreq: 'monthly', priority: '0.7' },
   { loc: `${SITE_URL}/dress-show-2027`, changefreq: 'weekly', priority: '0.85' },
+  { loc: `${SITE_URL}/banquet`, changefreq: 'monthly', priority: '0.85' },
+  { loc: `${SITE_URL}/partners`, changefreq: 'monthly', priority: '0.8' },
+  { loc: `${SITE_URL}/press`, changefreq: 'weekly', priority: '0.75' },
 ];
 
 marked.setOptions({ gfm: true, breaks: false });
@@ -215,6 +218,15 @@ function renderRelatedPosts(post, allPosts) {
     </section>`;
 }
 
+function renderPostExtra(post) {
+  if (post.slug !== 'queens-table-five-star') return '';
+  return `
+    <div class="mx-auto max-w-3xl mt-12 rounded-sm border border-[#C9A96A]/30 bg-gradient-to-br from-[#FAF6EC] to-white p-6 text-center not-prose">
+      <p class="text-sm text-slate-600">기업·단체 연회와 케이터링도 같은 건물에서 상담하실 수 있습니다.</p>
+      <a href="/banquet" class="mt-4 inline-flex items-center rounded-full bg-gradient-to-r from-[#0A2A5E] to-[#1E4A8C] px-6 py-2.5 text-sm font-semibold text-white shadow-md hover:-translate-y-0.5 transition">기업·단체 연회 · 케이터링 안내</a>
+    </div>`;
+}
+
 function generatePostPages(posts) {
   const postTemplate = readFile(path.join(TEMPLATES_DIR, 'post.html'));
 
@@ -234,6 +246,7 @@ function generatePostPages(posts) {
         ? `<div class="mx-auto max-w-3xl overflow-hidden rounded-sm"><img src="${escapeHtml(toAbsoluteUrl(post.thumbnail))}" alt="${escapeHtml(post.title)}" class="w-full object-cover" loading="eager"></div>`
         : '',
       CONTENT: post.htmlContent,
+      POST_EXTRA: renderPostExtra(post),
       RELATED_POSTS: renderRelatedPosts(post, posts),
       TITLE_JS: JSON.stringify(post.title),
       DESCRIPTION_JS: JSON.stringify(post.description),
@@ -392,6 +405,9 @@ function main() {
   console.log('\nGenerating feeds:');
   generateSitemap(posts);
   generateRss(posts);
+
+  const { buildCorporatePages } = require('./build-corporate-pages');
+  buildCorporatePages();
 
   console.log('\nDone.');
 }

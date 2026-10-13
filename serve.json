@@ -24,6 +24,9 @@
     { "source": "/guide/index.html", "destination": "/guide" },
     { "source": "/stories/index.html", "destination": "/stories" },
     { "source": "/dining/index.html", "destination": "/dining" },
+    { "source": "/banquet.html", "destination": "/banquet" },
+    { "source": "/partners/index.html", "destination": "/partners" },
+    { "source": "/press/index.html", "destination": "/press" },
     { "source": "/news/:slug.html", "destination": "/news/:slug" },
     { "source": "/guide/:slug.html", "destination": "/guide/:slug" },
     { "source": "/stories/:slug.html", "destination": "/stories/:slug" },
@@ -51,6 +54,9 @@
     { "source": "/guide/:slug([^/.]+)", "destination": "/guide/:slug.html" },
     { "source": "/stories/:slug([^/.]+)", "destination": "/stories/:slug.html" },
     { "source": "/dining/:slug([^/.]+)", "destination": "/dining/:slug.html" },
+    { "source": "/banquet", "destination": "/banquet.html" },
+    { "source": "/partners", "destination": "/partners/index.html" },
+    { "source": "/press", "destination": "/press/index.html" },
     { "source": "/marketing.html", "destination": "/marketing" },
     { "source": "/campaigns/week-8-1", "destination": "/pages/campaigns/week-8-1.html" }
   ]

@@ -61,10 +61,13 @@ tailwind.config = {
       <span class="text-[9px] font-semibold uppercase tracking-[0.32em] text-gold">The Queen's Legacy</span>
       <span class="font-serif text-2xl text-royal-900 tracking-wide">THE QUEEN</span>
     </a>
-    <nav class="hidden lg:flex items-center gap-10">
+    <nav class="hidden lg:flex items-center gap-6 xl:gap-8">
       <a href="/" class="nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">더퀸 웨딩</a>
       <a href="/queens-table" class="nav-link text-sm font-semibold text-slate-700 hover:text-forest-900">퀸즈 테이블</a>
       <a href="/news" class="nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">스토리</a>
+      <a href="/banquet" class="nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">기업·단체 연회</a>
+      <a href="/partners" class="nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">협약 안내</a>
+      <a href="/press" class="nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">언론보도</a>
       <a href="/dress-show" class="nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">2026 S/S 드레스 쇼</a>
       <a href="tel:054-283-1111" class="header-cta btn-shimmer inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-royal-900 to-royal-700 px-6 py-2.5 text-xs font-semibold tracking-wide text-white shadow-lg shadow-royal-900/20 transition hover:-translate-y-0.5">
         <span class="relative">상담 예약</span>
@@ -165,8 +168,13 @@ tailwind.config = {
 </main>
 
 <footer class="bg-[#0A2A5E] text-white mt-auto">
-  <div class="mx-auto max-w-7xl px-6 py-12 text-center text-sm text-white/70">
-    <p>경북 포항시 남구 대이로 18 · 054-283-1111</p>
+  <div class="mx-auto max-w-7xl px-6 py-12">
+    <nav class="mb-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-white/80" aria-label="바로가기">
+      <a href="/banquet" class="hover:text-gold transition">기업·단체 연회</a>
+      <a href="/partners" class="hover:text-gold transition">협약 안내</a>
+      <a href="/press" class="hover:text-gold transition">언론보도</a>
+    </nav>
+    <p class="text-center text-sm text-white/70">경북 포항시 남구 대이로 18 · 054-283-1111</p>
     <p class="mt-2 text-xs text-white/50">© 2026 더 퀸 웨딩 THE QUEEN WEDDING. All rights reserved.</p>
   </div>
 </footer>
