@@ -1,6 +1,6 @@
 ---
-title: "포항 1위 웨딩홀 UA컨벤션, '더퀸'으로 재탄생하다"
-description: "전면 리모델링과 최고급 다이닝 퀸즈테이블로 완성한 럭셔리 웨딩홀 더퀸의 새 출발"
+title: "포항 웨딩홀 UA컨벤션, '더퀸'으로 재탄생하다"
+description: "전면 리모델링과 프리미엄 다이닝 퀸즈테이블로 완성한 럭셔리 웨딩홀 더퀸의 새 출발"
 date: 2026-07-12
 category: news
 slug: ua-to-thequeen

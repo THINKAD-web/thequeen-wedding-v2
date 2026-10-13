@@ -29,7 +29,6 @@ const CARD_BLOCK_NEW = `      <div class="reveal rd-4 card-lift mx-auto max-w-4x
           </a>
           <a href="https://pf.kakao.com/_rbxopG/chat" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-royal-700 hover:text-gold">카카오톡 문의</a>
         </div>
-        <p class="mt-6 text-center"><span class="rounded-full bg-slate-200 px-3 py-1 text-xs font-semibold text-slate-600">런칭 기념 할인 (2026.07.01–08.31) · 종료</span></p>
       </div>
     </div>
   </section>
@@ -65,26 +64,26 @@ function patchQueensBoxDetailPage() {
     '<p class="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-white/85 sm:text-lg">퀸즈테이블의 고품격 요리를 그대로 담아, 원하는 곳에서 즐기는 프리미엄 케이터링 서비스</p>',
     '<p class="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-white/85 sm:text-lg">홈파티용 프리미엄 케이터링입니다. 포장 후 픽업하거나 배달해 드리며, 고기·회·반찬 등을 집에서 바로 즐기실 수 있게 담아 드립니다. 2026년 7월부터 이용하실 수 있습니다.</p>',
   );
+  // Restore launch promo table (prices from original page — not CC post-promo swap)
   html = html.replace(
-    '<span class="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">런칭 기념 특별 할인가 · 2026.07.01 ~ 08.31</span>',
     '<span class="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">런칭 기념 할인 · 종료 (2026.07.01–08.31)</span>',
+    '<span class="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">런칭 기념 특별 할인가 · 2026.07.01 ~ 08.31</span>',
   );
-  // Regular prices after promo end (per inline comment in file)
   html = html.replace(
-    '<th class="px-5 py-4 text-right font-semibold text-forest-900">런칭 행사가</th>',
     '<th class="px-5 py-4 text-right font-semibold text-forest-900">가격</th>',
+    '<th class="px-5 py-4 text-right font-semibold text-forest-900">런칭 행사가</th>',
   );
   html = html.replace(
-    '<td class="px-5 py-5 text-right align-top"><span class="font-serif text-2xl font-semibold text-forest-900">380,000<span class="text-base">원</span></span></td>',
     '<td class="px-5 py-5 text-right align-top"><span class="font-serif text-2xl font-semibold text-forest-900">450,000<span class="text-base">원</span></span></td>',
+    '<td class="px-5 py-5 text-right align-top"><span class="font-serif text-2xl font-semibold text-forest-900">380,000<span class="text-base">원</span></span></td>',
   );
   html = html.replace(
-    '<td class="px-5 py-5 text-right align-top"><span class="font-serif text-2xl font-semibold text-forest-900">580,000<span class="text-base">원</span></span></td>',
     '<td class="px-5 py-5 text-right align-top"><span class="font-serif text-2xl font-semibold text-forest-900">650,000<span class="text-base">원</span></span></td>',
+    '<td class="px-5 py-5 text-right align-top"><span class="font-serif text-2xl font-semibold text-forest-900">580,000<span class="text-base">원</span></span></td>',
   );
   html = html.replace(
-    '<td class="px-5 py-5 text-right align-top"><span class="font-serif text-2xl font-semibold text-forest-900">780,000<span class="text-base">원</span></span></td>',
     '<td class="px-5 py-5 text-right align-top"><span class="font-serif text-2xl font-semibold text-forest-900">850,000<span class="text-base">원</span></span></td>',
+    '<td class="px-5 py-5 text-right align-top"><span class="font-serif text-2xl font-semibold text-forest-900">780,000<span class="text-base">원</span></span></td>',
   );
   fs.writeFileSync(full, html, 'utf8');
   console.log('  ✓ queens-table/queens-box.html (detail copy)');

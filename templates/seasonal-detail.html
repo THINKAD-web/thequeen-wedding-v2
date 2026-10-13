@@ -24,6 +24,7 @@ tailwind.config = { theme: { extend: { fontFamily: { serif: ['"Cormorant Garamon
   .nav-link { position: relative; }
   .nav-link::after { content: ''; position: absolute; left: 0; bottom: -6px; height: 1px; width: 0; background: #C9A96A; transition: width .35s; }
   .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+{{MOBILE_MENU_STYLES}}
 </style>
 {{JSON_LD_EXTRA}}
 </head>
@@ -35,9 +36,10 @@ tailwind.config = { theme: { extend: { fontFamily: { serif: ['"Cormorant Garamon
       <span class="font-serif text-2xl text-royal-900 tracking-wide">THE QUEEN</span>
     </a>
     {{DESKTOP_NAV}}
-    <a href="tel:054-283-1111" class="lg:hidden rounded-full bg-royal-900 px-4 py-2 text-xs font-semibold text-white">상담</a>
+    {{MOBILE_HEADER_ACTIONS}}
   </div>
 </header>
+{{MOBILE_MENU_OVERLAY}}
 <main class="flex-1 pt-24 lg:pt-28">
   <article class="mx-auto max-w-3xl px-6 py-12 lg:py-16">
     <p class="text-[11px] font-semibold uppercase tracking-[0.32em] text-gold">{{TYPE_LABEL}} {{ENDED_BADGE}}</p>
@@ -75,6 +77,7 @@ tailwind.config = { theme: { extend: { fontFamily: { serif: ['"Cormorant Garamon
     }
   });
 })();</script>
+{{MOBILE_NAV_SCRIPT}}
 <script src="/chatbot/embed.js" defer></script>
 </body>
 </html>

@@ -5,7 +5,14 @@
 
 const fs = require('fs');
 const path = require('path');
-const { renderDesktopNav, SHARED_NUMERIC_STYLE } = require('../data/site-nav');
+const {
+  renderDesktopNav,
+  SHARED_NUMERIC_STYLE,
+  MOBILE_MENU_STYLES,
+  renderMobileHeaderActions,
+  renderMobileMenuOverlayStatic,
+  MOBILE_NAV_SCRIPT,
+} = require('../data/site-nav');
 const { renderSiteFooter } = require('../data/site-footer');
 
 const ROOT = path.resolve(__dirname, '..');
@@ -43,10 +50,12 @@ tailwind.config = {
   .card-lift { transition: transform .5s ease, box-shadow .5s ease; }
   .btn-shimmer { position: relative; overflow: hidden; }
 ${SHARED_NUMERIC_STYLE}
+${MOBILE_MENU_STYLES}
 </style>`;
 
 const FOOTER_SCRIPTS = `
 <script>(function(){try{fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:location.pathname,ref:document.referrer||'',title:document.title||'',ua:navigator.userAgent||''}),keepalive:true}).catch(function(){});}catch(e){}})();</script>
+${MOBILE_NAV_SCRIPT}
 <script src="/chatbot/embed.js" defer></script>
 <a href="https://pf.kakao.com/_rbxopG/chat" target="_blank" rel="noopener noreferrer" aria-label="카카오톡 상담" style="position:fixed;bottom:24px;right:24px;z-index:9990;width:52px;height:52px;border-radius:50%;background:#FEE500;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.2);text-decoration:none;">
   <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M13 0C5.82 0 0 4.7 0 10.5c0 3.73 2.33 7.01 5.84 8.93L4.42 24l6.1-3.24c.81.12 1.64.19 2.48.19 7.18 0 13-4.7 13-10.5S20.18 0 13 0z" fill="#3A1D1D"/></svg>
@@ -116,9 +125,10 @@ ${TAILWIND_HEAD}
       <span class="font-serif text-2xl text-royal-900 tracking-wide">THE QUEEN</span>
     </a>
     ${renderDesktopNav(activeKey)}
-    <a href="tel:054-283-1111" class="lg:hidden rounded-full bg-royal-900 px-4 py-2 text-xs font-semibold text-white">상담</a>
+    ${renderMobileHeaderActions()}
   </div>
 </header>
+${renderMobileMenuOverlayStatic()}
 <main class="flex-1 pt-24 lg:pt-28">
 ${mainInner}
 </main>

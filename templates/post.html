@@ -10,7 +10,7 @@
 <link rel="canonical" href="{{CANONICAL}}">
 <link rel="alternate" type="application/rss+xml" title="더퀸 웨딩홀 스토리" href="/rss.xml">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="THE QUEEN × WEDDING MUE">
+<meta property="og:site_name" content="{{OG_SITE_NAME}}">
 <meta property="og:title" content="{{TITLE}}">
 <meta property="og:description" content="{{DESCRIPTION}}">
 <meta property="og:image" content="{{OG_IMAGE}}">
@@ -72,6 +72,7 @@ tailwind.config = {
   .tab-btn.active { background: linear-gradient(135deg, #0A2A5E, #1E4A8C); color: #fff; border-color: transparent; }
   .share-btn { display: inline-flex; align-items: center; gap: 0.5rem; border-radius: 9999px; border: 1px solid #FEE500; background: #FEE500; padding: 0.5rem 1.25rem; font-size: 0.875rem; font-weight: 600; color: #191600; transition: transform .2s ease, box-shadow .2s ease; }
   .share-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px -12px rgba(0,0,0,.35); }
+{{MOBILE_MENU_STYLES}}
 </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -82,9 +83,10 @@ tailwind.config = {
       <span class="font-serif text-2xl text-royal-900 tracking-wide">THE QUEEN</span>
     </a>
     {{DESKTOP_NAV}}
-    <a href="tel:054-283-1111" class="lg:hidden rounded-full bg-royal-900 px-4 py-2 text-xs font-semibold text-white">상담</a>
+    {{MOBILE_HEADER_ACTIONS}}
   </div>
 </header>
+{{MOBILE_MENU_OVERLAY}}
 
 <main class="flex-1 pt-24 lg:pt-28">
   <article class="mx-auto max-w-4xl px-6 py-12 lg:py-16">
@@ -193,6 +195,7 @@ tailwind.config = {
   });
 })();
 </script>
+{{MOBILE_NAV_SCRIPT}}
 <script src="/chatbot/embed.js" defer></script>
 
 <!-- 카카오톡 채널 버튼 -->

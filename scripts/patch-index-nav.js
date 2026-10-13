@@ -18,6 +18,22 @@ const DESKTOP_NAV = `    <nav class="hidden lg:flex items-center gap-5 xl:gap-7"
       </a>
     </nav>`;
 
+const MOBILE_MENU_INLINE =
+  /  \/\/ ============== MOBILE MENU ==============[\s\S]*?menuClose\.addEventListener\('click', closeMenu\);\n\n/;
+
+function patchSpaMobileScript(html) {
+  if (!html.includes('site-mobile-nav.js')) {
+    html = html.replace(
+      /(<script src="\/chatbot\/embed\.js" defer><\/script>)/,
+      '<script src="/site-mobile-nav.js" defer></script>\n$1',
+    );
+  }
+  if (MOBILE_MENU_INLINE.test(html)) {
+    html = html.replace(MOBILE_MENU_INLINE, '  // MOBILE MENU: /site-mobile-nav.js\n\n');
+  }
+  return html;
+}
+
 function patchIndexNav() {
   let html = fs.readFileSync(indexPath, 'utf8');
 
@@ -63,8 +79,18 @@ function patchIndexNav() {
     );
   }
 
+  html = patchSpaMobileScript(html);
+
   fs.writeFileSync(indexPath, html, 'utf8');
   console.log('  ✓ index.html (nav patch)');
+
+  const qtPath = path.join(ROOT, 'queens-table.html');
+  if (fs.existsSync(qtPath)) {
+    let qt = fs.readFileSync(qtPath, 'utf8');
+    qt = patchSpaMobileScript(qt);
+    fs.writeFileSync(qtPath, qt, 'utf8');
+    console.log('  ✓ queens-table.html (mobile nav script)');
+  }
 }
 
 module.exports = { patchIndexNav };

@@ -25,8 +25,8 @@ module.exports = {
   },
   renovation_amount: {
     verified: false,
-    value: '2024년 30억 원 규모 리뉴얼',
-    note: 'TODO: 보도 근거 확인 후 verified true',
+    value: '',
+    note: 'TODO: 리뉴얼 금액·규모는 공개 근거 확인 후만 입력 (30억 등 미확인 수치 금지)',
   },
   partner_posco_union: {
     verified: false,

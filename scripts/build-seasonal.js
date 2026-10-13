@@ -7,8 +7,15 @@ const fs = require('fs');
 const path = require('path');
 const { getSeasonalItems } = require('../data/seasonal-items');
 const { INSTAGRAM_WEDDING_URL } = require('../data/site-social');
-const { renderDesktopNav } = require('../data/site-nav');
+const {
+  renderDesktopNav,
+  MOBILE_MENU_STYLES,
+  renderMobileHeaderActions,
+  renderMobileMenuOverlayStatic,
+  MOBILE_NAV_SCRIPT,
+} = require('../data/site-nav');
 const { renderSiteFooter } = require('../data/site-footer');
+const { OG_SITE_NAME } = require('../data/site-brand');
 
 const SITE_FOOTER_HTML = renderSiteFooter({ theme: 'royal' });
 
@@ -342,6 +349,16 @@ function generateSeasonalDetailPages(items, cache) {
     const html = template
       .split('{{DESKTOP_NAV}}')
       .join(renderDesktopNav('queens-table'))
+      .split('{{MOBILE_MENU_STYLES}}')
+      .join(MOBILE_MENU_STYLES)
+      .split('{{MOBILE_HEADER_ACTIONS}}')
+      .join(renderMobileHeaderActions())
+      .split('{{MOBILE_MENU_OVERLAY}}')
+      .join(renderMobileMenuOverlayStatic())
+      .split('{{MOBILE_NAV_SCRIPT}}')
+      .join(MOBILE_NAV_SCRIPT)
+      .split('{{OG_SITE_NAME}}')
+      .join(OG_SITE_NAME)
       .split('{{SITE_FOOTER}}')
       .join(SITE_FOOTER_HTML)
       .split('{{TITLE}}')
