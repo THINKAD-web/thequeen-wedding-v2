@@ -7,10 +7,10 @@ const fs = require('fs');
 const path = require('path');
 const { getSeasonalItems } = require('../data/seasonal-items');
 const { INSTAGRAM_WEDDING_URL } = require('../data/site-social');
-const {
-  renderDesktopNav,
-  renderFooterCorporateNav,
-} = require('../data/site-nav');
+const { renderDesktopNav } = require('../data/site-nav');
+const { renderSiteFooter } = require('../data/site-footer');
+
+const SITE_FOOTER_HTML = renderSiteFooter({ theme: 'royal' });
 
 const ROOT = path.resolve(__dirname, '..');
 const TEMPLATES = path.join(ROOT, 'templates');
@@ -342,8 +342,8 @@ function generateSeasonalDetailPages(items, cache) {
     const html = template
       .split('{{DESKTOP_NAV}}')
       .join(renderDesktopNav('queens-table'))
-      .split('{{FOOTER_CORPORATE_NAV}}')
-      .join(renderFooterCorporateNav())
+      .split('{{SITE_FOOTER}}')
+      .join(SITE_FOOTER_HTML)
       .split('{{TITLE}}')
       .join(escapeHtml(item.title))
       .split('{{DESCRIPTION}}')

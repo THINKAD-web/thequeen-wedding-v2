@@ -41,9 +41,7 @@ ${links}
 }
 
 function renderFooterCorporateNav() {
-  return FOOTER_CORPORATE_LINKS.map(
-    (l) => `<a href="${l.href}" class="hover:text-gold transition">${l.label}</a>`,
-  ).join('\n      ');
+  return require('./site-footer').renderFooterCorporateNav();
 }
 
 /** Regex-friendly block for replacing legacy headers in standalone HTML. */

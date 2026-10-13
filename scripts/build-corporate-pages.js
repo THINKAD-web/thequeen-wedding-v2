@@ -16,7 +16,10 @@ const { SITE_NAME, HALL_PHONE, HALL_PHONE_TEL, KAKAO_CHANNEL_URL } = require('..
 const { PRESS_ITEMS } = require('../data/press-data');
 const { getVerifiedPartners } = require('../data/partners-data');
 const IMG = require('../data/site-images');
-const { renderDesktopNav, renderFooterCorporateNav } = require('../data/site-nav');
+const { renderDesktopNav } = require('../data/site-nav');
+const { renderSiteFooter } = require('../data/site-footer');
+
+const SITE_FOOTER_HTML = renderSiteFooter({ theme: 'royal' });
 
 function readFile(filePath) {
   return fs.readFileSync(filePath, 'utf8');
@@ -60,7 +63,7 @@ function shellVars(navActive, meta) {
     OG_TITLE: escapeHtml(meta.title),
     CANONICAL: meta.canonical,
     DESKTOP_NAV: renderDesktopNav(navActive),
-    FOOTER_CORPORATE_NAV: renderFooterCorporateNav(),
+    SITE_FOOTER: SITE_FOOTER_HTML,
   };
 }
 

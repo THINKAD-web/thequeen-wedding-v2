@@ -5,11 +5,8 @@
 
 const fs = require('fs');
 const path = require('path');
-const {
-  renderDesktopNav,
-  renderFooterCorporateNav,
-  SHARED_NUMERIC_STYLE,
-} = require('../data/site-nav');
+const { renderDesktopNav, SHARED_NUMERIC_STYLE } = require('../data/site-nav');
+const { renderSiteFooter } = require('../data/site-footer');
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -81,16 +78,7 @@ function extractMain(html) {
 }
 
 function renderFooter() {
-  const corp = renderFooterCorporateNav();
-  return `<footer class="bg-[#0A2A5E] text-white mt-auto">
-  <div class="mx-auto max-w-7xl px-6 py-12">
-    <nav class="mb-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-white/80" aria-label="바로가기">
-      ${corp}
-    </nav>
-    <p class="text-center text-sm text-white/70">경북 포항시 남구 대이로 18 · 054-283-1111</p>
-    <p class="mt-2 text-xs text-white/50">© 2026 더 퀸 웨딩 THE QUEEN WEDDING. All rights reserved.</p>
-  </div>
-</footer>`;
+  return renderSiteFooter({ theme: 'royal' });
 }
 
 function wrapLegacyPage(html, activeKey) {
