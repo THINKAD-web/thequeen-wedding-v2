@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<link rel="preload" href="/Sunlight.mp3" as="audio" type="audio/mpeg">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -376,6 +377,56 @@ tailwind.config = {
   }
   .media-tile:hover::after { opacity: 0.3; }
 
+
+  /* ---------- Floating background music ---------- */
+  .tq-music {
+    position: fixed; left: 18px; bottom: 18px; z-index: 9985;
+    width: 52px; height: 52px; border-radius: 999px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #FBE3D4 0%, #E8B8A0 40%, #D4A574 70%, #B88968 100%);
+    color: #1A0A0C; border: 1.5px solid rgba(253, 248, 243, .35);
+    box-shadow: 0 10px 28px -6px rgba(212, 165, 116, .6), 0 0 0 1px rgba(253, 248, 243, .08);
+    cursor: pointer; transition: transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s;
+  }
+  .tq-music:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 14px 36px -6px rgba(212, 165, 116, .8); }
+  .tq-music svg { width: 22px; height: 22px; transition: transform .5s; }
+  .tq-music.playing { background: linear-gradient(135deg, #FF7FA6 0%, #FF3D7F 55%, #D4A574 100%); color: #FDF8F3; animation: tq-glow 3.6s ease-in-out infinite; }
+  .tq-music.playing svg { animation: tq-music-spin 8s linear infinite; }
+  @keyframes tq-music-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes tq-glow { 0%, 100% { box-shadow: 0 10px 28px -6px rgba(255, 61, 127, .45); } 50% { box-shadow: 0 14px 36px -4px rgba(255, 127, 166, .65); } }
+  .tq-music-title {
+    position: absolute; left: 58px; top: 50%; transform: translateY(-50%);
+    padding: 6px 14px 6px 12px; border-radius: 999px;
+    background: rgba(10, 5, 6, .85); backdrop-filter: blur(8px);
+    color: #FDF8F3; font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; white-space: nowrap;
+    opacity: 0; pointer-events: none; transition: opacity .4s, transform .4s;
+    border: 1px solid rgba(232, 184, 160, .35);
+  }
+  .tq-music.playing .tq-music-title { opacity: 1; transform: translateY(-50%) translateX(2px); }
+  @media (min-width: 1024px) {
+    .tq-music { left: 28px; bottom: 28px; width: 58px; height: 58px; }
+    .tq-music svg { width: 24px; height: 24px; }
+    .tq-music-title { left: 66px; font-size: 11px; }
+  }
+
+  .tq-music-hint {
+    position: fixed; left: 18px; bottom: 78px; z-index: 9986;
+    padding: 10px 16px; border-radius: 999px;
+    background: rgba(10, 5, 6, .92); backdrop-filter: blur(10px);
+    color: #FDF8F3; font-size: 12px; font-weight: 600; letter-spacing: -.01em;
+    border: 1px solid rgba(232, 184, 160, .45);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+    animation: tq-hint-bounce 2s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .tq-music-hint.hidden { display: none; }
+  @keyframes tq-hint-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+  .tq-music.waiting { animation: tq-music-pulse 1.8s ease-in-out infinite; }
+  @keyframes tq-music-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+  @media (min-width: 1024px) {
+    .tq-music-hint { left: 28px; bottom: 96px; font-size: 13px; }
+  }
+
 </style>
 </head>
 <body class="antialiased">
@@ -454,7 +505,7 @@ const IMAGES = {
       <span class="text-[9px] font-semibold uppercase tracking-[0.32em] text-gold">3F Premium Dining</span>
       <span class="font-serif text-2xl text-forest-900 tracking-wide">QUEEN'S TABLE</span>
     </a>
-                                    <nav class="hidden lg:flex items-center gap-5 xl:gap-7">
+                                        <nav class="hidden lg:flex items-center gap-5 xl:gap-7">
       <a href="#" data-page="home" class="nav-page nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">더퀸 웨딩</a>
       <a href="#" data-page="queens-table" class="nav-page nav-link text-sm font-semibold text-slate-700 hover:text-forest-900">퀸즈 테이블</a>
       <a href="/news" class="nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">스토리</a>
@@ -1860,6 +1911,19 @@ const IMAGES = {
 })();
 </script>
 <script src="/site-mobile-nav.js" defer></script>
+
+<!-- BACKGROUND MUSIC · Sunlight / April in Your Eyes -->
+<audio id="tqBgm" preload="auto" autoplay muted playsinline webkit-playsinline></audio>
+<div id="tqMusicHint" class="tq-music-hint hidden" role="status" aria-live="polite">🎵 터치하면 음악이 시작돼요</div>
+<button id="tqMusicBtn" type="button" class="tq-music" aria-label="배경 음악 재생" onclick="tqToggleMusic()">
+  <svg id="tqMusicSvg" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 3 L9 3 L9 14.5 A3 3 0 1 0 12 17.5 Z M12 3 L18 3 L18 5 L12 5 Z"/>
+  </svg>
+  <span class="tq-music-title" id="tqMusicTitle">Sunlight</span>
+</button>
+<script src="/js/tq-bgm.js"></script>
+
+
 <script src="/chatbot/embed.js" defer></script>
 
 <!-- 카카오톡 채널 버튼 -->
