@@ -1,3 +1,5 @@
+const IMG = require('./site-images');
+
 /** Verified welfare agreements only (verified === true renders on /partners). */
 const PARTNERS = [
   {
@@ -5,9 +7,35 @@ const PARTNERS = [
     name: '위덕대학교',
     agreementDate: '2026.4.30',
     audience: '교직원·재학생·동문·직계가족',
-    benefitSummary:
-      '웨딩홀 대관료·예식 패키지·식대 별도 프로모션, 퀸즈테이블 뷔페 할인',
+    benefitSummary: '웨딩·연회·퀸즈테이블 뷔페 복지 협약(할인 혜택). 세부 혜택은 문의',
+    storySlug: 'widuk-university-mou',
+    storyUrl: '/news/widuk-university-mou',
+    thumbnailUrl: IMG.mouWiduk,
     pressId: 'widuk-imaeil',
+    verified: true,
+  },
+  {
+    id: 'posco-union',
+    name: '포스코노동조합',
+    agreementDate: '2026.6.26',
+    audience: '조합원·직계가족',
+    benefitSummary: '더퀸 웨딩·연회·퀸즈테이블 뷔페 복지 협약(할인 혜택). 세부 혜택은 문의',
+    storySlug: 'posco-union-mou',
+    storyUrl: '/news/posco-union-mou',
+    thumbnailUrl: IMG.mouPosco,
+    pressId: null,
+    verified: true,
+  },
+  {
+    id: 'hyundai-steel',
+    name: '현대제철 포항지회·현대IMC지회',
+    agreementDate: '2026.4.8',
+    audience: '조합원·직계가족',
+    benefitSummary: '웨딩홀·패키지·식대·뷔페 복지 협약(할인 혜택). 세부 혜택은 문의',
+    storySlug: 'hyundai-steel-mou',
+    storyUrl: '/news/hyundai-steel-mou',
+    thumbnailUrl: IMG.mouHyundai,
+    pressId: null,
     verified: true,
   },
   {
@@ -16,8 +44,10 @@ const PARTNERS = [
     agreementDate: '2026.7.16',
     audience: '직원·직계가족',
     benefitSummary:
-      '웨딩홀 대관료·패키지·식대 할인, 뷔페 특별가, 가족행사(회갑연·돌잔치)·기업행사 할인',
-    detailNote: '세부 혜택은 문의',
+      '웨딩·연회·뷔페·가족행사 복지 협약(할인 혜택). 세부 혜택은 문의',
+    storySlug: null,
+    storyUrl: null,
+    thumbnailUrl: IMG.heroHall,
     pressId: 'police-kyongbuk',
     verified: true,
   },
@@ -26,31 +56,12 @@ const PARTNERS = [
     name: '에코프로',
     agreementDate: '2026.8.13',
     audience: '임직원·가족',
-    benefitSummary: '복지 혜택 확대',
-    detailNote: '세부 혜택은 문의',
+    benefitSummary: '복지 협약(할인 혜택) 확대. 세부 혜택은 문의',
+    storySlug: null,
+    storyUrl: null,
+    thumbnailUrl: IMG.heroHall,
     pressId: 'ecopro-ksm',
     verified: true,
-  },
-  // --- withheld (do not render until verified) ---
-  {
-    id: 'posco-union',
-    name: '포스코노동조합',
-    agreementDate: '2026.6',
-    audience: null,
-    benefitSummary: null,
-    pressId: null,
-    verified: false,
-    note: 'TODO: partner_posco_union',
-  },
-  {
-    id: 'hyundai-steel',
-    name: '현대제철 포항지회·현대IMC지회',
-    agreementDate: '2026.4',
-    audience: null,
-    benefitSummary: null,
-    pressId: null,
-    verified: false,
-    note: 'TODO: partner_hyundai_steel',
   },
   {
     id: 'posco-edu',

@@ -80,6 +80,11 @@ tailwind.config = {
   .btn-shimmer { position: relative; overflow: hidden; }
   .btn-shimmer::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent); transform: translateX(-100%); transition: transform .8s ease; }
   .btn-shimmer:hover::before { transform: translateX(100%); }
+
+  .font-serif, .card-lift h3, h1.font-serif, h2.font-serif, h3.font-serif {
+    font-variant-numeric: lining-nums;
+    font-feature-settings: "lnum" 1;
+  }
 </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -89,10 +94,11 @@ tailwind.config = {
       <span class="text-[9px] font-semibold uppercase tracking-[0.32em] text-gold">The Queen's Legacy</span>
       <span class="font-serif text-2xl text-royal-900 tracking-wide">THE QUEEN</span>
     </a>
-    <nav class="hidden lg:flex items-center gap-10">
+    <nav class="hidden lg:flex items-center gap-6 xl:gap-8">
       <a href="/" class="nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">더퀸 웨딩</a>
       <a href="/queens-table" class="nav-link text-sm font-semibold text-slate-700 hover:text-forest-900">퀸즈 테이블</a>
       <a href="/news" class="nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">스토리</a>
+      <a href="/banquet" class="nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">기업·단체 연회</a>
       <a href="/dress-show" class="nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">2026 S/S 드레스 쇼</a>
       <a href="tel:054-283-1111" class="header-cta btn-shimmer inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-royal-900 to-royal-700 px-6 py-2.5 text-xs font-semibold tracking-wide text-white shadow-lg shadow-royal-900/20 transition hover:-translate-y-0.5">
         <span class="relative">상담 예약</span>
