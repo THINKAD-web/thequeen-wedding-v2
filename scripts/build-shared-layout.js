@@ -165,32 +165,7 @@ function applyLegacyLayout() {
 }
 
 function ensureMicroHomeLinks() {
-  const patches = [
-    {
-      file: 'dress-show-2027.html',
-      test: /href="\/"\s*class="[^"]*홈/,
-      insertBefore: '<a href="#apply"',
-      snippet:
-        '    <a href="/" class="mr-4 text-xs font-semibold tracking-wide text-gold-light/90 hover:text-gold hidden sm:inline">홈으로</a>\n    ',
-    },
-    {
-      file: 'dress-show2.html',
-      test: /href="\/".*홈으로/,
-      insertAfter: '<body',
-      snippet: '', // handled below
-    },
-  ];
-
-  for (const p of patches) {
-    const full = path.join(ROOT, p.file);
-    if (!fs.existsSync(full)) continue;
-    let html = fs.readFileSync(full, 'utf8');
-    if (p.file === 'dress-show-2027.html' && !p.test.test(html)) {
-      html = html.replace(p.insertBefore, p.snippet + p.insertBefore);
-      fs.writeFileSync(full, html, 'utf8');
-      console.log(`  ✓ ${p.file} (home link)`);
-    }
-  }
+  // dress-show-2027.html: MUE 최종본 — 홈 링크 자동 삽입 제외
 
   for (const file of ['dress-show2.html']) {
     const full = path.join(ROOT, file);

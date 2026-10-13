@@ -17,7 +17,7 @@ const STATIC_PAGES = [
   'reviews.html',
   'queens-table.html',
   'dress-show.html',
-  'dress-show-2027.html',
+  // dress-show-2027.html: MUE 최종본 — 공유 nav 패치 제외
   'dress-show2.html',
   'marketing.html',
   'chat.html',

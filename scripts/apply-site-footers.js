@@ -86,7 +86,8 @@ function applySpaFooters() {
 
 function applyDressShowCompactFooters() {
   const compact = renderSiteFooterCompact();
-  for (const rel of ['dress-show.html', 'dress-show-2027.html', 'dress-show2.html']) {
+  // dress-show-2027.html: MUE 최종본 — 푸터·홈 링크 자동 삽입 금지 (main 수동 유지)
+  for (const rel of ['dress-show.html', 'dress-show2.html']) {
     const full = path.join(ROOT, rel);
     if (!fs.existsSync(full)) continue;
     let html = read(full);
