@@ -296,20 +296,38 @@ function generatePressListPage() {
     CANONICAL: `${SITE_URL}/news/press`,
     CATEGORY_TABS: renderCategoryTabs('press'),
     POST_CARDS: cards,
+    STORIES_SOCIAL: '',
   });
 
   writeFile(path.join(ROOT, 'news', 'press.html'), html);
   console.log('  ✓ news/press.html');
 }
 
-function generateListPages(posts) {
+function mergeSeasonalPosts(posts, seasonalPosts, renderSeasonalListCard) {
+  if (!seasonalPosts?.length) return posts;
+  const merged = [...posts];
+  for (const sp of seasonalPosts) {
+    merged.push(sp);
+  }
+  merged.sort((a, b) => new Date(b.date) - new Date(a.date));
+  return merged;
+}
+
+function generateListPages(posts, seasonalCtx = {}) {
   const listTemplate = readFile(path.join(TEMPLATES_DIR, 'list.html'));
+  const { seasonalPosts = [], renderSeasonalListCard, storiesInstagramBar = '' } = seasonalCtx;
+  const allPosts = mergeSeasonalPosts(posts, seasonalPosts, renderSeasonalListCard);
 
   for (const category of CATEGORIES) {
-    const categoryPosts = posts.filter((p) => p.category === category);
+    const categoryPosts = allPosts.filter((p) => p.category === category);
     const cards = categoryPosts.length
-      ? categoryPosts.map((p) => renderPostCard(p)).join('\n')
+      ? categoryPosts
+          .map((p) => (p.seasonal && renderSeasonalListCard ? renderSeasonalListCard(p) : renderPostCard(p)))
+          .join('\n')
       : '<p class="col-span-full text-center text-slate-500 py-12">아직 게시된 글이 없습니다.</p>';
+
+    const socialBar =
+      category === 'news' || category === 'dining' ? storiesInstagramBar : '';
 
     const html = replaceAll(listTemplate, {
       DESKTOP_NAV: navForListCategory(category),
@@ -320,6 +338,7 @@ function generateListPages(posts) {
       CANONICAL: `${SITE_URL}/${category}`,
       CATEGORY_TABS: renderCategoryTabs(category),
       POST_CARDS: cards,
+      STORIES_SOCIAL: socialBar,
     });
 
     const outPath = path.join(ROOT, category, 'index.html');
@@ -430,25 +449,42 @@ ${items}
   console.log(`  ✓ rss.xml (${Math.min(posts.length, 20)} items)`);
 }
 
-function main() {
+async function main() {
   console.log('Building content...\n');
 
-  const posts = scanPosts();
-  console.log(`Found ${posts.length} published post(s)\n`);
+  const basePosts = scanPosts();
+  console.log(`Found ${basePosts.length} published post(s)\n`);
 
   console.log('Generating post pages:');
-  generatePostPages(posts);
+  generatePostPages(basePosts);
 
+  const { buildSeasonal } = require('./build-seasonal');
+  let seasonalCtx = { seasonalPosts: [], renderSeasonalListCard: null, storiesInstagramBar: '' };
+  try {
+    seasonalCtx = await buildSeasonal();
+  } catch (err) {
+    console.error(err);
+  }
+
+  const allPosts = mergeSeasonalPosts(
+    basePosts,
+    seasonalCtx.seasonalPosts,
+    seasonalCtx.renderSeasonalListCard,
+  );
+  finishBuild(basePosts, allPosts, seasonalCtx);
+}
+
+function finishBuild(basePosts, allPosts, seasonalCtx) {
   console.log('\nGenerating list pages:');
-  generateListPages(posts);
+  generateListPages(basePosts, seasonalCtx);
   generatePressListPage();
 
   console.log('\nUpdating home page:');
-  updateHomeLatestPosts(posts);
+  updateHomeLatestPosts(allPosts);
 
   console.log('\nGenerating feeds:');
-  generateSitemap(posts);
-  generateRss(posts);
+  generateSitemap(allPosts);
+  generateRss(allPosts);
 
   const { buildCorporatePages } = require('./build-corporate-pages');
   buildCorporatePages();
@@ -460,7 +496,14 @@ function main() {
   const { applySharedNav } = require('./apply-shared-nav');
   applySharedNav();
 
+  const { applyLegacyLayout, ensureMicroHomeLinks } = require('./build-shared-layout');
+  applyLegacyLayout();
+  ensureMicroHomeLinks();
+
   console.log('\nDone.');
 }
 
-main();
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
