@@ -53,6 +53,21 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://thequeenwedding.kr/banquet</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://thequeenwedding.kr/partners</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thequeenwedding.kr/news/press</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
     <loc>https://thequeenwedding.kr/news</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

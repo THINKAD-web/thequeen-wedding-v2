@@ -206,6 +206,7 @@ tailwind.config = {
   .nav-link { position: relative; }
   .nav-link::after { content: ''; position: absolute; left: 0; bottom: -6px; height: 1px; width: 0; background: #C9A96A; transition: width .35s ease; }
   .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+  .font-serif, .card-lift h3 { font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
 
   .card-lift { transition: transform .5s ease, box-shadow .5s ease, border-color .5s ease; }
   .card-lift:hover { transform: translateY(-6px); }
@@ -504,10 +505,11 @@ const IMAGES = {
       <span class="text-[9px] font-semibold uppercase tracking-[0.32em] text-gold">3F Premium Dining</span>
       <span class="font-serif text-2xl text-forest-900 tracking-wide">QUEEN'S TABLE</span>
     </a>
-    <nav class="hidden lg:flex items-center gap-10">
+                                        <nav class="hidden lg:flex items-center gap-5 xl:gap-7">
       <a href="#" data-page="home" class="nav-page nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">더퀸 웨딩</a>
       <a href="#" data-page="queens-table" class="nav-page nav-link text-sm font-semibold text-slate-700 hover:text-forest-900">퀸즈 테이블</a>
       <a href="/news" class="nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">스토리</a>
+      <a href="/banquet" class="nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">기업·단체 연회</a>
       <a href="/dress-show" class="nav-link text-sm font-semibold text-slate-700 hover:text-royal-900">2026 S/S 드레스 쇼</a>
       <a href="tel:054-283-1111" class="header-cta btn-shimmer inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-royal-900 to-royal-700 px-6 py-2.5 text-xs font-semibold tracking-wide text-white shadow-lg shadow-royal-900/20 transition hover:-translate-y-0.5">
         <span class="relative">상담 예약</span>
@@ -534,6 +536,10 @@ const IMAGES = {
     </a>
     <a href="/news" class="group flex items-center justify-between border-b border-gold/15 py-5">
       <span><span class="block text-[10px] font-semibold uppercase tracking-[0.3em] text-gold">The Queen Stories</span><span class="mt-1 block font-serif text-3xl text-royal-900">스토리</span></span>
+      <svg class="h-5 w-5 text-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+    </a>
+    <a href="/banquet" class="group flex items-center justify-between border-b border-gold/15 py-5">
+      <span><span class="block text-[10px] font-semibold uppercase tracking-[0.3em] text-gold">Corporate</span><span class="mt-1 block font-serif text-3xl text-royal-900">기업·단체 연회</span></span>
       <svg class="h-5 w-5 text-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
     </a>
     <a href="#" data-page="queens-table" class="nav-page group flex items-center justify-between border-b border-gold/15 py-5">
@@ -587,7 +593,7 @@ const IMAGES = {
         </h1>
 
         <p class="reveal rd-3 mt-5 sm:mt-8 max-w-xl text-sm leading-relaxed text-white/95 sm:text-lg [text-shadow:0_1px_18px_rgba(0,0,0,.55)]">
-          포항 최초의 하이엔드 웨딩 컨벤션.<br>
+          포항 대잠동의 하이엔드 웨딩 컨벤션.<br>
           <span class="font-semibold text-gold-light">2025 리모델링 완공</span> · 크라운룸 · 갤럭시룸
         </p>
 
@@ -682,7 +688,7 @@ const IMAGES = {
           단 하나의 <span class="bg-gradient-to-r from-royal-900 via-royal-700 to-gold bg-clip-text text-transparent">프리미엄 웨딩</span>
         </h2>
         <p class="reveal rd-2 mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
-          포항 최초의 하이엔드 웨딩 컨벤션, 더퀸 웨딩홀입니다.<br class="hidden sm:block">
+          포항 대잠동의 하이엔드 웨딩 컨벤션, 더퀸 웨딩홀입니다.<br class="hidden sm:block">
           2025년 대대적인 리모델링을 완료하여 5층 크라운홀과 6층 갤럭시홀을 단독 운영합니다.
         </p>
       </div>
@@ -704,7 +710,7 @@ const IMAGES = {
             <div class="font-serif text-4xl bg-gradient-to-br from-forest-900 to-forest-700 bg-clip-text text-transparent">1,500<span class="text-2xl">대</span></div>
             <div class="mt-3 h-px w-10 bg-gradient-to-r from-gold to-transparent"></div>
             <h3 class="mt-4 font-serif text-xl text-forest-900">주차 가능</h3>
-            <p class="mt-2 text-sm text-slate-600">포항 최대 규모 주차 시설</p>
+            <p class="mt-2 text-sm text-slate-600">넉넉한 주차 시설</p>
           </div>
         </div>
         <div class="reveal rd-3 group relative">
@@ -947,6 +953,68 @@ const IMAGES = {
       </div>
     </div>
   </section>
+<!-- PRESS_PREVIEW_START -->
+  <section class="relative w-full overflow-hidden bg-cream-100 py-24 lg:py-28">
+    <div class="relative mx-auto max-w-7xl px-6">
+      <div class="mb-12 text-center">
+        <div class="reveal mb-5 flex items-center justify-center gap-3">
+          <span class="h-px w-10 bg-gold"></span>
+          <span class="text-[11px] font-semibold uppercase tracking-[0.32em] text-gold">Press</span>
+          <span class="h-px w-10 bg-gold"></span>
+        </div>
+        <h2 class="reveal rd-1 font-serif text-4xl leading-tight text-royal-900 sm:text-5xl">언론보도</h2>
+        <p class="reveal rd-2 mx-auto mt-4 max-w-xl text-slate-600">복지 협약·퀸즈테이블 소식 등 언론에 보도된 내용을 모았습니다.</p>
+      </div>
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        
+    <a href="https://www.ksmnews.co.kr/news/view.php?idx=617699" target="_blank" rel="noopener noreferrer" class="card-lift group block overflow-hidden rounded-sm border border-[#0A2A5E]/10 bg-white shadow-md">
+      <div class="aspect-video overflow-hidden bg-slate-100">
+        <img src="https://i.ibb.co/Ngw5GBKq/1.jpg" alt="" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+      </div>
+      <div class="p-5">
+        <span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#C9A96A]">경상매일신문</span>
+        <h3 class="mt-2 font-serif text-xl text-[#0A2A5E] line-clamp-2">에코프로와 임직원 복지·지역상생 협약 체결</h3>
+        <time datetime="2026-08-13" class="mt-2 block text-xs text-slate-500">2026.08.13</time>
+        <p class="mt-3 text-sm text-slate-600 line-clamp-2">에코프로 임직원 복지와 지역 상생을 위한 협약을 체결했습니다.</p>
+        <span class="mt-4 inline-flex text-sm font-semibold text-[#1E4A8C] group-hover:text-[#C9A96A]">원문 보기 →</span>
+      </div>
+    </a>
+
+    <a href="https://www.kyongbuk.co.kr/news/articleView.html?idxno=4078525" target="_blank" rel="noopener noreferrer" class="card-lift group block overflow-hidden rounded-sm border border-[#0A2A5E]/10 bg-white shadow-md">
+      <div class="aspect-video overflow-hidden bg-slate-100">
+        <img src="https://i.ibb.co/Ngw5GBKq/1.jpg" alt="" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+      </div>
+      <div class="p-5">
+        <span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#C9A96A]">경북일보</span>
+        <h3 class="mt-2 font-serif text-xl text-[#0A2A5E] line-clamp-2">포항 남·북부경찰서 직장협의회와 직원 복지 협약 체결</h3>
+        <time datetime="2026-07-17" class="mt-2 block text-xs text-slate-500">2026.07.17</time>
+        <p class="mt-3 text-sm text-slate-600 line-clamp-2">포항 남·북부경찰서 직장협의회 직원과 가족을 위한 복지 협약을 체결했습니다.</p>
+        <span class="mt-4 inline-flex text-sm font-semibold text-[#1E4A8C] group-hover:text-[#C9A96A]">원문 보기 →</span>
+      </div>
+    </a>
+
+    <a href="http://www.sisunnews.co.kr/news/articleView.html?idxno=240745" target="_blank" rel="noopener noreferrer" class="card-lift group block overflow-hidden rounded-sm border border-[#0A2A5E]/10 bg-white shadow-md">
+      <div class="aspect-video overflow-hidden bg-slate-100">
+        <img src="https://i.ibb.co/kgTWvG08/2.jpg" alt="" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+      </div>
+      <div class="p-5">
+        <span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#C9A96A]">시선뉴스</span>
+        <h3 class="mt-2 font-serif text-xl text-[#0A2A5E] line-clamp-2">퀸즈테이블, '블루·로얄' 신규 라인업 런칭</h3>
+        <time datetime="2026-06-17" class="mt-2 block text-xs text-slate-500">2026.06.17</time>
+        <p class="mt-3 text-sm text-slate-600 line-clamp-2">퀸즈테이블 '블루·로얄' 라인업 런칭 소식이 보도되었습니다.</p>
+        <span class="mt-4 inline-flex text-sm font-semibold text-[#1E4A8C] group-hover:text-[#C9A96A]">원문 보기 →</span>
+      </div>
+    </a>
+      </div>
+      <div class="mt-12 text-center">
+        <a href="/news/press" class="btn-shimmer inline-flex items-center gap-2 rounded-full border-2 border-royal-900/20 px-8 py-3 text-sm font-semibold text-royal-900 transition hover:bg-royal-900 hover:text-white">
+          언론보도 전체 보기 →
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- PRESS_PREVIEW_END -->
+
 
   <!-- LATEST_POSTS_START -->
   <section class="relative w-full overflow-hidden bg-white py-24 lg:py-32">
@@ -988,13 +1056,13 @@ const IMAGES = {
 
     <a href="/news/ua-to-thequeen" class="card-lift group block overflow-hidden rounded-sm border border-[#0A2A5E]/10 bg-white shadow-md">
       <div class="aspect-video overflow-hidden bg-slate-100">
-        <img src="https://i.ibb.co/Ngw5GBKq/1.jpg" alt="포항 1위 웨딩홀 UA컨벤션, '더퀸'으로 재탄생하다" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+        <img src="https://i.ibb.co/Ngw5GBKq/1.jpg" alt="포항 웨딩홀 UA컨벤션, '더퀸'으로 재탄생하다" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
       </div>
       <div class="p-5">
         <span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#C9A96A]">더퀸 소식</span>
-        <h3 class="mt-2 font-serif text-xl text-[#0A2A5E] line-clamp-2">포항 1위 웨딩홀 UA컨벤션, '더퀸'으로 재탄생하다</h3>
+        <h3 class="mt-2 font-serif text-xl text-[#0A2A5E] line-clamp-2">포항 웨딩홀 UA컨벤션, '더퀸'으로 재탄생하다</h3>
         <time class="mt-2 block text-xs text-slate-500">2026.07.12</time>
-        <p class="mt-3 text-sm text-slate-600 line-clamp-2">전면 리모델링과 최고급 다이닝 퀸즈테이블로 완성한 럭셔리 웨딩홀 더퀸의 새 출발</p>
+        <p class="mt-3 text-sm text-slate-600 line-clamp-2">전면 리모델링과 프리미엄 다이닝 퀸즈테이블로 완성한 럭셔리 웨딩홀 더퀸의 새 출발</p>
       </div>
     </a>
       </div>
@@ -1370,18 +1438,17 @@ const IMAGES = {
 
 
 <!-- FOOTER -->
-<footer class="footer-default relative bg-royal-900 text-white">
+<footer class="footer-default relative bg-royal-900 text-white mt-auto" data-site-footer="v1" data-site-footer-layout="standard" data-site-footer-theme="royal">
   <div class="mx-auto max-w-7xl px-6 py-16">
     <div class="grid gap-12 lg:grid-cols-4">
       <div class="lg:col-span-1">
-        <div class="text-[10px] font-semibold uppercase tracking-[0.32em] text-gold">THE QUEEN WEDDING</div>
-        <div class="mt-2 font-serif text-2xl">더 퀸 웨딩</div>
+        <div class="text-[10px] font-semibold uppercase tracking-[0.32em] text-gold">THE QUEEN</div>
+        <div class="mt-2 font-serif text-2xl">더퀸 웨딩</div>
         <p class="mt-6 text-sm leading-relaxed text-white/70">
-          포항 최고의 럭셔리 웨딩홀.<br>
           갤럭시홀 &amp; 크라운홀 단독 운영.<br>
-          2025 리모델링 완료.
+          2025 리모델링 완공.
         </p>
-        <a href="https://naver.me/5xjpTXe1" target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-2 rounded-full border border-gold/30 px-4 py-2 text-[11px] font-semibold text-gold hover:bg-gold hover:text-royal-900 transition">
+        <a href="https://naver.me/5xjpTXe1" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center gap-2 rounded-full border border-gold/30 px-4 py-2 text-[11px] font-semibold text-gold hover:bg-gold hover:text-royal-900 transition">
           <span class="inline-flex h-4 w-4 items-center justify-center rounded-sm bg-gold text-royal-900 text-[9px] font-bold">N</span> 네이버 플레이스
         </a>
         <a href="https://www.instagram.com/thequeen_pohang/" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-2 text-sm text-white/75 hover:text-gold transition" aria-label="Instagram · @thequeen_pohang">
@@ -1390,16 +1457,19 @@ const IMAGES = {
       </div>
       <div>
         <div class="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold mb-4">Contact</div>
-        <div class="font-serif text-2xl text-white">054-283-1111</div>
-        <div class="mt-1 text-xs text-white/50">웨딩 상담</div>
-        <div class="mt-6 text-sm text-white/80">
-          경북 포항시 남구 대이로 18<br>
-          포항 더 퀸 웨딩
+        <div class="space-y-3">
+        <div>
+          <a href="tel:054-283-1111" class="font-serif text-xl text-white hover:text-gold">054-283-1111</a>
+          <div class="mt-0.5 text-xs text-white/50">웨딩·연회</div>
         </div>
-        <div class="mt-4 text-xs text-white/60">
-          평일 09:00 – 18:00<br>
-          주말 상담 예약 가능
+        <div>
+          <a href="tel:054-281-4000" class="font-serif text-xl text-white hover:text-gold">054-281-4000</a>
+          <div class="mt-0.5 text-xs text-white/50">퀸즈테이블</div>
         </div>
+      </div>
+        <div class="mt-6 text-sm text-white/80">경북 포항시 남구 대이로 18</div>
+        <div class="mt-4 text-xs text-white/60">평일 09:00 – 18:00 · 주말 상담 예약 가능</div>
+        <a href="https://pf.kakao.com/_rbxopG/chat" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex text-sm text-gold hover:text-white">카카오톡 채널</a>
       </div>
       <div>
         <div class="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold mb-4">Quick Links</div>
@@ -1409,45 +1479,41 @@ const IMAGES = {
           <li><a href="#" data-page="home" class="nav-page hover:text-gold transition">갤러리</a></li>
           <li><a href="#" data-page="home" class="nav-page hover:text-gold transition">오시는 길</a></li>
           <li><a href="#" data-page="home" class="nav-page hover:text-gold transition">상담 예약</a></li>
+          <li><a href="/banquet" class="hover:text-gold transition">기업·단체 연회</a></li>
+          <li><a href="/partners" class="hover:text-gold transition">협약 안내</a></li>
+          <li><a href="/news/press" class="hover:text-gold transition">언론보도</a></li>
           <li><a href="/dress-show" class="hover:text-gold transition">2026 S/S 드레스 쇼</a></li>
         </ul>
       </div>
       <div>
         <div class="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold mb-4">Queen's Table</div>
-        <div class="font-serif text-xl text-white">퀸즈테이블</div>
-        <p class="mt-3 text-sm text-white/70 leading-relaxed">
-          포항 유일 오마카세급<br>
-          프리미엄 뷔페 레스토랑<br>
-          3층 · 100% 예약제
-        </p>
-        <div class="mt-5 space-y-2">
-          <a href="tel:054-281-4000" class="block font-serif text-lg text-gold hover:text-white transition">📞 054-281-4000</a>
-          <a href="#" data-page="queens-table" class="nav-page inline-flex items-center gap-2 text-xs text-white/70 hover:text-gold transition">
-            퀸즈테이블 페이지 →
-          </a>
-        </div>
+        <div class="font-serif text-xl text-white">퀸즈테이블 · 퀸즈 박스</div>
+        <p class="mt-3 text-sm text-white/70">매장 뷔페 · 홈파티 케이터링</p>
+        <a href="tel:054-281-4000" class="mt-5 block font-serif text-lg text-gold hover:text-white">054-281-4000</a>
+        <div class="text-xs text-white/50">퀸즈테이블</div>
+        <a href="/queens-table" class="mt-2 inline-flex text-xs text-white/70 hover:text-gold">Queen's Table 페이지 →</a>
       </div>
     </div>
     <div class="mt-12 border-t border-white/10 pt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-white/50">
-      <div>경북 포항시 남구 대이로 18 · 054-283-1111</div>
-      <div>© 2026 더 퀸 웨딩 THE QUEEN WEDDING. All rights reserved.</div>
+      <div>경북 포항시 남구 대이로 18 · 웨딩·연회 054-283-1111 · 퀸즈테이블 054-281-4000</div>
+      <div>© 2026 THE QUEEN. All rights reserved.</div>
     </div>
+    
   </div>
 </footer>
 
 <!-- QUEEN'S TABLE FOOTER (그린 테마) -->
-<footer class="footer-qt relative bg-forest-900 text-white">
+<footer class="footer-qt relative bg-forest-900 text-white mt-auto" data-site-footer="v1" data-site-footer-layout="standard" data-site-footer-theme="forest">
   <div class="mx-auto max-w-7xl px-6 py-16">
     <div class="grid gap-12 lg:grid-cols-4">
       <div class="lg:col-span-1">
         <div class="text-[10px] font-semibold uppercase tracking-[0.32em] text-gold">QUEEN'S TABLE</div>
         <div class="mt-2 font-serif text-2xl">퀸즈테이블</div>
         <p class="mt-6 text-sm leading-relaxed text-white/70">
-          포항 유일 오마카세급<br>
-          프리미엄 뷔페 레스토랑<br>
-          더 퀸 웨딩 3층 · 100% 예약제
+          프리미엄 뷔페 · 퀸즈 블루/로얄<br>
+          더퀸 웨딩 3층 · 100% 예약제
         </p>
-        <a href="https://naver.me/5xajUCDf" target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-2 rounded-full border border-gold/30 px-4 py-2 text-[11px] font-semibold text-gold hover:bg-gold hover:text-forest-900 transition">
+        <a href="https://naver.me/5xajUCDf" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center gap-2 rounded-full border border-gold/30 px-4 py-2 text-[11px] font-semibold text-gold hover:bg-gold hover:text-forest-900 transition">
           <span class="inline-flex h-4 w-4 items-center justify-center rounded-sm bg-gold text-forest-900 text-[9px] font-bold">N</span> 네이버 플레이스
         </a>
         <a href="https://www.instagram.com/queens_table.official/" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-2 text-sm text-white/75 hover:text-gold transition" aria-label="Instagram · @queens_table.official">
@@ -1456,48 +1522,42 @@ const IMAGES = {
       </div>
       <div>
         <div class="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold mb-4">Reservation</div>
-        <div class="font-serif text-2xl text-white">054-281-4000</div>
-        <div class="mt-1 text-xs text-white/50">퀸즈테이블 전용 예약</div>
-        <div class="mt-6 text-sm text-white/80">
-          경북 포항시 남구 대이로 18 3층
-        </div>
-        <div class="mt-4 text-xs text-white/60">
-          100% 예약제 운영<br>
-          방문 전 전화 예약 필수
-        </div>
+        <a href="tel:054-281-4000" class="font-serif text-2xl text-white hover:text-gold">054-281-4000</a>
+        <div class="mt-1 text-xs text-white/50">퀸즈테이블 · 퀸즈 박스 · 케이터링</div>
+        <div class="mt-6 text-sm text-white/80">경북 포항시 남구 대이로 18 3층</div>
+        <a href="https://pf.kakao.com/_rbxopG/chat" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex text-sm text-gold hover:text-white">카카오톡 채널</a>
       </div>
       <div>
-        <div class="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold mb-4">Hours</div>
-        <ul class="space-y-2 text-sm text-white/80">
-          <li class="flex justify-between"><span class="text-white/50">수·목·금</span><span>12:00 – 21:00</span></li>
-          <li class="flex justify-between"><span class="text-white/50">토</span><span>18:30 – 21:00</span></li>
-          <li class="flex justify-between"><span class="text-white/50">일</span><span>18:00 – 21:00</span></li>
+        <div class="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold mb-4">Quick Links</div>
+        <ul class="space-y-3 text-sm text-white/80">
+          <li><a href="/" class="hover:text-gold transition">더퀸 웨딩</a></li>
+          <li><a href="/queens-table" class="hover:text-gold transition">퀸즈 테이블</a></li>
+          <li><a href="/news" class="hover:text-gold transition">스토리</a></li>
+          <li><a href="/banquet" class="hover:text-gold transition">기업·단체 연회</a></li>
+          <li><a href="/dress-show" class="hover:text-gold transition">2026 S/S 드레스 쇼</a></li>
+          <li><a href="/hall-galaxy" class="hover:text-gold transition">홀 안내</a></li>
+          <li><a href="/gallery" class="hover:text-gold transition">갤러리</a></li>
+          <li><a href="/directions" class="hover:text-gold transition">오시는 길</a></li>
+          <li><a href="/#contact" class="hover:text-gold transition">상담 예약</a></li>
+          <li><a href="/banquet" class="hover:text-gold transition">기업·단체 연회</a></li>
+          <li><a href="/partners" class="hover:text-gold transition">협약 안내</a></li>
+          <li><a href="/news/press" class="hover:text-gold transition">언론보도</a></li>
         </ul>
-        <div class="mt-4 text-xs text-white/60">
-          브레이크 15:00 – 18:00<br>
-          (수·목·금)
-        </div>
       </div>
       <div>
-        <div class="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold mb-4">The Queen Wedding</div>
-        <div class="font-serif text-xl text-white">더 퀸 웨딩</div>
-        <p class="mt-3 text-sm text-white/70 leading-relaxed">
-          포항 최초의 하이엔드<br>
-          프리미엄 웨딩 컨벤션<br>
-          크라운홀 · 갤럭시홀
-        </p>
-        <div class="mt-5 space-y-2">
-          <a href="tel:054-283-1111" class="block font-serif text-lg text-gold hover:text-white transition">📞 054-283-1111</a>
-          <a href="#" data-page="home" class="nav-page inline-flex items-center gap-2 text-xs text-white/70 hover:text-gold transition">
-            더 퀸 웨딩 메인 →
-          </a>
-        </div>
+        <div class="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold mb-4">THE QUEEN</div>
+        <div class="font-serif text-xl text-white">더퀸 웨딩</div>
+        <p class="mt-3 text-sm text-white/70">크라운홀 · 갤럭시홀 · 기업·단체 연회</p>
+        <a href="tel:054-283-1111" class="mt-5 block font-serif text-lg text-gold hover:text-white">054-283-1111</a>
+        <div class="text-xs text-white/50">웨딩·연회</div>
+        <a href="/" class="mt-2 inline-flex text-xs text-white/70 hover:text-gold">THE QUEEN 메인 →</a>
       </div>
     </div>
     <div class="mt-12 border-t border-white/10 pt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-white/50">
-      <div>경북 포항시 남구 대이로 18 3층 · 퀸즈테이블 · 054-281-4000</div>
+      <div>경북 포항시 남구 대이로 18 3층 · 054-281-4000</div>
       <div>© 2026 Queen's Table. All rights reserved.</div>
     </div>
+    
   </div>
 </footer>
 
@@ -1728,14 +1788,7 @@ const IMAGES = {
   // 페이지 로드 시 URL에 맞는 페이지로 자동 이동
   initRoute();
 
-  // ============== MOBILE MENU ==============
-  const menuBtn = document.getElementById('menuBtn');
-  const menuClose = document.getElementById('menuClose');
-  const menuOverlay = document.getElementById('menuOverlay');
-  function openMenu() { menuOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
-  function closeMenu() { menuOverlay.classList.remove('open'); document.body.style.overflow = ''; }
-  menuBtn.addEventListener('click', openMenu);
-  menuClose.addEventListener('click', closeMenu);
+  // MOBILE MENU: /site-mobile-nav.js
 
   // ============== REVEAL ==============
   let observer;
@@ -1857,6 +1910,7 @@ const IMAGES = {
   else document.addEventListener('DOMContentLoaded', hook, { once: true });
 })();
 </script>
+<script src="/site-mobile-nav.js" defer></script>
 
 <!-- BACKGROUND MUSIC · Sunlight / April in Your Eyes -->
 <audio id="tqBgm" preload="auto" autoplay muted playsinline webkit-playsinline></audio>

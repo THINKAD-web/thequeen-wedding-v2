@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{TITLE}} | 퀸즈테이블 · 더퀸</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="{{CANONICAL}}">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{DESCRIPTION}}">
+<meta property="og:image" content="{{OG_IMAGE}}">
+<meta property="og:url" content="{{CANONICAL}}">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: { fontFamily: { serif: ['"Cormorant Garamond"', '"Noto Serif KR"', 'serif'], sans: ['Pretendard', 'system-ui', 'sans-serif'] }, colors: { royal: { 900: '#0A2A5E', 700: '#1E4A8C' }, forest: { 900: '#1A3F2E' }, gold: { DEFAULT: '#C9A96A' }, cream: { 50: '#FFFDF9' } } } } };
+</script>
+<style>
+  body { font-family: Pretendard, system-ui, sans-serif; background: #FFFDF9; color: #475569; }
+  .font-serif { font-family: 'Cormorant Garamond', 'Noto Serif KR', serif; font-variant-numeric: lining-nums; }
+  .header-glass { backdrop-filter: blur(14px); background: rgba(255,253,249,.85); border-bottom: 1px solid rgba(201,169,106,.18); }
+  .nav-link { position: relative; }
+  .nav-link::after { content: ''; position: absolute; left: 0; bottom: -6px; height: 1px; width: 0; background: #C9A96A; transition: width .35s; }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+{{MOBILE_MENU_STYLES}}
+</style>
+{{JSON_LD_EXTRA}}
+</head>
+<body class="min-h-screen flex flex-col">
+<header class="fixed top-0 left-0 right-0 z-50 header-glass">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:py-5">
+    <a href="/" class="flex flex-col items-start leading-none">
+      <span class="text-[9px] font-semibold uppercase tracking-[0.32em] text-gold">The Queen's Legacy</span>
+      <span class="font-serif text-2xl text-royal-900 tracking-wide">THE QUEEN</span>
+    </a>
+    {{DESKTOP_NAV}}
+    {{MOBILE_HEADER_ACTIONS}}
+  </div>
+</header>
+{{MOBILE_MENU_OVERLAY}}
+<main class="flex-1 pt-24 lg:pt-28">
+  <article class="mx-auto max-w-3xl px-6 py-12 lg:py-16">
+    <p class="text-[11px] font-semibold uppercase tracking-[0.32em] text-gold">{{TYPE_LABEL}} {{ENDED_BADGE}}</p>
+    <h1 class="mt-4 font-serif text-4xl text-royal-900">{{TITLE}}</h1>
+    <p class="mt-2 text-sm text-slate-500">{{PERIOD}}</p>
+    <div class="mt-8">{{HERO_IMAGE}}</div>
+    <div class="post-body mt-10 prose prose-slate max-w-none">{{BODY}}</div>
+    <div class="mt-10 flex flex-wrap gap-3">{{IG_ACTIONS}}</div>
+    <p class="mt-12 text-center"><a href="/dining" class="text-sm font-semibold text-royal-700 hover:text-gold">← 퀸즈테이블 소식 목록</a></p>
+  </article>
+</main>
+{{SITE_FOOTER}}
+<script>(function(){
+  var btn = document.getElementById('ig-embed-open');
+  var host = document.getElementById('ig-embed-host');
+  if (!btn || !host) return;
+  btn.addEventListener('click', function(){
+    host.classList.remove('hidden');
+    btn.hidden = true;
+    var dataEl = document.getElementById('ig-oembed-data');
+    var html = '';
+    try { html = dataEl ? JSON.parse(dataEl.textContent).html : ''; } catch (e) {}
+    if (html && !host.dataset.loaded) {
+      host.innerHTML = html;
+      host.dataset.loaded = '1';
+      if (!window.instgrm) {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.instagram.com/embed.js';
+        s.onload = function(){ if (window.instgrm) window.instgrm.Embeds.process(); };
+        document.body.appendChild(s);
+      } else {
+        window.instgrm.Embeds.process();
+      }
+    }
+  });
+})();</script>
+{{MOBILE_NAV_SCRIPT}}
+<script src="/chatbot/embed.js" defer></script>
+</body>
+</html>
