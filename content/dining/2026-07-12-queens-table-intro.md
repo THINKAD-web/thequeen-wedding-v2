@@ -4,7 +4,7 @@ description: "더퀸 리모델링의 핵심, 퀸즈테이블이 추구하는 프
 date: 2026-07-12
 category: dining
 slug: queens-table-intro
-thumbnail: https://i.ibb.co/kgTWvG08/2.jpg
+thumbnail: https://i.ibb.co/sdwR0DMR/IMG-2350.jpg
 keywords: [포항 웨딩홀, 퀸즈테이블, 웨딩 뷔페, 포항 예식장, 웨딩 다이닝]
 draft: false
 ---

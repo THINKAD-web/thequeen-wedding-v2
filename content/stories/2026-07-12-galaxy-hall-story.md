@@ -4,7 +4,7 @@ description: "LED와 미러가 만든 드라마틱한 공간에서 펼쳐진 리
 date: 2026-07-12
 category: stories
 slug: galaxy-hall-story
-thumbnail: https://i.ibb.co/kgTWvG08/2.jpg
+thumbnail: https://i.ibb.co/qL7GTZ5G/1.jpg
 keywords: [포항 웨딩홀, 갤럭시홀, 리얼 웨딩, 포항 예식장, 더퀸]
 draft: false
 ---

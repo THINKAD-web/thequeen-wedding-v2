@@ -4,7 +4,7 @@ description: "전면 리모델링과 프리미엄 다이닝 퀸즈테이블로 �
 date: 2026-07-12
 category: news
 slug: ua-to-thequeen
-thumbnail: https://i.ibb.co/Ngw5GBKq/1.jpg
+thumbnail: https://i.ibb.co/27RQ7ffK/IMG-1969.jpg
 keywords: [포항 웨딩홀, UA컨벤션, 더퀸, 리모델링, 포항 예식장]
 draft: false
 ---
