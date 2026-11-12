@@ -281,7 +281,7 @@ function renderPressGridCard(item) {
   return `
     <a href="${url}" target="_blank" rel="noopener noreferrer" class="card-lift group block overflow-hidden rounded-sm border border-[#0A2A5E]/10 bg-white shadow-md">
       <div class="aspect-video overflow-hidden bg-slate-100">
-        <img src="${thumb}" alt="" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+        <img src="${thumb}" alt="${title}" class="h-full w-full object-cover object-center transition duration-500 group-hover:scale-105" loading="lazy">
       </div>
       <div class="p-5">
         <span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#C9A96A]">${outlet}</span>

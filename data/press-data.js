@@ -14,7 +14,7 @@ const PRESS_ITEMS = [
   },
   {
     id: 'police-kyongbuk',
-    imageUrl: IMG.heroHall,
+    imageUrl: IMG.mouPolice,
     title: '포항 남·북부경찰서 직장협의회와 직원 복지 협약 체결',
     outlet: '경북일보',
     date: '2026-07-17',
@@ -24,7 +24,7 @@ const PRESS_ITEMS = [
   },
   {
     id: 'queens-table-sisun',
-    imageUrl: IMG.queensTable,
+    imageUrl: IMG.pressQueensLineup,
     title: "퀸즈테이블, '블루·로얄' 신규 라인업 런칭",
     outlet: '시선뉴스',
     date: '2026-06-17',
@@ -33,7 +33,7 @@ const PRESS_ITEMS = [
   },
   {
     id: 'ecopro-ksm',
-    imageUrl: IMG.heroHall,
+    imageUrl: IMG.mouEcopro,
     title: '에코프로와 임직원 복지·지역상생 협약 체결',
     outlet: '경상매일신문',
     date: '2026-08-13',
